@@ -249,191 +249,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/24/leve1%E5%92%8Clevel2%20%E8%A7%A3%E9%87%8A/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="eryk">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/24/leve1%E5%92%8Clevel2%20%E8%A7%A3%E9%87%8A/" itemprop="url">leve1、level2 解释</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-24T16:36:21+08:00">
-                2017-08-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
-                    <span itemprop="name">金融</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Level-1-Market-Data"><a href="#Level-1-Market-Data" class="headerlink" title="Level 1 Market Data"></a>Level 1 Market Data</h1><p>Basic market data is known as level 1 market data, and includes the following information:</p>
-<ul>
-<li><strong>Bid price</strong>: The highest price that a trader is willing to buy an asset at.</li>
-<li><strong>Bid size</strong>: The number of shares, forex lots or contracts that are available at the bid price.</li>
-<li><strong>Ask price</strong>: The lowest price that a trader is willing to sell an asset at.</li>
-<li><strong>Ask size</strong>: The number of shares, forex lots or contracts that are available at the ask price.</li>
-<li><strong>Last price</strong>: The price at which the most recent trade was completed.</li>
-<li><strong>Last size</strong>: The number of shares, forex lots or contracts that were traded in the most recent trade.</li>
-</ul>
-<p>Level 1 market data provides all of the information needed to trade using most trading systems. If you are trading a price action or indicator based strategy, then Level 1 market data should satisfy your informational needs. </p>
-<p>Scalpers, and traders who trade based on changes in how other traders are bidding and offering (offer and ask are used interchangeably), will need Level 2 market data, which provides multiple levels of bids and offers.</p>
-<h1 id="Level-2-Market-Data"><a href="#Level-2-Market-Data" class="headerlink" title="Level 2 Market Data"></a>Level 2 Market Data</h1><p>Additional market data is known as level 2 market data, the order book, or the depth of market, and includes the following additional information:</p>
-<ul>
-<li><p><strong>Highest bid prices</strong>: The highest 5 to 15 prices (depending upon the market) where traders are willing to buy an asset. This means you not only see the current bid, but also all the bids currently below it. In actively traded stocks, there will typically be bids every $0.01 below the current bid, and in actively traded futures, there will typically be a bid each tick below the current bid. If there is a gap between the current bid and next bid, that typically means the stock or contract may experience a larger bid/ask spread and less volume.</p>
-</li>
-<li><p><strong>Bid sizes</strong>: The number of shares, forex lots or contracts that are available at each of the bid prices.</p>
-</li>
-<li><p><strong>Lowest ask prices</strong>: The lowest 5 to 15 prices (depending upon the market) where traders are willing to sell an asset. This means you not only see the current ask, but also all the asks above the current ask. In actively traded stocks, there will typically be asks every $0.01 above the current ask, and in actively traded futures, there will typically be an ask each tick above the current ask. If there is a gap between the current ask and next ask, that typically means the stock or contract may experience a larger bid/ask spread and less volume.</p>
-</li>
-<li><p><strong>Ask sizes</strong>: The number of shares, forex lots or contracts that are available at each of the ask prices.</p>
-</li>
-</ul>
-<p>Level 2 market data provides the additional information that is needed to trade based on changes that occur in the bids and offers. Level 2 market data is also known as the order book, because it shows the orders that are currently pending for the market. It is also known as the depth of market, or market depth, because it shows the number of contracts (or shares or lots) that are available at each of the bid and ask prices.</p>
-<p><img src="images/15035650306126.jpg" alt=""></p>
-<h1 id="Order-Book"><a href="#Order-Book" class="headerlink" title="Order Book"></a>Order Book</h1><blockquote>
-<p>An order book is the list of orders (manual or electronic) that a trading venue (in particular stock exchanges) uses to record the interest of buyers and sellers in a particular financial instrument. A matching engine uses the book to determine which orders can be fulfilled i.e. what trades can be made.   –wikipedia</p>
-</blockquote>
-<h1 id="Level2行情"><a href="#Level2行情" class="headerlink" title="Level2行情"></a>Level2行情</h1><h3 id="买卖行情"><a href="#买卖行情" class="headerlink" title="买卖行情"></a>买卖行情</h3><p>买入委托和卖出委托前10档的委托价和委托量,投资者可以看得更远,哪个价位有阻力？哪个价位有支撑？哪个价位有大笔挂单,一目了然。</p>
-<h3 id="总买总卖"><a href="#总买总卖" class="headerlink" title="总买总卖"></a>总买总卖</h3><p>当前全部买入(卖出)委托的总量和加权均价,据此投资者可以判断盘中的支撑位(委买均价)、阻力位(委卖均价)、支撑力度(委买总量)、阻力大小(委卖总量),还可以根据这些数据的动态变化分析多空双方力量的变化,寻找行情的转折点</p>
-<h3 id="成交明细"><a href="#成交明细" class="headerlink" title="成交明细"></a>成交明细</h3><p>在Level-2之前,沪深交易所提供的都是行情快照,大家看到的分笔成交其实是两次快照期间累计的成交量和最后一笔的价格,而逐笔成交则是真实的每笔成交价和成交量的明细数据。逐笔成交极大地提高了行情的透明度。</p>
-<h3 id="买卖队列"><a href="#买卖队列" class="headerlink" title="买卖队列"></a>买卖队列</h3><p>买一或卖一的前50笔委托单明细,根据委托单的大小或委托单是否有规律,可以判断委托是机构、大户、或散户所为。</p>
-<h1 id="逐笔数据与分笔数据的根本区别"><a href="#逐笔数据与分笔数据的根本区别" class="headerlink" title="逐笔数据与分笔数据的根本区别"></a>逐笔数据与分笔数据的根本区别</h1><p>国内的Tick数据指的是 按固定时间间隔取个快照记录下来</p>
-<ol>
-<li>逐笔成交一般显示的数据格式为在几分几秒以多少价格分几笔成交了多少手。在这里我们要注意的是成交手数有时候是带小数点的，这是因为股票买进的股数最少是100股，委托的股数也应是100的整数倍，卖出却没有限制，因此成交的手数会有小数点。另外一点就是如果在成交价格和手数前面没有显示，则一半是默认的1笔。 </li>
-<li>分时成交一般显示的数据格式为在几分几秒以多少价格成交了多少手。这里需要注意的是成交手数永远是整数，不会出现小数点数字。其中现手累计数就是总手数。总手数也叫做成交量。有些软件在现量后面标注蓝色S和红色B，前者代表卖，后者代表买。目前市面上出现了LEVEL-2行情数据，比较具有代表性的是大智慧，在那里把分笔成交是叫分时成交，实际上就是我们在普通分析软件上F1看到的“分笔成交明细”，但是他和LEVEL-2行情数据提供的逐笔成交明细是不一样的。 </li>
-<li>分笔数据由于是合成混合数据，它是以最后1笔的买卖方向来表示该时间内（3秒或者6秒）的买卖方向，所以误差很大。（见下图说明）</li>
-<li>一个孤独的数字是缺乏意义的，但是一些连续的数字则是充满想像的。一般来说，成交笔数越少，金额越大，表示成交比较强势，反之是弱势。尤其是成交手数比较大而集中的时候，表示有大资金活跃迹象，该股出现价格异动的概率就大，应该引起投资者的注意。而如果半天也没人买或者都是一些小单子在交易，则至少短期不大可能成为好股。 </li>
-<li>交易数据三要素—-成交量、成交价格和成交笔数。不陌生的是前面两个，笔数就是交易批次。在成交量一定的前提下，笔数少说明交易力度强，反之就弱。笔数的变动与数量方向一致，交易为常态，反之就是非常态。</li>
-</ol>
-<p><img src="images/15035663072399.gif" alt=""></p>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p><a href="https://www.thebalance.com/order-book-level-2-market-data-and-depth-of-market-1031118" target="_blank" rel="noopener">https://www.thebalance.com/order-book-level-2-market-data-and-depth-of-market-1031118</a></p>
-<p><a href="https://baike.baidu.com/item/Level-2" target="_blank" rel="noopener">https://baike.baidu.com/item/Level-2</a></p>
-<p><a href="https://www.zhihu.com/question/26950456" target="_blank" rel="noopener">https://www.zhihu.com/question/26950456</a></p>
-<p><a href="http://www.cnblogs.com/chuncn/archive/2009/03/13/1410144.html" target="_blank" rel="noopener">http://www.cnblogs.com/chuncn/archive/2009/03/13/1410144.html</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/24/%E8%BF%85%E6%8A%95%E4%BA%A4%E6%98%93%E7%BB%88%E7%AB%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1875,11 +1690,175 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/09/jupyter%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/09/jupyter%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" itemprop="url">使用https方式连接jupyter</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-09T09:15:37+08:00">
+                2017-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>生成jupyter配置文件:</p>
+<blockquote>
+<p>jupyter notebook –generate-config</p>
+</blockquote>
+<p>注意：generate前是两个”-“，不知道为什么markdown里是两个，显示的时候成一个了</p>
+<p>生成好的配置文件位置在：</p>
+<blockquote>
+<p>~/.jupyter/jupyter_notebook_config.py</p>
+</blockquote>
+<p>生成自签名SSL证书：</p>
+<blockquote>
+<p>cd ~/.jupyter<br>openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout notebook_cert.key -out notebook_cert.pem</p>
+</blockquote>
+<p>生成一个登录密码的hash:</p>
+<blockquote>
+<p>python -c “import IPython;print(IPython.lib.passwd())”</p>
+</blockquote>
+<p>修改jupyter_notebook_config.py配置文件中的如下选项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c.NotebookApp.certfile &#x3D; u&#39;&#x2F;home&#x2F;xxxx&#x2F;.jupyter&#x2F;notebook_cert.pem&#39;</span><br><span class="line">c.NotebookApp.keyfile &#x3D; u&#39;&#x2F;home&#x2F;xxxx&#x2F;.jupyter&#x2F;notebook_cert.key&#39;</span><br><span class="line">c.NotebookApp.password &#x3D; u&#39;sha1:991ec9cd2f39:522598e19891bab1ecaa3a9072e71f45811af9f2&#39;</span><br></pre></td></tr></table></figure>
+
+<p>重启jupyter，使用浏览器访问：<a href="https://your_domain_or_IP:8080" target="_blank" rel="noopener">https://your_domain_or_IP:8080</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://jupyter-notebook.readthedocs.io/en/latest/public_server.html#notebook-server-security" target="_blank" rel="noopener">http://jupyter-notebook.readthedocs.io/en/latest/public_server.html#notebook-server-security</a></p>
+<p><a href="http://www.linuxdiyf.com/linux/22884.html" target="_blank" rel="noopener">http://www.linuxdiyf.com/linux/22884.html</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav>
 
 
@@ -1925,7 +1904,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -249,162 +249,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2019/04/26/2019-04-26%20%E5%A4%84%E7%90%86linux%E7%B3%BB%E7%BB%9F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="eryk">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/26/2019-04-26%20%E5%A4%84%E7%90%86linux%E7%B3%BB%E7%BB%9F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B/" itemprop="url">处理linux系统僵尸进程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-26T15:36:00+08:00">
-                2019-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
-                    <span itemprop="name">系统运维</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近在使用jupyter运行多进程程序时，发现重启jupyter notebook偶尔会留下一些僵尸进程，应该是python父进程被终止之后子进程没有被正确释放造成的。僵尸进程依然会占用系统资源，如果不及时清理可能会严重影响系统性能。</p>
-<p>先解释下什么是僵尸进程</p>
-<blockquote>
-<p>僵尸进程是当子进程比父进程先结束，而父进程又没有回收子进程，释放子进程占用的资源，此时子进程将成为一个僵尸进程。如果父进程先退出 ，子进程被init接管，子进程退出后init会回收其占用的相关资源。</p>
-<p>在UNIX 系统中，一个进程结束了，但是他的父进程没有等待(调用wait / waitpid)他， 那么他将变成一个僵尸进程。<br>                                                                                                                       — 百度百科</p>
-</blockquote>
-<p> 在jupyter中使用多进程执行程序时，如果程序还没有执行完成就点击菜单栏的 Kernel -&gt; Restart xxx，就有可能会造成僵尸进程。</p>
-<p>如何检查僵尸进程是否存在呢？在命令行中执行如下命令就可以返回僵尸进程状态、父进程ID、进程ID和执行的具体命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -A -ostat,ppid,pid,cmd | grep -e '^[Zz]'</span><br></pre></td></tr></table></figure>
-
-<p>杀死僵尸进程也比较容易，执行如下命令就可以清理僵尸进程：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -9 `ps -A -ostat,ppid,pid,cmd | grep -e '^[Zz]' | awk '&#123;print $2&#125;'`</span><br></pre></td></tr></table></figure>
-
-<p>我的微信公众号：pyquant</p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2019/04/24/%E4%BD%BF%E7%94%A8Pandas%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E5%9D%87%E7%BA%BF%E7%AD%96%E7%95%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2113,11 +1957,164 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/05/19/%E3%80%8A%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E5%9B%A0%E5%AD%90%E6%9C%89%E6%95%88%E6%80%A7%E3%80%8B%20%E5%90%AC%E8%AF%BE%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/19/%E3%80%8A%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E5%9B%A0%E5%AD%90%E6%9C%89%E6%95%88%E6%80%A7%E3%80%8B%20%E5%90%AC%E8%AF%BE%E7%AC%94%E8%AE%B0/" itemprop="url">《如何验证因子有效性》 听课笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-19T11:29:00+08:00">
+                2018-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AD%96%E7%95%A5%E7%A0%94%E7%A9%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">策略研究</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一维零投资组合"><a href="#一维零投资组合" class="headerlink" title="一维零投资组合"></a>一维零投资组合</h1><p><img src="images/15267001868391.jpg" alt=""></p>
+<p><img src="images/15267003855597.jpg" alt=""></p>
+<p>先对股票按因子大小排序， nt是top，nb是bottom，nb中停牌的股票跳过停牌的股票，已纳入的股票如果停牌的也不能调出且需要保留仓位</p>
+<p><img src="images/15267006658022.jpg" alt=""></p>
+<p>公式一：每只股票期末收益累加除以股票数<br>公式二：计算零投资组合当期收益<br>公式三：计算累计收益，把第一期净值作为1，连成每期收益率，最后减去1</p>
+<p><img src="images/15267011538977.jpg" alt=""><br><img src="images/15267014437363.jpg" alt=""><br><img src="images/15267154692447.jpg" alt=""><br><img src="images/15267155512097.jpg" alt=""><br><img src="images/15267163339922.jpg" alt=""><br><img src="images/15267164374438.jpg" alt=""></p>
+<h1 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h1><ul>
+<li>PE -&gt; EP，使取值空间连续</li>
+<li>停牌</li>
+<li>复权（后复权）</li>
+</ul>
+<h1 id="自定义股票池"><a href="#自定义股票池" class="headerlink" title="自定义股票池"></a>自定义股票池</h1><p><img src="images/15267167359285.jpg" alt=""></p>
+<h1 id="调仓周期"><a href="#调仓周期" class="headerlink" title="调仓周期"></a>调仓周期</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -2163,7 +2160,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
