@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="pandas,hdf5," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="读写APIHDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level API，类似于read_csv和to_csv的工作方式。 默认情况下，HDFStore不会丢弃全部为na的行。可以通过设置dropna &#x3D; True来更改此行为。 12345import pandas as pdimport h5pydf_tl &#x3D; pd.DataFrame(&amp;#123;&#39;A&#39;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pandas hdf5使用指南翻译">
+<meta property="og:url" content="http://xuqi365.com/2019/05/08/2019-05-08%20Pandas%20hdf5%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E7%BF%BB%E8%AF%91/index.html">
+<meta property="og:site_name" content="Python量化交易实战">
+<meta property="og:description" content="读写APIHDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level API，类似于read_csv和to_csv的工作方式。 默认情况下，HDFStore不会丢弃全部为na的行。可以通过设置dropna &#x3D; True来更改此行为。 12345import pandas as pdimport h5pydf_tl &#x3D; pd.DataFrame(&amp;#123;&#39;A&#39;">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
+<meta property="article:published_time" content="2019-05-08T13:51:00.000Z">
+<meta property="article:modified_time" content="2020-02-08T17:11:25.955Z">
+<meta property="article:author" content="eryk">
+<meta property="article:tag" content="pandas">
+<meta property="article:tag" content="hdf5">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqi365.com/2019/05/08/2019-05-08 Pandas hdf5使用指南翻译/"/>
+
+
+
+
+
+  <title>Pandas hdf5使用指南翻译 | Python量化交易实战</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python量化交易实战</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2019/05/08/2019-05-08%20Pandas%20hdf5%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E7%BF%BB%E8%AF%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Pandas hdf5使用指南翻译</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-08T21:51:00+08:00">
+                2019-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="读写API"><a href="#读写API" class="headerlink" title="读写API"></a>读写API</h1><p>HDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level API，类似于read_csv和to_csv的工作方式。</p>
+<p>默认情况下，HDFStore不会丢弃全部为na的行。可以通过设置dropna = True来更改此行为。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line">df_tl = pd.DataFrame(&#123;<span class="string">'A'</span>: list(range(<span class="number">5</span>)), <span class="string">'B'</span>: list(range(<span class="number">5</span>))&#125;)</span><br><span class="line">df_tl.to_hdf(<span class="string">'store_tl.h5'</span>, <span class="string">'table'</span>, append=<span class="literal">True</span>)</span><br><span class="line">pd.read_hdf(<span class="string">'store_tl.h5'</span>, <span class="string">'table'</span>, where=[<span class="string">'index&gt;2'</span>])</span><br></pre></td></tr></table></figure>
+
+<h1 id="HDF数据类型"><a href="#HDF数据类型" class="headerlink" title="HDF数据类型"></a>HDF数据类型</h1><ul>
+<li>Fixed Format<ul>
+<li>一次写入，重复读取，不可追加</li>
+<li>不可以使用where查询，比如每次获取指定key的全部内容</li>
+<li>不支持dataframe有非唯一的column</li>
+<li>相比于table格式更快的读写速度</li>
+<li>使用put或者to_hdf时的默认类型，也可以通过format=’fixed’或format=’f’指定类型</li>
+</ul>
+</li>
+<li>Table Format<ul>
+<li>支持append操作</li>
+<li>支持删除和查询类型操作</li>
+<li>执行put或者to_hdf操作时通过设置format=’table’或format=’t’指定table格式</li>
+<li>pd.set_option(‘io.hdf.default_format’,’table’) 设置默认hdf format类型</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在第一次append/put操作之后，您无法更改数据列（也不能转换索引）（当然，您只需读取数据并创建新表！）。</p>
+</blockquote>
+<blockquote>
+<p>警告HDFStore对于写入不是线程安全的。底层PyTables仅支持并发读取（通过线程或进程）。如果您需要同时进行读写，则需要在单个进程中在单个线程中序列化这些操作。否则你将破坏你的数据。</p>
+</blockquote>
+<p>TODO 验证append是否会按照index排序的例子</p>
+<h1 id="Hierarchical-Keys"><a href="#Hierarchical-Keys" class="headerlink" title="Hierarchical Keys"></a>Hierarchical Keys</h1><p>key可以包含路径，例如’/food/apple’, 存储时会自动创建sub-stores(在pytables中是groups)，可以省略路径开头的’/‘，’/food/apple’和’food/apple’表示相同的key。</p>
+<blockquote>
+<p>注意：删除操作会删除子路径下的所有内容，请小心使用</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(&#123;<span class="string">'A'</span>: list(range(<span class="number">2</span>)), <span class="string">'B'</span>: list(range(<span class="number">2</span>))&#125;)</span><br><span class="line">store = pd.HDFStore(<span class="string">'hk_test.h5'</span>)</span><br><span class="line">store.append(<span class="string">'/food/apple'</span>, df)</span><br><span class="line">store.append(<span class="string">'food/orange'</span>, df)</span><br><span class="line">store.append(<span class="string">'df'</span>,df)</span><br><span class="line">print(store.keys())</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (path, subgroups, subkeys) <span class="keyword">in</span> store.walk():</span><br><span class="line">    <span class="keyword">for</span> subgroup <span class="keyword">in</span> subgroups:</span><br><span class="line">        print(<span class="string">'GROUP: &#123;&#125;/&#123;&#125;'</span>.format(path, subgroup))</span><br><span class="line">    <span class="keyword">for</span> subkey <span class="keyword">in</span> subkeys:</span><br><span class="line">        key = <span class="string">'/'</span>.join([path, subkey])</span><br><span class="line">        print(<span class="string">'KEY: &#123;&#125;'</span>.format(key))</span><br><span class="line">        print(store.get(key))</span><br><span class="line"></span><br><span class="line">print(store[<span class="string">'food/orange'</span>])</span><br></pre></td></tr></table></figure>
+
+<h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1><p>select和delete操作可以通过查询语句对数据子集进行操作，好处是可以在非常大的数据集上只检索一小部分数据。</p>
+<p>查询表达式:</p>
+<ul>
+<li>支持使用index和columns查询dataframe</li>
+<li>支持使用major_axis、minor_axis和items查询Panel</li>
+<li>如果指定data_columns，则它将被作为附加索引器</li>
+</ul>
+<p>有效的比较运算符是：</p>
+<p>=, ==, !=, &gt;, &gt;=, &lt;, &lt;=</p>
+<p>有效的布尔表达式包括：</p>
+<ul>
+<li>| : 或操作</li>
+<li>&amp; : 与操作</li>
+<li>( 和 ) : 分组</li>
+</ul>
+<p>例子：</p>
+<ul>
+<li>‘index &gt;= date’</li>
+<li>“columns = [‘A’, ‘D’]“</li>
+<li>“columns in [‘A’, ‘D’]“</li>
+<li>‘columns = A’</li>
+<li>‘columns == A’</li>
+<li>“~(columns = [‘A’, ‘B’])”</li>
+<li>‘index &gt; df.index[3] &amp; string = “bar”‘</li>
+<li>‘(index &gt; df.index[3] &amp; index &lt;= df.index[6]) | string = “bar”‘</li>
+<li>“ts &gt;= Timestamp(‘2012-02-01’)”</li>
+<li>“major_axis&gt;=20130101”</li>
+</ul>
+<p>不建议通过将字符串插入查询表达式来将字符串传递给查询。只需将感兴趣的字符串分配给变量，并在表达式中使用该变量。<br>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string = <span class="string">"HolyMoly'"</span></span><br><span class="line">store.select(<span class="string">'df'</span>, <span class="string">'index == string'</span>)</span><br><span class="line">store.select(<span class="string">'dfq'</span>, <span class="string">"index&gt;pd.Timestamp('20130104') &amp; columns=['A', 'B']"</span>)</span><br><span class="line">store.select(<span class="string">'dfq'</span>, where=<span class="string">"A&gt;0 or C&gt;0"</span>)</span><br><span class="line">store.select(<span class="string">'df'</span>, <span class="string">"columns=['A', 'B']"</span>)</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">store.remove(<span class="string">'wp'</span>, <span class="string">'major_axis &gt; 20000102'</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>警告: 请注意HDF5不会自动回收h5文件中的空格。因此，反复删除（或删除节点）并再次添加，将趋于增加文件大小。</p>
+</blockquote>
+<h1 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h1><ul>
+<li>complevel指定压缩强度，complevel = 0和complevel = None禁用压缩，0 &lt;complevel &lt;10启用压缩。</li>
+<li>complib 指定压缩库，默认使用zlib<ul>
+<li>zlib：默认的压缩库。压缩方面的经典之作可以实现良好的压缩率，但速度有些慢。</li>
+<li>lzo：快速压缩和减压。</li>
+<li>bzip2：良好的压缩率。</li>
+<li>blosc：快速压缩和解压缩。</li>
+<li>blosc：blosclz这是blosc的默认压缩器</li>
+<li>blosc：lz4：紧凑，非常流行和快速的压缩机。</li>
+<li>blosc：lz4hc：LZ4的调整版本，以牺牲速度为代价产生更好的压缩比。</li>
+<li>blosc：snappy：在许多地方使用的流行压缩器。</li>
+<li>blosc：zlib：经典;比以前慢一些，但实现了更好的压缩比。</li>
+<li>blosc：zstd：非常平衡的编解码器;它提供了上述其他压缩比，并且速度相当快。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">store_compressed = pd.HDFStore(<span class="string">'store_compressed.h5'</span>, complevel=<span class="number">9</span>,complib=<span class="string">'blosc:blosclz'</span>)</span><br><span class="line"></span><br><span class="line">store.append(<span class="string">'df'</span>, df, complib=<span class="string">'zlib'</span>, complevel=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="ptrepack"><a href="#ptrepack" class="headerlink" title="ptrepack"></a>ptrepack</h3><p>重新生成压缩文件，重写文件将回收已删除的空间，也可以改变complevel</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ptrepack --chunkshape=auto --propindexes --complevel=9 --complib=blosc in.h5 out.h5</span><br></pre></td></tr></table></figure>
+
+<h1 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h1><ul>
+<li>fixed stores 读写速度快于 tables 格式，但tables支持追加、删除和查询操作</li>
+<li>可以设置chunksize=&lt; int &gt;来指定chunsize大小，这将会降低写入时的内存使用量</li>
+<li>设置expectedrows 可以优化读写性能</li>
+<li>Duplicate rows将会被写入tables，在select时会被过滤掉</li>
+</ul>
+<hr>
+<p>我的微信公众号：pyquant</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pandas/" rel="tag"># pandas</a>
+          
+            <a href="/tags/hdf5/" rel="tag"># hdf5</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/30/2019-04-30%20%E4%BD%BF%E7%94%A8pyfolio%E5%AF%B9%E7%AD%96%E7%95%A5%E6%94%B6%E7%9B%8A%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90/" rel="next" title="使用pyfolio对策略收益进行分析">
+                <i class="fa fa-chevron-left"></i> 使用pyfolio对策略收益进行分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/05/2019-06-05%20%E5%B0%86DataFrame%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E5%87%8F%E5%B0%91%E7%BA%A665%EF%BC%85/" rel="prev" title="将DataFrame内存大小减少约65％">
+                将DataFrame内存大小减少约65％ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">eryk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#读写API"><span class="nav-number">1.</span> <span class="nav-text">读写API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HDF数据类型"><span class="nav-number">2.</span> <span class="nav-text">HDF数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hierarchical-Keys"><span class="nav-number">3.</span> <span class="nav-text">Hierarchical Keys</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查询"><span class="nav-number">4.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除"><span class="nav-number">5.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#压缩"><span class="nav-number">6.</span> <span class="nav-text">压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ptrepack"><span class="nav-number">6.0.1.</span> <span class="nav-text">ptrepack</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#性能"><span class="nav-number">7.</span> <span class="nav-text">性能</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">eryk</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

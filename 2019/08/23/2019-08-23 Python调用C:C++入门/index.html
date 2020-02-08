@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ctypes," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1. 背景最近公司在某券商募集了一笔资金，需要对接其提供的程序化接口方便以后进行交易，对方只提供了c++版本程序，我们系统是python开发的，所以需要用python调用c++，大致了解下了python调用c++的几种方式，下面根据网上的资料介绍下几种方式优缺点，最后给个mac环境下python调用c++的例子。 2. Python调用C&#x2F;C++程序方法 ctypes  如果是 C 函数库，则直接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python调用C&#x2F;C++入门">
+<meta property="og:url" content="http://xuqi365.com/2019/08/23/2019-08-23%20Python%E8%B0%83%E7%94%A8C:C++%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Python量化交易实战">
+<meta property="og:description" content="1. 背景最近公司在某券商募集了一笔资金，需要对接其提供的程序化接口方便以后进行交易，对方只提供了c++版本程序，我们系统是python开发的，所以需要用python调用c++，大致了解下了python调用c++的几种方式，下面根据网上的资料介绍下几种方式优缺点，最后给个mac环境下python调用c++的例子。 2. Python调用C&#x2F;C++程序方法 ctypes  如果是 C 函数库，则直接">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
+<meta property="article:published_time" content="2019-08-23T06:19:00.000Z">
+<meta property="article:modified_time" content="2020-02-08T17:11:25.958Z">
+<meta property="article:author" content="eryk">
+<meta property="article:tag" content="ctypes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqi365.com/2019/08/23/2019-08-23 Python调用C:C++入门/"/>
+
+
+
+
+
+  <title>Python调用C/C++入门 | Python量化交易实战</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python量化交易实战</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2019/08/23/2019-08-23%20Python%E8%B0%83%E7%94%A8C:C++%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python调用C/C++入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-23T14:19:00+08:00">
+                2019-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">量化交易系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h3><p>最近公司在某券商募集了一笔资金，需要对接其提供的程序化接口方便以后进行交易，对方只提供了c++版本程序，我们系统是python开发的，所以需要用python调用c++，大致了解下了python调用c++的几种方式，下面根据网上的资料介绍下几种方式优缺点，最后给个mac环境下python调用c++的例子。</p>
+<h3 id="2-Python调用C-C-程序方法"><a href="#2-Python调用C-C-程序方法" class="headerlink" title="2. Python调用C/C++程序方法"></a>2. Python调用C/C++程序方法</h3><ol>
+<li><p>ctypes</p>
+<ul>
+<li>如果是 C 函数库，则直接 load 这个库，然后调用即可；</li>
+<li>如果是 C++ 函数库，则需要用extern关键字封装一个供 C 使用的函数，即把类隐藏到一些 C 风格的函数里，然后用 extern 标明这些函数，以方便外部调用。</li>
+</ul>
+</li>
+<li><p>SWIG</p>
+<p>SWIG完整支持ANSI C，支持除嵌套类外的所有C++特性。SWIG是一个接口编译器，旨在为C/C++方便地提供脚本语言接口。SWIG不仅可以为C/C++程序生成 Python接口，目前可以生成CLISP,Java,Lua,PHP,Ruby,Tcl等19种语言的接口。SWIG被Subversion, wxPython, Xapian等项目使用。值得一提的是，Google也使用SWIG。</p>
+</li>
+<li><p>SIP</p>
+<p>SIP是一种Python工具，用于自动生成Python与C、C++库的绑定。SIP最初是在1998年用PyQt开发的，用于Python与Qt GUI toolkit的绑定，但适用于生成任何C或C++库的绑定。</p>
+</li>
+<li><p>Cython</p>
+<p>Cython是让Python脚本支持C语言扩展的编译器，Cython能够将Python+C混合编码的.pyx脚本转换为C代码，主要用于优化Python脚本性能或Python调用C函数库。由于Python固有的性能差的问题，用C扩展Python成为提高Python性能常用方法，Cython算是较为常见的一种扩展方式。</p>
+</li>
+<li><p>Boost.Python</p>
+<p>Boost.Python是Boost提供的一个C++的模板库，用以支持Python和C++的无缝互操作。相对SWIG来说，这个库的优势是功能通过C++ API完成，不用学习写新的接口文件。对C++的支持更自然、完整。</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ctypes</th>
+<th>SWIG</th>
+<th>SIP</th>
+<th>Cython</th>
+<th>Boost.Python</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>是否支持Python3</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>对接难易程度</td>
+<td>简单</td>
+<td>中等</td>
+<td>中等</td>
+<td>困难</td>
+<td>困难</td>
+</tr>
+<tr>
+<td>是否需开发封装代码</td>
+<td>c++需要,c不需要</td>
+<td>需要</td>
+<td>需要</td>
+<td>需要</td>
+<td>需要</td>
+</tr>
+</tbody></table>
+<h3 id="3-使用ctypes调用C-C-例子"><a href="#3-使用ctypes调用C-C-例子" class="headerlink" title="3. 使用ctypes调用C/C++ 例子"></a>3. 使用ctypes调用C/C++ 例子</h3><h4 id="3-1-安装-GNU-的-C-C-编译器"><a href="#3-1-安装-GNU-的-C-C-编译器" class="headerlink" title="3.1 安装 GNU 的 C/C++ 编译器"></a>3.1 安装 GNU 的 C/C++ 编译器</h4><ul>
+<li><p>UNIX/Linux: <a href="http://gcc.gnu.org/install/" target="_blank" rel="noopener">http://gcc.gnu.org/install/</a> </p>
+</li>
+<li><p>Mac OS X:  安装 Xcode就能使用编译器</p>
+</li>
+<li><p>Windows: <a href="http://www.mingw.org/" target="_blank" rel="noopener">www.mingw.org</a></p>
+</li>
+</ul>
+<p>以mac为例，安装之后命令行输入 g++ -v 查看是否安装成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> ~/ g++ -v</span><br><span class="line">Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/c++/4.2.1</span><br><span class="line">Apple LLVM version 10.0.0 (clang-1000.11.45.5)</span><br><span class="line">Target: x86_64-apple-darwin18.2.0</span><br><span class="line">Thread model: posix</span><br><span class="line">InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin</span><br></pre></td></tr></table></figure>
+
+<p>3.2 开发c++例子程序:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;     </span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>&#123;</span>     </span><br><span class="line">    <span class="keyword">public</span>:                  </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;             </span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello world!"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;     </span><br><span class="line">    <span class="function">Test* <span class="title">Test_new</span><span class="params">()</span></span>&#123;         </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Test(); </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Test_print</span><span class="params">(Test* test)</span></span>&#123; </span><br><span class="line">        test-&gt;<span class="built_in">print</span>(); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>保存文件未test.cpp，编译代码生成动态链接库:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -o test.so -shared -fPIC test.cpp</span><br></pre></td></tr></table></figure>
+
+<p>执行完成后会在当前目录下生辰test.so 文件</p>
+<p>3.3 Python中调用so</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> cdll</span><br><span class="line">lib = cdll.LoadLibrary(<span class="string">'./test.so'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.obj = lib.Test_new()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print</span><span class="params">(self)</span>:</span></span><br><span class="line">        lib.Test_print(self.obj)</span><br><span class="line"></span><br><span class="line">test = Test()</span><br><span class="line">test.print()</span><br></pre></td></tr></table></figure>
+
+<p>执行Python代码会输出 Hello world!，说明执行成功</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://stackoverflow.com/questions/145270/calling-c-c-from-python" target="_blank" rel="noopener">https://stackoverflow.com/questions/145270/calling-c-c-from-python</a></p>
+<p>关于python对接c/c++各种方案的优缺点，这篇文章说的比较清楚: <a href="https://www.jb51.net/article/63623.htm" target="_blank" rel="noopener">https://www.jb51.net/article/63623.htm</a></p>
+<p>我的微信公众号：pyquant</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctypes/" rel="tag"># ctypes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/16/2019-07-16%20%E9%87%91%E8%9E%8D%E4%BF%A1%E6%81%AF%E4%BA%A4%E6%8D%A2%E5%8D%8F%E8%AE%AE(FIX)%E4%BB%8B%E7%BB%8D/" rel="next" title="FIX协议介绍与QuickFIX使用入门(上)">
+                <i class="fa fa-chevron-left"></i> FIX协议介绍与QuickFIX使用入门(上)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/11/2019-12-11%20cython%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/" rel="prev" title="cython使用入门">
+                cython使用入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">eryk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-背景"><span class="nav-number">1.</span> <span class="nav-text">1. 背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Python调用C-C-程序方法"><span class="nav-number">2.</span> <span class="nav-text">2. Python调用C&#x2F;C++程序方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用ctypes调用C-C-例子"><span class="nav-number">3.</span> <span class="nav-text">3. 使用ctypes调用C&#x2F;C++ 例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-安装-GNU-的-C-C-编译器"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 安装 GNU 的 C&#x2F;C++ 编译器</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text">参考</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">eryk</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

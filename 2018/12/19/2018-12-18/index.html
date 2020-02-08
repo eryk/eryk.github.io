@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="retry,exception," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="我的微信公众号：pyquant  在写代码时经常会遇到对抛出异常的代码进行重试，常见于网页爬虫的代码中，使用计数器 + 循环的方式对抛出异常的代码进行捕获和重试。tenacity是使用Python装饰器模式对方法异常进行捕获，通过灵活的参数实现简单优雅的异常重试。 特性： 简单灵活的装饰模式api 可以指定重试停止条件（比如：设置重试次数） 也可以指定等待条件（比如：使用指数避让间隔重试） 自定义">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python异常处理伴侣 -- tenacity模块使用介绍">
+<meta property="og:url" content="http://xuqi365.com/2018/12/19/2018-12-18/index.html">
+<meta property="og:site_name" content="Python量化交易实战">
+<meta property="og:description" content="我的微信公众号：pyquant  在写代码时经常会遇到对抛出异常的代码进行重试，常见于网页爬虫的代码中，使用计数器 + 循环的方式对抛出异常的代码进行捕获和重试。tenacity是使用Python装饰器模式对方法异常进行捕获，通过灵活的参数实现简单优雅的异常重试。 特性： 简单灵活的装饰模式api 可以指定重试停止条件（比如：设置重试次数） 也可以指定等待条件（比如：使用指数避让间隔重试） 自定义">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
+<meta property="article:published_time" content="2018-12-19T03:15:00.000Z">
+<meta property="article:modified_time" content="2020-02-08T17:11:25.951Z">
+<meta property="article:author" content="eryk">
+<meta property="article:tag" content="retry">
+<meta property="article:tag" content="exception">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqi365.com/2018/12/19/2018-12-18/"/>
+
+
+
+
+
+  <title>Python异常处理伴侣 -- tenacity模块使用介绍 | Python量化交易实战</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python量化交易实战</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/12/19/2018-12-18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python异常处理伴侣 -- tenacity模块使用介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-19T11:15:00+08:00">
+                2018-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我的微信公众号：pyquant</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
+<p>在写代码时经常会遇到对抛出异常的代码进行重试，常见于网页爬虫的代码中，使用计数器 + 循环的方式对抛出异常的代码进行捕获和重试。tenacity是使用Python装饰器模式对方法异常进行捕获，通过灵活的参数实现简单优雅的异常重试。</p>
+<h1 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h1><ol>
+<li>简单灵活的装饰模式api</li>
+<li>可以指定重试停止条件（比如：设置重试次数）</li>
+<li>也可以指定等待条件（比如：使用指数避让间隔重试）</li>
+<li>自定义触发重试的Exception</li>
+<li>自定义重试预期的返回结果</li>
+<li>基于协程的重试</li>
+</ol>
+<h1 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式:"></a>安装方式:</h1><blockquote>
+<p>pip install tenacity</p>
+</blockquote>
+<h1 id="API使用介绍"><a href="#API使用介绍" class="headerlink" title="API使用介绍"></a>API使用介绍</h1><h3 id="1-retry"><a href="#1-retry" class="headerlink" title="1. @retry"></a>1. @retry</h3><p>给需要重试的方法加上@retry修饰器之后，方法抛出异常就会被装饰器捕获到并进行重试，异常抛出时会不断重试直到方法成功返回</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@retry</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">never_give_up_never_surrender</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Retry forever ignoring Exceptions, don't wait between retries"</span>)</span><br><span class="line">    <span class="keyword">raise</span> Exception</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-带终止条件的retry"><a href="#2-带终止条件的retry" class="headerlink" title="2. 带终止条件的retry"></a>2. 带终止条件的retry</h3><p>我们也可以给retry加一个参数设置重试n次后不再重试并抛出异常</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@retry(stop=stop_after_attempt(7))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">stop_after_7_attempts</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Stopping after 7 attempts"</span>)</span><br><span class="line">    <span class="keyword">raise</span> Exception</span><br></pre></td></tr></table></figure>
+
+<p>使用@stop_after_delay 可以指定重试间隔，比如如下的例子指定10秒后重试</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@retry(stop=stop_after_delay(10))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">stop_after_10_s</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Stopping after 10 seconds"</span>)</span><br><span class="line">    <span class="keyword">raise</span> Exception</span><br></pre></td></tr></table></figure>
+
+<p>可以使用 “|” 把多个条件组合起来</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@retry(stop=(stop_after_delay(10) | stop_after_attempt(5)))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">stop_after_10_s_or_5_retries</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Stopping after 10 seconds or 5 retries"</span>)</span><br><span class="line">    <span class="keyword">raise</span> Exception</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-在重试前等待"><a href="#3-在重试前等待" class="headerlink" title="3. 在重试前等待"></a>3. 在重试前等待</h3><p>使用@wait_fixed 在重试前等待固定时间</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@retry(wait=wait_fixed(2))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wait_2_s</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Wait 2 second between retries"</span>)</span><br><span class="line">    <span class="keyword">raise</span> Exception</span><br></pre></td></tr></table></figure>
+
+<p>随机等待1-2秒钟，这在爬虫爬网页时比较有用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@retry(wait=wait_random(min=1, max=2))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wait_random_1_to_2_s</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Randomly wait 1 to 2 seconds between retries"</span>)</span><br><span class="line">    <span class="keyword">raise</span> Exception</span><br></pre></td></tr></table></figure>
+
+<p>增加指数避让等待间</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@retry(wait=wait_exponential(multiplier=1, min=4, max=10))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wait_exponential_1</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Wait 2^x * 1 second between each retry starting with 4 seconds, then up to 10 seconds, then 10 seconds afterwards"</span>)</span><br><span class="line">    <span class="keyword">raise</span> Exception</span><br><span class="line">    </span><br><span class="line"><span class="meta">@retry(wait=wait_fixed(3) + wait_random(0, 2))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wait_fixed_jitter</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Wait at least 3 seconds, and add up to 2 seconds of random delay"</span>)</span><br><span class="line">    <span class="keyword">raise</span> Exception</span><br></pre></td></tr></table></figure>
+
+<p>看一个更复杂点的例子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@retry(wait=wait_chain(*[wait_fixed(3) for i in range(3)] +</span></span><br><span class="line">                       [wait_fixed(<span class="number">7</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>)] +</span><br><span class="line">                       [wait_fixed(<span class="number">9</span>)]))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wait_fixed_chained</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Wait 3s for 3 attempts, 7s for the next 2 attempts and 9s for all attempts thereafter"</span>)</span><br><span class="line">    <span class="keyword">raise</span> Exception</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-带触发条件的retry语句"><a href="#4-带触发条件的retry语句" class="headerlink" title="4. 带触发条件的retry语句"></a>4. 带触发条件的retry语句</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@retry(retry=retry_if_exception_type(IOError))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">might_io_error</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Retry forever with no wait if an IOError occurs, raise any other errors"</span>)</span><br><span class="line">    <span class="keyword">raise</span> Exception</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_none_p</span><span class="params">(value)</span>:</span></span><br><span class="line">    <span class="string">"""Return True if value is None"""</span></span><br><span class="line">    <span class="keyword">return</span> value <span class="keyword">is</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@retry(retry=retry_if_result(is_none_p))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">might_return_none</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Retry with no wait if return value is None"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="meta">@retry(retry=(retry_if_result(is_none_p) | retry_if_exception_type()))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">might_return_none</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Retry forever ignoring Exceptions with no wait if return value is None"</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-异常处理"><a href="#5-异常处理" class="headerlink" title="5. 异常处理"></a>5. 异常处理</h3><p> 虽然tenacity会帮我们处理异常，我们依然可以在重试失败后使用reraise来决定我们时候进行最后的尝试，使用reraise会把异常抛出交给我们的try except来处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@retry(reraise=True, stop=stop_after_attempt(3))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">raise_my_exception</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">raise</span> MyException(<span class="string">"Fail"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    raise_my_exception()</span><br><span class="line"><span class="keyword">except</span> MyException:</span><br><span class="line">    <span class="comment"># timed out retrying</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-在retry前后增加log"><a href="#6-在retry前后增加log" class="headerlink" title="6. 在retry前后增加log"></a>6. 在retry前后增加log</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">logger = logging.getLogger(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@retry(stop=stop_after_attempt(3), before=before_log(logger, logging.DEBUG))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">raise_my_exception</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">raise</span> MyException(<span class="string">"Fail"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="meta">@retry(stop=stop_after_attempt(3), after=after_log(logger, logging.DEBUG))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">raise_my_exception</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">raise</span> MyException(<span class="string">"Fail"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="meta">@retry(stop=stop_after_attempt(3),</span></span><br><span class="line">       before_sleep=before_sleep_log(logger, logging.DEBUG))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">raise_my_exception</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">raise</span> MyException(<span class="string">"Fail"</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-统计异常情况"><a href="#7-统计异常情况" class="headerlink" title="7. 统计异常情况"></a>7. 统计异常情况</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@retry(stop=stop_after_attempt(3))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">raise_my_exception</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">raise</span> MyException(<span class="string">"Fail"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    raise_my_exception()</span><br><span class="line"><span class="keyword">except</span> Exception:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">print(raise_my_exception.retry.statistics)</span><br></pre></td></tr></table></figure>
+<p>输出如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#39;start_time&#39;: 283085.571804807, &#39;attempt_number&#39;: 3, &#39;idle_for&#39;: 0, &#39;delay_since_first_attempt&#39;: 0.0002240639878436923&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-自定义异常回调函数"><a href="#8-自定义异常回调函数" class="headerlink" title="8. 自定义异常回调函数"></a>8. 自定义异常回调函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tenacity <span class="keyword">import</span> stop_after_attempt, retry_if_result, retry</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">return_last_value</span><span class="params">(retry_state)</span>:</span></span><br><span class="line">    <span class="string">"""return the result of the last call attempt"""</span></span><br><span class="line">    <span class="keyword">return</span> retry_state.result()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_false</span><span class="params">(value)</span>:</span></span><br><span class="line">    <span class="string">"""Return True if value is False"""</span></span><br><span class="line">    <span class="keyword">return</span> value <span class="keyword">is</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># will return False after trying 3 times to get a different result</span></span><br><span class="line"><span class="meta">@retry(stop=stop_after_attempt(3),</span></span><br><span class="line">       retry_error_callback=return_last_value,</span><br><span class="line">       retry=retry_if_result(is_false))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">eventually_return_false</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">print(eventually_return_false())</span><br></pre></td></tr></table></figure>
+<p>输出结果为 False</p>
+<h1 id="项目Git地址"><a href="#项目Git地址" class="headerlink" title="项目Git地址"></a>项目Git地址</h1><p><a href="https://github.com/jd/tenacity" target="_blank" rel="noopener">https://github.com/jd/tenacity</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/retry/" rel="tag"># retry</a>
+          
+            <a href="/tags/exception/" rel="tag"># exception</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/12/2018-12-12/" rel="next" title="解决ssh登录ubuntu系统卡顿问题">
+                <i class="fa fa-chevron-left"></i> 解决ssh登录ubuntu系统卡顿问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/15/2019-03-15/" rel="prev" title="ufw防火墙使用常用命令">
+                ufw防火墙使用常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">eryk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#特性："><span class="nav-number">1.</span> <span class="nav-text">特性：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装方式"><span class="nav-number">2.</span> <span class="nav-text">安装方式:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#API使用介绍"><span class="nav-number">3.</span> <span class="nav-text">API使用介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-retry"><span class="nav-number">3.0.1.</span> <span class="nav-text">1. @retry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-带终止条件的retry"><span class="nav-number">3.0.2.</span> <span class="nav-text">2. 带终止条件的retry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在重试前等待"><span class="nav-number">3.0.3.</span> <span class="nav-text">3. 在重试前等待</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-带触发条件的retry语句"><span class="nav-number">3.0.4.</span> <span class="nav-text">4. 带触发条件的retry语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-异常处理"><span class="nav-number">3.0.5.</span> <span class="nav-text">5. 异常处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-在retry前后增加log"><span class="nav-number">3.0.6.</span> <span class="nav-text">6. 在retry前后增加log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-统计异常情况"><span class="nav-number">3.0.7.</span> <span class="nav-text">7. 统计异常情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-自定义异常回调函数"><span class="nav-number">3.0.8.</span> <span class="nav-text">8. 自定义异常回调函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目Git地址"><span class="nav-number">4.</span> <span class="nav-text">项目Git地址</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">eryk</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

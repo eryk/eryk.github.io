@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="etf," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什么是ETF套利　　ETF套利，是指投资者可以在一级市场通过指定的ETF交易商向基金管理公司用一篮子股票组合申购ETF份额或把ETF份额赎回成一篮子股票组合，同时又可以在二级市场上以市场价格买卖ETF。 　　假设在某个时段中，某只ETF成分股暴跌，使得该ETF的净值迅速走低，但该ETF的市场价格未能及时跟上，两者短暂地出现了一个价差，这时就可以选择买入ETF一篮子股票组合申购成ETF(以净值计价)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ETF套利(ETF’s Arbitrage)">
+<meta property="og:url" content="http://xuqi365.com/2017/09/06/ETF%E5%A5%97%E5%88%A9/index.html">
+<meta property="og:site_name" content="Python量化交易实战">
+<meta property="og:description" content="什么是ETF套利　　ETF套利，是指投资者可以在一级市场通过指定的ETF交易商向基金管理公司用一篮子股票组合申购ETF份额或把ETF份额赎回成一篮子股票组合，同时又可以在二级市场上以市场价格买卖ETF。 　　假设在某个时段中，某只ETF成分股暴跌，使得该ETF的净值迅速走低，但该ETF的市场价格未能及时跟上，两者短暂地出现了一个价差，这时就可以选择买入ETF一篮子股票组合申购成ETF(以净值计价)">
+<meta property="og:locale" content="cn">
+<meta property="article:published_time" content="2017-09-06T09:31:00.000Z">
+<meta property="article:modified_time" content="2020-02-08T17:11:25.959Z">
+<meta property="article:author" content="eryk">
+<meta property="article:tag" content="etf">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqi365.com/2017/09/06/ETF套利/"/>
+
+
+
+
+
+  <title>ETF套利(ETF’s Arbitrage) | Python量化交易实战</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python量化交易实战</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/09/06/ETF%E5%A5%97%E5%88%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ETF套利(ETF’s Arbitrage)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-06T17:31:00+08:00">
+                2017-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">交易策略</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="什么是ETF套利"><a href="#什么是ETF套利" class="headerlink" title="什么是ETF套利"></a>什么是ETF套利</h1><p>　　ETF套利，是指投资者可以在一级市场通过指定的ETF交易商向基金管理公司用一篮子股票组合申购ETF份额或把ETF份额赎回成一篮子股票组合，同时又可以在二级市场上以市场价格买卖ETF。</p>
+<p>　　假设在某个时段中，某只ETF成分股暴跌，使得该ETF的净值迅速走低，但该ETF的市场价格未能及时跟上，两者短暂地出现了一个价差，这时就可以选择买入ETF一篮子股票组合申购成ETF(以净值计价)，然后将ETF在二级市场上出售(以市场价格计价)，从而实现低买高卖，获取价差。</p>
+<h1 id="ETF套利的原理"><a href="#ETF套利的原理" class="headerlink" title="ETF套利的原理"></a>ETF套利的原理</h1><p>　　一切要从ETF套利交易开始说起。这项交易模式在国内券商中比较普遍，甚至大型的私募基金也在做这种交易。</p>
+<p>　　ETF套利交易原理通俗地说，就是一价原则，同一件产品在不同的市场有不同的价格，通过利用这些价差来获得盈利。比如上证50ETF对应的是上证50指数(1594.903, -6.48, -0.40%)成份股所组成的一揽子股票组合，组合中各只成份股权重不同，而不同的权重造成了一个兑换比例，投资者可以通过这种比例获得ETF份额，同时这些ETF份额也可以像股票一样在二级市场上交易。</p>
+<p>　　于是ETF套利就有两种交易顺序，一种是从股票二级市场购入一揽子股票，按照一定比例兑换成ETF份额，然后在ETF二级市场上卖出份额，这样的前提是一揽子股票价格比ETF价格低，所谓溢价；另一种则刚好相反，从ETF二级市场买入份额，按照一定比例兑换成一揽子股票，再拿到股票二级市场卖出，这样的前提是ETF价格低于一揽子股票价格，所谓折价。</p>
+<p>　　以光大证券操作ETF套利为例，8月16日上午，套利交易指令已经成交了72.7亿元股票，这说明光大证券正在进行溢价套利，希望用一揽子股票组合兑换ETF份额，并卖出ETF份额。</p>
+<p>　　该公司公告称，捅娄子的策略投资部在当天卖出了18.5亿元的50ETF、180ETF，如此计算尚有近54亿元的误操作股票没有处理，按照上述套利原则，这有可能是当日的溢价套利空间已经消失。</p>
+<h1 id="ETF套利四大技巧"><a href="#ETF套利四大技巧" class="headerlink" title="ETF套利四大技巧"></a>ETF套利四大技巧</h1><p>　　交易型开放式指数基金（ETF）综合了开放式和封闭式基金的优点，既可向基金公司申购或赎回基金份额，又可像封闭式基金一样在二级市场按照市价进行买卖。由于跨市场间交易形式和交易机制的不同，基金一级市场份额净值和二级市场买卖价格间会存在价差的情况，这样套利空间应运而生。</p>
+<h2 id="瞬间套利"><a href="#瞬间套利" class="headerlink" title="瞬间套利"></a>瞬间套利</h2><p>　　ETF基本的套利交易主要有两种。一是折价套利，当ETF基金份额二级市场价格小于基金份额净值时，可通过二级市场买入ETF，之后在一级市场赎回一篮子股票，卖出股票组合获取现金。另外一种是溢价套利，和折价套利的方向相反，当ETF二级市场价格超过份额净值时，可买入股票组合，一级市场申购基金份额，之后在二级市场卖出获取现金。这两种就是ETF最常规的套利模式——瞬间套利。需要注意的是由于ETF申购赎回都有最小规模限制，例如100万份，瞬间套利并不适合中小投资者操作。</p>
+<h2 id="延时套利"><a href="#延时套利" class="headerlink" title="延时套利"></a>延时套利</h2><p>　　作为瞬间套利的延伸，ETF套利可以采取延时套利模式，也就是说投资者“非同步”地买卖ETF和一篮子股票，完成一圈完整交易的时间较长，这类套利其实更像是T+0交易。</p>
+<p>　　充分利用ETF交易规则，在相对低点，申购或买入ETF，在相对高点，再将ETF卖出或赎回。和瞬间套利相比，这类套利能否成功更看重指数短期的走势，风险更大。在实际操作中，为了确保收益的稳定性，减少风险，一般是当天完成一个交易轮回。</p>
+<h2 id="事件套利"><a href="#事件套利" class="headerlink" title="事件套利"></a>事件套利</h2><p>　　第三类ETF套利是事件套利。当ETF标的指数成分股停牌或涨跌停时，可利用ETF进行事件套利，套取看涨的股票或者减持看空的股票。事件套利的收益取决于停牌成分股的个体因素，具体包括两种模式。如果预计成分股在复牌后大幅度上涨，折价套利具体操作是在二级市场买入ETF，在一级市场进行赎回，得到一篮子股票组合，留下停牌股票，卖出其他股票。 　　例如，2008年10月9日长安汽车停牌，2009年2月16日复牌，期间深100指数涨幅32%，汽车板块因国家政策鼓励涨幅更甚，预计长安汽车开盘后会涨停复牌，投资者二级市场成功买入可能性较低。可通过赎回深100ETF，按停牌前价格3.67元获得长安汽车股票，复牌后该股有7个涨停板。如果预估成分股在复牌后会大幅度下跌，溢价套利具体操作是在二级市场上买入其他成分股组合和利用“允许现金替代”的标志，用现金来替代停牌股票，然后在一级市场申购ETF，然后在二级市场上卖出ETF。2008年的“长电事件”是这种套利的典型案例，当年5月8日，长江电力因整体上市开始停牌，此后沪深股市大幅下挫，上证指数跌幅近50%，为了降低损失，将长电套现，可先从二级市场市价买入上证50ETF其他49只股票，之后一级市场申购上证50ETF份额，再在二级市场卖出上证50ETF，顺利将长江电力出货。</p>
+<h2 id="期现套利"><a href="#期现套利" class="headerlink" title="期现套利"></a>期现套利</h2><p>　　股指期货和融资融券的推出，为做空A股市场提供了较好的工具。沪深指数期货是国内A股市场第一只也是唯一一只指数期货品种。沪深300指数包含的成分股多达300只，采用完全复制法难道较大，ETF根据标的指数，且能在二级市场交易，是期现套利中较好的现货工具。由于技术上的原因，国内目前还没有直接标的沪深300指数的ETF，多数进行期现套利的投资者采用的是“75%上证180ETF+25%深证100ETF”复合指数ETF作为现货替代品。</p>
+<p>　　自从2010年4月16日股指期货上市以来，上证180ETF和深100ETF二级市场成交量大幅激增。例如，股指期货上市初期，期货相对现货存在着一定的溢价，所谓的套利基本都是买入ETF，卖出股指期货合约，而在期现价差消除后，套利平仓盘卖出ETF，买入股指期货合约。　</p>
+<h1 id="ETF套利与衍生品"><a href="#ETF套利与衍生品" class="headerlink" title="ETF套利与衍生品"></a>ETF套利与衍生品</h1><p>　　A股首只股票指数期货品种沪深300期货自推出以来，成交活跃，已成为期货市场的主力品种之一。理论上来讲，剔除时间价值后，期货应与现货具有完全相同的走势。但事实上，由于期货投资者与现货投资者大多情况下分属两个投资群体，其对市场事件会有不同程度的解读，从而造成期货价格与现货价格的偏离。</p>
+<p>　　一旦价格偏离幅度大于套利成本，则套利投资者可以通过买入低估品种，同时卖出高估品种锁定价差。具体而言，当期货价格高于现货时，投资者可以通过买入沪深300ETF，卖出期货合约，锁定溢价，也就是我们常说的正向套利；相反，当期货价格低于现货时，投资者则可以通过买入期货，卖出沪深300ETF的方式获得反向套利折价。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/etf/" rel="tag"># etf</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/28/2017-08-28/" rel="next" title="PB系统介绍">
+                <i class="fa fa-chevron-left"></i> PB系统介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/21/2017-09-21/" rel="prev" title="CTA策略(Commodity Trading Advisor Strategy)">
+                CTA策略(Commodity Trading Advisor Strategy) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">eryk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是ETF套利"><span class="nav-number">1.</span> <span class="nav-text">什么是ETF套利</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ETF套利的原理"><span class="nav-number">2.</span> <span class="nav-text">ETF套利的原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ETF套利四大技巧"><span class="nav-number">3.</span> <span class="nav-text">ETF套利四大技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#瞬间套利"><span class="nav-number">3.1.</span> <span class="nav-text">瞬间套利</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延时套利"><span class="nav-number">3.2.</span> <span class="nav-text">延时套利</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件套利"><span class="nav-number">3.3.</span> <span class="nav-text">事件套利</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#期现套利"><span class="nav-number">3.4.</span> <span class="nav-text">期现套利</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ETF套利与衍生品"><span class="nav-number">4.</span> <span class="nav-text">ETF套利与衍生品</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">eryk</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

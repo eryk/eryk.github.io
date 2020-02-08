@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="期货," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="我的微信公众号：pyquant  概念股指期货（Stock Index Futures）的全称是股价指数期货，也可称为股价指数期货、期指，是指以股价指数为标的物的标准化期货合约，双方约定在未来的某个特定日期，可以按照事先确定的股价指数的大小，进行标的指数的买卖。期货分为商品期货和金融期货，股指期货属于金融期货，作为期货交易的一种类型，股指期货交易与普通商品期货交易具有基本相同的特征和流程。 主要作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="股指期货概念介绍">
+<meta property="og:url" content="http://xuqi365.com/2018/08/13/2018-08-14/index.html">
+<meta property="og:site_name" content="Python量化交易实战">
+<meta property="og:description" content="我的微信公众号：pyquant  概念股指期货（Stock Index Futures）的全称是股价指数期货，也可称为股价指数期货、期指，是指以股价指数为标的物的标准化期货合约，双方约定在未来的某个特定日期，可以按照事先确定的股价指数的大小，进行标的指数的买卖。期货分为商品期货和金融期货，股指期货属于金融期货，作为期货交易的一种类型，股指期货交易与普通商品期货交易具有基本相同的特征和流程。 主要作">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
+<meta property="article:published_time" content="2018-08-13T02:40:00.000Z">
+<meta property="article:modified_time" content="2020-02-08T17:11:25.950Z">
+<meta property="article:author" content="eryk">
+<meta property="article:tag" content="期货">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqi365.com/2018/08/13/2018-08-14/"/>
+
+
+
+
+
+  <title>股指期货概念介绍 | Python量化交易实战</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python量化交易实战</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/08/13/2018-08-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">股指期货概念介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-13T10:40:00+08:00">
+                2018-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我的微信公众号：pyquant</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>股指期货（Stock Index Futures）的全称是股价指数期货，也可称为股价指数期货、期指，是指以股价指数为标的物的标准化期货合约，双方约定在未来的某个特定日期，可以按照事先确定的股价指数的大小，进行标的指数的买卖。期货分为商品期货和金融期货，股指期货属于金融期货，作为期货交易的一种类型，股指期货交易与普通商品期货交易具有基本相同的特征和流程。</p>
+<h1 id="主要作用"><a href="#主要作用" class="headerlink" title="主要作用"></a>主要作用</h1><ol>
+<li><p>规避投资风险</p>
+<p> 当投资者不看好股市,可以通过股指期货的套期保值功能在期货上做空,锁定股票的账面盈利,从而不必将所持股票抛出,造成股市恐慌性下跌</p>
+</li>
+<li><p>套利</p>
+<p> 所谓套利，就是利用股指期货和现货指数基差在交割日必然收敛归零的原理,当期货升水超过一定幅度时通过做空股指期货并同时买入股指期货标的指数成分股，或者当期货贴水超过一定幅度时通过做多股指期货并同时进行融券卖空股票指数ETF，来获得无风险收益。</p>
+</li>
+<li><p>降低股市波动性</p>
+<p> 股指期货可以降低股市的日均振幅和月线平均振幅,抑制股市非理性波动,比如股指期货推出之前的五年里沪深300指数日均振幅为2.51%月线平均振幅为14.9%,推出之后的五年里日均振幅为1.95%月线平均振幅为10.7%,双双出现显著下降</p>
+</li>
+<li><p>丰富投资策略</p>
+<p> 股指期货等金融衍生品为投资者提供了风险对冲工具，可以丰富不同的投资策略，改变目前股市交易策略一致性的现状，为投资者提供多样化的财富管理工具，以实现长期稳定的收益目标。</p>
+</li>
+</ol>
+<h1 id="风险"><a href="#风险" class="headerlink" title="风险"></a>风险</h1><p>除了金融衍生产品的一般性风险外，由于标的物自身的特点和合约设计过程中的特殊性，股指期货还具有一些特定的风险。</p>
+<h3 id="基差风险"><a href="#基差风险" class="headerlink" title="基差风险"></a>基差风险</h3><p>基差是某一特定地点某种商品的现货价格与同种商品的某一特定期货合约价格之间的价差。基差=现货价格-期货价格。</p>
+<h3 id="合约品种差异造成的风险"><a href="#合约品种差异造成的风险" class="headerlink" title="合约品种差异造成的风险"></a>合约品种差异造成的风险</h3><p>合约品种差异造成的风险，是指类似的合约品种，如日经225种股指期货和东京证券股指期货，在相同因素的影响下，价格变动不同。表现为两种情况：<br>1〉是价格变动的方向相反。<br>2〉是价格变动的幅度不同。类似合约品种的价格，在相同因素作用下变动幅度上的差异，也构成了合约品种差异的风险。</p>
+<h3 id="标的物风险"><a href="#标的物风险" class="headerlink" title="标的物风险"></a>标的物风险</h3><p>股指期货的标的物是市场上各种股票的价格总体水平，由于标的物设计的特殊性，是其特定风险无法完全锁定的原因。从套期保值的技术角度来看，商品期货、利率期货和外汇期货的套期保值者，都可以在一定期限内，通过建立现货与期货合约数量上的一致性、交易方向上的相反性来彻底锁定风险。而股指期货由于标的物的特殊性，使现货和期货合约数量上的一致仅具有理论上的意义，而不具有现实操作性。因为，股票指数设计中的综合性，以及设计中权重因素的考虑，使得在股票现货组合中，当股票品种和权数完全与指数一致时，才能真正做到完全锁定风险，而这在实际操作中的可行性几乎是零。因此，股指期货标的物的特殊性，使完全意义上的期货与现货间的套期保值成为不可能，因而风险将一直存在。</p>
+<h3 id="交割制度风险"><a href="#交割制度风险" class="headerlink" title="交割制度风险"></a>交割制度风险</h3><p>股指期货采用现金交割的方式完成清算。相对于其他结合实物交割进行清算的金融衍生产品而言，存在更大的交割制度风险。如在利率期货交易中，符合规格的债券现货，无论如何也可以满足一部分交割要求。股指期货则只能是百分之百的现金交割，而不可能以对应股票完成清算。</p>
+<h1 id="规则制度"><a href="#规则制度" class="headerlink" title="规则制度"></a>规则制度</h1><h3 id="合约价值"><a href="#合约价值" class="headerlink" title="合约价值"></a>合约价值</h3><p>沪深300和上证50一个点是300元，中证500是200元</p>
+<h3 id="保证金"><a href="#保证金" class="headerlink" title="保证金"></a>保证金</h3><p>投资者在进行期货交易时，必须按照其买卖期货合约价值的一定比例来缴纳资金，作为履行期货合约的财力保证，然后才能参与期货合约的买卖。这笔资金就是我们常说的保证金。</p>
+<p>买卖一手股指期货合约占用的保证金比例一般为合约价值的10%-20%(具体由交易所规定)，自20170918起中金所将保证金比例调整为15%，假如沪深300指数为3900点，相当于3900*300*15%=17.5万元，但在开户时账户上必须有50万的资金，完成开户验资过后留够一手保证金加上一定的余额即可，所以大致需要20万以上的资金，而中证50期指大致需要50万资金，上证50期指大致需要15万的资金。</p>
+<h3 id="手续费"><a href="#手续费" class="headerlink" title="手续费"></a>手续费</h3><p>在正常情况下手续费为合约价值的万分之零点七，比如20150302沪深300指数点位为3600点，手续费为万分之零点七，即3600*300*0.00007=75元，</p>
+<p>20170918起平今仓手续费调整为万分之六点九，假设沪深300指数为3900点，当天买入且当天卖出一手沪深300期指需要付出3900*300*0.00069=807元的手续费，平昨仓手续费依然是万分之零点七，即昨天买入今天卖出一手沪深300期指的手续费为3900*300*0.00007=82元，等同于变相抑制T+0。</p>
+<h3 id="结算制度"><a href="#结算制度" class="headerlink" title="结算制度"></a>结算制度</h3><p>每日无负债结算制度也称为“逐日盯市”制度，简单说来，就是期货交易所要根据每日市场的价格波动对投资者所持有的合约计算盈亏并划转保证金账户中相应的资金。</p>
+<p>期货交易实行分级结算，交易所首先对其结算会员进行结算，结算会员再对非结算会员及其客户进行结算。交易所在每日交易结束后，按当日结算价格结算所有未平仓合约的盈亏、交易保证金及手续费、税金等费用，对应收应付的款项同时划转，相应增加或减少会员的结算准备金。</p>
+<p>交易所将结算结果通知结算会员后，结算会员再根据交易所的结算结果对非结算会员及客户进行结算，并将结算结果及时通知非结算会员及客户。若经结算，会员的保证金不足，交易所应立即向会员发出追加保证金通知，会员应在规定时间内向交易所追加保证金。若客户的保证金不足，期货公司应立即向客户发出追加保证金通知，客户应在规定时间内追加保证金。投资者可在每日交易结束后上网查询账户的盈亏，确定是否需要追加保证金或转出盈利。</p>
+<h3 id="交易规则"><a href="#交易规则" class="headerlink" title="交易规则"></a>交易规则</h3><ul>
+<li><p>交易时间: 周一至周五，上午：9:30-11:30，下午：13:00-15:00</p>
+</li>
+<li><p>涨跌幅: 上一个交易日收盘价的±10%</p>
+</li>
+<li><p>最大下单数</p>
+<p>  中金所暂时规定限价指令每次最大下单数量为20手，市价指令每次最大下单数量为10手,进行投机交易的客户单个合约的最大持仓限额为5000手,单个账户日内交易超过20手视为过度交易行为，套期保值交易开仓数量和持仓数量不受此限.</p>
+</li>
+<li><p>合约代码</p>
+<ul>
+<li>沪深300股指期货：IF</li>
+<li>中证500股指期货：IC</li>
+<li>上证50股指期货：IH</li>
+</ul>
+</li>
+<li><p>合约类型</p>
+<ul>
+<li><p>当月现货合约</p>
+</li>
+<li><p>下月</p>
+</li>
+<li><p>下季</p>
+</li>
+<li><p>隔季</p>
+<p>随着每个月的交割以后，进行一次合约的滚动推进。比如在九月份，就具有九月、十月、十二月和次年三月四个合约进行交易，在十月底需要对十月合约进行交割。</p>
+</li>
+</ul>
+</li>
+<li><p>T + 0</p>
+<p>  T+0即当日买进当日卖出,没有时间和次数限制,而T+1即当日买进,次日卖出,买进的当日不能当日卖出,当前期货交易一律实行T+0交易,大部分国家的股票交易也是T+0的,我国的股票市场由于历史原因而实行T+1交易制度。</p>
+</li>
+<li><p>卖空</p>
+<p>  股指期货合约可以十分方便地卖空，等价格回落后再买回。股票融券交易也可以卖空，但难度相对较大。当然一旦卖空后价格不跌反涨，投资者会面临损失。</p>
+</li>
+<li><p>合约交割</p>
+<p>  股票买入后可以一直持有，正常情况下股票数量不会减少。但股指期货都有固定的到期日，到期就要进行平仓或者交割。因此交易股指期货不能象买卖股票一样，交易后就不管了，必须注意合约到期日，以决定是平仓，还是等待合约到期进行现金结算交割。</p>
+<p>  沪深300指数期货会在每个月第三个星期五交割，并且以沪深300现货指数截止15:00之前两个小时的算术平均价作为交割结算价，所以不论平时期货和现货的基差有多大，沪深300指数期货最终必然会强制向沪深300现货指数收敛归零，导致期货会紧跟现货指数，具有很强的联动性，就好比小狗跟着主人散步时一样，小狗有时候会跑在主人前面，有时会在主人后面，但最终前进方向是由主人决定的，套利机制就是那根狗绳。</p>
+</li>
+<li><p>合约结算</p>
+<p>  股指期货合约采用保证金交易，一般只要付出合约面值约10-15%的资金就可以买卖一张合约，这一方面提高了盈利的空间，但另一方面也带来了风险，因此必须每日结算盈亏。买入股票后在卖出以前，账面盈亏都是不结算的。但股指期货不同，交易后每天要按照结算价对持有在手的合约进行结算，账面盈利可以提走，但账面亏损第二天开盘前必须补足（即追加保证金）。而且由于是保证金交易，亏损额甚至可能超过你的投资本金，这一点和股票交易不同。</p>
+</li>
+</ul>
+<h3 id="基差"><a href="#基差" class="headerlink" title="基差"></a>基差</h3><p>股指期货合约与对应股票指数之间的价差，基差=现货价格-期货价格，当期货价格高于现货被称为<strong>升水</strong>，当期货价格低于现货价格被称为<strong>贴水</strong>，比如20160302 IF1603股指期货的价格为3009点，沪深300指数为3051点，基差为3051-3009=42点，2015年度沪深300股指期货主力合约与现货指数的平均基差为±1.5%，这是不太正常的，原因在于国内融资与融券的比例失衡，国外的融资和融券比例一般为3:1，而国内达到300:1以上，融资融券比例失衡致使融券套利机制无法发挥正常作用，会导致基差出现偏差。</p>
+<h3 id="持仓量"><a href="#持仓量" class="headerlink" title="持仓量"></a>持仓量</h3><p>多头和空头尚未平仓的合约总数，比如20160302 IF1603合约的持仓量为3.87万手，2015年沪深300股指期货单边日均持仓量13万手，占用的(双边)保证金规模约500亿元，假设其中一半的空单是套期保值盘则对应的股票市值约700亿元，而沪深300指数300只成分股的股票总市值达20万亿以上，也就是说依靠股指期货对冲风险的股票占比还不到1%，说明国内股指期货的规模依然不够大，需降低门槛让更多的中小投资者能够参与进来.2012年，2013年，2014年，2015年，2016年每月月末平均持仓量分别为78300手，102000手，164000手，131000手，44000手，2012年成交持仓比为5.5，2013年为7.9，2014年为5.4，2015年为8.6，2016年为0.39。</p>
+<h3 id="参与主体"><a href="#参与主体" class="headerlink" title="参与主体"></a>参与主体</h3><p>套期保值者、投机者、套利者</p>
+<h3 id="主要策略"><a href="#主要策略" class="headerlink" title="主要策略"></a>主要策略</h3><h4 id="1-套期保值"><a href="#1-套期保值" class="headerlink" title="1. 套期保值"></a>1. 套期保值</h4><p>股指期货套期保值和其他期货套期保值一样，其基本原理是利用股指期货与股票现货之间的类似走势，通过在期货市场进行相应的操作来管理现货市场的头寸风险。</p>
+<p>由于股指期货的套利操作，股指期货的价格和股票现货（股票指数）之间的走势是基本一致的，如果两者步调不一致到足够程度，就会引发套利盘入这种情况下，那么如果保值者持有一篮子股票现货，他认为当前股票市场可能会出现下跌，但如果直接卖出股票，他的成本会很高，于是他可以在股指期货市场建立空头，在股票市场出现下跌的时候，股指期货可以获利，以此可以弥补股票出现的损失。这就是所谓的<strong>空头保值</strong>。</p>
+<p>另一个基本的套期保值策略是所谓的<strong>多头保值</strong>。一个投资者预期要几个月后有一笔资金投资股票市场，但他觉得如今的股票市场很有吸引力，要等上几个月的话，可能会错失建仓良机，于是他可以在股指期货上先建立多头头寸，等到未来资金到位后，股票市场确实上涨了，建仓成本提高了，但股指期货平仓获得的的盈利可以弥补现货成本的提高，于是该投资者通过股指期货锁定了现货市场的成本。</p>
+<h4 id="2-投机交易"><a href="#2-投机交易" class="headerlink" title="2. 投机交易"></a>2. 投机交易</h4><p>股市指数期货提供了很高风险的机会。其中一个简单的投机策略是利用股市指数期货预测市场走势以获取利润。若预期市场价格回升，投资者便购入期货合约并预期期货合约价格将上升，相对于投资股票，其低交易成本及高杠杆比率使股票指数期货更加吸引投资者。他们亦可考虑购入那个交易月份的合约或投资于恒生指数或分类指数期货合约。</p>
+<h4 id="3-套利"><a href="#3-套利" class="headerlink" title="3. 套利"></a>3. 套利</h4><p>针对股指期货与股指现货之间、股指期货不同合约之间的不合理关系进行套利的交易行为。股指期货合约是以股票价格指数作为标的物的金融期货和约，期货指数与现货指数（沪深300）维持一定的动态联系。但是，有时期货指数与现货指数会产生偏离，当这种偏离超出一定的范围时（无套利定价区间的上限和下限），就会产生套利机会。利用期指与现指之间的不合理关系进行套利的交易行为叫<strong>无风险套利（Arbitrage）</strong> ，利用期货合约价格之间不合理关系进行套利交易的称为<strong>价差交易（Spread Trading）</strong>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%9C%9F%E8%B4%A7/" rel="tag"># 期货</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/25/Okex%E5%90%88%E7%BA%A6%E4%BA%A4%E6%98%93%E5%85%A5%E9%97%A8/" rel="next" title="Okex合约交易基本概念介绍">
+                <i class="fa fa-chevron-left"></i> Okex合约交易基本概念介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/12/2018-12-12/" rel="prev" title="解决ssh登录ubuntu系统卡顿问题">
+                解决ssh登录ubuntu系统卡顿问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">eryk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主要作用"><span class="nav-number">2.</span> <span class="nav-text">主要作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#风险"><span class="nav-number">3.</span> <span class="nav-text">风险</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基差风险"><span class="nav-number">3.0.1.</span> <span class="nav-text">基差风险</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合约品种差异造成的风险"><span class="nav-number">3.0.2.</span> <span class="nav-text">合约品种差异造成的风险</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标的物风险"><span class="nav-number">3.0.3.</span> <span class="nav-text">标的物风险</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交割制度风险"><span class="nav-number">3.0.4.</span> <span class="nav-text">交割制度风险</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#规则制度"><span class="nav-number">4.</span> <span class="nav-text">规则制度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#合约价值"><span class="nav-number">4.0.1.</span> <span class="nav-text">合约价值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保证金"><span class="nav-number">4.0.2.</span> <span class="nav-text">保证金</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手续费"><span class="nav-number">4.0.3.</span> <span class="nav-text">手续费</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结算制度"><span class="nav-number">4.0.4.</span> <span class="nav-text">结算制度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交易规则"><span class="nav-number">4.0.5.</span> <span class="nav-text">交易规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基差"><span class="nav-number">4.0.6.</span> <span class="nav-text">基差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持仓量"><span class="nav-number">4.0.7.</span> <span class="nav-text">持仓量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参与主体"><span class="nav-number">4.0.8.</span> <span class="nav-text">参与主体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主要策略"><span class="nav-number">4.0.9.</span> <span class="nav-text">主要策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-套期保值"><span class="nav-number">4.0.9.1.</span> <span class="nav-text">1. 套期保值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-投机交易"><span class="nav-number">4.0.9.2.</span> <span class="nav-text">2. 投机交易</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-套利"><span class="nav-number">4.0.9.3.</span> <span class="nav-text">3. 套利</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">eryk</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

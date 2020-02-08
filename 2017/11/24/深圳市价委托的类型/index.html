@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="期货," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="深圳市价委托的类型有五种，分别为：对手方最优价格、本方最优价格、最优五档即时成交剩余撤销、即时成交剩余撤销（FAK）、全额成交或撤销委托（FOK）。 对手方最优价格委托对手方最优价格委托指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内对手方队列的最优价格为其指定价格的委托类型。  “对手方最优价格委托”无需输入指定价格，如果当时交易主机中集中申报簿的对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深圳市价委托的类型">
+<meta property="og:url" content="http://xuqi365.com/2017/11/24/%E6%B7%B1%E5%9C%B3%E5%B8%82%E4%BB%B7%E5%A7%94%E6%89%98%E7%9A%84%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Python量化交易实战">
+<meta property="og:description" content="深圳市价委托的类型有五种，分别为：对手方最优价格、本方最优价格、最优五档即时成交剩余撤销、即时成交剩余撤销（FAK）、全额成交或撤销委托（FOK）。 对手方最优价格委托对手方最优价格委托指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内对手方队列的最优价格为其指定价格的委托类型。  “对手方最优价格委托”无需输入指定价格，如果当时交易主机中集中申报簿的对">
+<meta property="og:locale" content="cn">
+<meta property="article:published_time" content="2017-11-24T01:29:00.000Z">
+<meta property="article:modified_time" content="2020-02-08T17:11:26.048Z">
+<meta property="article:author" content="eryk">
+<meta property="article:tag" content="期货">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqi365.com/2017/11/24/深圳市价委托的类型/"/>
+
+
+
+
+
+  <title>深圳市价委托的类型 | Python量化交易实战</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python量化交易实战</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/11/24/%E6%B7%B1%E5%9C%B3%E5%B8%82%E4%BB%B7%E5%A7%94%E6%89%98%E7%9A%84%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">深圳市价委托的类型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-24T09:29:00+08:00">
+                2017-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>深圳市价委托的类型有五种，分别为：对手方最优价格、本方最优价格、最优五档即时成交剩余撤销、即时成交剩余撤销（FAK）、全额成交或撤销委托（FOK）。</p>
+<h1 id="对手方最优价格委托"><a href="#对手方最优价格委托" class="headerlink" title="对手方最优价格委托"></a>对手方最优价格委托</h1><p>对手方最优价格委托指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内对手方队列的最优价格为其指定价格的委托类型。</p>
+<ol>
+<li>“对手方最优价格委托”无需输入指定价格，如果当时交易主机中集中申报簿的对手方队列中存在有效申报，则与当时对手方队列中价格最优的申报成交；“价格最优的申报”是指集中申报簿中买方“买一”队列或卖方“卖一”队列。</li>
+<li>没有完全成交的“对手方最优价格委托”将以限价形式保存在交易主机集中申报簿的本方队列中，其指定价格为委托已成交部分的成交价，也就是委托申报进入交易主机当时对手方队列的最优价格.</li>
+<li>如果当时集中申报簿中对手方队列没有有效对手盘，交易主机直接对“对手方最优价格委托”作撤单处理。</li>
+</ol>
+<h1 id="本方最优价格委托"><a href="#本方最优价格委托" class="headerlink" title="本方最优价格委托"></a>本方最优价格委托</h1><p>本方最优价格委托是指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内本方队列最优价格为其指定价格的委托类型。</p>
+<ol>
+<li>“本方最优价格委托”无需输入指定价格，如果当时交易主机中集中申报簿的本方队列存在有效申报，则以当时本方队列的最优价格为指定价格以限价形式保存在交易主机的集中申报簿中；</li>
+<li>如果当时集中申报簿本方队列中没有有效申报，交易主机对“本方最优价格委托”作撤销处理。</li>
+</ol>
+<h1 id="即时成交剩余撤销委托"><a href="#即时成交剩余撤销委托" class="headerlink" title="即时成交剩余撤销委托"></a>即时成交剩余撤销委托</h1><p>即时成交剩余撤销委托是指无需指定委托价格，委托进入交易主机时能立即成交部分即予以撮合，未成交部分立即自动撤销的委托方式，一笔委托可以同对手方数笔不同价格的委托撮合成交。</p>
+<ol>
+<li>“即时成交剩余撤销委托”无需指定价格，如果当时交易主机集中申报簿的对手方队列中存在有效申报，则按对手方申报队列顺序以对手方价格为成交价进行逐笔配对；</li>
+<li>“即时成交剩余撤销委托”可以与不同价格的对手方委托撮合成交，直至无有效对手盘（即在涨跌幅限制范围内或在最后一笔成交价为基础的有效竞价范围内交易主机中现有的对手方队列中无委托）；</li>
+<li>若“即时成交剩余撤销委托”成交后有剩余的委托（包括部分成交、未有成交的情形），交易主机立即对剩余部分作撤单处理。</li>
+</ol>
+<h1 id="最优五档即时成交剩余撤销委托"><a href="#最优五档即时成交剩余撤销委托" class="headerlink" title="最优五档即时成交剩余撤销委托"></a>最优五档即时成交剩余撤销委托</h1><p>“最优五档即时成交剩余撤销委托”是为了避免市场价格波动过大而对“即时成交剩余撤销委托”的改良。其与“即时成交剩余撤销委托”方式的区别就在于“即时成交剩余撤销委托”可以与对手方数笔不同价格的委托撮合，直至无有效对手盘，而“最优五档即时成交剩余撤销委托”只能与一定范围内的对手方队列成交。</p>
+<h1 id="全额成交或撤销委托"><a href="#全额成交或撤销委托" class="headerlink" title="全额成交或撤销委托"></a>全额成交或撤销委托</h1><p>全额成交或撤销委托是指无需指定委托价格，委托进入交易主机时能立即全部成交即予以撮合，否则委托全部撤销的委托方式，该委托可以与对手方数笔不同价格的委托撮合成交。</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
+<li><p>市价委托可以撤单吗</p>
+<p> 根据《深圳证券交易所交易规则》，市价申报主要包括：对手方最优价格申报、本方最优价格申报、最优五档即时成交剩余撤销申报、即时成交剩余撤销申报、全额成交或撤销申报等五种，其中对手方最优价格申报和本方最优价格申报部分成交时，未成交部分可以主动撤单，其余情况主机会自动撤单，而不能主动撤单。</p>
+</li>
+</ol>
+<h1 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h1><ol>
+<li>市价委托(深圳对方最优价格)<ul>
+<li>买入: 按照涨停价下单</li>
+<li>卖出: 按照价格0下单</li>
+</ul>
+</li>
+<li>市价委托(深圳本方最优价格)<ul>
+<li>买入: 按照买一价下单，按照时间优先原则排列订单</li>
+<li>卖出: 按照卖一价下单，按照时间优先原则排列订单</li>
+</ul>
+</li>
+<li>市价委托(深圳即时成交剩余撤销)<ul>
+<li>买入: 按照涨停价下单</li>
+</ul>
+</li>
+<li>市价委托(上海五档即成剩撤 / 深圳五档即成剩撤)<ul>
+<li>卖出： 按照价格0下单</li>
+</ul>
+</li>
+<li>市价委托(深圳全额成交或撤销)<ul>
+<li>买入: 按照涨停价下单，买入量大于5档时还会继续买入</li>
+</ul>
+</li>
+<li>市价委托(上海五档即成转限价)</li>
+</ol>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>深圳证券交易所关于五种市价委托方式的业务说明<br><a href="http://www.szse.cn/UpFiles/Attach/1045/2005/11/14/1442302347.doc" target="_blank" rel="noopener">http://www.szse.cn/UpFiles/Attach/1045/2005/11/14/1442302347.doc</a> </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%9C%9F%E8%B4%A7/" rel="tag"># 期货</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/06/Tradex%E7%AC%94%E8%AE%B0/" rel="next" title="Tradex笔记">
+                <i class="fa fa-chevron-left"></i> Tradex笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/30/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86-%E6%B8%85%E6%B4%97%E8%BD%AC%E6%8D%A2/" rel="prev" title="数据预处理-清洗转换">
+                数据预处理-清洗转换 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">eryk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对手方最优价格委托"><span class="nav-number">1.</span> <span class="nav-text">对手方最优价格委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本方最优价格委托"><span class="nav-number">2.</span> <span class="nav-text">本方最优价格委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#即时成交剩余撤销委托"><span class="nav-number">3.</span> <span class="nav-text">即时成交剩余撤销委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最优五档即时成交剩余撤销委托"><span class="nav-number">4.</span> <span class="nav-text">最优五档即时成交剩余撤销委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#全额成交或撤销委托"><span class="nav-number">5.</span> <span class="nav-text">全额成交或撤销委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">6.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试结果"><span class="nav-number">7.</span> <span class="nav-text">测试结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">eryk</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

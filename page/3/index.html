@@ -1,0 +1,2416 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Python量化交易实战">
+<meta property="og:url" content="http://xuqi365.com/page/3/index.html">
+<meta property="og:site_name" content="Python量化交易实战">
+<meta property="og:locale" content="cn">
+<meta property="article:author" content="eryk">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqi365.com/page/3/"/>
+
+
+
+
+
+  <title>Python量化交易实战</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python量化交易实战</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/05/19/%E3%80%8A%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E5%9B%A0%E5%AD%90%E6%9C%89%E6%95%88%E6%80%A7%E3%80%8B%20%E5%90%AC%E8%AF%BE%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/19/%E3%80%8A%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E5%9B%A0%E5%AD%90%E6%9C%89%E6%95%88%E6%80%A7%E3%80%8B%20%E5%90%AC%E8%AF%BE%E7%AC%94%E8%AE%B0/" itemprop="url">《如何验证因子有效性》 听课笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-19T11:29:00+08:00">
+                2018-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AD%96%E7%95%A5%E7%A0%94%E7%A9%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">策略研究</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一维零投资组合"><a href="#一维零投资组合" class="headerlink" title="一维零投资组合"></a>一维零投资组合</h1><p><img src="images/15267001868391.jpg" alt=""></p>
+<p><img src="images/15267003855597.jpg" alt=""></p>
+<p>先对股票按因子大小排序， nt是top，nb是bottom，nb中停牌的股票跳过停牌的股票，已纳入的股票如果停牌的也不能调出且需要保留仓位</p>
+<p><img src="images/15267006658022.jpg" alt=""></p>
+<p>公式一：每只股票期末收益累加除以股票数<br>公式二：计算零投资组合当期收益<br>公式三：计算累计收益，把第一期净值作为1，连成每期收益率，最后减去1</p>
+<p><img src="images/15267011538977.jpg" alt=""><br><img src="images/15267014437363.jpg" alt=""><br><img src="images/15267154692447.jpg" alt=""><br><img src="images/15267155512097.jpg" alt=""><br><img src="images/15267163339922.jpg" alt=""><br><img src="images/15267164374438.jpg" alt=""></p>
+<h1 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h1><ul>
+<li>PE -&gt; EP，使取值空间连续</li>
+<li>停牌</li>
+<li>复权（后复权）</li>
+</ul>
+<h1 id="自定义股票池"><a href="#自定义股票池" class="headerlink" title="自定义股票池"></a>自定义股票池</h1><p><img src="images/15267167359285.jpg" alt=""></p>
+<h1 id="调仓周期"><a href="#调仓周期" class="headerlink" title="调仓周期"></a>调仓周期</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/03/29/systemd%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/29/systemd%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" itemprop="url">systemd入门教程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-29T09:57:00+08:00">
+                2018-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
+                    <span itemprop="name">系统运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近在处理数字货币行情数据，使用websocket接收行情数据写入磁盘，发现运行时间久了偶尔出现socket close的异常，重试多次无效后程序异常退出，所以考虑将python程序作为linux 守护进程运行，了解了supervisord和systemd，决定使用更强大的systemd。</p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>systemd 是一个 Linux 系统基础组件的集合，提供了一个系统和服务管理器，运行为 PID 1 并负责启动其它程序。功能包括：支持并行化任务；同时采用 socket 式与 D-Bus 总线式激活服务；按需启动守护进程（daemon）；利用 Linux 的 cgroups 监视进程；支持快照和系统恢复；维护挂载点和自动挂载点；各服务间基于依赖关系进行精密控制。systemd 支持 SysV 和 LSB 初始脚本，可以替代 sysvinit。除此之外，功能还包括日志进程、控制基础系统配置，维护登陆用户列表以及系统账户、运行时目录和设置，可以运行容器和虚拟机，可以简单的管理网络配置、网络时间同步、日志转发和名称解析等。</p>
+<p>systemd架构图</p>
+<p><img src="images/15222891502855.jpg" alt=""></p>
+<h2 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h2><ul>
+<li>systemd-analyze: 查看启动耗时</li>
+<li>systemctl: 用来查看系统状态、启动停止服务，在systemctl参数中添加-H &lt;用户名&gt;@&lt;主机名&gt;可以实现对其他机器的远程控制。该过程使用ssh链接</li>
+<li>journalctl: Systemd统一管理所有Unit的启动日志</li>
+</ul>
+<h2 id="unit"><a href="#unit" class="headerlink" title="unit"></a>unit</h2><p>一个单元配置文件可以描述如下内容之一：系统服务(.service)、挂载点(.mount)、sockets(.sockets) 、系统设备(.device)、交换分区(.swap)、文件路径(.path)、启动目标(.target)、由 systemd 管理的计时器(.timer)</p>
+<h2 id="如何编写服务脚本"><a href="#如何编写服务脚本" class="headerlink" title="如何编写服务脚本"></a>如何编写服务脚本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[Unit]</span><br><span class="line"></span><br><span class="line">Description&#x3D;Network Manager</span><br><span class="line"></span><br><span class="line">Wants&#x3D;network.target</span><br><span class="line"></span><br><span class="line">Before&#x3D;network.target network.service</span><br><span class="line"></span><br><span class="line">                                                                                                                                                                               </span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"></span><br><span class="line">Type&#x3D;dbus</span><br><span class="line"></span><br><span class="line">BusName&#x3D;org.freedesktop.NetworkManager</span><br><span class="line"></span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;sbin&#x2F;NetworkManager --no-daemon</span><br><span class="line"></span><br><span class="line"># NM doesn&#39;t want systemd to kill its children for it</span><br><span class="line"></span><br><span class="line">KillMode&#x3D;process</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line"></span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br><span class="line"></span><br><span class="line">Alias&#x3D;dbus-org.freedesktop.NetworkManager.service</span><br><span class="line"></span><br><span class="line">Also&#x3D;NetworkManager-dispatcher.service</span><br></pre></td></tr></table></figure>
+
+<h3 id="整个文件分三个部分，-Unit-·-Service-·-Install"><a href="#整个文件分三个部分，-Unit-·-Service-·-Install" class="headerlink" title="整个文件分三个部分，[Unit]·[Service]·[Install]"></a>整个文件分三个部分，[Unit]·[Service]·[Install]</h3><ul>
+<li><p>[Unit]：记录unit文件的通用信息。</p>
+</li>
+<li><p>[Service]：记录Service的信息</p>
+</li>
+<li><p>[Install]：安装信息。</p>
+</li>
+</ul>
+<h4 id="Unit主要包含以下内容："><a href="#Unit主要包含以下内容：" class="headerlink" title="Unit主要包含以下内容："></a>Unit主要包含以下内容：</h4><p>●  Description：对本service的描述。</p>
+<p>●  Before, After：定义启动顺序，Before=xxx.service，代表本服务在xxx.service启动之前启动。After=xxx.service,代表本服务在xxx之后启动。</p>
+<p>●  Requires: 这个单元启动了，那么它“需要”的单元也会被启动; 它“需要”的单元被停止了，它自己也活不了。但是请注意，这个设定并不能控制某单元与它“需要”的单元的启动顺序（启动顺序是另外控制的），即 Systemd 不是先启动 Requires 再启动本单元，而是在本单元被激活时，并行启动两者。于是会产生争分夺秒的问题，如果 Requires 先启动成功，那么皆大欢喜; 如果 Requires 启动得慢，那本单元就会失败（Systemd 没有自动重试）。所以为了系统的健壮性，不建议使用这个标记，而建议使用 Wants 标记。可以使用多个 Requires。</p>
+<p>●  RequiresOverridable：跟 Requires 很像。但是如果这条服务是由用户手动启动的，那么 RequiresOverridable 后面的服务即使启动不成功也不报错。跟 Requires 比增加了一定容错性，但是你要确定你的服务是有等待功能的。另外，如果不由用户手动启动而是随系统开机启动，那么依然会有 Requires 面临的问题。</p>
+<p>●  Requisite：强势版本的 Requires。要是这里需要的服务启动不成功，那本单元文件不管能不能检测等不能等待都立刻就会失败。</p>
+<p>●  Wants：推荐使用。本单元启动了，它“想要”的单元也会被启动。但是启动不成功，对本单元没有影响。</p>
+<p>●  Conflicts：一个单元的启动会停止与它“冲突”的单元，反之亦然。</p>
+<h4 id="Service主要包含以下内容："><a href="#Service主要包含以下内容：" class="headerlink" title="Service主要包含以下内容："></a>Service主要包含以下内容：</h4><p>●  Type：service的种类，包含下列几种类型：</p>
+<pre><code>----simple 默认，这是最简单的服务类型。意思就是说启动的程序就是主体程序，这个程序要是退出那么一切都退出。
+
+-----forking 标准 Unix Daemon 使用的启动方式。启动程序后会调用 fork() 函数，把必要的通信频道都设置好之后父进程退出，留下守护精灵的子进程
+
+-----oneshot种服务类型就是启动，完成，没进程了。</code></pre><p>notify,idle类型比较少见，不介绍。</p>
+<p>●  ExecStart：服务启动时执行的命令，通常此命令就是服务的主体。</p>
+<pre><code>------如果你服务的类型不是 oneshot，那么它只可以接受一个命令，参数不限。
+
+------多个命令用分号隔开，多行用 \ 跨行。</code></pre><p>●  ExecStartPre, ExecStartPost：ExecStart执行前后所调用的命令。</p>
+<p>●  ExecStop：定义停止服务时所执行的命令，定义服务退出前所做的处理。如果没有指定，使用systemctl stop xxx命令时，服务将立即被终结而不做处理。</p>
+<p>●  Restart：定义服务何种情况下重启（启动失败，启动超时，进程被终结）。可选选项：no, on-success, on-failure,on-watchdog, on-abort</p>
+<p>●  SuccessExitStatus：参考ExecStart中返回值，定义何种情况算是启动成功。</p>
+<pre><code>eg：SuccessExitStatus=1 2 8 SIGKILL</code></pre><h4 id="Install主要包含以下内容："><a href="#Install主要包含以下内容：" class="headerlink" title="Install主要包含以下内容："></a>Install主要包含以下内容：</h4><p>●  WantedBy：何种情况下，服务被启用。</p>
+<pre><code>eg：WantedBy=multi-user.target（多用户环境下启用）</code></pre><p>●  Alias：别名</p>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>新建文件 /etc/systemd/system/huobi.service</p>
+<p>内容如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description&#x3D;huobi downloader</span><br><span class="line">After&#x3D;rc-local.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type&#x3D;simple</span><br><span class="line">User&#x3D;root</span><br><span class="line">Group&#x3D;root</span><br><span class="line">WorkingDirectory&#x3D;&#x2F;usr&#x2F;lib&#x2F;code&#x2F;atom</span><br><span class="line">ExecStart&#x3D;&#x2F;home&#x2F;ubuntu&#x2F;anaconda3&#x2F;bin&#x2F;python3.6 exchange&#x2F;downloader.py huobi &#x2F;data2&#x2F;huobi&#x2F;huobi.log</span><br><span class="line">Restart&#x3D;always</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>观察系统日志，发现程序异常退出后systemd重启的了服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">root@ip-172-31-4-62:&#x2F;usr&#x2F;lib&#x2F;code&#x2F;atom#  journalctl -u huobi.service</span><br><span class="line">-- Logs begin at Mon 2018-03-26 17:51:39 CST, end at Thu 2018-03-29 16:39:27 CST. --</span><br><span class="line">Mar 29 10:58:46 ip-172-31-4-62 systemd[1]: Started huobi downloader.</span><br><span class="line">Mar 29 11:02:18 ip-172-31-4-62 systemd[1]: huobi.service: Main process exited, code&#x3D;killed, status&#x3D;9&#x2F;KILL</span><br><span class="line">Mar 29 11:02:18 ip-172-31-4-62 systemd[1]: huobi.service: Unit entered failed state.</span><br><span class="line">Mar 29 11:02:18 ip-172-31-4-62 systemd[1]: huobi.service: Failed with result &#39;signal&#39;.</span><br><span class="line">Mar 29 11:02:18 ip-172-31-4-62 systemd[1]: huobi.service: Service hold-off time over, scheduling restart.</span><br><span class="line">Mar 29 11:02:18 ip-172-31-4-62 systemd[1]: Stopped huobi downloader.</span><br><span class="line">Mar 29 11:02:18 ip-172-31-4-62 systemd[1]: Started huobi downloader.</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 python3.6[9124]: Traceback (most recent call last):</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 python3.6[9124]:   File &quot;.&#x2F;exchange&#x2F;ex_huobi.py&quot;, line 66, in dispatch</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 python3.6[9124]:     raw_data &#x3D; await ws.recv()</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 python3.6[9124]:   File &quot;&#x2F;home&#x2F;ubuntu&#x2F;anaconda3&#x2F;lib&#x2F;python3.6&#x2F;site-packages&#x2F;websockets&#x2F;protocol.py&quot;, line 323, i</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 python3.6[9124]:     raise ConnectionClosed(self.close_code, self.close_reason)</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 python3.6[9124]: websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code &#x3D; 1006 (connection</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 systemd[1]: huobi.service: Service hold-off time over, scheduling restart.</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 systemd[1]: Stopped huobi downloader.</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 systemd[1]: Started huobi downloader.</span><br><span class="line">Mar 29 13:30:44 ip-172-31-4-62 python3.6[19180]: Traceback (most recent call last):</span><br><span class="line">Mar 29 13:30:44 ip-172-31-4-62 python3.6[19180]:   File &quot;.&#x2F;exchange&#x2F;ex_huobi.py&quot;, line 66, in dispatch</span><br><span class="line">Mar 29 13:30:44 ip-172-31-4-62 python3.6[19180]:     raw_data &#x3D; await ws.recv()</span><br><span class="line">Mar 29 13:30:44 ip-172-31-4-62 python3.6[19180]:   File &quot;&#x2F;home&#x2F;ubuntu&#x2F;anaconda3&#x2F;lib&#x2F;python3.6&#x2F;site-packages&#x2F;websockets&#x2F;protocol.py&quot;, line 323,</span><br><span class="line">Mar 29 13:30:44 ip-172-31-4-62 python3.6[19180]:     raise ConnectionClosed(self.close_code, self.close_reason)</span><br><span class="line">Mar 29 13:30:44 ip-172-31-4-62 python3.6[19180]: websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code &#x3D; 1006 (connectio</span><br><span class="line">Mar 29 13:30:45 ip-172-31-4-62 systemd[1]: huobi.service: Service hold-off time over, scheduling restart.</span><br><span class="line">Mar 29 13:30:45 ip-172-31-4-62 systemd[1]: Stopped huobi downloader.</span><br><span class="line">Mar 29 13:30:45 ip-172-31-4-62 systemd[1]: Started huobi downloader.</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://wiki.archlinux.org/index.php/systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)" target="_blank" rel="noopener">https://wiki.archlinux.org/index.php/systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)</a></p>
+<p><a href="https://www.hi-linux.com/posts/3761.html" target="_blank" rel="noopener">https://www.hi-linux.com/posts/3761.html</a></p>
+<p><a href="https://blog.csdn.net/fu_wayne/article/details/38018825" target="_blank" rel="noopener">https://blog.csdn.net/fu_wayne/article/details/38018825</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/" itemprop="url">逐笔，分笔，逐单，分时数据概念区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-29T09:57:00+08:00">
+                2018-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我的微信公众号：pyquant</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
+<h1 id="逐笔成交："><a href="#逐笔成交：" class="headerlink" title="逐笔成交："></a>逐笔成交：</h1><p>交易过程中的单次成交，是交易过程的真实成交情况。这是Level-2的专有数据，用一个实例来解释这个概念：假设目前的卖一是10元、100手，这时有人以10元委托买入100手，那么这100手是如何成交的呢？这要取决于卖盘由几个委托单构成，如果卖一是一个委托单，那就是一笔成交，即100手；而如果卖一是由40手和60手两笔委托构成，那么这100股就会分成两次成交，即40手一次，60手一次，逐笔成交就是2笔。</p>
+<p>一般显示的数据格式为在几分几秒以多少价格分几笔成交了多少手。<strong>在这里我们要注意的是成交手数有时候是带小数点的，这是因为股票买进的股数最少是100股，委托的股数也应是100的整数倍，卖出却没有限制，因此成交的手数会有小数点。</strong> 另外一点就是如果在成交价格和手数前面没有显示，则一半是默认的1笔。</p>
+<h1 id="分笔-分时成交："><a href="#分笔-分时成交：" class="headerlink" title="分笔/分时成交："></a>分笔/分时成交：</h1><p>   3-5秒一次的行情采集期间累计的成交量和最后的成交价，可能是几笔成交的集合。这是大家长期以来唯一能看到的成交数据.</p>
+<p>一般显示的数据格式为在几分几秒以多少价格成交了多少手。<strong>这里需要注意的是成交手数永远是整数，不会出现小数点数字。</strong>其中现手累计数就是总手数。总手数也叫做成交量。有些软件在现量后面标注蓝色S和红色B，前者代表卖，后者代表买。（软件自己根据时间估计主动买还是主动卖）</p>
+<p>目前市面上出现了LEVEL-2行情数据，比较具有代表性的是大智慧，在那里把分笔成交是叫分时成交，实际上就是我们在普通分析软件上F1看到的“分笔成交明细”，但是他和LEVEL-2行情数据提供的逐笔成交明细是不一样的。<strong>分笔数据由于是合成混合数据，它是以最后1笔的买卖方向来表示该时间内（3秒或者5秒）的买卖方向。</strong>目前市面上的成交明细数据都是分笔成交，有些号称是LEVEL-2逐笔的明细数据其实也是分笔，即LEVEL-2行情软件里右侧小窗口显示的3秒分笔数据，虽然来自LEVEL-2行情，但仍然是分笔（分时）成交，而不是LEVEL-2行情软件里左侧显示的逐笔成交。因为左侧显示的逐笔成交在LEVEL-2行情软件里是不能保存的，也不能够导出供二次开发。能够导出的只有右侧小窗口里的分笔成交</p>
+<h1 id="逐单-委托单："><a href="#逐单-委托单：" class="headerlink" title="逐单/委托单："></a>逐单/委托单：</h1><p>我们每次向系统发出委托时，都有个委托合同编号，这个就是单。例如你一次买2000股股票，则是20手，那么这一单就是20手。但目前每种软件的推测统计都不一致，会导致不同软件显示数据出现差异。</p>
+<p>委托单的明细，这是交易所行情系统中没有发布的数据，还以刚才的例子说明，交易所只发出了40手和60手两笔成交（逐笔），并没有指出是一笔100手的买单吃掉了40手、60手两笔卖单。LEVEL-2行情能够根据成交的时间和队列等数据计算出全部已成交的委托单明细，这在交易分析中具有重大意义。（股票盘子越大，推测逐单数据误差越大,因为委托队列只显示前50个委托单;相对来说小盘股的DDE指标更为可靠）</p>
+<h1 id="分时"><a href="#分时" class="headerlink" title="分时:"></a>分时:</h1><p>   一般指一分钟成交集合;</p>
+<h1 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h1><p>盘中数据的统计分析长期以来是对分时数据的统计分析，比如最简单的内盘和外盘，大单买入/卖出等，这种统计有两个明显的缺陷：</p>
+<p>第一、仅统计了主动成交方单方面的成交数据，而机构交易完全可能在被动成交方</p>
+<p>第二、分时数据不是真实的成交数据，大单不一定是大单，可能是很多散户在几秒中之内同时交易的结果，虽然使用level-2的逐笔成交来统计可以避免这一情况的发生，但立即就又产生了新的问题，即一笔真实的大单委托往往被分割成数笔成交，又捕捉不到真实的大单了。</p>
+<p>其他：一个孤独的数字是缺乏意义的，但是一些连续的数字则是充满想像的。一般来说，成交手数比较大而集中的时候，表示有大资金活跃迹象，该股出现价格异动的概率就大，应该引起投资者的注意。而如果半天也没人买或者都是一些小单子在交易，则至少短期不大可能成为好股。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/02/18/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8C%96%E7%9F%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/18/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8C%96%E7%9F%BF/" itemprop="url">比特币挖矿</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-18T00:03:00+08:00">
+                2018-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="比特币介绍"><a href="#比特币介绍" class="headerlink" title="比特币介绍"></a>比特币介绍</h1><p>比特币（BitCoin）的概念最初由中本聪在2009年提出，根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络。比特币是一种P2P形式的数字货币。点对点的传输意味着一个去中心化的支付系统。</p>
+<h2 id="货币特征"><a href="#货币特征" class="headerlink" title="货币特征"></a>货币特征</h2><ul>
+<li>去中心化：比特币是第一种分布式的虚拟货币，整个网络由用户构成，没有中央银行。去中心化是比特币安全与自由的保证 。</li>
+<li>全世界流通：比特币可以在任意一台接入互联网的电脑上管理。不管身处何方，任何人都可以挖掘、购买、出售或收取比特币。</li>
+<li>专属所有权：操控比特币需要私钥，它可以被隔离保存在任何存储介质。除了用户自己之外无人可以获取。</li>
+<li>低交易费用：可以免费汇出比特币，但最终对每笔交易将收取约1比特分的交易费以确保交易更快执行。</li>
+<li>无隐藏成本：作为由A到B的支付手段，比特币没有繁琐的额度与手续限制。知道对方比特币地址就可以进行支付。</li>
+<li>跨平台挖掘：用户可以在众多平台上发掘不同硬件的计算能力。</li>
+</ul>
+<h2 id="比特币与分叉币比较"><a href="#比特币与分叉币比较" class="headerlink" title="比特币与分叉币比较"></a>比特币与分叉币比较</h2><p><img src="images/15188818662912.jpg" alt=""></p>
+<h1 id="什么是挖矿"><a href="#什么是挖矿" class="headerlink" title="什么是挖矿"></a>什么是挖矿</h1><p>比特币是怎么产出的？</p>
+<p>首先我们来了解一下“区块链”，比特币的核心原理是“区块链”，每一个区块对应一个帐单，将所有的区块链接起来就是区块链，任何交易信息和转账记录都记录在区块链中。要注意的是区块链存在于整个互联网中，所以任何比特币持有者都不担心比特币遭受损失。</p>
+<p>每隔一个时间点，比特币系统会在系统节点上生成一个随机代码，互联网中的所有计算机都可以去寻找此代码，谁找到此代码，就会产生一个区块，随即得到一个比特币，这个过程就是人们常说的挖矿。</p>
+<h1 id="挖矿设备介绍"><a href="#挖矿设备介绍" class="headerlink" title="挖矿设备介绍"></a>挖矿设备介绍</h1><p>现在市面上起码有几百种加密货币，主流的可以流通交易的也有不下20种。这么多的加密货币虽然都基于区块链技术，但不管是为了实现某些功能，还是为了形成差异，都会有所不同，从而导致挖不同的币使用的矿机也有所不同。通常来说，一台矿机只能挖一种或几种币，所以要挖什么比就要买什么型号的矿机。当然也存在全能选手，比如电脑就是，只是好多币种用电脑（CPU+显卡）挖的效率太低，无法盈利。</p>
+<p>矿机可以有多种分类方式，硬件上可以分为ASIC矿机、GPU矿机、FPGA矿机，以及玩客云那类CDN矿机等等。按照所有权划分，可以分为本地矿机和云矿机。</p>
+<p>首先，比特币（BTC）、以太坊（ETH）、比特币现金（BCH）、莱特币（LTC）、达世币（DASH）等主流币种，普遍采用PoW共识机制，挖矿就是通过贡献算力来维护网络安全、稳定的运行，并由此获得奖励币，所以都需要性能尽可能强大的矿机。但针对不同币种的算法，又细分出两种不同的矿机：ASIC矿机与GPU矿机。</p>
+<p>中本聪打造比特币的时候，希望比特币是一个去中心化的货币，不仅使用、交易如此，挖矿也应该如此。但是事与愿违，随着比特币等加密货币的价值越来越高，挖矿成为了一个产业，竞争越来越激烈，对挖矿算力的追求越来越高，所以从普通电脑挖矿，进化出了ASIC矿机与GPU矿机。</p>
+<p><img src="images/15188819449294.jpg" alt=""></p>
+<p>主流矿机比较</p>
+<p><img src="images/15188829992827.jpg" alt=""></p>
+<p>目前市场上最热门的矿机是蚂蚁矿机S9，具体配置如下</p>
+<p><img src="images/15188820707031.jpg" alt=""></p>
+<h1 id="矿池的选择"><a href="#矿池的选择" class="headerlink" title="矿池的选择"></a>矿池的选择</h1><p>矿池的选择主要考虑以下两个因素：</p>
+<ul>
+<li>分配模式</li>
+<li>手续费</li>
+</ul>
+<h2 id="分配模式说明："><a href="#分配模式说明：" class="headerlink" title="分配模式说明："></a>分配模式说明：</h2><ol>
+<li>Slush方式   </li>
+</ol>
+<p>Slush矿池基于积分制，较老的shares将比新的shares拥有更低的权重，以减少一轮中切换矿池的投机分子。<br>2. Pay-Per-Share方式</p>
+<p>该方式为立即为每一个share支付报酬。该支出来源于矿池现有的比特币资金，因此可以立即取现，而不用等待区块生成完毕或者确认。这样可以避免矿池运营者幕后操纵。这中方法减少了矿工的风险，但将风险转移给了矿池的运营者。运营者可以收取手续费来弥补这些风险可能造成的损失<br>3. Luke-Jr方式</p>
+<p>该方式借用了其他方式的长处，如Slush方式一样，矿工需要提供工作证明来获得shares，如puddinpop方式一样，当区块生成时马上进行支付。但是不象之前的方式，针对一个区块的shares，会被再次利用于生成下一个区块。为了区分一下参与矿工的交易传输费用，只有当矿工的余额超过1BTC时才进行支付。如果没有达到1BTC，那么将在下一个区块生成时进行累计。如果矿工在一周内没有提供一个share，那么矿池会将剩下的余额进行支付，不管余额是多少。<br>4. Triplemining方式</p>
+<p>该方式是将一些中等大小矿池的计算力合并起来，然后将获得奖励的1%按照各个矿池计算力的比例分发给矿池运营者。<br>5. P2Pool方式</p>
+<p>P2Pool的挖矿节点工作在类似比特币区块链的一种shares链上。由于没有中心，所以也不会受到DoS攻击。和其他现有的矿池技术都不一样—每个节点工作的区块，都包括支付给前期shares的所有者以及该节点自己的比特币。99%的奖励（注：50BTC+交易费用）会平均分给矿工，另外0.5%会奖励给生成区块的人。<br>6. Puddinpop方式</p>
+<p>一种使用“元哈希”技术的方式，使用特定的puddinpop挖矿软件，现在没有矿池用这种方式</p>
+<p>注意：</p>
+<blockquote>
+<p>一个share（注：贡献/股份）为一个矿池给客户端的一个合法的工作证明，这也同时是用来生成区块的工作证明，但是没有这么复杂，只需要很少的时间就能达到一个share。</p>
+</blockquote>
+<h1 id="收益预测"><a href="#收益预测" class="headerlink" title="收益预测"></a>收益预测</h1><p>蚂蚁矿机单机价格18000元，功率为1350w - 1512w，电费按0.3元/度计算，收益情况如下</p>
+<h2 id="计算方式1"><a href="#计算方式1" class="headerlink" title="计算方式1"></a>计算方式1</h2><p>矿池算力排名<br><a href="https://btc.com/stats/pool?pool_mode=day" target="_blank" rel="noopener">https://btc.com/stats/pool?pool_mode=day</a></p>
+<p>每十分钟产生一个区块，每个区块12.5个比特币，每天全球产生12.5*24*6=1800BTC</p>
+<p>s9算力13.5T，当前全网算力22.52EH/s，1E=1024P,1P=1024T,1T=1024G,一台s9一天产生的比特币是[13.5/(22.52<em>1024</em>1024)]*1800≈.001029054BTC</p>
+<p>总收入</p>
+<p>13.5/(22.52*1024*1024) * 1800 * 65000 * 365 = 24414.295 元</p>
+<p>每天耗电36度，每年13140度电，电费约为 1.5*24*0.3 * 365 = 3942 元</p>
+<p>总利润为 24414.295 - 3942 = 20472.295 元</p>
+<h2 id="计算方式2"><a href="#计算方式2" class="headerlink" title="计算方式2"></a>计算方式2</h2><p>挖矿算器</p>
+<p><a href="https://btc.com/tools/mining-calculator" target="_blank" rel="noopener">https://btc.com/tools/mining-calculator</a></p>
+<p><img src="images/15188826456334.jpg" alt=""></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://www.kuangjijia.com/category/492.html" target="_blank" rel="noopener">http://www.kuangjijia.com/category/492.html</a><br><a href="https://shop.bitmain.com/productDetail.htm?pid=00020180205094056650FrOW7847062D" target="_blank" rel="noopener">https://shop.bitmain.com/productDetail.htm?pid=00020180205094056650FrOW7847062D</a><br><a href="https://www.zhihu.com/question/20792042" target="_blank" rel="noopener">https://www.zhihu.com/question/20792042</a></p>
+<p>挖掘机哪家强？主流矿机比拼，蚂蚁矿机领先<br><a href="http://www.sohu.com/a/155209866_114877" target="_blank" rel="noopener">http://www.sohu.com/a/155209866_114877</a><br>彩云评测：比特大陆蚂蚁S9比特币挖矿机<br><a href="https://www.cybtc.com/article-2338-1.html" target="_blank" rel="noopener">https://www.cybtc.com/article-2338-1.html</a><br>一个挖矿者血本无归的教训总结<br><a href="http://www.hnr.cn/finance/zt/b/df/201706/t20170626_2980454.html" target="_blank" rel="noopener">http://www.hnr.cn/finance/zt/b/df/201706/t20170626_2980454.html</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/02/11/2018-02-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/11/2018-02-10/" itemprop="url">正本清源区块链1 笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-11T00:08:00+08:00">
+                2018-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我的微信公众号：pyquant</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
+<h1 id="区块链的价值是共识"><a href="#区块链的价值是共识" class="headerlink" title="区块链的价值是共识"></a>区块链的价值是共识</h1><p>共识算法其实分很多种，目前最常提到的，比特币和以太坊所用到的，是叫做POW的共识算法，基于工作量证明的一种信息保障的算法。</p>
+<h4 id="POW共识算法，效率低下"><a href="#POW共识算法，效率低下" class="headerlink" title="POW共识算法，效率低下"></a>POW共识算法，效率低下</h4><p>POW目前的局限是出块速度被限定了，比特币差不多10分钟出一个区块，所有交易均需要记录在区块内，所以这样也就限制了交易频率，由于一个区块只有1M，可以承载的交易信息是有限的，所以目前比特币的交易频次被限定在非常低的量级上，差不多一秒才可以支撑不到10个交易。</p>
+<p><img src="images/15182776820585.jpg" alt=""></p>
+<h4 id="升级方案："><a href="#升级方案：" class="headerlink" title="升级方案："></a>升级方案：</h4><ul>
+<li>提升出块大小，比特现金把区块大小提升到了8M区块</li>
+<li>提升出块速度，降低出块奖励</li>
+<li>区块分片化存储的方案，现在比特币这样的区块链虽然是去中心化分布式存储，但每个全节点存储的是记录全集，也就是规模总量和本地查询明显是受到制约的。</li>
+<li>闪电网络是指将小额的，频繁交易，先通过一些分支节点进行储存和计算，并在一定时间内整合归并到主链</li>
+</ul>
+<h1 id="以太坊是平台"><a href="#以太坊是平台" class="headerlink" title="以太坊是平台"></a>以太坊是平台</h1><p>以太坊可以认为是区块链的第二代平台，因为对智能合约的支持，以太坊的应用想象空间增加了很多，而且其出块效率也明显高于比特币。交易结算周期也明显有了更好的表现。</p>
+<p>以太坊是一个平台，上面跑了几千种虚拟货币，其中之一是以太坊自身的代币。而这个平台不但可以发布货币，还可以发布应用，智能合约的应用</p>
+<h1 id="智能合约"><a href="#智能合约" class="headerlink" title="智能合约"></a>智能合约</h1><p>在区块中传递的合约，或者说传递的字符串，不是单纯的字符串和信息，而是一段可执行的脚本，比如说，有触发条件，有交互能力。</p>
+<p><img src="images/15182781379931.jpg" alt=""></p>
+<blockquote>
+<p>比特币是资产还是货币？</p>
+</blockquote>
+<h1 id="硬分叉"><a href="#硬分叉" class="headerlink" title="硬分叉"></a>硬分叉</h1><p>硬分叉，是分叉方约定，在某个区块节点开始，启用新的系统架构继续前进，不再和主链保持一致，但同时也继承了该节点之前的所有区块。在这个节点之后，双方各自挖各自的矿，各自爆各自的块，各自走各自的路</p>
+<p>其实硬分叉不需要主链允许或通过，任何人都可以发起硬分叉，都可以基于自己的理解和判断发起一个新的分支，但对于信仰者来说，每个分叉都是对共识的撕裂，是在破坏共识。共识算法本身就是防范故障或者恶意分叉的，而人为强行分叉显然是算法所不能处理的。</p>
+<h1 id="EOS"><a href="#EOS" class="headerlink" title="EOS"></a>EOS</h1><p>99%的ICO是基于以太坊的，其实EOS的ICO，目前而言，也是基于以太坊的。但EOS要做的并不只是躺在以太坊身上薅点韭菜的钱。他们的野心还是蛮大的，按照白皮书的说法，感觉是想成为第三代区块链的平台，</p>
+<h1 id="零知识证明"><a href="#零知识证明" class="headerlink" title="零知识证明"></a>零知识证明</h1><p>可以有效保护交易隐私，隐藏交易来源并防止追溯，同时也能保证交易是安全的，因为任何试图修改交易的行为都无法通过验证。</p>
+<h1 id="信息安全"><a href="#信息安全" class="headerlink" title="信息安全"></a>信息安全</h1><p>第一，算力劫持，其实共识算法并非是完美无瑕的，其存在的假设前提是，大部分节点是正确的，可信任的。所以不同的共识算法，理论上都存在一些风险，就是如果坏人掌握了足够多的节点。比如说基于POW共识的比特币，如果一家矿场或者矿池掌握了超过全网51%的算力，理论上可以劫持所有交易，改变交易数据。而基于DPOS的需要保障2/3的节点是可靠的，否则也存在强行分叉或者干扰主链的风险。</p>
+<p>第二，重放攻击，这是硬分叉首先需要小心解决的问题，如果系统设计不周全，会导致在分叉上执行的交易被复制到主链，从而带来币拥有者未确认的交易发生，造成损失。所以很多交易所和钱包服务商，不敢去支持名目繁多的分叉币，也是担心由此带来风险。</p>
+<p>第三，关于私钥安全，由于新入场的区块链玩家很多，实际上很多人并不明白区块链私钥的意义和价值，会出现这样的情况，认为在交易所，或者钱包的账号和密码是最关键的，保护好了账号密码就万无一失，但糊里糊涂就被人钓鱼，把私钥拱手送出。</p>
+<p>第四，交易平台和钱包工具的安全，这在历史上出现过很多起，最近也出现过，一些交易所失窃，或者钱包工具失窃，导致用户的币丢失，而且基本上全都无可挽回。</p>
+<p>第五，智能合约的安全，有一个基于区块链众筹的风险投资基金，叫做the DAO，这个众筹计划是用一段智能合约代码约束的，这段代码被发布到了网上，并募集了超过数亿美元的资金，看上去是一个非常不错的故事，但很遗憾，这段代码中有一个安全风险，结果，黑客通过代码漏洞轻松劫持了超过5500万美元</p>
+<h1 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h1><p>1、共识算法是区块链的核心技术；<br>2、当前的共识算法存在一些问题，是区块链应用场景普及所需要面对的重大问题。<br>3、从比特币到以太坊，实际上区块链的技术方案正在演进，但谁是第三代，目前还有待争议。<br>4、智能合约是区块链应用场景扩展最具有想象力的地方，不过受限于基础架构和算力问题，目前智能合约还很难做出复杂应用，图灵完备在当前阶段尚不具备应用意义。<br>5、零知识证明还没有全面应用起来，但这个逻辑被认可度是非常高的。<br>6、共识算法，零知识证明，都是人类数学和信息科学的重大进步，并不单纯是为区块链服务的，更不是为发币的骗子们服务的。<br>8、信息安全在区块链投资中的重要性非常高，而目前绝大部分新入场的用户对此并没有足够清醒的认识，整个区块链产业出现的严重安全事故已经很多起了，入局者希望能引以为诫。</p>
+<h1 id="代币"><a href="#代币" class="headerlink" title="代币"></a>代币</h1><p>现在主要有两种模式，一种是跟法币绑定的，一个很神奇的东西，叫做USDT，是香港一家公司发行的，他宣称 ，每发行一个USDT，背后都有1美元的储蓄作为担保，并且有多个商业银行担保。也就是和美元1：1购买，1：1赎回，那么他的商业模式是什么呢？赎回的时候收取1%的手续费。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/02/05/gitlab%20%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/05/gitlab%20%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/" itemprop="url">gitlab 持续集成</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-05T11:35:00+08:00">
+                2018-02-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="安装gitlab-runner"><a href="#安装gitlab-runner" class="headerlink" title="安装gitlab-runner"></a>安装gitlab-runner</h1><p><a href="https://docs.gitlab.com/runner/install/index.html" target="_blank" rel="noopener">https://docs.gitlab.com/runner/install/index.html</a></p>
+<p>国内镜像地址</p>
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/gitlab-ci-multi-runner/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/help/gitlab-ci-multi-runner/</a></p>
+<h1 id="注册Runner"><a href="#注册Runner" class="headerlink" title="注册Runner"></a>注册Runner</h1><p><a href="https://docs.gitlab.com/runner/register/" target="_blank" rel="noopener">https://docs.gitlab.com/runner/register/</a></p>
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><p>注意：用户为root用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">root@sw:&#x2F;home&#x2F;sw# gitlab-runner register xuqi</span><br><span class="line">Running in system-mode.</span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci coordinator URL (e.g. https:&#x2F;&#x2F;gitlab.com&#x2F;):</span><br><span class="line">http:&#x2F;&#x2F;10.168.2.114&#x2F;</span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci token for this runner:</span><br><span class="line"></span><br><span class="line">输入gitlab的token</span><br><span class="line"></span><br><span class="line">Please enter the gitlab-ci description for this runner:</span><br><span class="line">[sw]: xuqi</span><br><span class="line">Please enter the gitlab-ci tags for this runner (comma separated):</span><br><span class="line"></span><br><span class="line">Whether to lock the Runner to current project [true&#x2F;false]:</span><br><span class="line">[true]: true</span><br><span class="line">Registering runner... succeeded                     runner&#x3D;wzb81TcG</span><br><span class="line">Please enter the executor: docker, parallels, shell, virtualbox, docker+machine, kubernetes, docker-ssh, ssh, docker-ssh+machine:</span><br><span class="line">shell</span><br><span class="line">Runner registered successfully. Feel free to start it, but if it&#39;s running already the config should be automatically reloaded!</span><br></pre></td></tr></table></figure>
+
+<p>注意： token位置在<a href="http://localhost/xxx/xxx/settings/ci_cd" target="_blank" rel="noopener">http://localhost/xxx/xxx/settings/ci_cd</a> 页面里的Runners settings里</p>
+<h4 id="如何删除在gitlab中不再使用的runner"><a href="#如何删除在gitlab中不再使用的runner" class="headerlink" title="如何删除在gitlab中不再使用的runner"></a>如何删除在gitlab中不再使用的runner</h4><blockquote>
+<p>gitlab-runner verify –delete</p>
+</blockquote>
+<h2 id="关于executors的选择"><a href="#关于executors的选择" class="headerlink" title="关于executors的选择"></a>关于executors的选择</h2><p><a href="https://docs.gitlab.com/runner/executors/README.html" target="_blank" rel="noopener">https://docs.gitlab.com/runner/executors/README.html</a></p>
+<h1 id="如何编写-gitlab-ci-yml"><a href="#如何编写-gitlab-ci-yml" class="headerlink" title="如何编写.gitlab-ci.yml"></a>如何编写.gitlab-ci.yml</h1><h3 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h3><p><a href="https://gitlab.com/help/ci/yaml/README.md" target="_blank" rel="noopener">https://gitlab.com/help/ci/yaml/README.md</a></p>
+<h4 id="stages"><a href="#stages" class="headerlink" title="stages"></a>stages</h4><blockquote>
+<p>stages用来定义可以被job调用的stages。stages的规范允许有灵活的多级pipelines。</p>
+</blockquote>
+<h4 id="Jobs"><a href="#Jobs" class="headerlink" title="Jobs"></a>Jobs</h4><blockquote>
+<p>.gitlab-ci.yml允许指定无限量jobs。每个jobs必须有一个唯一的名字，而且不能是上面提到的关键字。job由一列参数来定义jobs的行为</p>
+</blockquote>
+<h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">image: python:3.6.1</span><br><span class="line"></span><br><span class="line">before_script:</span><br><span class="line">   - export BIZDATE&#x3D;&#96;date +%Y%m%d&#96;</span><br><span class="line">   - export PROJECT_NAME&#x3D;$CI_PROJECT_NAME</span><br><span class="line">   - export VERSION&#x3D;$CI_COMMIT_TAG-$CI_COMMIT_SHA</span><br><span class="line"></span><br><span class="line">stages:</span><br><span class="line">  - build</span><br><span class="line">  - package</span><br><span class="line">  - deploy</span><br><span class="line"></span><br><span class="line">build:</span><br><span class="line">  stage: build</span><br><span class="line">  script: </span><br><span class="line">    - &#x2F;home&#x2F;gitlab-runner&#x2F;anaconda3&#x2F;bin&#x2F;python3.6 -O -m compileall .</span><br><span class="line">    - find . -name &#39;*.pyc&#39; -exec rename &#39;s&#x2F;.cpython-36.opt-1&#x2F;&#x2F;&#39; &#123;&#125; \;</span><br><span class="line">    - find . -name &#39;*.pyc&#39; -execdir mv &#123;&#125; .. \;</span><br><span class="line">    - find . -name &#39;*.py&#39; -type f -print -exec rm &#123;&#125; \;</span><br><span class="line">    - find . -name &#39;__pycache__&#39; -exec rm -rf &#123;&#125; \;</span><br><span class="line">    </span><br><span class="line">package:</span><br><span class="line">  stage: package</span><br><span class="line">  script:</span><br><span class="line">    - rm -rf .git</span><br><span class="line">    - rm -rf .gitlab-ci.yml</span><br><span class="line">    - $(tar -zcf ..&#x2F;deploy-$VERSION.tar.gz .)</span><br><span class="line">    - $(mkdir -p &#x2F;home&#x2F;gitlab-runner&#x2F;backup&#x2F;$PROJECT_NAME&#x2F;$BIZDATE)</span><br><span class="line">    - $(cp ..&#x2F;deploy-$VERSION.tar.gz &#x2F;home&#x2F;gitlab-runner&#x2F;backup&#x2F;$PROJECT_NAME&#x2F;$BIZDATE&#x2F;)</span><br><span class="line">    - $(rm -rf ..&#x2F;deploy-$VERSION.tar.gz)</span><br><span class="line">    - rm -rf .</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">  stage: deploy</span><br><span class="line">  script:</span><br><span class="line">    - echo &#39;deploy&#39;</span><br></pre></td></tr></table></figure>
+
+<p>服务器版本，使用脚本编写如上内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">before_script:</span><br><span class="line">   - export PROJECT_NAME&#x3D;$CI_PROJECT_NAME</span><br><span class="line">   - export VERSION&#x3D;$CI_COMMIT_TAG-$CI_COMMIT_SHA</span><br><span class="line">   - export WORK_DIR&#x3D;&#96;pwd&#96;</span><br><span class="line">   - export HOST&#x3D;&#39;&#39;</span><br><span class="line"></span><br><span class="line">stages:</span><br><span class="line">  - deploy</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">  stage: deploy</span><br><span class="line">  only:</span><br><span class="line">    - &#x2F;^release-.*$&#x2F;</span><br><span class="line">  script:</span><br><span class="line">    - ~&#x2F;script&#x2F;deploy.sh $WORK_DIR $HOST</span><br></pre></td></tr></table></figure>
+
+<p>deploy.sh 脚本内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">workdir&#x3D;$1</span><br><span class="line">BIZDATE&#x3D;&#96;date +%Y%m%d&#96;</span><br><span class="line">echo $workdir</span><br><span class="line">cd $workdir</span><br><span class="line">rm -rf .git</span><br><span class="line">rm -rf .gitlab-ci.yml</span><br><span class="line">tar -zcf ..&#x2F;bak-$VERSION.tar.gz .</span><br><span class="line">mkdir -p &#x2F;home&#x2F;gitlab-runner&#x2F;backup&#x2F;$PROJECT_NAME&#x2F;$BIZDATE</span><br><span class="line">cp ..&#x2F;bak-$VERSION.tar.gz &#x2F;home&#x2F;gitlab-runner&#x2F;backup&#x2F;$PROJECT_NAME&#x2F;$BIZDATE&#x2F;</span><br><span class="line">rm -rf ..&#x2F;bak-$VERSION.tar.gz</span><br><span class="line">&#x2F;home&#x2F;gitlab-runner&#x2F;anaconda3&#x2F;bin&#x2F;python3.6 -O -m compileall .</span><br><span class="line">find . -name &#39;*.pyc&#39; -exec rename &#39;s&#x2F;.cpython-36.opt-1&#x2F;&#x2F;&#39; &#123;&#125; \;</span><br><span class="line">find . -name &#39;*.pyc&#39; -execdir mv &#123;&#125; .. \;</span><br><span class="line">find . -name &#39;*.py&#39; -type f -print -exec rm &#123;&#125; \;</span><br><span class="line">find . -name &#39;__pycache__&#39; -exec rm -rf &#123;&#125; \;</span><br><span class="line">#rm -rf $1&#x2F;*</span><br><span class="line"></span><br><span class="line">tar -zcf ..&#x2F;deploy-$VERSION.tar.gz .</span><br><span class="line">for line in &#96;cat hosts&#96;</span><br><span class="line">do</span><br><span class="line">   pem&#x3D;&#96;echo $line | cut -d \: -f 1&#96;</span><br><span class="line">   host&#x3D;&#96;echo $line | cut -d \: -f 2&#96;</span><br><span class="line">   echo $pem</span><br><span class="line">   echo $host</span><br><span class="line">   scp -i ~&#x2F;keys&#x2F;$pem ..&#x2F;deploy-$VERSION.tar.gz ubuntu@$host:&#x2F;home&#x2F;ubuntu&#x2F;</span><br><span class="line">done</span><br><span class="line">echo &#39;finish&#39;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://scarletsky.github.io/2016/07/29/use-gitlab-ci-for-continuous-integration/" target="_blank" rel="noopener">https://scarletsky.github.io/2016/07/29/use-gitlab-ci-for-continuous-integration/</a></p>
+<p><a href="https://segmentfault.com/a/1190000010442764" target="_blank" rel="noopener">https://segmentfault.com/a/1190000010442764</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/01/13/%E4%BA%A4%E6%98%93%E8%AE%A2%E5%8D%95%E7%B1%BB%E5%9E%8B%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/13/%E4%BA%A4%E6%98%93%E8%AE%A2%E5%8D%95%E7%B1%BB%E5%9E%8B%E4%BB%8B%E7%BB%8D/" itemprop="url">交易订单类型介绍</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-13T19:05:00+08:00">
+                2018-01-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Filled相关Order类型："><a href="#Filled相关Order类型：" class="headerlink" title="Filled相关Order类型："></a>Filled相关Order类型：</h1><ol>
+<li><p>Market Order</p>
+<ul>
+<li>当订单规模很大时，broker可能会将订单拆分成多个规模较小的订单，导致以不同价格成交不同订单</li>
+<li>bid-ask spreads 较大时风险较大</li>
+</ul>
+</li>
+<li><p>Limit Order</p>
+<ul>
+<li>Some brokers may charge different commissions between Market &amp; Limit Orders.</li>
+</ul>
+</li>
+<li><p>Market On Close(MOC) Order</p>
+<blockquote>
+<p>A Market-on-Close (MOC) order is a market order that is submitted to execute as close to the closing price as possible.</p>
+</blockquote>
+</li>
+<li><p>Limit On Close(LOC) Order</p>
+<blockquote>
+<p>A Limit-on-close (LOC) order will be submitted at the close and will execute if the closing price is at or better than the submitted limit price.</p>
+</blockquote>
+</li>
+<li><p>Market On Open(MOO) Order</p>
+<blockquote>
+<p>A Market-on-Open (MOO) order combines a market order with the OPG time in force to create an order that is automatically submitted at the market’s open and fills at the market price.</p>
+</blockquote>
+</li>
+<li><p>Limit On Open(LOO) Order</p>
+<blockquote>
+<p>A Limit-on-Open (LOO) order combines a limit order with the OPG time in force to create an order that is submitted at the market’s open, and that will only execute at the specified limit price or better. Orders are filled in accordance with specific exchange rules.</p>
+</blockquote>
+</li>
+<li><p>Martet To Limit(MTL) Order</p>
+<blockquote>
+<p>A Market-to-Limit (MTL) order is submitted as a market order to execute at the current best market price. If the order is only partially filled, the remainder of the order is canceled and re-submitted as a limit order with the limit price equal to the price at which the filled portion of the order executed.</p>
+</blockquote>
+</li>
+<li><p>Iceberg/Reserve Orders</p>
+<blockquote>
+<p>提交大额股票、权证、期货和期权定单的投资者可能希望取消其定单的所有欲交易量以避免其他市场参与者可以预见并采取相应行动。冰山/保留属性（可在显示尺寸区域设置）可以帮助投资者以增量方式提交提交大宗定单，同时又只公开显示整体定单尺寸的某一特定部分。客户可以通过设置布局管理者或选择相应的区域向TWS的交易页面添加显示尺寸区域，输入定单时客户可以填充此项以显示整个定单的一部分。</p>
+</blockquote>
+<blockquote>
+<p>Investors submitting large volume orders for stocks, warrants, futures and options may wish to conceal the full size of their order to avoid anticipatory action from other market participants. The Iceberg/Reserve attribute, applied through the Display Size field, provides a way to submit large volume orders to the market in increments while publicly displaying only a specified portion of the total order size. The Display Size field can be added to a trading page within TWS by configuring the Layout Manager and selecting the appropriate field, which can be user-populated at the time of order input, to display just a fraction of the entire order.</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="TIMING-DURATION："><a href="#TIMING-DURATION：" class="headerlink" title="TIMING / DURATION："></a>TIMING / DURATION：</h1><p>档提交一个订单后，当我们希望订单在指定时间内有效或订单的持续时间，可以使用如下订单类型</p>
+<ol>
+<li><p>Day Order</p>
+<blockquote>
+<p>A day order is an order to buy or sell a security that automatically expires if not executed on the day the order was placed. If it is not filled, it is canceled, and it is not filled if the limit or stop order price was not met during the trading session. It is one of several different order duration types that determines how long the order is in the market before it is canceled.</p>
+</blockquote>
+</li>
+<li><p>Good Till Cancelled(GTC)</p>
+<blockquote>
+<p>A good ‘til canceled (GTC) order can be placed by an investor to buy or sell a security at a specified price that remains active until it is either rescinded by the investor or the trade is executed. GTC orders offer an alternative to placing a sequence of day orders, which expire at the end of each trading day. Rather than leave orders open ended, which poses the risk of being forgotten by investors until an eventual execution, GTC orders are commonly set to expire of 30 to 90 days after the trades are entered.</p>
+</blockquote>
+<ul>
+<li>GTC Buy Orders</li>
+<li>GTC Sell Orders</li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li><p>Good Till Date/Time(GTD)</p>
+<blockquote>
+<p>The GTD (Good-til-Date/Time) time in force lets you select an expiration date and time up until which an order will continue to work. Setting this attribute requires both a time in force selection of GTD, a date entry in the Expiration Date field, and a time entry in the Expiration Time field if that level of detail is required. Note that if you only enter a good-till date, the unfilled order will cancel at the close of the market on the specified day.</p>
+</blockquote>
+</li>
+<li><p>Time Of Day Order</p>
+<blockquote>
+<p>An order to buy or sell an asset that is placed at a specific time period during a trading session. A time-of-day order enters the market at a predetermined minute and remains good until canceled, unless otherwise specified.</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="CONTIGENCY-ORDERS"><a href="#CONTIGENCY-ORDERS" class="headerlink" title="CONTIGENCY ORDERS"></a>CONTIGENCY ORDERS</h1><p>如果我们希望订单在满足某些特定条件才执行的话，特别是当你无法一直监视市场的时候。<br>这些订单类型允许交易者在一定条件满足时自动开仓或平仓。</p>
+<ol>
+<li><p>Fill Or Kill(FOK): 全额即时订单</p>
+<p> 全额即时订单也称为全部即刻执行否则撤销订单，指要求立即以特定的价格（通常只能为限价）予以执行，否则撤销订单。全额即时订单只能全部成交，而不能成交订单数量的一部分。</p>
+<blockquote>
+<p>Fill or kill (FOK) is a type of time-in-force designation used in securities trading that instructs a brokerage to execute a transaction immediately and completely or not at all. This type of order is most likely to be used by active traders and is usually for a large quantity of stock. The order must be filled in its entirety or canceled (killed).</p>
+</blockquote>
+</li>
+<li><p>Fill And Kill(FAK): 非全额即时订单</p>
+<p> 非全额即时订单指要求立即以特定的价格（可以为限价或市价）予以执行，否则撤销的订单。非全额即时订单允许部分成交，在部分成交时未成交的部分立刻撤销。</p>
+</li>
+<li><p>Immediate Or Cancel(IOC)</p>
+<blockquote>
+<p>The Immediate-or Cancel (IOC) time in force applied to an order dictates that any portion of the order that does not fill immediately will be canceled.</p>
+</blockquote>
+</li>
+<li><p>All Or None(AON)</p>
+<blockquote>
+<p>All or none (AON) is an instruction used on a buy or sell order that instructs the broker to fill the order completely or not at all.  ** If there are not enough shares available to fill the order completely, the order is canceled when the market closes. ** An AON order is considered a duration order because the investor provides instructions to the trader about how the order must be filled, which impacts how long the order remains active.</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="For-Automatic-OPENING-of-a-Position"><a href="#For-Automatic-OPENING-of-a-Position" class="headerlink" title="For Automatic OPENING of a Position"></a>For Automatic OPENING of a Position</h1><ol>
+<li><p>Market If Touched(MIT) Order</p>
+<p> 触价指令是指市场价格只要触及客户所规定的价格水平时就生效的指令。当市场价格触及指定价格时才执行买进或卖出动作。</p>
+<blockquote>
+<p>A Market if Touched (MIT) is an order to buy (or sell) an instrument below (or above) the market. Its purpose is to take advantage of sudden or unexpected changes in share or other prices and provides investors with a trigger price to set an order in motion. Investors may be waiting for excessive strength (or weakness) to cease, which might be represented by a specific price point. MIT orders can be used to determine whether or not to enter the market once a specific price level has been achieved. This order is held in the system until the trigger price is touched, and is then submitted as a market order. An MIT order is similar to a stop order, except that an MIT sell order is placed above the current market price, and a stop sell order is placed below.</p>
+</blockquote>
+</li>
+<li><p>Limit If Touched(LIT) Order: 触及限价定单</p>
+<blockquote>
+<p>触及限价定单是一种以特定或更优的价格，以及低于（或高于）市价的价格买入（或卖出）金融产品的定单。这类定单被持有在系统中直到触发价格被触及。触及限价定单与限价止损定单相似，除了触及限价卖出定单以高于当前市场价格被下达，而限价止损卖出定单则是以低于市价被下达的。<br> 使用触及限价定单帮助确保，如果定单被执行的话，定单将不会以劣于限价的价格执行。</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="For-Automatic-CLOSING-of-a-Position"><a href="#For-Automatic-CLOSING-of-a-Position" class="headerlink" title="For Automatic CLOSING of a Position"></a>For Automatic CLOSING of a Position</h1><ol>
+<li><p>Stop Order: 止损定单</p>
+<blockquote>
+<p>止损定单指令系统在用户指定的止损触发价格被达到提交一份买或卖的市价单。止损定单不担保某个特定的执行价格且有可能执行价格远离其止损价格。卖出止损定单总是以低于当前的市场价格下达，通常用于限制某个多头股票头寸的损失或保护其利润。买入止损定单总是以高于当前的市场价格下达，通常用于限制某个卖空头寸的损失或帮助其保护利润。</p>
+</blockquote>
+</li>
+<li><p>Stop Limit Order: 止损限价单</p>
+<blockquote>
+<p>止损限价单指令系统在用户指定的止损触发价格被触碰或超越时提交一份买或卖限价单。该定单由两个基本部分组成：止损价和限价。当一笔交易以止损价或通过止损价发生时，定单成为可执行的并以限价单（以某个特定的价格或更好的价格买入或卖出的定单）的形式进入市场。<br> 止损限价单避免了止损单具有的价格风险（此风险是指不能担保执行价格），但投资人需承担即使在止损价格达到时定单仍不能执行的风险。投资人有可能完全“失去市场”。</p>
+</blockquote>
+</li>
+<li><p>Trailing Stop Order: 追踪止损定单</p>
+<blockquote>
+<p>一个卖出追踪止损定单将止损价格设置为低于市场价格的一个固定金额，并带有附加的“追踪”金额。随着市场价格上涨，止损价格上涨的幅度为追踪金额，但如果股票价格下跌，止损价格不改变，当止损价格被触及时，一份市价定单将被提交。这种方法被设计用来允许投资者对可能损失的最大值指定限额，而不用对可能收益的最大值设定限额。“买入”追踪止损定单是卖出追踪止损定单的镜像，最适合用在下跌的市场中。</p>
+</blockquote>
+</li>
+<li><p>Trailing Stop Limit Order: 追踪止损限价定单</p>
+<blockquote>
+<p>追踪止损限价定单允许投资者对可能损失的最大值指定限额，而不用对可能收益的最大值设定限额。追踪止损限价卖出定单与市场价格一起移动，并根据用户定义的“追踪”金额，连续地以低于市价的固定金额重新计算止损触发价格。限价定单价格同样根据限价抵消被连续地计算。随着市场价格上涨，止损价格和限价的上涨幅度分别为追踪金额和限价抵消，但如果股票价格下跌，止损价格保持不变，当止损价格被触及时，一份限价定单将以最后计算的限价被提交。追踪止损限价“买入”定单是追踪止损限价卖出定单的镜像，并通常被用在下跌的市场中。</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="More-COMPLEX-Types-of-Contingency-Orders"><a href="#More-COMPLEX-Types-of-Contingency-Orders" class="headerlink" title="More COMPLEX Types of Contingency Orders"></a>More COMPLEX Types of Contingency Orders</h1><ol>
+<li><p>Conditional / Contingent Order</p>
+</li>
+<li><p>Bracketed Order: 括号定单</p>
+<blockquote>
+<p>括号定单旨在通过用两个方向相反的定单将定单“括”起来以帮助您限制损失、锁定利润。给买单加括号，使用的是一份高位卖出限价定单和一份低位卖出止损定单。给卖单加括号，使用的是一份高位买入止损定单和一份低位买入限价定单。<br> 高位和低位括号定单的定单数量与最初的定单数量相匹配。默认情况下，括号定单从当前价格偏离1.0。您能够在特定定单的定单行上更改该偏离金额，也可使用全局配置中的定单预设功能修改产品、合约或策略的默认水平值。</p>
+</blockquote>
+</li>
+<li><p>One Cancels Other(OCO) &amp; One Cancels All(OCA) Orders</p>
+<blockquote>
+<p>A one-cancels-the-other order (OCO) is a pair of orders stipulating that if one order is executed, then the other order is automatically canceled. A one-cancels-the-other order (OCO) combines a stop order with a limit order on an automated trading platform. When either the stop or limit level is reached and the order executed, the other order will be automatically canceled. Seasoned traders use OCO orders to mitigate risk.<br> one-Cancels All (OCA) order type allows an investor to place multiple and possibly unrelated orders assigned to a group. The aim is to complete just one of the orders, which in turn will cause TWS to cancel the remaining orders. The investor may submit several orders aimed at taking advantage of the most desirable price within the group. Completion of one piece of the group order causes cancellation of the remaining group orders while partial completion causes the group to rebalance. An investor might desire to sell 1000 shares of only ONE of three positions held above prevailing market prices. The OCA order group allows the investor to enter prices at specified target levels and if one is completed, the other two will automatically cancel. Alternatively, an investor may wish to take a LONG position in eMini S&amp;P stock index futures in a falling market or else SELL US treasury futures at a more favorable price. Grouping the two orders using an OCA order type offers the investor two chances to enter a similar position, while only running the risk of taking on a single position. </p>
+</blockquote>
+</li>
+</ol>
+<ol start="4">
+<li>One Triggers Other(OTO) &amp; One Triggers All(OTA) Orders</li>
+</ol>
+<h1 id="订单优先原则"><a href="#订单优先原则" class="headerlink" title="订单优先原则"></a>订单优先原则</h1><ol>
+<li><p>价格优先原则</p>
+<p> 价格优先原则指交易所（或做市商）在对投资者的订单进行撮合时，按照价格的高低原则进行排序，较高价格的买进订单优先于较低价格的买进订单，较低价格的卖出订单优先于较高价格的卖出订单。</p>
+</li>
+<li><p>时间优先原则</p>
+<p> 按比例分配原则是指所有订单在价格相同的情况下，成交数量基于订单数量按比例进行分配。纽约证券交易所的大厅交易、芝加哥期权交易所等采取了按比例分配的订单优先原则。</p>
+</li>
+<li><p>按比例分配原则</p>
+<p> 按比例分配原则是指所有订单在价格相同的情况下，成交数量基于订单数量按比例进行分配。纽约证券交易所的大厅交易、芝加哥期权交易所等采取了按比例分配的订单优先原则。</p>
+</li>
+<li><p>数量优先原则</p>
+<p> 在价格一样、甚至价格一样且无法区分时间先后的情况下，有些交易所规定应遵循数量优先原则。数量优先原则而有两种形式，一是在订单价格相同且时间也相同的情况下，订单数量较大者优先于订单数量较小者；二是在数量上完全匹配的订单（即买进订单和卖出订单在数量上相等）优先于数量不一致的订单。第一种形式使得经纪商优先处理数量较大的订单，因而提高了流动性；第二种形式则减少了订单部分执行的情况。</p>
+</li>
+<li><p>客户优先原则</p>
+<p> 客户优先原则通常指在同一价格条件下，公共订单优先于经纪商自营账户的订单。纽约证券交易所采取这一原则，客户的订单优先于专家的订单。客户优先原则减轻了客户与经纪商自营之间的利益冲突。</p>
+</li>
+</ol>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.interactivebrokers.com/cn/index.php?f=3361" target="_blank" rel="noopener">https://www.interactivebrokers.com/cn/index.php?f=3361</a><br><a href="https://www.zhihu.com/question/23667442" target="_blank" rel="noopener">https://www.zhihu.com/question/23667442</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/12/22/%E6%AF%94%E7%89%B9%E5%B8%81%E8%B5%84%E6%BA%90%E6%94%B6%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/22/%E6%AF%94%E7%89%B9%E5%B8%81%E8%B5%84%E6%BA%90%E6%94%B6%E9%9B%86/" itemprop="url">比特币资源收集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-22T23:25:00+08:00">
+                2017-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h1><p><a href="https://github.com/kennethreitz/awesome-coins" target="_blank" rel="noopener">https://github.com/kennethreitz/awesome-coins</a></p>
+<h1 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h1><ol>
+<li><a href="https://www.cryptocompare.com/api" target="_blank" rel="noopener">https://www.cryptocompare.com/api</a><blockquote>
+<p>Cryptocurrency data API for over 40 exchanges and 600 coins(BTC,ETH,XMR + 600 other cryptos)</p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>Get open, high, low, close, volumefrom and volumeto from the each minute historical data. This data is only stored for 7 days, if you need more,use the hourly or daily path. It uses BTC conversion if data is not available because the coin is not trading in the specified currency</p>
+</blockquote>
+<ol start="2">
+<li><a href="https://bitcoincharts.com/about/markets-api/" target="_blank" rel="noopener">https://bitcoincharts.com/about/markets-api/</a><blockquote>
+<p>Bitcoincharts’ API is accessable through HTTP<br>Parameters are passed using GET-requests<br>returned data is JSON encoded<br>Don’t query more often than once every 15 minutes!</p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>Trade data is available as CSV, delayed by approx. 15 minutes. It will return the 2000 most recent trades.</p>
+</blockquote>
+<ol start="3">
+<li><p><a href="http://api.bitcoincharts.com/v1/csv/" target="_blank" rel="noopener">http://api.bitcoincharts.com/v1/csv/</a></p>
+</li>
+<li><p><a href="https://www.coinigy.com/bitcoin-data/" target="_blank" rel="noopener">https://www.coinigy.com/bitcoin-data/</a></p>
+</li>
+<li><p><a href="https://www.quora.com/Where-can-I-get-per-tick-historical-bitcoin-price-data" target="_blank" rel="noopener">https://www.quora.com/Where-can-I-get-per-tick-historical-bitcoin-price-data</a></p>
+</li>
+<li><p><a href="https://coinmarketcap.com/historical/" target="_blank" rel="noopener">https://coinmarketcap.com/historical/</a></p>
+</li>
+<li><p><a href="https://github.com/CoinCapDev/CoinCap.io" target="_blank" rel="noopener">https://github.com/CoinCapDev/CoinCap.io</a></p>
+</li>
+<li><p><a href="http://www.yucezhe.com/product/data#!?series=digital_currency" target="_blank" rel="noopener">http://www.yucezhe.com/product/data#!?series=digital_currency</a></p>
+</li>
+</ol>
+<h1 id="回测-amp-交易"><a href="#回测-amp-交易" class="headerlink" title="回测&amp;交易"></a>回测&amp;交易</h1><ol>
+<li><p><a href="https://github.com/CoinTK/CoinTK" target="_blank" rel="noopener">https://github.com/CoinTK/CoinTK</a></p>
+<blockquote>
+<p>Bitcoin Trading Algorithm Backtesting and Analysis Toolkit</p>
+</blockquote>
+</li>
+<li><p><a href="https://gekko.wizb.it/docs/introduction/about_gekko.html" target="_blank" rel="noopener">https://gekko.wizb.it/docs/introduction/about_gekko.html</a></p>
+<blockquote>
+<p>A bitcoin trading bot written in node - <a href="https://gekko.wizb.it/" target="_blank" rel="noopener">https://gekko.wizb.it/</a></p>
+</blockquote>
+</li>
+<li><p><a href="https://cryptotrader.org/" target="_blank" rel="noopener">https://cryptotrader.org/</a></p>
+</li>
+<li><p><a href="http://www.abuquant.com/lecture/lecture_10.html" target="_blank" rel="noopener">http://www.abuquant.com/lecture/lecture_10.html</a></p>
+<blockquote>
+<p>比特币, 莱特币的走势数据分析 <a href="http://www.abuquant.com/" target="_blank" rel="noopener">http://www.abuquant.com/</a></p>
+</blockquote>
+</li>
+<li><p><a href="https://github.com/ctubio/Krypto-trading-bot" target="_blank" rel="noopener">https://github.com/ctubio/Krypto-trading-bot</a></p>
+<blockquote>
+<p>Self-hosted crypto trading bot (automated high frequency market making) in node.js, angular, typescript and c++ <a href="https://127.0.0.1:3000" target="_blank" rel="noopener">https://127.0.0.1:3000</a></p>
+</blockquote>
+</li>
+<li><p><a href="https://www.kaggle.com/smitad/bitcoin-trading-strategy-simulation" target="_blank" rel="noopener">https://www.kaggle.com/smitad/bitcoin-trading-strategy-simulation</a></p>
+</li>
+</ol>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><p><a href="https://python-binance.readthedocs.io/en/latest/overview.html" target="_blank" rel="noopener">https://python-binance.readthedocs.io/en/latest/overview.html</a></p>
+<blockquote>
+<p>binance</p>
+</blockquote>
+<h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><p><a href="https://github.com/timmolter/XChange" target="_blank" rel="noopener">https://github.com/timmolter/XChange</a></p>
+<blockquote>
+<p>XChange is a Java library providing a streamlined API for interacting with 60+ Bitcoin and Altcoin exchanges providing a consistent interface for trading and accessing market data. </p>
+</blockquote>
+<p><a href="https://www.botvs.com/api" target="_blank" rel="noopener">https://www.botvs.com/api</a></p>
+<h1 id="源码实现"><a href="#源码实现" class="headerlink" title="源码实现"></a>源码实现</h1><p><a href="https://github.com/bisq-network/exchange" target="_blank" rel="noopener">https://github.com/bisq-network/exchange</a></p>
+<blockquote>
+<p>The decentralized bitcoin exchange <a href="https://bisq.network" target="_blank" rel="noopener">https://bisq.network</a></p>
+</blockquote>
+<p><a href="https://github.com/bitcoin/bitcoin" target="_blank" rel="noopener">https://github.com/bitcoin/bitcoin</a></p>
+<blockquote>
+<p>Bitcoin Core integration/staging tree</p>
+</blockquote>
+<p><a href="https://github.com/jamesob/tinychain" target="_blank" rel="noopener">https://github.com/jamesob/tinychain</a></p>
+<blockquote>
+<p>A pocket-sized implementation of Bitcoin</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/12/05/jupyter%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/05/jupyter%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/" itemprop="url">jupyter性能分析工具</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-05T12:18:00+08:00">
+                2017-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="magic-functions"><a href="#magic-functions" class="headerlink" title="magic functions:"></a>magic functions:</h1><ol>
+<li>%time: 记录script运行时间 </li>
+<li>%timeit: 循环n次，记录平均执行时间</li>
+<li>%run &amp; %prun: 分析script的执行效率</li>
+<li>%lprun: 分析一条语句在function中执行效率</li>
+<li>%mprun: 查看script脚本使用内存量</li>
+<li>%memit: 循环n次，记录平均内存使用量</li>
+</ol>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip install jupyter_contrib_nbextensions</span><br><span class="line">pip install line-profiler</span><br><span class="line">pip install psutil</span><br><span class="line">pip install memory_profiler</span><br></pre></td></tr></table></figure>
+
+<h1 id="jupyter-load-插件"><a href="#jupyter-load-插件" class="headerlink" title="jupyter load 插件"></a>jupyter load 插件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%load_ext line_profiler</span><br><span class="line">%load_ext memory_profiler</span><br></pre></td></tr></table></figure>
+
+<h1 id="Time-Profiling"><a href="#Time-Profiling" class="headerlink" title="Time Profiling"></a>Time Profiling</h1><h2 id="time-amp-timeit"><a href="#time-amp-timeit" class="headerlink" title="time &amp; timeit"></a>time &amp; timeit</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">7</span>]: %time &#123;<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">10</span>*<span class="number">1000000</span>)&#125;</span><br><span class="line">CPU times: user <span class="number">0.72</span> s, sys: <span class="number">0.16</span> s, total: <span class="number">0.88</span> s</span><br><span class="line">Wall time: <span class="number">0.75</span> s</span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: %timeit <span class="number">10</span>*<span class="number">1000000</span></span><br><span class="line"><span class="number">10000000</span> loops, best of <span class="number">3</span>: <span class="number">38.2</span> ns per loop</span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: %timeit -n <span class="number">1000</span> <span class="number">10</span>*<span class="number">1000000</span></span><br><span class="line"><span class="number">1000</span> loops, best of <span class="number">3</span>: <span class="number">67</span> ns per loop</span><br></pre></td></tr></table></figure>
+
+<h2 id="prun"><a href="#prun" class="headerlink" title="%prun"></a>%prun</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">10</span>]: <span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span> sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">()</span>:</span> sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: <span class="function"><span class="keyword">def</span> <span class="title">baz</span><span class="params">()</span>:</span> foo(), bar()</span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: %prun baz()</span><br><span class="line"><span class="number">7</span> function calls <span class="keyword">in</span> <span class="number">3.001</span> seconds</span><br><span class="line"></span><br><span class="line">Ordered by: internal time</span><br><span class="line"></span><br><span class="line">ncalls  tottime  percall  cumtime  percall filename:lineno(function)</span><br><span class="line">     <span class="number">2</span>    <span class="number">3.001</span>    <span class="number">1.500</span>    <span class="number">3.001</span>    <span class="number">1.500</span> &#123;time.sleep&#125;</span><br><span class="line">     <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">3.001</span>    <span class="number">3.001</span> &lt;ipython-input<span class="number">-17</span>-c32ce4852c7d&gt;:<span class="number">1</span>(baz)</span><br><span class="line">     <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">2.000</span>    <span class="number">2.000</span> &lt;ipython-input<span class="number">-11</span><span class="number">-2689</span>ca7390dc&gt;:<span class="number">1</span>(bar)</span><br><span class="line">     <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">1.001</span>    <span class="number">1.001</span> &lt;ipython-input<span class="number">-10</span>-e11af1cc2c91&gt;:<span class="number">1</span>(foo)</span><br><span class="line">     <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">3.001</span>    <span class="number">3.001</span> &lt;string&gt;:<span class="number">1</span>(&lt;module&gt;)</span><br><span class="line">     <span class="number">1</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">0.000</span>    <span class="number">0.000</span> &#123;method <span class="string">'disable'</span> of <span class="string">'_lsprof.Profiler'</span> objects&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Memory-Profiling"><a href="#Memory-Profiling" class="headerlink" title="Memory Profiling"></a>Memory Profiling</h1><h2 id="mprun"><a href="#mprun" class="headerlink" title="%mprun"></a>%mprun</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">17</span>]: %mprun -f foo foo(<span class="number">100000</span>)</span><br><span class="line">Filename: foo.py</span><br><span class="line"></span><br><span class="line">Line <span class="comment">#    Mem usage    Increment   Line Contents</span></span><br><span class="line">================================================</span><br><span class="line">     <span class="number">1</span>    <span class="number">20.590</span> MB     <span class="number">0.000</span> MB   <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(n)</span>:</span></span><br><span class="line">     <span class="number">2</span>    <span class="number">20.590</span> MB     <span class="number">0.000</span> MB       phrase = <span class="string">'repeat me'</span></span><br><span class="line">     <span class="number">3</span>    <span class="number">21.445</span> MB     <span class="number">0.855</span> MB       pmul = phrase * n</span><br><span class="line">     <span class="number">4</span>    <span class="number">25.020</span> MB     <span class="number">3.574</span> MB       pjoi = <span class="string">''</span>.join([phrase <span class="keyword">for</span> x <span class="keyword">in</span> xrange(n)])</span><br><span class="line">     <span class="number">5</span>    <span class="number">25.020</span> MB     <span class="number">0.000</span> MB       pinc = <span class="string">''</span></span><br><span class="line">     <span class="number">6</span>    <span class="number">43.594</span> MB    <span class="number">18.574</span> MB       <span class="keyword">for</span> x <span class="keyword">in</span> xrange(n):</span><br><span class="line">     <span class="number">7</span>    <span class="number">43.594</span> MB     <span class="number">0.000</span> MB           pinc += phrase</span><br><span class="line">     <span class="number">8</span>    <span class="number">41.102</span> MB    <span class="number">-2.492</span> MB       <span class="keyword">del</span> pmul, pjoi, pinc</span><br></pre></td></tr></table></figure>
+
+<p>在jupyter中运行报如下错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Could not find file &lt;ipython-input-10-6aab78230286&gt;</span><br><span class="line">NOTE: %mprun can only be used on functions defined in physical files, and not in the IPython environment.</span><br></pre></td></tr></table></figure>
+
+<h2 id="memit"><a href="#memit" class="headerlink" title="%memit"></a>%memit</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">18</span>]: %memit -r <span class="number">3</span> [x <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="number">1000000</span>)]</span><br><span class="line">maximum of <span class="number">3</span>: <span class="number">75.320312</span> MB per loop</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html#install-the-python-package" target="_blank" rel="noopener">http://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html#install-the-python-package</a></p>
+<p><a href="http://mortada.net/easily-profile-python-code-in-jupyter.html" target="_blank" rel="noopener">http://mortada.net/easily-profile-python-code-in-jupyter.html</a></p>
+<p><a href="https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/" target="_blank" rel="noopener">https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/</a></p>
+<p><a href="http://pynash.org/2013/03/06/timing-and-profiling/" target="_blank" rel="noopener">http://pynash.org/2013/03/06/timing-and-profiling/</a></p>
+<p><a href="http://nbviewer.jupyter.org/gist/jiffyclub/3062428" target="_blank" rel="noopener">http://nbviewer.jupyter.org/gist/jiffyclub/3062428</a></p>
+<p><a href="http://www.xavierdupre.fr/app/mlstatpy/helpsphinx/notebooks/completion_profiling.html" target="_blank" rel="noopener">http://www.xavierdupre.fr/app/mlstatpy/helpsphinx/notebooks/completion_profiling.html</a></p>
+<p><a href="https://pypi.python.org/pypi/memory_profiler/0.41" target="_blank" rel="noopener">https://pypi.python.org/pypi/memory_profiler/0.41</a></p>
+<p><a href="https://github.com/rkern/line_profiler" target="_blank" rel="noopener">https://github.com/rkern/line_profiler</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/12/03/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE+osmc%E6%90%AD%E5%BB%BA%E5%A4%9A%E5%AA%92%E4%BD%93%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/03/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE+osmc%E6%90%AD%E5%BB%BA%E5%A4%9A%E5%AA%92%E4%BD%93%E7%8E%AF%E5%A2%83/" itemprop="url">使用树莓派+kodi搭建多媒体环境</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-03T14:26:00+08:00">
+                2017-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="制作启动盘"><a href="#制作启动盘" class="headerlink" title="制作启动盘"></a>制作启动盘</h1><ul>
+<li>下载 RASPBIAN STRETCH WITH DESKTOP，地址如下</li>
+</ul>
+<p><a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="noopener">https://www.raspberrypi.org/downloads/raspbian/</a></p>
+<ul>
+<li>使用SDFormatter 格式化sd卡</li>
+<li>使用win32diskimager将 .img文件写入sd卡</li>
+</ul>
+<h1 id="安装kodi"><a href="#安装kodi" class="headerlink" title="安装kodi"></a>安装kodi</h1><p>参考如下步骤</p>
+<p><a href="http://kodi.wiki/view/HOW-TO:Install_Kodi_on_Raspberry_Pi" target="_blank" rel="noopener">http://kodi.wiki/view/HOW-TO:Install_Kodi_on_Raspberry_Pi</a></p>
+<h1 id="mac-添加nfs服务"><a href="#mac-添加nfs服务" class="headerlink" title="mac 添加nfs服务"></a>mac 添加nfs服务</h1><p>在 /etc/exports 文件中添加如下内容，IP地址为树莓派ip地址</p>
+<blockquote>
+<p>/Users/eryk/Documents/movie 192.168.1.10 (rw)</p>
+</blockquote>
+<p>然后启动nfs服务，树莓派可以从mac目录读取视频文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo nfsd enable</span><br><span class="line">sudo nfsd update</span><br><span class="line">sudo nfsd status</span><br></pre></td></tr></table></figure>
+
+<h1 id="树莓派开机mount-nfs目录"><a href="#树莓派开机mount-nfs目录" class="headerlink" title="树莓派开机mount nfs目录"></a>树莓派开机mount nfs目录</h1><p>使用如下命令mount nfs 目录</p>
+<blockquote>
+<p>sudo mount 192.168.1.4:/Users/eryk/Documents/movie /home/pi/movie</p>
+</blockquote>
+<p>如果想在树莓派开机启动自动mount nfs目录，需要在/etc/fstab中添加如下设置</p>
+<blockquote>
+<p>192.168.1.4:/Users/eryk/Documents/movie /home/pi/movie nfs defaults 0 0</p>
+</blockquote>
+<h1 id="kodi设置中文"><a href="#kodi设置中文" class="headerlink" title="kodi设置中文"></a>kodi设置中文</h1><ol>
+<li>system–&gt;settings–&gt;Interface–&gt;skin，把 fonts 改成 Arial based；</li>
+<li>system–&gt;settings–&gt;Interface–&gt;Regional，改Language改成Chinese(Simple)</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">eryk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">eryk</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

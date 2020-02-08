@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="期货," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="手续费包括期货交易所和期货公司收取，期货公司手续费是交易所基础上的1.1 ～ 1.5 倍 书籍推荐 道：斯坦利·克罗的《期货交易策略》和江恩的《如何从商品期货交易中获利》 术：中国期货业协会编的《铁矿石期货》，我们必须要了解铁矿石供给来源、中国铁矿石的进口量、铁矿石需求情况、铁矿石现货有哪些关键指标  关于大周期和小周期趋势问题把握好小周期，积少成多 期货定义期货合约指由期货交易所统一制订的、规定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="期货分析与交易入门 live 笔记">
+<meta property="og:url" content="http://xuqi365.com/2017/11/06/%E6%9C%9F%E8%B4%A7%E5%88%86%E6%9E%90%E4%B8%8E%E4%BA%A4%E6%98%93%E5%85%A5%E9%97%A8%20live%20%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Python量化交易实战">
+<meta property="og:description" content="手续费包括期货交易所和期货公司收取，期货公司手续费是交易所基础上的1.1 ～ 1.5 倍 书籍推荐 道：斯坦利·克罗的《期货交易策略》和江恩的《如何从商品期货交易中获利》 术：中国期货业协会编的《铁矿石期货》，我们必须要了解铁矿石供给来源、中国铁矿石的进口量、铁矿石需求情况、铁矿石现货有哪些关键指标  关于大周期和小周期趋势问题把握好小周期，积少成多 期货定义期货合约指由期货交易所统一制订的、规定">
+<meta property="og:locale" content="cn">
+<meta property="article:published_time" content="2017-11-06T01:29:00.000Z">
+<meta property="article:modified_time" content="2020-02-08T17:11:26.047Z">
+<meta property="article:author" content="eryk">
+<meta property="article:tag" content="期货">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqi365.com/2017/11/06/期货分析与交易入门 live 笔记/"/>
+
+
+
+
+
+  <title>期货分析与交易入门 live 笔记 | Python量化交易实战</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python量化交易实战</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/11/06/%E6%9C%9F%E8%B4%A7%E5%88%86%E6%9E%90%E4%B8%8E%E4%BA%A4%E6%98%93%E5%85%A5%E9%97%A8%20live%20%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">期货分析与交易入门 live 笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-06T09:29:00+08:00">
+                2017-11-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="手续费"><a href="#手续费" class="headerlink" title="手续费"></a>手续费</h1><p>包括期货交易所和期货公司收取，期货公司手续费是交易所基础上的1.1 ～ 1.5 倍</p>
+<h1 id="书籍推荐"><a href="#书籍推荐" class="headerlink" title="书籍推荐"></a>书籍推荐</h1><ol>
+<li>道：斯坦利·克罗的《期货交易策略》和江恩的《如何从商品期货交易中获利》</li>
+<li>术：中国期货业协会编的《铁矿石期货》，我们必须要了解铁矿石供给来源、中国铁矿石的进口量、铁矿石需求情况、铁矿石现货有哪些关键指标</li>
+</ol>
+<h1 id="关于大周期和小周期趋势问题"><a href="#关于大周期和小周期趋势问题" class="headerlink" title="关于大周期和小周期趋势问题"></a>关于大周期和小周期趋势问题</h1><p>把握好小周期，积少成多</p>
+<h1 id="期货定义"><a href="#期货定义" class="headerlink" title="期货定义"></a>期货定义</h1><p>期货合约指由期货交易所统一制订的、规定在将来某一特定的时间和地点交割一定数量和质量实物商品或金融商品的标准化合约。</p>
+<h1 id="期货交易所"><a href="#期货交易所" class="headerlink" title="期货交易所"></a>期货交易所</h1><ol>
+<li>商品期货交易所：大连商品期货交易所、郑州商品期货交易所、上海期货交易所</li>
+<li>金融期货交易所：中国金融期货交易所</li>
+</ol>
+<h1 id="仓单"><a href="#仓单" class="headerlink" title="仓单"></a>仓单</h1><h1 id="交易平台"><a href="#交易平台" class="headerlink" title="交易平台"></a>交易平台</h1><p>文华财经、随身行（手机版）</p>
+<h1 id="期货结算"><a href="#期货结算" class="headerlink" title="期货结算"></a>期货结算</h1><h1 id="涨跌停板"><a href="#涨跌停板" class="headerlink" title="涨跌停板"></a>涨跌停板</h1><p>不同品种幅度不同，不同保证金会放大涨跌停，比如10倍杠杆，涨幅5%，对应本金则涨幅50%</p>
+<h1 id="持仓限额"><a href="#持仓限额" class="headerlink" title="持仓限额"></a>持仓限额</h1>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%9C%9F%E8%B4%A7/" rel="tag"># 期货</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/27/python%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85pyc%E8%84%9A%E6%9C%AC/" rel="next" title="python编译打包pyc脚本">
+                <i class="fa fa-chevron-left"></i> python编译打包pyc脚本
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/06/Tradex%E7%AC%94%E8%AE%B0/" rel="prev" title="Tradex笔记">
+                Tradex笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">eryk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#手续费"><span class="nav-number">1.</span> <span class="nav-text">手续费</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#书籍推荐"><span class="nav-number">2.</span> <span class="nav-text">书籍推荐</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于大周期和小周期趋势问题"><span class="nav-number">3.</span> <span class="nav-text">关于大周期和小周期趋势问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#期货定义"><span class="nav-number">4.</span> <span class="nav-text">期货定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#期货交易所"><span class="nav-number">5.</span> <span class="nav-text">期货交易所</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#仓单"><span class="nav-number">6.</span> <span class="nav-text">仓单</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#交易平台"><span class="nav-number">7.</span> <span class="nav-text">交易平台</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#期货结算"><span class="nav-number">8.</span> <span class="nav-text">期货结算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#涨跌停板"><span class="nav-number">9.</span> <span class="nav-text">涨跌停板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#持仓限额"><span class="nav-number">10.</span> <span class="nav-text">持仓限额</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">eryk</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

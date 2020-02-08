@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="systemd," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近在处理数字货币行情数据，使用websocket接收行情数据写入磁盘，发现运行时间久了偶尔出现socket close的异常，重试多次无效后程序异常退出，所以考虑将python程序作为linux 守护进程运行，了解了supervisord和systemd，决定使用更强大的systemd。 基本概念systemd 是一个 Linux 系统基础组件的集合，提供了一个系统和服务管理器，运行为 PID">
+<meta property="og:type" content="article">
+<meta property="og:title" content="systemd入门教程">
+<meta property="og:url" content="http://xuqi365.com/2018/03/29/systemd%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Python量化交易实战">
+<meta property="og:description" content="最近在处理数字货币行情数据，使用websocket接收行情数据写入磁盘，发现运行时间久了偶尔出现socket close的异常，重试多次无效后程序异常退出，所以考虑将python程序作为linux 守护进程运行，了解了supervisord和systemd，决定使用更强大的systemd。 基本概念systemd 是一个 Linux 系统基础组件的集合，提供了一个系统和服务管理器，运行为 PID">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://xuqi365.com/2018/03/29/systemd%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/images/15222891502855.jpg">
+<meta property="article:published_time" content="2018-03-29T01:57:00.000Z">
+<meta property="article:modified_time" content="2020-02-08T17:11:26.043Z">
+<meta property="article:author" content="eryk">
+<meta property="article:tag" content="systemd">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://xuqi365.com/2018/03/29/systemd%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/images/15222891502855.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqi365.com/2018/03/29/systemd使用教程/"/>
+
+
+
+
+
+  <title>systemd入门教程 | Python量化交易实战</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python量化交易实战</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/03/29/systemd%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">systemd入门教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-29T09:57:00+08:00">
+                2018-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
+                    <span itemprop="name">系统运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在处理数字货币行情数据，使用websocket接收行情数据写入磁盘，发现运行时间久了偶尔出现socket close的异常，重试多次无效后程序异常退出，所以考虑将python程序作为linux 守护进程运行，了解了supervisord和systemd，决定使用更强大的systemd。</p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>systemd 是一个 Linux 系统基础组件的集合，提供了一个系统和服务管理器，运行为 PID 1 并负责启动其它程序。功能包括：支持并行化任务；同时采用 socket 式与 D-Bus 总线式激活服务；按需启动守护进程（daemon）；利用 Linux 的 cgroups 监视进程；支持快照和系统恢复；维护挂载点和自动挂载点；各服务间基于依赖关系进行精密控制。systemd 支持 SysV 和 LSB 初始脚本，可以替代 sysvinit。除此之外，功能还包括日志进程、控制基础系统配置，维护登陆用户列表以及系统账户、运行时目录和设置，可以运行容器和虚拟机，可以简单的管理网络配置、网络时间同步、日志转发和名称解析等。</p>
+<p>systemd架构图</p>
+<p><img src="images/15222891502855.jpg" alt=""></p>
+<h2 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h2><ul>
+<li>systemd-analyze: 查看启动耗时</li>
+<li>systemctl: 用来查看系统状态、启动停止服务，在systemctl参数中添加-H &lt;用户名&gt;@&lt;主机名&gt;可以实现对其他机器的远程控制。该过程使用ssh链接</li>
+<li>journalctl: Systemd统一管理所有Unit的启动日志</li>
+</ul>
+<h2 id="unit"><a href="#unit" class="headerlink" title="unit"></a>unit</h2><p>一个单元配置文件可以描述如下内容之一：系统服务(.service)、挂载点(.mount)、sockets(.sockets) 、系统设备(.device)、交换分区(.swap)、文件路径(.path)、启动目标(.target)、由 systemd 管理的计时器(.timer)</p>
+<h2 id="如何编写服务脚本"><a href="#如何编写服务脚本" class="headerlink" title="如何编写服务脚本"></a>如何编写服务脚本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[Unit]</span><br><span class="line"></span><br><span class="line">Description&#x3D;Network Manager</span><br><span class="line"></span><br><span class="line">Wants&#x3D;network.target</span><br><span class="line"></span><br><span class="line">Before&#x3D;network.target network.service</span><br><span class="line"></span><br><span class="line">                                                                                                                                                                               </span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"></span><br><span class="line">Type&#x3D;dbus</span><br><span class="line"></span><br><span class="line">BusName&#x3D;org.freedesktop.NetworkManager</span><br><span class="line"></span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;sbin&#x2F;NetworkManager --no-daemon</span><br><span class="line"></span><br><span class="line"># NM doesn&#39;t want systemd to kill its children for it</span><br><span class="line"></span><br><span class="line">KillMode&#x3D;process</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line"></span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br><span class="line"></span><br><span class="line">Alias&#x3D;dbus-org.freedesktop.NetworkManager.service</span><br><span class="line"></span><br><span class="line">Also&#x3D;NetworkManager-dispatcher.service</span><br></pre></td></tr></table></figure>
+
+<h3 id="整个文件分三个部分，-Unit-·-Service-·-Install"><a href="#整个文件分三个部分，-Unit-·-Service-·-Install" class="headerlink" title="整个文件分三个部分，[Unit]·[Service]·[Install]"></a>整个文件分三个部分，[Unit]·[Service]·[Install]</h3><ul>
+<li><p>[Unit]：记录unit文件的通用信息。</p>
+</li>
+<li><p>[Service]：记录Service的信息</p>
+</li>
+<li><p>[Install]：安装信息。</p>
+</li>
+</ul>
+<h4 id="Unit主要包含以下内容："><a href="#Unit主要包含以下内容：" class="headerlink" title="Unit主要包含以下内容："></a>Unit主要包含以下内容：</h4><p>●  Description：对本service的描述。</p>
+<p>●  Before, After：定义启动顺序，Before=xxx.service，代表本服务在xxx.service启动之前启动。After=xxx.service,代表本服务在xxx之后启动。</p>
+<p>●  Requires: 这个单元启动了，那么它“需要”的单元也会被启动; 它“需要”的单元被停止了，它自己也活不了。但是请注意，这个设定并不能控制某单元与它“需要”的单元的启动顺序（启动顺序是另外控制的），即 Systemd 不是先启动 Requires 再启动本单元，而是在本单元被激活时，并行启动两者。于是会产生争分夺秒的问题，如果 Requires 先启动成功，那么皆大欢喜; 如果 Requires 启动得慢，那本单元就会失败（Systemd 没有自动重试）。所以为了系统的健壮性，不建议使用这个标记，而建议使用 Wants 标记。可以使用多个 Requires。</p>
+<p>●  RequiresOverridable：跟 Requires 很像。但是如果这条服务是由用户手动启动的，那么 RequiresOverridable 后面的服务即使启动不成功也不报错。跟 Requires 比增加了一定容错性，但是你要确定你的服务是有等待功能的。另外，如果不由用户手动启动而是随系统开机启动，那么依然会有 Requires 面临的问题。</p>
+<p>●  Requisite：强势版本的 Requires。要是这里需要的服务启动不成功，那本单元文件不管能不能检测等不能等待都立刻就会失败。</p>
+<p>●  Wants：推荐使用。本单元启动了，它“想要”的单元也会被启动。但是启动不成功，对本单元没有影响。</p>
+<p>●  Conflicts：一个单元的启动会停止与它“冲突”的单元，反之亦然。</p>
+<h4 id="Service主要包含以下内容："><a href="#Service主要包含以下内容：" class="headerlink" title="Service主要包含以下内容："></a>Service主要包含以下内容：</h4><p>●  Type：service的种类，包含下列几种类型：</p>
+<pre><code>----simple 默认，这是最简单的服务类型。意思就是说启动的程序就是主体程序，这个程序要是退出那么一切都退出。
+
+-----forking 标准 Unix Daemon 使用的启动方式。启动程序后会调用 fork() 函数，把必要的通信频道都设置好之后父进程退出，留下守护精灵的子进程
+
+-----oneshot种服务类型就是启动，完成，没进程了。</code></pre><p>notify,idle类型比较少见，不介绍。</p>
+<p>●  ExecStart：服务启动时执行的命令，通常此命令就是服务的主体。</p>
+<pre><code>------如果你服务的类型不是 oneshot，那么它只可以接受一个命令，参数不限。
+
+------多个命令用分号隔开，多行用 \ 跨行。</code></pre><p>●  ExecStartPre, ExecStartPost：ExecStart执行前后所调用的命令。</p>
+<p>●  ExecStop：定义停止服务时所执行的命令，定义服务退出前所做的处理。如果没有指定，使用systemctl stop xxx命令时，服务将立即被终结而不做处理。</p>
+<p>●  Restart：定义服务何种情况下重启（启动失败，启动超时，进程被终结）。可选选项：no, on-success, on-failure,on-watchdog, on-abort</p>
+<p>●  SuccessExitStatus：参考ExecStart中返回值，定义何种情况算是启动成功。</p>
+<pre><code>eg：SuccessExitStatus=1 2 8 SIGKILL</code></pre><h4 id="Install主要包含以下内容："><a href="#Install主要包含以下内容：" class="headerlink" title="Install主要包含以下内容："></a>Install主要包含以下内容：</h4><p>●  WantedBy：何种情况下，服务被启用。</p>
+<pre><code>eg：WantedBy=multi-user.target（多用户环境下启用）</code></pre><p>●  Alias：别名</p>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>新建文件 /etc/systemd/system/huobi.service</p>
+<p>内容如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description&#x3D;huobi downloader</span><br><span class="line">After&#x3D;rc-local.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type&#x3D;simple</span><br><span class="line">User&#x3D;root</span><br><span class="line">Group&#x3D;root</span><br><span class="line">WorkingDirectory&#x3D;&#x2F;usr&#x2F;lib&#x2F;code&#x2F;atom</span><br><span class="line">ExecStart&#x3D;&#x2F;home&#x2F;ubuntu&#x2F;anaconda3&#x2F;bin&#x2F;python3.6 exchange&#x2F;downloader.py huobi &#x2F;data2&#x2F;huobi&#x2F;huobi.log</span><br><span class="line">Restart&#x3D;always</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>观察系统日志，发现程序异常退出后systemd重启的了服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">root@ip-172-31-4-62:&#x2F;usr&#x2F;lib&#x2F;code&#x2F;atom#  journalctl -u huobi.service</span><br><span class="line">-- Logs begin at Mon 2018-03-26 17:51:39 CST, end at Thu 2018-03-29 16:39:27 CST. --</span><br><span class="line">Mar 29 10:58:46 ip-172-31-4-62 systemd[1]: Started huobi downloader.</span><br><span class="line">Mar 29 11:02:18 ip-172-31-4-62 systemd[1]: huobi.service: Main process exited, code&#x3D;killed, status&#x3D;9&#x2F;KILL</span><br><span class="line">Mar 29 11:02:18 ip-172-31-4-62 systemd[1]: huobi.service: Unit entered failed state.</span><br><span class="line">Mar 29 11:02:18 ip-172-31-4-62 systemd[1]: huobi.service: Failed with result &#39;signal&#39;.</span><br><span class="line">Mar 29 11:02:18 ip-172-31-4-62 systemd[1]: huobi.service: Service hold-off time over, scheduling restart.</span><br><span class="line">Mar 29 11:02:18 ip-172-31-4-62 systemd[1]: Stopped huobi downloader.</span><br><span class="line">Mar 29 11:02:18 ip-172-31-4-62 systemd[1]: Started huobi downloader.</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 python3.6[9124]: Traceback (most recent call last):</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 python3.6[9124]:   File &quot;.&#x2F;exchange&#x2F;ex_huobi.py&quot;, line 66, in dispatch</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 python3.6[9124]:     raw_data &#x3D; await ws.recv()</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 python3.6[9124]:   File &quot;&#x2F;home&#x2F;ubuntu&#x2F;anaconda3&#x2F;lib&#x2F;python3.6&#x2F;site-packages&#x2F;websockets&#x2F;protocol.py&quot;, line 323, i</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 python3.6[9124]:     raise ConnectionClosed(self.close_code, self.close_reason)</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 python3.6[9124]: websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code &#x3D; 1006 (connection</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 systemd[1]: huobi.service: Service hold-off time over, scheduling restart.</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 systemd[1]: Stopped huobi downloader.</span><br><span class="line">Mar 29 11:29:58 ip-172-31-4-62 systemd[1]: Started huobi downloader.</span><br><span class="line">Mar 29 13:30:44 ip-172-31-4-62 python3.6[19180]: Traceback (most recent call last):</span><br><span class="line">Mar 29 13:30:44 ip-172-31-4-62 python3.6[19180]:   File &quot;.&#x2F;exchange&#x2F;ex_huobi.py&quot;, line 66, in dispatch</span><br><span class="line">Mar 29 13:30:44 ip-172-31-4-62 python3.6[19180]:     raw_data &#x3D; await ws.recv()</span><br><span class="line">Mar 29 13:30:44 ip-172-31-4-62 python3.6[19180]:   File &quot;&#x2F;home&#x2F;ubuntu&#x2F;anaconda3&#x2F;lib&#x2F;python3.6&#x2F;site-packages&#x2F;websockets&#x2F;protocol.py&quot;, line 323,</span><br><span class="line">Mar 29 13:30:44 ip-172-31-4-62 python3.6[19180]:     raise ConnectionClosed(self.close_code, self.close_reason)</span><br><span class="line">Mar 29 13:30:44 ip-172-31-4-62 python3.6[19180]: websockets.exceptions.ConnectionClosed: WebSocket connection is closed: code &#x3D; 1006 (connectio</span><br><span class="line">Mar 29 13:30:45 ip-172-31-4-62 systemd[1]: huobi.service: Service hold-off time over, scheduling restart.</span><br><span class="line">Mar 29 13:30:45 ip-172-31-4-62 systemd[1]: Stopped huobi downloader.</span><br><span class="line">Mar 29 13:30:45 ip-172-31-4-62 systemd[1]: Started huobi downloader.</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://wiki.archlinux.org/index.php/systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)" target="_blank" rel="noopener">https://wiki.archlinux.org/index.php/systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)</a></p>
+<p><a href="https://www.hi-linux.com/posts/3761.html" target="_blank" rel="noopener">https://www.hi-linux.com/posts/3761.html</a></p>
+<p><a href="https://blog.csdn.net/fu_wayne/article/details/38018825" target="_blank" rel="noopener">https://blog.csdn.net/fu_wayne/article/details/38018825</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/systemd/" rel="tag"># systemd</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/" rel="next" title="逐笔，分笔，逐单，分时数据概念区别">
+                <i class="fa fa-chevron-left"></i> 逐笔，分笔，逐单，分时数据概念区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/19/%E3%80%8A%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E5%9B%A0%E5%AD%90%E6%9C%89%E6%95%88%E6%80%A7%E3%80%8B%20%E5%90%AC%E8%AF%BE%E7%AC%94%E8%AE%B0/" rel="prev" title="《如何验证因子有效性》 听课笔记">
+                《如何验证因子有效性》 听课笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">eryk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用工具"><span class="nav-number">1.1.</span> <span class="nav-text">常用工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unit"><span class="nav-number">1.2.</span> <span class="nav-text">unit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何编写服务脚本"><span class="nav-number">1.3.</span> <span class="nav-text">如何编写服务脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整个文件分三个部分，-Unit-·-Service-·-Install"><span class="nav-number">1.3.1.</span> <span class="nav-text">整个文件分三个部分，[Unit]·[Service]·[Install]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Unit主要包含以下内容："><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Unit主要包含以下内容：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Service主要包含以下内容："><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Service主要包含以下内容：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Install主要包含以下内容："><span class="nav-number">1.3.1.3.</span> <span class="nav-text">Install主要包含以下内容：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例子"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">eryk</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

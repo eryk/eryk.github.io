@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="tick," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="我的微信公众号：pyquant  逐笔成交：交易过程中的单次成交，是交易过程的真实成交情况。这是Level-2的专有数据，用一个实例来解释这个概念：假设目前的卖一是10元、100手，这时有人以10元委托买入100手，那么这100手是如何成交的呢？这要取决于卖盘由几个委托单构成，如果卖一是一个委托单，那就是一笔成交，即100手；而如果卖一是由40手和60手两笔委托构成，那么这100股就会分成两次成交">
+<meta property="og:type" content="article">
+<meta property="og:title" content="逐笔，分笔，逐单，分时数据概念区别">
+<meta property="og:url" content="http://xuqi365.com/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:site_name" content="Python量化交易实战">
+<meta property="og:description" content="我的微信公众号：pyquant  逐笔成交：交易过程中的单次成交，是交易过程的真实成交情况。这是Level-2的专有数据，用一个实例来解释这个概念：假设目前的卖一是10元、100手，这时有人以10元委托买入100手，那么这100手是如何成交的呢？这要取决于卖盘由几个委托单构成，如果卖一是一个委托单，那就是一笔成交，即100手；而如果卖一是由40手和60手两笔委托构成，那么这100股就会分成两次成交">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
+<meta property="article:published_time" content="2018-03-29T01:57:00.000Z">
+<meta property="article:modified_time" content="2020-02-08T17:11:26.049Z">
+<meta property="article:author" content="eryk">
+<meta property="article:tag" content="tick">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqi365.com/2018/03/29/逐笔，分笔，逐单，分时数据概念区别/"/>
+
+
+
+
+
+  <title>逐笔，分笔，逐单，分时数据概念区别 | Python量化交易实战</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python量化交易实战</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">逐笔，分笔，逐单，分时数据概念区别</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-29T09:57:00+08:00">
+                2018-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我的微信公众号：pyquant</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
+<h1 id="逐笔成交："><a href="#逐笔成交：" class="headerlink" title="逐笔成交："></a>逐笔成交：</h1><p>交易过程中的单次成交，是交易过程的真实成交情况。这是Level-2的专有数据，用一个实例来解释这个概念：假设目前的卖一是10元、100手，这时有人以10元委托买入100手，那么这100手是如何成交的呢？这要取决于卖盘由几个委托单构成，如果卖一是一个委托单，那就是一笔成交，即100手；而如果卖一是由40手和60手两笔委托构成，那么这100股就会分成两次成交，即40手一次，60手一次，逐笔成交就是2笔。</p>
+<p>一般显示的数据格式为在几分几秒以多少价格分几笔成交了多少手。<strong>在这里我们要注意的是成交手数有时候是带小数点的，这是因为股票买进的股数最少是100股，委托的股数也应是100的整数倍，卖出却没有限制，因此成交的手数会有小数点。</strong> 另外一点就是如果在成交价格和手数前面没有显示，则一半是默认的1笔。</p>
+<h1 id="分笔-分时成交："><a href="#分笔-分时成交：" class="headerlink" title="分笔/分时成交："></a>分笔/分时成交：</h1><p>   3-5秒一次的行情采集期间累计的成交量和最后的成交价，可能是几笔成交的集合。这是大家长期以来唯一能看到的成交数据.</p>
+<p>一般显示的数据格式为在几分几秒以多少价格成交了多少手。<strong>这里需要注意的是成交手数永远是整数，不会出现小数点数字。</strong>其中现手累计数就是总手数。总手数也叫做成交量。有些软件在现量后面标注蓝色S和红色B，前者代表卖，后者代表买。（软件自己根据时间估计主动买还是主动卖）</p>
+<p>目前市面上出现了LEVEL-2行情数据，比较具有代表性的是大智慧，在那里把分笔成交是叫分时成交，实际上就是我们在普通分析软件上F1看到的“分笔成交明细”，但是他和LEVEL-2行情数据提供的逐笔成交明细是不一样的。<strong>分笔数据由于是合成混合数据，它是以最后1笔的买卖方向来表示该时间内（3秒或者5秒）的买卖方向。</strong>目前市面上的成交明细数据都是分笔成交，有些号称是LEVEL-2逐笔的明细数据其实也是分笔，即LEVEL-2行情软件里右侧小窗口显示的3秒分笔数据，虽然来自LEVEL-2行情，但仍然是分笔（分时）成交，而不是LEVEL-2行情软件里左侧显示的逐笔成交。因为左侧显示的逐笔成交在LEVEL-2行情软件里是不能保存的，也不能够导出供二次开发。能够导出的只有右侧小窗口里的分笔成交</p>
+<h1 id="逐单-委托单："><a href="#逐单-委托单：" class="headerlink" title="逐单/委托单："></a>逐单/委托单：</h1><p>我们每次向系统发出委托时，都有个委托合同编号，这个就是单。例如你一次买2000股股票，则是20手，那么这一单就是20手。但目前每种软件的推测统计都不一致，会导致不同软件显示数据出现差异。</p>
+<p>委托单的明细，这是交易所行情系统中没有发布的数据，还以刚才的例子说明，交易所只发出了40手和60手两笔成交（逐笔），并没有指出是一笔100手的买单吃掉了40手、60手两笔卖单。LEVEL-2行情能够根据成交的时间和队列等数据计算出全部已成交的委托单明细，这在交易分析中具有重大意义。（股票盘子越大，推测逐单数据误差越大,因为委托队列只显示前50个委托单;相对来说小盘股的DDE指标更为可靠）</p>
+<h1 id="分时"><a href="#分时" class="headerlink" title="分时:"></a>分时:</h1><p>   一般指一分钟成交集合;</p>
+<h1 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h1><p>盘中数据的统计分析长期以来是对分时数据的统计分析，比如最简单的内盘和外盘，大单买入/卖出等，这种统计有两个明显的缺陷：</p>
+<p>第一、仅统计了主动成交方单方面的成交数据，而机构交易完全可能在被动成交方</p>
+<p>第二、分时数据不是真实的成交数据，大单不一定是大单，可能是很多散户在几秒中之内同时交易的结果，虽然使用level-2的逐笔成交来统计可以避免这一情况的发生，但立即就又产生了新的问题，即一笔真实的大单委托往往被分割成数笔成交，又捕捉不到真实的大单了。</p>
+<p>其他：一个孤独的数字是缺乏意义的，但是一些连续的数字则是充满想像的。一般来说，成交手数比较大而集中的时候，表示有大资金活跃迹象，该股出现价格异动的概率就大，应该引起投资者的注意。而如果半天也没人买或者都是一些小单子在交易，则至少短期不大可能成为好股。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tick/" rel="tag"># tick</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/18/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8C%96%E7%9F%BF/" rel="next" title="比特币挖矿">
+                <i class="fa fa-chevron-left"></i> 比特币挖矿
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/29/systemd%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" rel="prev" title="systemd入门教程">
+                systemd入门教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">eryk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#逐笔成交："><span class="nav-number">1.</span> <span class="nav-text">逐笔成交：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分笔-分时成交："><span class="nav-number">2.</span> <span class="nav-text">分笔&#x2F;分时成交：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#逐单-委托单："><span class="nav-number">3.</span> <span class="nav-text">逐单&#x2F;委托单：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分时"><span class="nav-number">4.</span> <span class="nav-text">分时:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题："><span class="nav-number">5.</span> <span class="nav-text">问题：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">eryk</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

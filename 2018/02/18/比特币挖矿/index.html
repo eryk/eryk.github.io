@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="挖矿," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="比特币介绍比特币（BitCoin）的概念最初由中本聪在2009年提出，根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络。比特币是一种P2P形式的数字货币。点对点的传输意味着一个去中心化的支付系统。 货币特征 去中心化：比特币是第一种分布式的虚拟货币，整个网络由用户构成，没有中央银行。去中心化是比特币安全与自由的保证 。 全世界流通：比特币可以在任意一台接入互联网的电脑上管理。不管身处何方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="比特币挖矿">
+<meta property="og:url" content="http://xuqi365.com/2018/02/18/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8C%96%E7%9F%BF/index.html">
+<meta property="og:site_name" content="Python量化交易实战">
+<meta property="og:description" content="比特币介绍比特币（BitCoin）的概念最初由中本聪在2009年提出，根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络。比特币是一种P2P形式的数字货币。点对点的传输意味着一个去中心化的支付系统。 货币特征 去中心化：比特币是第一种分布式的虚拟货币，整个网络由用户构成，没有中央银行。去中心化是比特币安全与自由的保证 。 全世界流通：比特币可以在任意一台接入互联网的电脑上管理。不管身处何方">
+<meta property="og:locale" content="cn">
+<meta property="og:image" content="http://xuqi365.com/2018/02/18/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8C%96%E7%9F%BF/images/15188818662912.jpg">
+<meta property="og:image" content="http://xuqi365.com/2018/02/18/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8C%96%E7%9F%BF/images/15188819449294.jpg">
+<meta property="og:image" content="http://xuqi365.com/2018/02/18/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8C%96%E7%9F%BF/images/15188829992827.jpg">
+<meta property="og:image" content="http://xuqi365.com/2018/02/18/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8C%96%E7%9F%BF/images/15188820707031.jpg">
+<meta property="og:image" content="http://xuqi365.com/2018/02/18/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8C%96%E7%9F%BF/images/15188826456334.jpg">
+<meta property="article:published_time" content="2018-02-17T16:03:00.000Z">
+<meta property="article:modified_time" content="2020-02-08T17:11:26.046Z">
+<meta property="article:author" content="eryk">
+<meta property="article:tag" content="挖矿">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://xuqi365.com/2018/02/18/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8C%96%E7%9F%BF/images/15188818662912.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xuqi365.com/2018/02/18/比特币挖矿/"/>
+
+
+
+
+
+  <title>比特币挖矿 | Python量化交易实战</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python量化交易实战</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/02/18/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8C%96%E7%9F%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eryk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">比特币挖矿</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-18T00:03:00+08:00">
+                2018-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="比特币介绍"><a href="#比特币介绍" class="headerlink" title="比特币介绍"></a>比特币介绍</h1><p>比特币（BitCoin）的概念最初由中本聪在2009年提出，根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络。比特币是一种P2P形式的数字货币。点对点的传输意味着一个去中心化的支付系统。</p>
+<h2 id="货币特征"><a href="#货币特征" class="headerlink" title="货币特征"></a>货币特征</h2><ul>
+<li>去中心化：比特币是第一种分布式的虚拟货币，整个网络由用户构成，没有中央银行。去中心化是比特币安全与自由的保证 。</li>
+<li>全世界流通：比特币可以在任意一台接入互联网的电脑上管理。不管身处何方，任何人都可以挖掘、购买、出售或收取比特币。</li>
+<li>专属所有权：操控比特币需要私钥，它可以被隔离保存在任何存储介质。除了用户自己之外无人可以获取。</li>
+<li>低交易费用：可以免费汇出比特币，但最终对每笔交易将收取约1比特分的交易费以确保交易更快执行。</li>
+<li>无隐藏成本：作为由A到B的支付手段，比特币没有繁琐的额度与手续限制。知道对方比特币地址就可以进行支付。</li>
+<li>跨平台挖掘：用户可以在众多平台上发掘不同硬件的计算能力。</li>
+</ul>
+<h2 id="比特币与分叉币比较"><a href="#比特币与分叉币比较" class="headerlink" title="比特币与分叉币比较"></a>比特币与分叉币比较</h2><p><img src="images/15188818662912.jpg" alt=""></p>
+<h1 id="什么是挖矿"><a href="#什么是挖矿" class="headerlink" title="什么是挖矿"></a>什么是挖矿</h1><p>比特币是怎么产出的？</p>
+<p>首先我们来了解一下“区块链”，比特币的核心原理是“区块链”，每一个区块对应一个帐单，将所有的区块链接起来就是区块链，任何交易信息和转账记录都记录在区块链中。要注意的是区块链存在于整个互联网中，所以任何比特币持有者都不担心比特币遭受损失。</p>
+<p>每隔一个时间点，比特币系统会在系统节点上生成一个随机代码，互联网中的所有计算机都可以去寻找此代码，谁找到此代码，就会产生一个区块，随即得到一个比特币，这个过程就是人们常说的挖矿。</p>
+<h1 id="挖矿设备介绍"><a href="#挖矿设备介绍" class="headerlink" title="挖矿设备介绍"></a>挖矿设备介绍</h1><p>现在市面上起码有几百种加密货币，主流的可以流通交易的也有不下20种。这么多的加密货币虽然都基于区块链技术，但不管是为了实现某些功能，还是为了形成差异，都会有所不同，从而导致挖不同的币使用的矿机也有所不同。通常来说，一台矿机只能挖一种或几种币，所以要挖什么比就要买什么型号的矿机。当然也存在全能选手，比如电脑就是，只是好多币种用电脑（CPU+显卡）挖的效率太低，无法盈利。</p>
+<p>矿机可以有多种分类方式，硬件上可以分为ASIC矿机、GPU矿机、FPGA矿机，以及玩客云那类CDN矿机等等。按照所有权划分，可以分为本地矿机和云矿机。</p>
+<p>首先，比特币（BTC）、以太坊（ETH）、比特币现金（BCH）、莱特币（LTC）、达世币（DASH）等主流币种，普遍采用PoW共识机制，挖矿就是通过贡献算力来维护网络安全、稳定的运行，并由此获得奖励币，所以都需要性能尽可能强大的矿机。但针对不同币种的算法，又细分出两种不同的矿机：ASIC矿机与GPU矿机。</p>
+<p>中本聪打造比特币的时候，希望比特币是一个去中心化的货币，不仅使用、交易如此，挖矿也应该如此。但是事与愿违，随着比特币等加密货币的价值越来越高，挖矿成为了一个产业，竞争越来越激烈，对挖矿算力的追求越来越高，所以从普通电脑挖矿，进化出了ASIC矿机与GPU矿机。</p>
+<p><img src="images/15188819449294.jpg" alt=""></p>
+<p>主流矿机比较</p>
+<p><img src="images/15188829992827.jpg" alt=""></p>
+<p>目前市场上最热门的矿机是蚂蚁矿机S9，具体配置如下</p>
+<p><img src="images/15188820707031.jpg" alt=""></p>
+<h1 id="矿池的选择"><a href="#矿池的选择" class="headerlink" title="矿池的选择"></a>矿池的选择</h1><p>矿池的选择主要考虑以下两个因素：</p>
+<ul>
+<li>分配模式</li>
+<li>手续费</li>
+</ul>
+<h2 id="分配模式说明："><a href="#分配模式说明：" class="headerlink" title="分配模式说明："></a>分配模式说明：</h2><ol>
+<li>Slush方式   </li>
+</ol>
+<p>Slush矿池基于积分制，较老的shares将比新的shares拥有更低的权重，以减少一轮中切换矿池的投机分子。<br>2. Pay-Per-Share方式</p>
+<p>该方式为立即为每一个share支付报酬。该支出来源于矿池现有的比特币资金，因此可以立即取现，而不用等待区块生成完毕或者确认。这样可以避免矿池运营者幕后操纵。这中方法减少了矿工的风险，但将风险转移给了矿池的运营者。运营者可以收取手续费来弥补这些风险可能造成的损失<br>3. Luke-Jr方式</p>
+<p>该方式借用了其他方式的长处，如Slush方式一样，矿工需要提供工作证明来获得shares，如puddinpop方式一样，当区块生成时马上进行支付。但是不象之前的方式，针对一个区块的shares，会被再次利用于生成下一个区块。为了区分一下参与矿工的交易传输费用，只有当矿工的余额超过1BTC时才进行支付。如果没有达到1BTC，那么将在下一个区块生成时进行累计。如果矿工在一周内没有提供一个share，那么矿池会将剩下的余额进行支付，不管余额是多少。<br>4. Triplemining方式</p>
+<p>该方式是将一些中等大小矿池的计算力合并起来，然后将获得奖励的1%按照各个矿池计算力的比例分发给矿池运营者。<br>5. P2Pool方式</p>
+<p>P2Pool的挖矿节点工作在类似比特币区块链的一种shares链上。由于没有中心，所以也不会受到DoS攻击。和其他现有的矿池技术都不一样—每个节点工作的区块，都包括支付给前期shares的所有者以及该节点自己的比特币。99%的奖励（注：50BTC+交易费用）会平均分给矿工，另外0.5%会奖励给生成区块的人。<br>6. Puddinpop方式</p>
+<p>一种使用“元哈希”技术的方式，使用特定的puddinpop挖矿软件，现在没有矿池用这种方式</p>
+<p>注意：</p>
+<blockquote>
+<p>一个share（注：贡献/股份）为一个矿池给客户端的一个合法的工作证明，这也同时是用来生成区块的工作证明，但是没有这么复杂，只需要很少的时间就能达到一个share。</p>
+</blockquote>
+<h1 id="收益预测"><a href="#收益预测" class="headerlink" title="收益预测"></a>收益预测</h1><p>蚂蚁矿机单机价格18000元，功率为1350w - 1512w，电费按0.3元/度计算，收益情况如下</p>
+<h2 id="计算方式1"><a href="#计算方式1" class="headerlink" title="计算方式1"></a>计算方式1</h2><p>矿池算力排名<br><a href="https://btc.com/stats/pool?pool_mode=day" target="_blank" rel="noopener">https://btc.com/stats/pool?pool_mode=day</a></p>
+<p>每十分钟产生一个区块，每个区块12.5个比特币，每天全球产生12.5*24*6=1800BTC</p>
+<p>s9算力13.5T，当前全网算力22.52EH/s，1E=1024P,1P=1024T,1T=1024G,一台s9一天产生的比特币是[13.5/(22.52<em>1024</em>1024)]*1800≈.001029054BTC</p>
+<p>总收入</p>
+<p>13.5/(22.52*1024*1024) * 1800 * 65000 * 365 = 24414.295 元</p>
+<p>每天耗电36度，每年13140度电，电费约为 1.5*24*0.3 * 365 = 3942 元</p>
+<p>总利润为 24414.295 - 3942 = 20472.295 元</p>
+<h2 id="计算方式2"><a href="#计算方式2" class="headerlink" title="计算方式2"></a>计算方式2</h2><p>挖矿算器</p>
+<p><a href="https://btc.com/tools/mining-calculator" target="_blank" rel="noopener">https://btc.com/tools/mining-calculator</a></p>
+<p><img src="images/15188826456334.jpg" alt=""></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://www.kuangjijia.com/category/492.html" target="_blank" rel="noopener">http://www.kuangjijia.com/category/492.html</a><br><a href="https://shop.bitmain.com/productDetail.htm?pid=00020180205094056650FrOW7847062D" target="_blank" rel="noopener">https://shop.bitmain.com/productDetail.htm?pid=00020180205094056650FrOW7847062D</a><br><a href="https://www.zhihu.com/question/20792042" target="_blank" rel="noopener">https://www.zhihu.com/question/20792042</a></p>
+<p>挖掘机哪家强？主流矿机比拼，蚂蚁矿机领先<br><a href="http://www.sohu.com/a/155209866_114877" target="_blank" rel="noopener">http://www.sohu.com/a/155209866_114877</a><br>彩云评测：比特大陆蚂蚁S9比特币挖矿机<br><a href="https://www.cybtc.com/article-2338-1.html" target="_blank" rel="noopener">https://www.cybtc.com/article-2338-1.html</a><br>一个挖矿者血本无归的教训总结<br><a href="http://www.hnr.cn/finance/zt/b/df/201706/t20170626_2980454.html" target="_blank" rel="noopener">http://www.hnr.cn/finance/zt/b/df/201706/t20170626_2980454.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag"># 挖矿</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/11/2018-02-10/" rel="next" title="正本清源区块链1 笔记">
+                <i class="fa fa-chevron-left"></i> 正本清源区块链1 笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/" rel="prev" title="逐笔，分笔，逐单，分时数据概念区别">
+                逐笔，分笔，逐单，分时数据概念区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">eryk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#比特币介绍"><span class="nav-number">1.</span> <span class="nav-text">比特币介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#货币特征"><span class="nav-number">1.1.</span> <span class="nav-text">货币特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比特币与分叉币比较"><span class="nav-number">1.2.</span> <span class="nav-text">比特币与分叉币比较</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是挖矿"><span class="nav-number">2.</span> <span class="nav-text">什么是挖矿</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#挖矿设备介绍"><span class="nav-number">3.</span> <span class="nav-text">挖矿设备介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矿池的选择"><span class="nav-number">4.</span> <span class="nav-text">矿池的选择</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分配模式说明："><span class="nav-number">4.1.</span> <span class="nav-text">分配模式说明：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#收益预测"><span class="nav-number">5.</span> <span class="nav-text">收益预测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算方式1"><span class="nav-number">5.1.</span> <span class="nav-text">计算方式1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算方式2"><span class="nav-number">5.2.</span> <span class="nav-text">计算方式2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">eryk</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
