@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>FIX协议介绍与QuickFIX使用入门(上) | Python量化交易实战</title>
+  <meta name="keywords" content=" FIX ">
+  <meta name="description" content="FIX协议介绍与QuickFIX使用入门(上) | Python量化交易实战">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://xuqi365.com/categories/index.html">
+<meta property="og:site_name" content="Python量化交易实战">
+<meta property="og:locale" content="cn">
+<meta property="article:published_time" content="2020-02-08T17:22:28.000Z">
+<meta property="article:modified_time" content="2020-02-08T17:22:49.959Z">
+<meta property="article:author" content="eryk">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/uploads/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/uploads/avatar.jpg" />
+</a>
+<div class="author">
+    <span>eryk</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/eryk" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+        <a title="weibo" href="https://weibo.com/eryk86" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/eryk" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="csdn" href="https://blog.csdn.net/eryk86" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-csdn"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:xuqi86@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=47020113&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=17798563" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(50)</small></div></li>
+    
+        
+            
+            <li><div data-rel="其他">其他<small>(7)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="量化交易系统">量化交易系统<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="交易策略">交易策略<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="python">python<small>(13)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="区块链">区块链<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="系统运维">系统运维<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="金融">金融<small>(9)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="策略研究">策略研究<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="读书笔记">读书笔记<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    </div>
+    <div><a class="about  site_url"  href="/about">关于</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="50">
+<input type="hidden" id="yelog_site_word_count" value="50.6k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">github</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">pb</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">cta</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">jupyter</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">笔记</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">ssh</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">期货</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">retry</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">exception</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">uft</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">ftp</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">virtualenv</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">Queue</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">Pipe</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">pyfolio</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">pandas</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hdf5</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">otc</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">FIX</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">读书笔记</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">TaskFlow</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">cython</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">etf</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">合约</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">okex</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">Anaconda</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">Grafana</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">Docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">Influxdb</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">Telegraf</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">gitlab</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">ci</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">TradeX</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">ctypes</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">level2</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">order book</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">level1</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">linux</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">pip</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">pymssql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">pyc</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">多因子</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">order</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">Pandas</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">树莓派</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">kodi</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">systemd</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数据清洗</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">jupyer</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">挖矿</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数字货币</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">tick</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="python "
+           href="/2020/02/08/2020-02-08%20OpenStack%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6TaskFlow%E4%BB%8B%E7%BB%8D/"
+           data-tag="TaskFlow"
+           data-author="" >
+            <span class="post-title" title="OpenStack公共组件TaskFlow介绍">OpenStack公共组件TaskFlow介绍</span>
+            <span class="post-date" title="2020-02-08 23:13:00">2020/02/08</span>
+        </a>
+        
+        <a  class="量化交易系统 "
+           href="/2019/12/11/2019-12-11%20cython%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/"
+           data-tag="cython"
+           data-author="" >
+            <span class="post-title" title="cython使用入门">cython使用入门</span>
+            <span class="post-date" title="2019-12-11 10:20:00">2019/12/11</span>
+        </a>
+        
+        <a  class="量化交易系统 "
+           href="/2019/08/23/2019-08-23%20Python%E8%B0%83%E7%94%A8C:C++%E5%85%A5%E9%97%A8/"
+           data-tag="ctypes"
+           data-author="" >
+            <span class="post-title" title="Python调用C/C++入门">Python调用C/C++入门</span>
+            <span class="post-date" title="2019-08-23 14:19:00">2019/08/23</span>
+        </a>
+        
+        <a  class="量化交易系统 "
+           href="/2019/07/16/2019-07-16%20%E9%87%91%E8%9E%8D%E4%BF%A1%E6%81%AF%E4%BA%A4%E6%8D%A2%E5%8D%8F%E8%AE%AE(FIX)%E4%BB%8B%E7%BB%8D/"
+           data-tag="FIX"
+           data-author="" >
+            <span class="post-title" title="FIX协议介绍与QuickFIX使用入门(上)">FIX协议介绍与QuickFIX使用入门(上)</span>
+            <span class="post-date" title="2019-07-16 16:06:00">2019/07/16</span>
+        </a>
+        
+        <a  class="读书笔记 "
+           href="/2019/06/19/2019-06-19%20%E8%AF%BB%E3%80%8A%E6%9C%9F%E8%B4%A7%E5%B8%82%E5%9C%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%88%86%E6%9E%90%E6%8C%87%E5%8D%97%E3%80%8B%E7%AC%94%E8%AE%B0/"
+           data-tag="读书笔记"
+           data-author="" >
+            <span class="post-title" title="读《期货市场计算机分析指南》笔记">读《期货市场计算机分析指南》笔记</span>
+            <span class="post-date" title="2019-06-19 09:42:00">2019/06/19</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2019/06/13/2019-06-13%20%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9D%91%E7%88%B9%E7%9A%84OTC%E4%BA%A4%E6%98%93%E7%BB%8F%E5%8E%86/"
+           data-tag="otc"
+           data-author="" >
+            <span class="post-title" title="记一次坑爹的OTC交易经历">记一次坑爹的OTC交易经历</span>
+            <span class="post-date" title="2019-06-13 16:42:00">2019/06/13</span>
+        </a>
+        
+        <a  class="python "
+           href="/2019/06/05/2019-06-05%20%E5%B0%86DataFrame%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E5%87%8F%E5%B0%91%E7%BA%A665%EF%BC%85/"
+           data-tag="pandas"
+           data-author="" >
+            <span class="post-title" title="将DataFrame内存大小减少约65％">将DataFrame内存大小减少约65％</span>
+            <span class="post-date" title="2019-06-05 10:48:00">2019/06/05</span>
+        </a>
+        
+        <a  class="python "
+           href="/2019/05/08/2019-05-08%20Pandas%20hdf5%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E7%BF%BB%E8%AF%91/"
+           data-tag="pandas,hdf5"
+           data-author="" >
+            <span class="post-title" title="Pandas hdf5使用指南翻译">Pandas hdf5使用指南翻译</span>
+            <span class="post-date" title="2019-05-08 21:51:00">2019/05/08</span>
+        </a>
+        
+        <a  class="策略研究 "
+           href="/2019/04/30/2019-04-30%20%E4%BD%BF%E7%94%A8pyfolio%E5%AF%B9%E7%AD%96%E7%95%A5%E6%94%B6%E7%9B%8A%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90/"
+           data-tag="pyfolio"
+           data-author="" >
+            <span class="post-title" title="使用pyfolio对策略收益进行分析">使用pyfolio对策略收益进行分析</span>
+            <span class="post-date" title="2019-04-30 13:14:00">2019/04/30</span>
+        </a>
+        
+        <a  class="系统运维 "
+           href="/2019/04/26/2019-04-26%20%E5%A4%84%E7%90%86linux%E7%B3%BB%E7%BB%9F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B/"
+           data-tag="Queue,Pipe"
+           data-author="" >
+            <span class="post-title" title="处理linux系统僵尸进程">处理linux系统僵尸进程</span>
+            <span class="post-date" title="2019-04-26 15:36:00">2019/04/26</span>
+        </a>
+        
+        <a  class="策略研究 "
+           href="/2019/04/24/%E4%BD%BF%E7%94%A8Pandas%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E5%9D%87%E7%BA%BF%E7%AD%96%E7%95%A5/"
+           data-tag="Pandas"
+           data-author="" >
+            <span class="post-title" title="使用Pandas开发一个均线策略">使用Pandas开发一个均线策略</span>
+            <span class="post-date" title="2019-04-24 20:47:00">2019/04/24</span>
+        </a>
+        
+        <a  class="python "
+           href="/2019/04/22/2019-04-22%20Multiprocessing%20Pipe%E5%92%8CQueue%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"
+           data-tag="Queue,Pipe"
+           data-author="" >
+            <span class="post-title" title="Multiprocessing Pipe和Queue性能测试">Multiprocessing Pipe和Queue性能测试</span>
+            <span class="post-date" title="2019-04-22 10:47:00">2019/04/22</span>
+        </a>
+        
+        <a  class="python "
+           href="/2019/04/19/2019-04-19/"
+           data-tag="virtualenv"
+           data-author="" >
+            <span class="post-title" title="virtualenv 使用教程">virtualenv 使用教程</span>
+            <span class="post-date" title="2019-04-19 16:38:00">2019/04/19</span>
+        </a>
+        
+        <a  class="系统运维 "
+           href="/2019/03/22/2019-03-22/"
+           data-tag="ftp,docker"
+           data-author="" >
+            <span class="post-title" title="创建docker ftp服务器">创建docker ftp服务器</span>
+            <span class="post-date" title="2019-03-22 15:17:00">2019/03/22</span>
+        </a>
+        
+        <a  class="系统运维 "
+           href="/2019/03/15/2019-03-15/"
+           data-tag="uft"
+           data-author="" >
+            <span class="post-title" title="ufw防火墙使用常用命令">ufw防火墙使用常用命令</span>
+            <span class="post-date" title="2019-03-15 09:38:00">2019/03/15</span>
+        </a>
+        
+        <a  class="python "
+           href="/2018/12/19/2018-12-18/"
+           data-tag="retry,exception"
+           data-author="" >
+            <span class="post-title" title="Python异常处理伴侣 -- tenacity模块使用介绍">Python异常处理伴侣 -- tenacity模块使用介绍</span>
+            <span class="post-date" title="2018-12-19 11:15:00">2018/12/19</span>
+        </a>
+        
+        <a  class="系统运维 "
+           href="/2018/12/12/2018-12-12/"
+           data-tag="ssh"
+           data-author="" >
+            <span class="post-title" title="解决ssh登录ubuntu系统卡顿问题">解决ssh登录ubuntu系统卡顿问题</span>
+            <span class="post-date" title="2018-12-12 10:59:00">2018/12/12</span>
+        </a>
+        
+        <a  class="金融 "
+           href="/2018/08/13/2018-08-14/"
+           data-tag="期货"
+           data-author="" >
+            <span class="post-title" title="股指期货概念介绍">股指期货概念介绍</span>
+            <span class="post-date" title="2018-08-13 10:40:00">2018/08/13</span>
+        </a>
+        
+        <a  class="金融 "
+           href="/2018/05/25/Okex%E5%90%88%E7%BA%A6%E4%BA%A4%E6%98%93%E5%85%A5%E9%97%A8/"
+           data-tag="期货,合约,okex"
+           data-author="" >
+            <span class="post-title" title="Okex合约交易基本概念介绍">Okex合约交易基本概念介绍</span>
+            <span class="post-date" title="2018-05-25 10:19:00">2018/05/25</span>
+        </a>
+        
+        <a  class="策略研究 "
+           href="/2018/05/19/%E3%80%8A%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E5%9B%A0%E5%AD%90%E6%9C%89%E6%95%88%E6%80%A7%E3%80%8B%20%E5%90%AC%E8%AF%BE%E7%AC%94%E8%AE%B0/"
+           data-tag="多因子"
+           data-author="" >
+            <span class="post-title" title="《如何验证因子有效性》 听课笔记">《如何验证因子有效性》 听课笔记</span>
+            <span class="post-date" title="2018-05-19 11:29:00">2018/05/19</span>
+        </a>
+        
+        <a  class="系统运维 "
+           href="/2018/03/29/systemd%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"
+           data-tag="systemd"
+           data-author="" >
+            <span class="post-title" title="systemd入门教程">systemd入门教程</span>
+            <span class="post-date" title="2018-03-29 09:57:00">2018/03/29</span>
+        </a>
+        
+        <a  class="金融 "
+           href="/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/"
+           data-tag="tick"
+           data-author="" >
+            <span class="post-title" title="逐笔，分笔，逐单，分时数据概念区别">逐笔，分笔，逐单，分时数据概念区别</span>
+            <span class="post-date" title="2018-03-29 09:57:00">2018/03/29</span>
+        </a>
+        
+        <a  class="区块链 "
+           href="/2018/02/18/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8C%96%E7%9F%BF/"
+           data-tag="挖矿"
+           data-author="" >
+            <span class="post-title" title="比特币挖矿">比特币挖矿</span>
+            <span class="post-date" title="2018-02-18 00:03:00">2018/02/18</span>
+        </a>
+        
+        <a  class="区块链 "
+           href="/2018/02/11/2018-02-10/"
+           data-tag="笔记"
+           data-author="" >
+            <span class="post-title" title="正本清源区块链1 笔记">正本清源区块链1 笔记</span>
+            <span class="post-date" title="2018-02-11 00:08:00">2018/02/11</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2018/02/05/gitlab%20%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/"
+           data-tag="gitlab,ci"
+           data-author="" >
+            <span class="post-title" title="gitlab 持续集成">gitlab 持续集成</span>
+            <span class="post-date" title="2018-02-05 11:35:00">2018/02/05</span>
+        </a>
+        
+        <a  class="金融 "
+           href="/2018/01/13/%E4%BA%A4%E6%98%93%E8%AE%A2%E5%8D%95%E7%B1%BB%E5%9E%8B%E4%BB%8B%E7%BB%8D/"
+           data-tag="order"
+           data-author="" >
+            <span class="post-title" title="交易订单类型介绍">交易订单类型介绍</span>
+            <span class="post-date" title="2018-01-13 19:05:00">2018/01/13</span>
+        </a>
+        
+        <a  class="金融 "
+           href="/2017/12/22/%E6%AF%94%E7%89%B9%E5%B8%81%E8%B5%84%E6%BA%90%E6%94%B6%E9%9B%86/"
+           data-tag="数字货币"
+           data-author="" >
+            <span class="post-title" title="比特币资源收集">比特币资源收集</span>
+            <span class="post-date" title="2017-12-22 23:25:00">2017/12/22</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2017/12/05/jupyter%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/"
+           data-tag="jupyter"
+           data-author="" >
+            <span class="post-title" title="jupyter性能分析工具">jupyter性能分析工具</span>
+            <span class="post-date" title="2017-12-05 12:18:00">2017/12/05</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2017/12/03/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE+osmc%E6%90%AD%E5%BB%BA%E5%A4%9A%E5%AA%92%E4%BD%93%E7%8E%AF%E5%A2%83/"
+           data-tag="树莓派,kodi"
+           data-author="" >
+            <span class="post-title" title="使用树莓派+kodi搭建多媒体环境">使用树莓派+kodi搭建多媒体环境</span>
+            <span class="post-date" title="2017-12-03 14:26:00">2017/12/03</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2017/11/30/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86-%E6%B8%85%E6%B4%97%E8%BD%AC%E6%8D%A2/"
+           data-tag="数据清洗"
+           data-author="" >
+            <span class="post-title" title="数据预处理-清洗转换">数据预处理-清洗转换</span>
+            <span class="post-date" title="2017-11-30 15:39:00">2017/11/30</span>
+        </a>
+        
+        <a  class="金融 "
+           href="/2017/11/24/%E6%B7%B1%E5%9C%B3%E5%B8%82%E4%BB%B7%E5%A7%94%E6%89%98%E7%9A%84%E7%B1%BB%E5%9E%8B/"
+           data-tag="期货"
+           data-author="" >
+            <span class="post-title" title="深圳市价委托的类型">深圳市价委托的类型</span>
+            <span class="post-date" title="2017-11-24 09:29:00">2017/11/24</span>
+        </a>
+        
+        <a  class="量化交易系统 "
+           href="/2017/11/06/Tradex%E7%AC%94%E8%AE%B0/"
+           data-tag="TradeX"
+           data-author="" >
+            <span class="post-title" title="Tradex笔记">Tradex笔记</span>
+            <span class="post-date" title="2017-11-06 09:29:00">2017/11/06</span>
+        </a>
+        
+        <a  class="金融 "
+           href="/2017/11/06/%E6%9C%9F%E8%B4%A7%E5%88%86%E6%9E%90%E4%B8%8E%E4%BA%A4%E6%98%93%E5%85%A5%E9%97%A8%20live%20%E7%AC%94%E8%AE%B0/"
+           data-tag="期货"
+           data-author="" >
+            <span class="post-title" title="期货分析与交易入门 live 笔记">期货分析与交易入门 live 笔记</span>
+            <span class="post-date" title="2017-11-06 09:29:00">2017/11/06</span>
+        </a>
+        
+        <a  class="python "
+           href="/2017/10/27/python%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85pyc%E8%84%9A%E6%9C%AC/"
+           data-tag="pyc"
+           data-author="" >
+            <span class="post-title" title="python编译打包pyc脚本">python编译打包pyc脚本</span>
+            <span class="post-date" title="2017-10-27 12:18:00">2017/10/27</span>
+        </a>
+        
+        <a  class="python "
+           href="/2017/10/23/2017-10-23/"
+           data-tag="jupyter"
+           data-author="" >
+            <span class="post-title" title="jupyter-notebook启动报错">jupyter-notebook启动报错</span>
+            <span class="post-date" title="2017-10-23 10:32:00">2017/10/23</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2017/09/22/linux%E7%94%A8%E6%88%B7%E8%BF%9B%E7%A8%8B%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E8%A2%AB%E7%B3%BB%E7%BB%9Fkill%E6%8E%89%E4%BA%86/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="linux用户进程执行过程被系统kill掉了">linux用户进程执行过程被系统kill掉了</span>
+            <span class="post-date" title="2017-09-22 15:16:00">2017/09/22</span>
+        </a>
+        
+        <a  class="交易策略 "
+           href="/2017/09/21/2017-09-21/"
+           data-tag="cta"
+           data-author="" >
+            <span class="post-title" title="CTA策略(Commodity Trading Advisor Strategy)">CTA策略(Commodity Trading Advisor Strategy)</span>
+            <span class="post-date" title="2017-09-21 09:27:00">2017/09/21</span>
+        </a>
+        
+        <a  class="交易策略 "
+           href="/2017/09/06/ETF%E5%A5%97%E5%88%A9/"
+           data-tag="etf"
+           data-author="" >
+            <span class="post-title" title="ETF套利(ETF’s Arbitrage)">ETF套利(ETF’s Arbitrage)</span>
+            <span class="post-date" title="2017-09-06 17:31:00">2017/09/06</span>
+        </a>
+        
+        <a  class="量化交易系统 "
+           href="/2017/08/28/2017-08-28/"
+           data-tag="pb"
+           data-author="" >
+            <span class="post-title" title="PB系统介绍">PB系统介绍</span>
+            <span class="post-date" title="2017-08-28 10:00:00">2017/08/28</span>
+        </a>
+        
+        <a  class="金融 "
+           href="/2017/08/24/leve1%E5%92%8Clevel2%20%E8%A7%A3%E9%87%8A/"
+           data-tag="level2,order book,level1"
+           data-author="" >
+            <span class="post-title" title="leve1、level2 解释">leve1、level2 解释</span>
+            <span class="post-date" title="2017-08-24 16:36:21">2017/08/24</span>
+        </a>
+        
+        <a  class="量化交易系统 "
+           href="/2017/08/24/%E8%BF%85%E6%8A%95%E4%BA%A4%E6%98%93%E7%BB%88%E7%AB%AF/"
+           data-tag="level2,order book,level1"
+           data-author="" >
+            <span class="post-title" title="迅投交易终端">迅投交易终端</span>
+            <span class="post-date" title="2017-08-24 16:36:21">2017/08/24</span>
+        </a>
+        
+        <a  class=""
+           href="/2017/08/23/jupyter%E4%BD%BF%E7%94%A8pyspark%E6%95%99%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="jupyter使用pyspark教程">jupyter使用pyspark教程</span>
+            <span class="post-date" title="2017-08-23 14:24:21">2017/08/23</span>
+        </a>
+        
+        <a  class="python "
+           href="/2017/08/19/anaconda%E6%B7%BB%E5%8A%A0%E7%AC%AC%E4%B8%89%E6%96%B9%E6%BA%90/"
+           data-tag="Anaconda"
+           data-author="" >
+            <span class="post-title" title="anaconda添加第三方源">anaconda添加第三方源</span>
+            <span class="post-date" title="2017-08-19 15:42:36">2017/08/19</span>
+        </a>
+        
+        <a  class="其他 "
+           href="/2017/08/18/10%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2/"
+           data-tag="hexo,github"
+           data-author="" >
+            <span class="post-title" title="10分钟搭建github博客">10分钟搭建github博客</span>
+            <span class="post-date" title="2017-08-18 10:16:44">2017/08/18</span>
+        </a>
+        
+        <a  class="金融 "
+           href="/2017/08/18/%E9%87%91%E8%9E%8D%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="金融名词解释（持续更新）">金融名词解释（持续更新）</span>
+            <span class="post-date" title="2017-08-18 09:02:57">2017/08/18</span>
+        </a>
+        
+        <a  class="python "
+           href="/2017/08/17/python%E8%A3%85pymssql%E6%97%B6%E9%81%87%E5%88%B0error-command-gcc-failed-with-exit-status-1/"
+           data-tag="pip,pymssql"
+           data-author="" >
+            <span class="post-title" title="python装pymssql时遇到error: command &#39;gcc&#39; failed with exit status 1">python装pymssql时遇到error: command &#39;gcc&#39; failed with exit status 1</span>
+            <span class="post-date" title="2017-08-17 16:15:54">2017/08/17</span>
+        </a>
+        
+        <a  class="系统运维 "
+           href="/2017/08/14/docker-grafana-influxdb-telegraf%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/"
+           data-tag="Grafana,Docker,Influxdb,Telegraf"
+           data-author="" >
+            <span class="post-title" title="Docker+Grafana+Influxdb+Telegraf安装部署">Docker+Grafana+Influxdb+Telegraf安装部署</span>
+            <span class="post-date" title="2017-08-14 23:53:13">2017/08/14</span>
+        </a>
+        
+        <a  class="python "
+           href="/2017/08/13/%E6%88%91%E7%9A%84jupyter%E6%8F%92%E4%BB%B6%E5%88%97%E8%A1%A8/"
+           data-tag="jupyer"
+           data-author="" >
+            <span class="post-title" title="我的jupyter插件列表">我的jupyter插件列表</span>
+            <span class="post-date" title="2017-08-13 16:25:19">2017/08/13</span>
+        </a>
+        
+        <a  class="python "
+           href="/2017/08/10/pandas%E4%BD%BF%E7%94%A8pivot%E6%97%B6%E9%81%87%E5%88%B0Index-contains-duplicate-entries-cannot-reshape/"
+           data-tag="pandas"
+           data-author="" >
+            <span class="post-title" title="pandas使用pivot时遇到Index contains duplicate entries, cannot reshape">pandas使用pivot时遇到Index contains duplicate entries, cannot reshape</span>
+            <span class="post-date" title="2017-08-10 16:54:53">2017/08/10</span>
+        </a>
+        
+        <a  class="python "
+           href="/2017/08/09/jupyter%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"
+           data-tag="jupyter"
+           data-author="" >
+            <span class="post-title" title="使用https方式连接jupyter">使用https方式连接jupyter</span>
+            <span class="post-date" title="2017-08-09 09:15:37">2017/08/09</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-2019-07-16 金融信息交换协议(FIX)介绍" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">FIX协议介绍与QuickFIX使用入门(上)</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="量化交易系统">量化交易系统</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color4">FIX</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2020-02-09 01:11:25'>2019-07-16 16:06</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:3.4k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FIX通信模型"><span class="toc-text">FIX通信模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基本概念"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FIX-Connection"><span class="toc-text">FIX Connection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FIX-Session"><span class="toc-text">FIX Session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sequence-Num"><span class="toc-text">Sequence Num</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#心跳-Heartbeats"><span class="toc-text">心跳 Heartbeats</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ordered-Message-Processing"><span class="toc-text">Ordered Message Processing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Possible-Duplicate"><span class="toc-text">Possible Duplicate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Possible-Resends"><span class="toc-text">Possible Resends</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据完整校验-Data-Integrity"><span class="toc-text">数据完整校验 Data Integrity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#消息确认-Message-Acknowledgements"><span class="toc-text">消息确认 Message Acknowledgements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加密-Encryption"><span class="toc-text">加密 Encryption</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义域"><span class="toc-text">自定义域</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#消息类型"><span class="toc-text">消息类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-管理信息"><span class="toc-text">1. 管理信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-应用消息"><span class="toc-text">2. 应用消息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#消息格式"><span class="toc-text">消息格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型"><span class="toc-text">数据类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>FIX协议是由国际FIX协会组织提供的一个开放式协议，目的是推动国际贸易电子化的进程，在各类参与者之间，包括投资经理、经纪人，买方、卖方建立起实时的电子化通讯协议。</p>
+<p><strong>FIX协议的目标是把各类证券金融业务需求流程格式化，使之成为一个个可用计算机语言描述的功能流程，并在每个业务功能接口上统一交换格式，方便各个功能模块的连接。</strong></p>
+<p>FIX协议各个版本对股票、期权和期货的支持程度，目前市场上使用FIX4.4的较多。</p>
+<p><img src="/Users/eryk/Desktop/20190716213709.png" alt=""></p>
+<h1 id="FIX通信模型"><a href="#FIX通信模型" class="headerlink" title="FIX通信模型"></a>FIX通信模型</h1><ul>
+<li>Initiator：发起者，建立通信连路，通过发送初始Logon消息发起会话的参与方。  </li>
+<li>Acceptor：接收方 FIX会话的接收方。负责执行第一层次的认证和通过传输Logon消息的确认正式声明连接请求被接受。 </li>
+<li>原则：先发起者为Initiator ，接受者为Acceptor 。  </li>
+<li>标准模式以网关为Acceptor，客户端为Initiator做为常用模式。</li>
+</ul>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h3 id="FIX-Connection"><a href="#FIX-Connection" class="headerlink" title="FIX Connection"></a>FIX Connection</h3><p>FIX连接 由3部分组成：logon登录，message exchange消息传输，和logout注销.</p>
+<h3 id="FIX-Session"><a href="#FIX-Session" class="headerlink" title="FIX Session"></a>FIX Session</h3><p>FIX会话由一个或多个FIX Connection FIX连接组成。一个FIX会话可以有多次登录。一个FIX会话定义为一个在连接双方间的的带有连续序列号的有序消息双向传输流。 单个FIX会话能够跨越多个连续（不是并行的）的物理连接。在一个维持的，单独的FIX会话中，参与方能够多次连接和断开连接。连接的参与方必须根据单个系统及时间区域需求，公共协商会话的开始和结束。无论什么原因，重新设置接收和发送序列号为1，意味着一个新的FIX会话的开始。</p>
+<p>建议一个新的FIX会话在每24小时期间建立一次。可以维持24小时的连接和通过设置在Logon消息中的ResetSeqNumFlag建立一套新的序列号。</p>
+<h3 id="Sequence-Num"><a href="#Sequence-Num" class="headerlink" title="Sequence Num"></a>Sequence Num</h3><p>所有的FIX消息都由一个唯一的序列号进行标示。序列号在每一个FIX会话开始时被初始化为1，并在整个会话期间递增。监控序列号可以使会话参与者识别和处理丢失的消息，当在一个FIX会话中重新连接时能够优雅地进行应用程序同步。每个会话将建立一组互不依赖的接受和发送序列。会话参与者将维护一个赋予发送消息的序列和一个监控接受消息的消息块间隙序列号。</p>
+<h4 id="心跳-Heartbeats"><a href="#心跳-Heartbeats" class="headerlink" title="心跳 Heartbeats"></a>心跳 Heartbeats</h4><p>在消息交互期间，FIX应用程序将周期性产生Heartbeat心跳消息。该心跳消息可以监控通信链路状态及识别接受序列号间隙。发送Heartbeat的周期间隔由会话发起者使用在Logon消息中HeartBtInt域进行定义。Heartbeat心跳消息的时间间隔应当在每一个消息发送后复位，即发送一个消息后，在间隔给定的时间内无其它消息发送则发送一个Heartbeat心跳消息。HeartBtInt的值应当被会话双方认同，由会话发起方定义并由会话接收者通过Logon消息进行确认。同一个HeartBtInt被会话双方——登录的发起者和登录的接受者共同使用。</p>
+<h3 id="Ordered-Message-Processing"><a href="#Ordered-Message-Processing" class="headerlink" title="Ordered Message Processing"></a>Ordered Message Processing</h3><p>FIX协议假设消息在所有参与者间完全按照顺序进行传输。协议的实现者在设计消息间隙填充处理时应当考虑这个假设。有两种方式处理消息间隙。每一个都要求所有的消息时最后一个接收消息的后续消息或在维护一个所有新消息有序序列时，请求特定丢失消息。比如：接收方丢失了5个消息块中的第二个，程序能忽略第3到第5个消息，产生一个对消息2到消息5的重传请求，或者从消息2到无穷大消息编号的重传请求。另外的方式是暂时存储消息3到消息5，仅要求重传消息2。对于这两种方式，消息3到消息5都不应该先于消息2进行处理。</p>
+<h3 id="Possible-Duplicate"><a href="#Possible-Duplicate" class="headerlink" title="Possible Duplicate"></a>Possible Duplicate</h3><p>当一个FIX引擎对一个消息是否成功地被指定的目标接收或者当对一个重传请求进行响应时，将会产生一个可能的消息复制。这个消息将用同样的序列进行重新传送，此时在头部的PossDupFlag域将会被设置为‘Y’。接收端程序负责处理该重发消息，可以作为一个新消息进行处理，或者根据实际情况忽略该消息。所有重传请求的响应消息都将包含其值为‘Y’的PossDupFlag域。没有PossDupFlag域或者PossDupFlag域为‘N’的消息应被当作初始传送消息。注意，一个PossDupFlag值为‘Y’的重传消息需要重新计算其CheckSum值。一个可能的复制消息里发生变化的域包括：CheckSum，OrigSendingTime，SendingTime，BodyLength和PossDupFlag。加密相关域（SecureDataLen和SecureData）也必须被重新构造。</p>
+<h3 id="Possible-Resends"><a href="#Possible-Resends" class="headerlink" title="Possible Resends"></a>Possible Resends</h3><p>模糊的应用层消息可能随同PossResend标志被重传。当一个指令没有在规定时间长度内进行确认或者终端用户挂起该指令没有进行传送时这种方法非常有用。接收程序必须识别此标志，并质疑其内部域以确定该指令是否在之前已经被接收过。注意，可能的重传消息将包含与原始消息相同的数据体，但包含PossResend标志和一个新的序列号。此外，CheckSum和与加密相关的域值需要重构。</p>
+<h4 id="数据完整校验-Data-Integrity"><a href="#数据完整校验-Data-Integrity" class="headerlink" title="数据完整校验 Data Integrity"></a>数据完整校验 Data Integrity</h4><p>消息数据内容的完整性可以参用两种方式来验证：消息长度和效验码检查。程序通过计算BodyLength域到（并包含）在CheckSum标记（“10=”）后的分界符的字符数与在BodyLength中标示的消息长度进行比较来完成完整性效验。ChekSum完整性检查，通过计算从域“8=”中“8”开始，包括紧跟在CheckSum标记域的分界符<SOH>每个字符的2进制和同CheckSum进行比较得到。</p>
+<h4 id="消息确认-Message-Acknowledgements"><a href="#消息确认-Message-Acknowledgements" class="headerlink" title="消息确认 Message Acknowledgements"></a>消息确认 Message Acknowledgements</h4><p>消息数据内容的完整性可以参用两种方式来验证：消息长度和效验码检查。程序通过计算BodyLength域到（并包含）在CheckSum标记（“10=”）后的分界符的字符数与在BodyLength中标示的消息长度进行比较来完成完整性效验。ChekSum完整性检查，通过计算从域“8=”中“8”开始，包括紧跟在CheckSum标记域的分界符<SOH>每个字符的2进制和同CheckSum进行比较得到。</p>
+<h3 id="加密-Encryption"><a href="#加密-Encryption" class="headerlink" title="加密 Encryption"></a>加密 Encryption</h3><p>敏感数据在公众网络上的传输建议采用数据加密技术来掩饰应用消息。<br>加密算法由连接双方共同协商。<br>一个消息的任何一个域可以被加密并放在SecureData域中。然而，一些显示的标志域必须采用明文进行传输。为确保完整性，明文域可以在SecureData域中重复。<br>当使用加密时，建议但不是必须，所有的消息体都进行加密。如果一个消息中的重复组数据中的部分数据要加密，这个重复组必须全部进行加密。<br>预先协商好的加密算法在Logon消息中进行声明。</p>
+<h4 id="自定义域"><a href="#自定义域" class="headerlink" title="自定义域"></a>自定义域</h4><ul>
+<li>FIX为给用户提供最大的灵活性，FIX协议允许用户自定义域。这些域在认同的参与者之间实现、应用，并且应注意避免冲突。</li>
+<li>Tag数在5000 到9999保留用于用户自定义域。这些tag值用于企业联盟的信息交换。可以通过FIX网站进行注册。</li>
+<li>10000以上保留用于单一企业内部使用。不用注册。</li>
+</ul>
+<h1 id="消息类型"><a href="#消息类型" class="headerlink" title="消息类型"></a>消息类型</h1><p>初始化过程之后，正常的消息交换将开始。所有有效的消息格式的细节将在“Adminitrative Message ”管理消息和“Application Messages”应用消息部分介绍。</p>
+<h3 id="1-管理信息"><a href="#1-管理信息" class="headerlink" title="1. 管理信息"></a>1. 管理信息</h3><p>它是为了信息交换过程更加顺畅一致而使用的控制,包括:登录、心跳、检验请求、重新发送请求、拒绝(交换过程)顺序重设及注销等。</p>
+<h3 id="2-应用消息"><a href="#2-应用消息" class="headerlink" title="2. 应用消息"></a>2. 应用消息</h3><p>也就是交易的数据,它包括:</p>
+<ul>
+<li>公告 宣布已完成的交易信息。</li>
+<li>重要提示 告知由经纪人买卖的证券是由私人股份有限公司所有,还是由代理持有,以及持有量。</li>
+<li>消息 是经纪人和机构之间传送的一般自由格式信息,带有识别信息紧急性和商号主题词分类标志。</li>
+<li>电子邮件 其格式和用途与消息信息相同,但更倾向于双方非公开的用途。</li>
+<li>报价请求 有些市场,要求经纪人在每次订单前提出报价。</li>
+<li>报价与多宗报价 回应报价请求的信息,并用于发表主动的报价。</li>
+<li>请求对多宗报价的确认 使用报价回应水平标记,有选择地支持对报价的确认。</li>
+<li>报价撤销 报价发起人用于撤销报价。</li>
+<li>报价状况请求 机构用来生成执行报告。</li>
+<li>报价确认 针对报价、多宗报价、报价撤销和报价请求,作出回应。</li>
+<li>行情数据请求 通过此请求得到所指定的证券和外汇交易报价的行情数据。</li>
+<li>行情数据—快照/完全刷新 该信息用于发送双方的订单登记簿、报价清单、交易清单、指数值、开盘价、收盘价、成交单价、最高价、最低价和变动加权平均价等。</li>
+<li>行情数据—添加刷新 用于添加刷新请求。</li>
+<li>行情数据请求拒绝 用于经纪人因交易或技术上的原因不承兑行情数据请求的情况。</li>
+<li>证券定义请求 用于某一指定证券与第二方交易。</li>
+<li>证券定义 接受或拒绝证券定义信息中请求的证券,发回证券及类型清单。</li>
+<li>证券状况请求 用于提出有关证券状况的请求。</li>
+<li>证券状况 提供有关证券状况改变的报告。</li>
+<li>交易盘状况请求 请求有关市面状况的信息。</li>
+<li>交易盘状况 提供有关市场状况的信息。</li>
+<li>新订单—单一 机构向经纪人提供有关证券或外汇的订单。</li>
+<li>执行报告 确认收到订单或订单改变信息,传递订单状况或订单成交信息,报告交易的费用。</li>
+<li>未知交易 通知交易方,收到的订单已被执行。</li>
+<li>订单撤销/替换请求 改变订单的参数。</li>
+<li>订单撤销拒绝 是经纪人在不能承兑所收到的撤销请求信息时发出的信息。</li>
+<li>订单状况请求 机构要求经纪人生成并发挥有关订单状况的信息。</li>
+<li>划拨 指定如何将一个订单或一组订单细分为一个或多个账户。</li>
+<li>划拨确认 确认收到机构发送的划拨信息及状态。</li>
+<li>结算指令 经纪人或机构交易结算的指令。</li>
+<li>出价请求 在“非公开”市场与“公开”市场,因市场规则不同,该信息的用法也不同</li>
+<li>出价回应 因两个市场规则不同,有不同的用法。</li>
+<li>新订单—清单 因两种市场规则的不同而不同。</li>
+<li>敲定价 交换本金交易的敲定价。</li>
+<li>状况清单 卖方以主动方式发送回应状况清单请求信息。</li>
+<li>清单执行 机构用于指示经纪人开始执行已被提交的证券订单信息。</li>
+<li>清单撤销执请求 用于机构希望在执行交易盘之前或之中,撤销已被提交的证券订单消息。</li>
+<li>状况清单请求 用于机构指示经纪人生成有关某一状况清单的信息。</li>
+<li>清单订单信息的分解 使用与其它FIX信息相同的方法,支持程序交易中的信息分解。</li>
+<li>交易信息拒绝 拒绝因遵循了交易盘规则而不能以其它方式进行拒绝的应用层面的信息。</li>
+</ul>
+<h1 id="消息格式"><a href="#消息格式" class="headerlink" title="消息格式"></a>消息格式</h1><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>整数int,浮点数float,单个字符char,布尔Boolean,字符串String,数据data</p>
+<p>每条FIX信息都是由一系列带有〈标记〉=〈值〉的域组成。每个标记代表不同的含义,可以是信息的类型,目标商务名称,证券买入价等。FIX协议规定了0～5000的标记含义（fix信息字典）,5000以上可由使用者自己定义,以适用特定的应用。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.fix-events.com/Archives/asianfix2008/cn/pdf/AlanDean_Chi.pdf" target="_blank" rel="noopener">https://www.fix-events.com/Archives/asianfix2008/cn/pdf/AlanDean_Chi.pdf</a></p>
+<p><a href="https://l297.oschina.io/15034517662312.html" target="_blank" rel="noopener">https://l297.oschina.io/15034517662312.html</a></p>
+<p><a href="https://juejin.im/post/5bf7c4ae51882528c4467649" target="_blank" rel="noopener">https://juejin.im/post/5bf7c4ae51882528c4467649</a></p>
+<p><a href="https://www.huiyep.com/knowledge/155062.html" target="_blank" rel="noopener">https://www.huiyep.com/knowledge/155062.html</a></p>
+<p><a href="https://github.com/quickfix/quickfix/blob/master/examples/executor/python/executor.py" target="_blank" rel="noopener">https://github.com/quickfix/quickfix/blob/master/examples/executor/python/executor.py</a></p>
+<p>我的微信公众号：pyquant</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 xuqi86@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>FIX协议介绍与QuickFIX使用入门(上)</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">3.4k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="eryk">eryk</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-07-16, 16:06:00</p>
+    <p><span class="copy-title">最后更新:</span>2020-02-09, 01:11:25</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/07/16/2019-07-16%20%E9%87%91%E8%9E%8D%E4%BF%A1%E6%81%AF%E4%BA%A4%E6%8D%A2%E5%8D%8F%E8%AE%AE(FIX)%E4%BB%8B%E7%BB%8D/" title="FIX协议介绍与QuickFIX使用入门(上)">http://xuqi365.com/2019/07/16/2019-07-16%20%E9%87%91%E8%9E%8D%E4%BF%A1%E6%81%AF%E4%BA%A4%E6%8D%A2%E5%8D%8F%E8%AE%AE(FIX)%E4%BB%8B%E7%BB%8D/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'fd2b27d8a4e8b21f1c92',
+            clientSecret: '93b8e6bebc205e209ff395b3ab69605290a90f1f',
+            repo: 'eryk.github.io',
+            owner: 'eryk',
+            admin: ['eryk'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2017-2020 eryk</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#hexo','#github','#pb','#cta','#jupyter','#笔记','#ssh','#期货','#retry','#exception','#uft','#ftp','#docker','#virtualenv','#Queue','#Pipe','#pyfolio','#pandas','#hdf5','#otc','#FIX','#读书笔记','#TaskFlow','#cython','#etf','#合约','#okex','#Anaconda','#Grafana','#Docker','#Influxdb','#Telegraf','#gitlab','#ci','#TradeX','#ctypes','#level2','#order book','#level1','#linux','#pip','#pymssql','#pyc','#多因子','#order','#Pandas','#树莓派','#kodi','#systemd','#数据清洗','#jupyer','#挖矿','#数字货币','#tick',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    .post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>
