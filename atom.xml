@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Python量化交易实战</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://xuqi365.com/"/>
+  <updated>2020-02-09T07:26:19.004Z</updated>
+  <id>http://xuqi365.com/</id>
+  
+  <author>
+    <name>eryk</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OpenStack公共组件TaskFlow介绍</title>
+    <link href="http://xuqi365.com/2020/02/08/2020-02-08%20OpenStack%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6TaskFlow%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://xuqi365.com/2020/02/08/2020-02-08%20OpenStack%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6TaskFlow%E4%BB%8B%E7%BB%8D/</id>
+    <published>2020-02-08T15:13:00.000Z</published>
+    <updated>2020-02-09T07:26:19.004Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;TaskFlow
+        
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://xuqi365.com/categories/python/"/>
+    
+    
+      <category term="TaskFlow" scheme="http://xuqi365.com/tags/TaskFlow/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>cython使用入门</title>
+    <link href="http://xuqi365.com/2019/12/11/2019-12-11%20cython%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/"/>
+    <id>http://xuqi365.com/2019/12/11/2019-12-11%20cython%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/</id>
+    <published>2019-12-11T02:20:00.000Z</published>
+    <updated>2020-02-08T17:11:25.958Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;最近工作上遇到一个问题，某券商提供的文件单接口需要用其提供的c语言工具调用，由于我们的交易框架是python开发的，所以需要用到cython来调用c开发的工具包，学习了cython的官方入门教程顺便记录如下。&lt;/p&gt;
+&lt;h3 id=&quot;cython介绍&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="量化交易系统" scheme="http://xuqi365.com/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="cython" scheme="http://xuqi365.com/tags/cython/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python调用C/C++入门</title>
+    <link href="http://xuqi365.com/2019/08/23/2019-08-23%20Python%E8%B0%83%E7%94%A8C:C++%E5%85%A5%E9%97%A8/"/>
+    <id>http://xuqi365.com/2019/08/23/2019-08-23%20Python%E8%B0%83%E7%94%A8C:C++%E5%85%A5%E9%97%A8/</id>
+    <published>2019-08-23T06:19:00.000Z</published>
+    <updated>2020-02-08T17:11:25.958Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1. 背景&quot;&gt;&lt;/a&gt;1.
+        
+      
+    
+    </summary>
+    
+    
+      <category term="量化交易系统" scheme="http://xuqi365.com/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="ctypes" scheme="http://xuqi365.com/tags/ctypes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FIX协议介绍与QuickFIX使用入门(上)</title>
+    <link href="http://xuqi365.com/2019/07/16/2019-07-16%20%E9%87%91%E8%9E%8D%E4%BF%A1%E6%81%AF%E4%BA%A4%E6%8D%A2%E5%8D%8F%E8%AE%AE(FIX)%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://xuqi365.com/2019/07/16/2019-07-16%20%E9%87%91%E8%9E%8D%E4%BF%A1%E6%81%AF%E4%BA%A4%E6%8D%A2%E5%8D%8F%E8%AE%AE(FIX)%E4%BB%8B%E7%BB%8D/</id>
+    <published>2019-07-16T08:06:00.000Z</published>
+    <updated>2020-02-08T17:11:25.957Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="量化交易系统" scheme="http://xuqi365.com/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="FIX" scheme="http://xuqi365.com/tags/FIX/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>读《期货市场计算机分析指南》笔记</title>
+    <link href="http://xuqi365.com/2019/06/19/2019-06-19%20%E8%AF%BB%E3%80%8A%E6%9C%9F%E8%B4%A7%E5%B8%82%E5%9C%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%88%86%E6%9E%90%E6%8C%87%E5%8D%97%E3%80%8B%E7%AC%94%E8%AE%B0/"/>
+    <id>http://xuqi365.com/2019/06/19/2019-06-19%20%E8%AF%BB%E3%80%8A%E6%9C%9F%E8%B4%A7%E5%B8%82%E5%9C%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%88%86%E6%9E%90%E6%8C%87%E5%8D%97%E3%80%8B%E7%AC%94%E8%AE%B0/</id>
+    <published>2019-06-19T01:42:00.000Z</published>
+    <updated>2020-02-08T17:11:25.956Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;第一章-系统的建立&quot;&gt;&lt;a href=&quot;#第一章-系统的建立&quot; class=&quot;headerlink&quot; title=&quot;第一章 系统的建立&quot;&gt;&lt;/a&gt;第一章 系统的建立&lt;/h1&gt;&lt;h2 id=&quot;1-鉴定可交易的市场&quot;&gt;&lt;a href=&quot;#1-鉴定可交易的市场&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="读书笔记" scheme="http://xuqi365.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="读书笔记" scheme="http://xuqi365.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记一次坑爹的OTC交易经历</title>
+    <link href="http://xuqi365.com/2019/06/13/2019-06-13%20%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9D%91%E7%88%B9%E7%9A%84OTC%E4%BA%A4%E6%98%93%E7%BB%8F%E5%8E%86/"/>
+    <id>http://xuqi365.com/2019/06/13/2019-06-13%20%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9D%91%E7%88%B9%E7%9A%84OTC%E4%BA%A4%E6%98%93%E7%BB%8F%E5%8E%86/</id>
+    <published>2019-06-13T08:42:00.000Z</published>
+    <updated>2020-02-08T17:11:25.956Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;6月11号在火币OTC上卖了一点BTC给朋友还钱，结果今天朋友告诉我他的银行卡被冻结了，我看了下自己的银行卡，发现我的银行卡也被冻结了，只能转入不能转出。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/Users/eryk/Desktop/20190613164831.png&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="其他" scheme="http://xuqi365.com/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    
+      <category term="otc" scheme="http://xuqi365.com/tags/otc/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>将DataFrame内存大小减少约65％</title>
+    <link href="http://xuqi365.com/2019/06/05/2019-06-05%20%E5%B0%86DataFrame%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E5%87%8F%E5%B0%91%E7%BA%A665%EF%BC%85/"/>
+    <id>http://xuqi365.com/2019/06/05/2019-06-05%20%E5%B0%86DataFrame%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E5%87%8F%E5%B0%91%E7%BA%A665%EF%BC%85/</id>
+    <published>2019-06-05T02:48:00.000Z</published>
+    <updated>2020-02-08T17:11:25.955Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;这篇文章原文出自kaggle，我大致翻译翻一下，文中给出了reduce_mem_usage方法可以用来自动缩减dataframe占用空间&lt;/p&gt;
+&lt;p&gt;这篇notebook展示了通过使用更合理的数据类型来减少dataframe的内存使用量&lt;/p&gt;
+&lt;p&gt;方法如下：&lt;/p&gt;
+
+        
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://xuqi365.com/categories/python/"/>
+    
+    
+      <category term="pandas" scheme="http://xuqi365.com/tags/pandas/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Pandas hdf5使用指南翻译</title>
+    <link href="http://xuqi365.com/2019/05/08/2019-05-08%20Pandas%20hdf5%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E7%BF%BB%E8%AF%91/"/>
+    <id>http://xuqi365.com/2019/05/08/2019-05-08%20Pandas%20hdf5%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E7%BF%BB%E8%AF%91/</id>
+    <published>2019-05-08T13:51:00.000Z</published>
+    <updated>2020-02-08T17:11:25.955Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;读写API&quot;&gt;&lt;a href=&quot;#读写API&quot; class=&quot;headerlink&quot; title=&quot;读写API&quot;&gt;&lt;/a&gt;读写API&lt;/h1&gt;&lt;p&gt;HDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level
+        
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://xuqi365.com/categories/python/"/>
+    
+    
+      <category term="pandas" scheme="http://xuqi365.com/tags/pandas/"/>
+    
+      <category term="hdf5" scheme="http://xuqi365.com/tags/hdf5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用pyfolio对策略收益进行分析</title>
+    <link href="http://xuqi365.com/2019/04/30/2019-04-30%20%E4%BD%BF%E7%94%A8pyfolio%E5%AF%B9%E7%AD%96%E7%95%A5%E6%94%B6%E7%9B%8A%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90/"/>
+    <id>http://xuqi365.com/2019/04/30/2019-04-30%20%E4%BD%BF%E7%94%A8pyfolio%E5%AF%B9%E7%AD%96%E7%95%A5%E6%94%B6%E7%9B%8A%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90/</id>
+    <published>2019-04-30T05:14:00.000Z</published>
+    <updated>2020-02-08T17:11:25.954Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;之前写过一篇文章实现了一个简单的双均线策略，传送门：&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="策略研究" scheme="http://xuqi365.com/categories/%E7%AD%96%E7%95%A5%E7%A0%94%E7%A9%B6/"/>
+    
+    
+      <category term="pyfolio" scheme="http://xuqi365.com/tags/pyfolio/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>处理linux系统僵尸进程</title>
+    <link href="http://xuqi365.com/2019/04/26/2019-04-26%20%E5%A4%84%E7%90%86linux%E7%B3%BB%E7%BB%9F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B/"/>
+    <id>http://xuqi365.com/2019/04/26/2019-04-26%20%E5%A4%84%E7%90%86linux%E7%B3%BB%E7%BB%9F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B/</id>
+    <published>2019-04-26T07:36:00.000Z</published>
+    <updated>2020-02-08T17:11:25.953Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;最近在使用jupyter运行多进程程序时，发现重启jupyter
+        
+      
+    
+    </summary>
+    
+    
+      <category term="系统运维" scheme="http://xuqi365.com/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="Queue" scheme="http://xuqi365.com/tags/Queue/"/>
+    
+      <category term="Pipe" scheme="http://xuqi365.com/tags/Pipe/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Pandas开发一个均线策略</title>
+    <link href="http://xuqi365.com/2019/04/24/%E4%BD%BF%E7%94%A8Pandas%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E5%9D%87%E7%BA%BF%E7%AD%96%E7%95%A5/"/>
+    <id>http://xuqi365.com/2019/04/24/%E4%BD%BF%E7%94%A8Pandas%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E5%9D%87%E7%BA%BF%E7%AD%96%E7%95%A5/</id>
+    <published>2019-04-24T12:47:00.000Z</published>
+    <updated>2020-02-08T17:11:26.044Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="策略研究" scheme="http://xuqi365.com/categories/%E7%AD%96%E7%95%A5%E7%A0%94%E7%A9%B6/"/>
+    
+    
+      <category term="Pandas" scheme="http://xuqi365.com/tags/Pandas/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Multiprocessing Pipe和Queue性能测试</title>
+    <link href="http://xuqi365.com/2019/04/22/2019-04-22%20Multiprocessing%20Pipe%E5%92%8CQueue%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+    <id>http://xuqi365.com/2019/04/22/2019-04-22%20Multiprocessing%20Pipe%E5%92%8CQueue%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</id>
+    <published>2019-04-22T02:47:00.000Z</published>
+    <updated>2020-02-08T17:11:25.953Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;背景&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://xuqi365.com/categories/python/"/>
+    
+    
+      <category term="Queue" scheme="http://xuqi365.com/tags/Queue/"/>
+    
+      <category term="Pipe" scheme="http://xuqi365.com/tags/Pipe/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>virtualenv 使用教程</title>
+    <link href="http://xuqi365.com/2019/04/19/2019-04-19/"/>
+    <id>http://xuqi365.com/2019/04/19/2019-04-19/</id>
+    <published>2019-04-19T08:38:00.000Z</published>
+    <updated>2020-02-08T17:11:25.952Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://xuqi365.com/categories/python/"/>
+    
+    
+      <category term="virtualenv" scheme="http://xuqi365.com/tags/virtualenv/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>创建docker ftp服务器</title>
+    <link href="http://xuqi365.com/2019/03/22/2019-03-22/"/>
+    <id>http://xuqi365.com/2019/03/22/2019-03-22/</id>
+    <published>2019-03-22T07:17:00.000Z</published>
+    <updated>2020-02-08T17:11:25.952Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;使用的docker镜像是
+        
+      
+    
+    </summary>
+    
+    
+      <category term="系统运维" scheme="http://xuqi365.com/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="ftp" scheme="http://xuqi365.com/tags/ftp/"/>
+    
+      <category term="docker" scheme="http://xuqi365.com/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ufw防火墙使用常用命令</title>
+    <link href="http://xuqi365.com/2019/03/15/2019-03-15/"/>
+    <id>http://xuqi365.com/2019/03/15/2019-03-15/</id>
+    <published>2019-03-15T01:38:00.000Z</published>
+    <updated>2020-02-08T17:11:25.951Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;开启-关闭ufw&quot;&gt;&lt;a href=&quot;#开启-关闭ufw&quot; class=&quot;headerlink&quot; title=&quot;开启/关闭ufw&quot;&gt;&lt;/a&gt;开启/关闭ufw&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;ufw enable
+ufw
+        
+      
+    
+    </summary>
+    
+    
+      <category term="系统运维" scheme="http://xuqi365.com/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="uft" scheme="http://xuqi365.com/tags/uft/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python异常处理伴侣 -- tenacity模块使用介绍</title>
+    <link href="http://xuqi365.com/2018/12/19/2018-12-18/"/>
+    <id>http://xuqi365.com/2018/12/19/2018-12-18/</id>
+    <published>2018-12-19T03:15:00.000Z</published>
+    <updated>2020-02-08T17:11:25.951Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://xuqi365.com/categories/python/"/>
+    
+    
+      <category term="retry" scheme="http://xuqi365.com/tags/retry/"/>
+    
+      <category term="exception" scheme="http://xuqi365.com/tags/exception/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决ssh登录ubuntu系统卡顿问题</title>
+    <link href="http://xuqi365.com/2018/12/12/2018-12-12/"/>
+    <id>http://xuqi365.com/2018/12/12/2018-12-12/</id>
+    <published>2018-12-12T02:59:00.000Z</published>
+    <updated>2020-02-08T17:11:25.950Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="系统运维" scheme="http://xuqi365.com/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="ssh" scheme="http://xuqi365.com/tags/ssh/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>股指期货概念介绍</title>
+    <link href="http://xuqi365.com/2018/08/13/2018-08-14/"/>
+    <id>http://xuqi365.com/2018/08/13/2018-08-14/</id>
+    <published>2018-08-13T02:40:00.000Z</published>
+    <updated>2020-02-08T17:11:25.950Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;概念&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="金融" scheme="http://xuqi365.com/categories/%E9%87%91%E8%9E%8D/"/>
+    
+    
+      <category term="期货" scheme="http://xuqi365.com/tags/%E6%9C%9F%E8%B4%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Okex合约交易基本概念介绍</title>
+    <link href="http://xuqi365.com/2018/05/25/Okex%E5%90%88%E7%BA%A6%E4%BA%A4%E6%98%93%E5%85%A5%E9%97%A8/"/>
+    <id>http://xuqi365.com/2018/05/25/Okex%E5%90%88%E7%BA%A6%E4%BA%A4%E6%98%93%E5%85%A5%E9%97%A8/</id>
+    <published>2018-05-25T02:19:00.000Z</published>
+    <updated>2020-02-08T17:11:25.959Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;概念&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="金融" scheme="http://xuqi365.com/categories/%E9%87%91%E8%9E%8D/"/>
+    
+    
+      <category term="期货" scheme="http://xuqi365.com/tags/%E6%9C%9F%E8%B4%A7/"/>
+    
+      <category term="合约" scheme="http://xuqi365.com/tags/%E5%90%88%E7%BA%A6/"/>
+    
+      <category term="okex" scheme="http://xuqi365.com/tags/okex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《如何验证因子有效性》 听课笔记</title>
+    <link href="http://xuqi365.com/2018/05/19/%E3%80%8A%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E5%9B%A0%E5%AD%90%E6%9C%89%E6%95%88%E6%80%A7%E3%80%8B%20%E5%90%AC%E8%AF%BE%E7%AC%94%E8%AE%B0/"/>
+    <id>http://xuqi365.com/2018/05/19/%E3%80%8A%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E5%9B%A0%E5%AD%90%E6%9C%89%E6%95%88%E6%80%A7%E3%80%8B%20%E5%90%AC%E8%AF%BE%E7%AC%94%E8%AE%B0/</id>
+    <published>2018-05-19T03:29:00.000Z</published>
+    <updated>2020-02-08T17:11:26.048Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;一维零投资组合&quot;&gt;&lt;a href=&quot;#一维零投资组合&quot; class=&quot;headerlink&quot; title=&quot;一维零投资组合&quot;&gt;&lt;/a&gt;一维零投资组合&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;images/15267001868391.jpg&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="策略研究" scheme="http://xuqi365.com/categories/%E7%AD%96%E7%95%A5%E7%A0%94%E7%A9%B6/"/>
+    
+    
+      <category term="多因子" scheme="http://xuqi365.com/tags/%E5%A4%9A%E5%9B%A0%E5%AD%90/"/>
+    
+  </entry>
+  
+</feed>
