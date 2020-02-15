@@ -145,6 +145,163 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2020/02/16/2020-02-16%20%E4%BD%BF%E7%94%A8Python%E6%8A%93%E5%8F%96%E5%90%8C%E8%8A%B1%E9%A1%BA%E8%B5%84%E9%87%91%E6%B5%81%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/16/2020-02-16%20%E4%BD%BF%E7%94%A8Python%E6%8A%93%E5%8F%96%E5%90%8C%E8%8A%B1%E9%A1%BA%E8%B5%84%E9%87%91%E6%B5%81%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">使用Python抓取同花顺资金流数据</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-16 01:14:00 / 修改时间：01:40:20" itemprop="dateCreated datePublished" datetime="2020-02-16T01:14:00+08:00">2020-02-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">量化交易系统</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天我们通过一个例子来介绍python爬取数据的一般步骤，用到的工具包括python的经典模块requests和BeautifulSoup，另外结合刚学习的任务流工具TaskFlow来完成代码开发。</p>
+<p>我们先来看一下要爬取的数据，网址是http://data.10jqka.com.cn/funds/gnzjl/，通过chrome的开发者工具分析我们可以比较容易找到后台数据加载网址为</p>
+<blockquote>
+<p><a href="http://data.10jqka.com.cn/funds/gnzjl/field/tradezdf/order/desc/page/%7Bpage_num%7D/ajax/1/free/1/" target="_blank" rel="noopener">http://data.10jqka.com.cn/funds/gnzjl/field/tradezdf/order/desc/page/{page_num}/ajax/1/free/1/</a></p>
+</blockquote>
+<p>其中page_num的位置为要查询第几页的数据，在网页上看到概念一共有6页数据，所以page_num取值为1-6</p>
+<p><img src="/uploads/image-20200216012348100.png" alt="image-20200216012348100"></p>
+<p>在chrome浏览器中输入 <a href="http://data.10jqka.com.cn/funds/gnzjl/field/tradezdf/order/desc/page/1/ajax/1/free/1/%EF%BC%8C%E5%B9%B6%E6%89%93%E5%BC%80chrome%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%EF%BC%8C%E5%9C%A8%E7%BD%91%E9%A1%B5%E6%BA%90%E7%A0%81%E4%B8%AD%E6%89%BE%E5%88%B0%E6%95%B0%E6%8D%AE%E6%89%80%E5%9C%A8table%E6%A0%87%E7%AD%BE%E4%B8%BA" target="_blank" rel="noopener">http://data.10jqka.com.cn/funds/gnzjl/field/tradezdf/order/desc/page/1/ajax/1/free/1/，并打开chrome开发者工具，在网页源码中找到数据所在table标签为</a></p>
+<pre><code class="language-html">&lt;table class=&quot;m-table J-ajax-table&quot;&gt;
+	...
+&lt;/table&gt;
+</code></pre>
+<p>抓取数据的完整源码如下</p>
+<pre><code class="language-python">import time
+
+import requests
+from bs4 import BeautifulSoup
+from taskflow import engines
+from taskflow.patterns import linear_flow
+from taskflow.task import Task
+
+REQUEST_HEADER = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36'}
+
+
+class MoneyFlowDownload(Task):
+    &quot;&quot;&quot;
+    下载资金流数据
+    数据源地址：http://data.10jqka.com.cn/funds/gnzjl/
+
+    &quot;&quot;&quot;
+    BASE_URl = {
+        &quot;concept&quot;: 'http://data.10jqka.com.cn/funds/gnzjl/field/tradezdf/order/desc/page/%s/ajax/1/free/1/',
+    }
+
+    def execute(self, bizdate, *args, **kwargs):
+
+        for name, base_url in self.BASE_URl.items():
+            # 爬取数据的存储路径
+            dt_path = '/data/%s_%s.csv' % (bizdate, name)
+
+            with open(dt_path, &quot;a+&quot;) as f:
+                # 记录数据文件的当前位置
+                pos = f.tell()
+                f.seek(0)
+                lines = f.readlines()
+                # 读取文件中的全部数据并将第一列存储下来作为去重依据，防止爬虫意外中断后重启程序时，重复写入相同
+                crawled_list = list(map(lambda line: line.split(&quot;,&quot;)[0], lines))
+                f.seek(pos)
+                # 循环500次，从第一页开始爬取数据
+                for i in range(1, 500):
+                    print(&quot;start crawl %s, %s&quot; % (name, base_url % i))
+                    web_source = requests.get(base_url % i, headers=REQUEST_HEADER)
+                    soup = BeautifulSoup(web_source.content.decode(&quot;gbk&quot;), 'lxml')
+                    table = soup.select('.J-ajax-table')[0]
+                    tbody = table.select('tbody tr')
+                    # 当tbody为空时，则说明当前页已经没有数据了，此时终止循环
+                    if len(tbody) == 0:
+                        break
+                    for tr in tbody:
+                        fields = tr.select('td')
+                        # 将每行记录第一列去掉，第一列为序号，没有存储必要
+                        record = [field.text.strip() for field in fields[1:]]
+                        # 如果记录还没有写入文件中，则执行写入操作，否则跳过这行写入
+                        if record[0] not in crawled_list:
+                            f.writelines([','.join(record) + '\n'])
+                    # 同花顺网站有反爬虫的机制，爬取速度过快很可能被封
+                    time.sleep(1)
+
+
+if __name__ == '__main__':
+    bizdate = '20200214'
+    tasks = [
+        MoneyFlowDownload('moneyflow data download')
+    ]
+    flow = linear_flow.Flow('eastmoney data download').add(*tasks)
+    e = engines.load(flow, store={'bizdate': bizdate})
+    e.run()
+
+</code></pre>
+<p>执行程序后，在dt_path位置已经存储了概念的资金流数据，文件名为20200214_concept.csv，内容大致如下：</p>
+<pre><code class="language-shell">钛白粉,1008.88,6.29%,7.68,6.21,1.47,7,金浦钛业,10.04%,2.96
+磷化工,916.833,2.42%,37.53,34.78,2.75,28,六国化工,9.97%,4.08
+光刻胶,1435.68,2.40%,43.51,44.31,-0.80,20,晶瑞股份,10.01%,42.99
+</code></pre>
+<p>此时就完成了同花顺概念分类的资金流数据的爬取，之后可以每天定时启动任务抓取数据进行分析。</p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2020/02/08/2020-02-08%20OpenStack%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6TaskFlow%E4%BB%8B%E7%BB%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -359,29 +516,39 @@
 
       
           <p>最近工作上遇到一个问题，某券商提供的文件单接口需要用其提供的c语言工具调用，由于我们的交易框架是python开发的，所以需要用到cython来调用c开发的工具包，学习了cython的官方入门教程顺便记录如下。</p>
-<h3 id="cython介绍"><a href="#cython介绍" class="headerlink" title="cython介绍"></a>cython介绍</h3><p>Cython是针对Python编程语言和扩展的Cython编程语言（基于Pyrex）的优化静态编译器。<br>它使为Python编写C扩展与Python本身一样容易。</p>
-<h3 id="编写样例代码"><a href="#编写样例代码" class="headerlink" title="编写样例代码"></a>编写样例代码</h3><p>首先，创建一个后缀为pyx的文件cython_example.pyx，编写cython函数</p>
-<pre><code class="python">def say_hello_to(name):
-    print(&quot;Hello %s!&quot; % name)</code></pre>
+<h3 id="cython介绍">cython介绍</h3>
+<p>Cython是针对Python编程语言和扩展的Cython编程语言（基于Pyrex）的优化静态编译器。<br>
+它使为Python编写C扩展与Python本身一样容易。</p>
+<h3 id="编写样例代码">编写样例代码</h3>
+<p>首先，创建一个后缀为pyx的文件cython_example.pyx，编写cython函数</p>
+<pre><code class="language-python">def say_hello_to(name):
+    print(&quot;Hello %s!&quot; % name)
+</code></pre>
 <p>然后编写相应的编译脚本文件:</p>
-<pre><code class="python">from distutils.core import setup
+<pre><code class="language-python">from distutils.core import setup
 from Cython.Build import cythonize
 
-setup(name=&#39;Hello world app&#39;,
-      ext_modules=cythonize(&quot;cython_example.pyx&quot;))</code></pre>
-<h3 id="编译代码"><a href="#编译代码" class="headerlink" title="编译代码"></a>编译代码</h3><pre><code class="shell">python setup.py build_ext --inplace</code></pre>
+setup(name='Hello world app',
+      ext_modules=cythonize(&quot;cython_example.pyx&quot;))
+</code></pre>
+<h3 id="编译代码">编译代码</h3>
+<pre><code class="language-shell">python setup.py build_ext --inplace
+</code></pre>
 <p>报如下错误：</p>
-<pre><code class="shell">running build_ext
+<pre><code class="language-shell">running build_ext
 building cython_example extension
-error: Unable to find vcvarsall.bat</code></pre>
-<h4 id="Which-Microsoft-Visual-C-compiler-to-use-with-a-specific-Python-version"><a href="#Which-Microsoft-Visual-C-compiler-to-use-with-a-specific-Python-version" class="headerlink" title="Which Microsoft Visual C++ compiler to use with a specific Python version ?"></a>Which Microsoft Visual C++ compiler to use with a specific Python version ?</h4><table>
+error: Unable to find vcvarsall.bat
+</code></pre>
+<h4 id="Which-Microsoft-Visual-C-compiler-to-use-with-a-specific-Python-version">Which Microsoft Visual C++ compiler to use with a specific Python version ?</h4>
+<table>
 <thead>
 <tr>
 <th>visual c++</th>
 <th>python</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>14.x</td>
 <td>3.5,3.6,3.7,3.8</td>
 </tr>
@@ -393,21 +560,26 @@ error: Unable to find vcvarsall.bat</code></pre>
 <td>9.0</td>
 <td>2.6, 2.7, 3.0, 3.1, 3.2</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>我使用的是python3.6，所以下载 Visual C++ 2015 Build Tools（包含Visual C++ 14.0）</p>
 <p>下载地址：</p>
 <p><a href="http://go.microsoft.com/fwlink/?LinkId=691126&amp;fixForIE=.exe" target="_blank" rel="noopener">http://go.microsoft.com/fwlink/?LinkId=691126&amp;fixForIE=.exe</a>.</p>
 <p>安装之后重新执行编译命令输出如下最后两行说明编译通过:</p>
-<pre><code class="shell">Generating code
-Finished generating code</code></pre>
+<pre><code class="language-shell">Generating code
+Finished generating code
+</code></pre>
 <p>会在当前目录下生成build目录和cython_example.cp36-win32.pyd</p>
-<p>接下来做个测试，编写一个test.py，内容如下</p>
-<pre><code class="python">import cython_example
+<p>接下来做个测试，<a href="http://xn--test-k84fuit3ty95h.py" target="_blank" rel="noopener">编写一个test.py</a>，内容如下</p>
+<pre><code class="language-python">import cython_example
 
-cython_example.say_hello_to(&#39;eryk&#39;)</code></pre>
+cython_example.say_hello_to('eryk')
+</code></pre>
 <p>执行命令后输出如下结果说明调用cython函数成功了</p>
-<pre><code class="shell">Hello eryk!</code></pre>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://docs.cython.org/en/latest/src/quickstart/build.html" target="_blank" rel="noopener">http://docs.cython.org/en/latest/src/quickstart/build.html</a></p>
+<pre><code class="language-shell">Hello eryk!
+</code></pre>
+<h3 id="参考">参考</h3>
+<p><a href="http://docs.cython.org/en/latest/src/quickstart/build.html" target="_blank" rel="noopener">http://docs.cython.org/en/latest/src/quickstart/build.html</a></p>
 <p><a href="https://wiki.python.org/moin/WindowsCompilers" target="_blank" rel="noopener">https://wiki.python.org/moin/WindowsCompilers</a></p>
 <p><a href="https://stackoverflow.com/questions/29846087/microsoft-visual-c-14-0-is-required-unable-to-find-vcvarsall-bat" target="_blank" rel="noopener">https://stackoverflow.com/questions/29846087/microsoft-visual-c-14-0-is-required-unable-to-find-vcvarsall-bat</a></p>
 <p>我的微信公众号：pyquant</p>
@@ -489,24 +661,31 @@ cython_example.say_hello_to(&#39;eryk&#39;)</code></pre>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h3><p>最近公司在某券商募集了一笔资金，需要对接其提供的程序化接口方便以后进行交易，对方只提供了c++版本程序，我们系统是python开发的，所以需要用python调用c++，大致了解下了python调用c++的几种方式，下面根据网上的资料介绍下几种方式优缺点，最后给个mac环境下python调用c++的例子。</p>
-<h3 id="2-Python调用C-C-程序方法"><a href="#2-Python调用C-C-程序方法" class="headerlink" title="2. Python调用C/C++程序方法"></a>2. Python调用C/C++程序方法</h3><ol>
-<li><p>ctypes</p>
+          <h3 id="1-背景">1. 背景</h3>
+<p>最近公司在某券商募集了一笔资金，需要对接其提供的程序化接口方便以后进行交易，对方只提供了c++版本程序，我们系统是python开发的，所以需要用python调用c++，大致了解下了python调用c++的几种方式，下面根据网上的资料介绍下几种方式优缺点，最后给个mac环境下python调用c++的例子。</p>
+<h3 id="2-Python调用C-C-程序方法">2. Python调用C/C++程序方法</h3>
+<ol>
+<li>
+<p>ctypes</p>
 <ul>
 <li>如果是 C 函数库，则直接 load 这个库，然后调用即可；</li>
 <li>如果是 C++ 函数库，则需要用extern关键字封装一个供 C 使用的函数，即把类隐藏到一些 C 风格的函数里，然后用 extern 标明这些函数，以方便外部调用。</li>
 </ul>
 </li>
-<li><p>SWIG</p>
+<li>
+<p>SWIG</p>
 <p>SWIG完整支持ANSI C，支持除嵌套类外的所有C++特性。SWIG是一个接口编译器，旨在为C/C++方便地提供脚本语言接口。SWIG不仅可以为C/C++程序生成 Python接口，目前可以生成CLISP,Java,Lua,PHP,Ruby,Tcl等19种语言的接口。SWIG被Subversion, wxPython, Xapian等项目使用。值得一提的是，Google也使用SWIG。</p>
 </li>
-<li><p>SIP</p>
+<li>
+<p>SIP</p>
 <p>SIP是一种Python工具，用于自动生成Python与C、C++库的绑定。SIP最初是在1998年用PyQt开发的，用于Python与Qt GUI toolkit的绑定，但适用于生成任何C或C++库的绑定。</p>
 </li>
-<li><p>Cython</p>
+<li>
+<p>Cython</p>
 <p>Cython是让Python脚本支持C语言扩展的编译器，Cython能够将Python+C混合编码的.pyx脚本转换为C代码，主要用于优化Python脚本性能或Python调用C函数库。由于Python固有的性能差的问题，用C扩展Python成为提高Python性能常用方法，Cython算是较为常见的一种扩展方式。</p>
 </li>
-<li><p>Boost.Python</p>
+<li>
+<p>Boost.Python</p>
 <p>Boost.Python是Boost提供的一个C++的模板库，用以支持Python和C++的无缝互操作。相对SWIG来说，这个库的优势是功能通过C++ API完成，不用学习写新的接口文件。对C++的支持更自然、完整。</p>
 </li>
 </ol>
@@ -521,7 +700,8 @@ cython_example.say_hello_to(&#39;eryk&#39;)</code></pre>
 <th>Boost.Python</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>是否支持Python3</td>
 <td>支持</td>
 <td>支持</td>
@@ -545,24 +725,31 @@ cython_example.say_hello_to(&#39;eryk&#39;)</code></pre>
 <td>需要</td>
 <td>需要</td>
 </tr>
-</tbody></table>
-<h3 id="3-使用ctypes调用C-C-例子"><a href="#3-使用ctypes调用C-C-例子" class="headerlink" title="3. 使用ctypes调用C/C++ 例子"></a>3. 使用ctypes调用C/C++ 例子</h3><h4 id="3-1-安装-GNU-的-C-C-编译器"><a href="#3-1-安装-GNU-的-C-C-编译器" class="headerlink" title="3.1 安装 GNU 的 C/C++ 编译器"></a>3.1 安装 GNU 的 C/C++ 编译器</h4><ul>
-<li><p>UNIX/Linux: <a href="http://gcc.gnu.org/install/" target="_blank" rel="noopener">http://gcc.gnu.org/install/</a> </p>
+</tbody>
+</table>
+<h3 id="3-使用ctypes调用C-C-例子">3. 使用ctypes调用C/C++ 例子</h3>
+<h4 id="3-1-安装-GNU-的-C-C-编译器">3.1 安装 GNU 的 C/C++ 编译器</h4>
+<ul>
+<li>
+<p>UNIX/Linux: <a href="http://gcc.gnu.org/install/" target="_blank" rel="noopener">http://gcc.gnu.org/install/</a></p>
 </li>
-<li><p>Mac OS X:  安装 Xcode就能使用编译器</p>
+<li>
+<p>Mac OS X:  安装 Xcode就能使用编译器</p>
 </li>
-<li><p>Windows: <a href="http://www.mingw.org/" target="_blank" rel="noopener">www.mingw.org</a></p>
+<li>
+<p>Windows: <a href="http://www.mingw.org/" target="_blank" rel="noopener">www.mingw.org</a></p>
 </li>
 </ul>
 <p>以mac为例，安装之后命令行输入 g++ -v 查看是否安装成功</p>
-<pre><code class="shell"> ~/ g++ -v
+<pre><code class="language-shell"> ~/ g++ -v
 Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/c++/4.2.1
 Apple LLVM version 10.0.0 (clang-1000.11.45.5)
 Target: x86_64-apple-darwin18.2.0
 Thread model: posix
-InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin</code></pre>
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+</code></pre>
 <p>3.2 开发c++例子程序:</p>
-<pre><code class="c++">#include &lt;iostream&gt;     
+<pre><code class="language-c++">#include &lt;iostream&gt;     
 class Test{     
     public:                  
         void print(){             
@@ -577,13 +764,15 @@ extern &quot;C&quot; {
     void Test_print(Test* test){ 
         test-&gt;print(); 
     }
-}</code></pre>
+}
+</code></pre>
 <p>保存文件未test.cpp，编译代码生成动态链接库:</p>
-<pre><code class="shell">g++ -o test.so -shared -fPIC test.cpp</code></pre>
-<p>执行完成后会在当前目录下生辰test.so 文件</p>
+<pre><code class="language-shell">g++ -o test.so -shared -fPIC test.cpp
+</code></pre>
+<p><a href="http://xn--test-494f49c2xku1dhpjc9l9nkza591g08a838pubgj16fm21a.so" target="_blank" rel="noopener">执行完成后会在当前目录下生辰test.so</a> 文件</p>
 <p>3.3 Python中调用so</p>
-<pre><code class="python">from ctypes import cdll
-lib = cdll.LoadLibrary(&#39;./test.so&#39;)
+<pre><code class="language-python">from ctypes import cdll
+lib = cdll.LoadLibrary('./test.so')
 
 class Test(object):
     def __init__(self):
@@ -594,9 +783,11 @@ class Test(object):
 
 test = Test()
 test.print()
+
 </code></pre>
 <p>执行Python代码会输出 Hello world!，说明执行成功</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://stackoverflow.com/questions/145270/calling-c-c-from-python" target="_blank" rel="noopener">https://stackoverflow.com/questions/145270/calling-c-c-from-python</a></p>
+<h1>参考</h1>
+<p><a href="https://stackoverflow.com/questions/145270/calling-c-c-from-python" target="_blank" rel="noopener">https://stackoverflow.com/questions/145270/calling-c-c-from-python</a></p>
 <p>关于python对接c/c++各种方案的优缺点，这篇文章说的比较清楚: <a href="https://www.jb51.net/article/63623.htm" target="_blank" rel="noopener">https://www.jb51.net/article/63623.htm</a></p>
 <p>我的微信公众号：pyquant</p>
 <p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
@@ -677,35 +868,56 @@ test.print()
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>FIX协议是由国际FIX协会组织提供的一个开放式协议，目的是推动国际贸易电子化的进程，在各类参与者之间，包括投资经理、经纪人，买方、卖方建立起实时的电子化通讯协议。</p>
+          <h1>定义</h1>
+<p>FIX协议是由国际FIX协会组织提供的一个开放式协议，目的是推动国际贸易电子化的进程，在各类参与者之间，包括投资经理、经纪人，买方、卖方建立起实时的电子化通讯协议。</p>
 <p><strong>FIX协议的目标是把各类证券金融业务需求流程格式化，使之成为一个个可用计算机语言描述的功能流程，并在每个业务功能接口上统一交换格式，方便各个功能模块的连接。</strong></p>
 <p>FIX协议各个版本对股票、期权和期货的支持程度，目前市场上使用FIX4.4的较多。</p>
 <p><img src="/Users/eryk/Desktop/20190716213709.png" alt=""></p>
-<h1 id="FIX通信模型"><a href="#FIX通信模型" class="headerlink" title="FIX通信模型"></a>FIX通信模型</h1><ul>
-<li>Initiator：发起者，建立通信连路，通过发送初始Logon消息发起会话的参与方。  </li>
-<li>Acceptor：接收方 FIX会话的接收方。负责执行第一层次的认证和通过传输Logon消息的确认正式声明连接请求被接受。 </li>
-<li>原则：先发起者为Initiator ，接受者为Acceptor 。  </li>
+<h1>FIX通信模型</h1>
+<ul>
+<li>Initiator：发起者，建立通信连路，通过发送初始Logon消息发起会话的参与方。</li>
+<li>Acceptor：接收方 FIX会话的接收方。负责执行第一层次的认证和通过传输Logon消息的确认正式声明连接请求被接受。</li>
+<li>原则：先发起者为Initiator ，接受者为Acceptor 。</li>
 <li>标准模式以网关为Acceptor，客户端为Initiator做为常用模式。</li>
 </ul>
-<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h3 id="FIX-Connection"><a href="#FIX-Connection" class="headerlink" title="FIX Connection"></a>FIX Connection</h3><p>FIX连接 由3部分组成：logon登录，message exchange消息传输，和logout注销.</p>
-<h3 id="FIX-Session"><a href="#FIX-Session" class="headerlink" title="FIX Session"></a>FIX Session</h3><p>FIX会话由一个或多个FIX Connection FIX连接组成。一个FIX会话可以有多次登录。一个FIX会话定义为一个在连接双方间的的带有连续序列号的有序消息双向传输流。 单个FIX会话能够跨越多个连续（不是并行的）的物理连接。在一个维持的，单独的FIX会话中，参与方能够多次连接和断开连接。连接的参与方必须根据单个系统及时间区域需求，公共协商会话的开始和结束。无论什么原因，重新设置接收和发送序列号为1，意味着一个新的FIX会话的开始。</p>
+<h1>基本概念</h1>
+<h3 id="FIX-Connection">FIX Connection</h3>
+<p>FIX连接 由3部分组成：logon登录，message exchange消息传输，和logout注销.</p>
+<h3 id="FIX-Session">FIX Session</h3>
+<p>FIX会话由一个或多个FIX Connection FIX连接组成。一个FIX会话可以有多次登录。一个FIX会话定义为一个在连接双方间的的带有连续序列号的有序消息双向传输流。 单个FIX会话能够跨越多个连续（不是并行的）的物理连接。在一个维持的，单独的FIX会话中，参与方能够多次连接和断开连接。连接的参与方必须根据单个系统及时间区域需求，公共协商会话的开始和结束。无论什么原因，重新设置接收和发送序列号为1，意味着一个新的FIX会话的开始。</p>
 <p>建议一个新的FIX会话在每24小时期间建立一次。可以维持24小时的连接和通过设置在Logon消息中的ResetSeqNumFlag建立一套新的序列号。</p>
-<h3 id="Sequence-Num"><a href="#Sequence-Num" class="headerlink" title="Sequence Num"></a>Sequence Num</h3><p>所有的FIX消息都由一个唯一的序列号进行标示。序列号在每一个FIX会话开始时被初始化为1，并在整个会话期间递增。监控序列号可以使会话参与者识别和处理丢失的消息，当在一个FIX会话中重新连接时能够优雅地进行应用程序同步。每个会话将建立一组互不依赖的接受和发送序列。会话参与者将维护一个赋予发送消息的序列和一个监控接受消息的消息块间隙序列号。</p>
-<h4 id="心跳-Heartbeats"><a href="#心跳-Heartbeats" class="headerlink" title="心跳 Heartbeats"></a>心跳 Heartbeats</h4><p>在消息交互期间，FIX应用程序将周期性产生Heartbeat心跳消息。该心跳消息可以监控通信链路状态及识别接受序列号间隙。发送Heartbeat的周期间隔由会话发起者使用在Logon消息中HeartBtInt域进行定义。Heartbeat心跳消息的时间间隔应当在每一个消息发送后复位，即发送一个消息后，在间隔给定的时间内无其它消息发送则发送一个Heartbeat心跳消息。HeartBtInt的值应当被会话双方认同，由会话发起方定义并由会话接收者通过Logon消息进行确认。同一个HeartBtInt被会话双方——登录的发起者和登录的接受者共同使用。</p>
-<h3 id="Ordered-Message-Processing"><a href="#Ordered-Message-Processing" class="headerlink" title="Ordered Message Processing"></a>Ordered Message Processing</h3><p>FIX协议假设消息在所有参与者间完全按照顺序进行传输。协议的实现者在设计消息间隙填充处理时应当考虑这个假设。有两种方式处理消息间隙。每一个都要求所有的消息时最后一个接收消息的后续消息或在维护一个所有新消息有序序列时，请求特定丢失消息。比如：接收方丢失了5个消息块中的第二个，程序能忽略第3到第5个消息，产生一个对消息2到消息5的重传请求，或者从消息2到无穷大消息编号的重传请求。另外的方式是暂时存储消息3到消息5，仅要求重传消息2。对于这两种方式，消息3到消息5都不应该先于消息2进行处理。</p>
-<h3 id="Possible-Duplicate"><a href="#Possible-Duplicate" class="headerlink" title="Possible Duplicate"></a>Possible Duplicate</h3><p>当一个FIX引擎对一个消息是否成功地被指定的目标接收或者当对一个重传请求进行响应时，将会产生一个可能的消息复制。这个消息将用同样的序列进行重新传送，此时在头部的PossDupFlag域将会被设置为‘Y’。接收端程序负责处理该重发消息，可以作为一个新消息进行处理，或者根据实际情况忽略该消息。所有重传请求的响应消息都将包含其值为‘Y’的PossDupFlag域。没有PossDupFlag域或者PossDupFlag域为‘N’的消息应被当作初始传送消息。注意，一个PossDupFlag值为‘Y’的重传消息需要重新计算其CheckSum值。一个可能的复制消息里发生变化的域包括：CheckSum，OrigSendingTime，SendingTime，BodyLength和PossDupFlag。加密相关域（SecureDataLen和SecureData）也必须被重新构造。</p>
-<h3 id="Possible-Resends"><a href="#Possible-Resends" class="headerlink" title="Possible Resends"></a>Possible Resends</h3><p>模糊的应用层消息可能随同PossResend标志被重传。当一个指令没有在规定时间长度内进行确认或者终端用户挂起该指令没有进行传送时这种方法非常有用。接收程序必须识别此标志，并质疑其内部域以确定该指令是否在之前已经被接收过。注意，可能的重传消息将包含与原始消息相同的数据体，但包含PossResend标志和一个新的序列号。此外，CheckSum和与加密相关的域值需要重构。</p>
-<h4 id="数据完整校验-Data-Integrity"><a href="#数据完整校验-Data-Integrity" class="headerlink" title="数据完整校验 Data Integrity"></a>数据完整校验 Data Integrity</h4><p>消息数据内容的完整性可以参用两种方式来验证：消息长度和效验码检查。程序通过计算BodyLength域到（并包含）在CheckSum标记（“10=”）后的分界符的字符数与在BodyLength中标示的消息长度进行比较来完成完整性效验。ChekSum完整性检查，通过计算从域“8=”中“8”开始，包括紧跟在CheckSum标记域的分界符<SOH>每个字符的2进制和同CheckSum进行比较得到。</p>
-<h4 id="消息确认-Message-Acknowledgements"><a href="#消息确认-Message-Acknowledgements" class="headerlink" title="消息确认 Message Acknowledgements"></a>消息确认 Message Acknowledgements</h4><p>消息数据内容的完整性可以参用两种方式来验证：消息长度和效验码检查。程序通过计算BodyLength域到（并包含）在CheckSum标记（“10=”）后的分界符的字符数与在BodyLength中标示的消息长度进行比较来完成完整性效验。ChekSum完整性检查，通过计算从域“8=”中“8”开始，包括紧跟在CheckSum标记域的分界符<SOH>每个字符的2进制和同CheckSum进行比较得到。</p>
-<h3 id="加密-Encryption"><a href="#加密-Encryption" class="headerlink" title="加密 Encryption"></a>加密 Encryption</h3><p>敏感数据在公众网络上的传输建议采用数据加密技术来掩饰应用消息。<br>加密算法由连接双方共同协商。<br>一个消息的任何一个域可以被加密并放在SecureData域中。然而，一些显示的标志域必须采用明文进行传输。为确保完整性，明文域可以在SecureData域中重复。<br>当使用加密时，建议但不是必须，所有的消息体都进行加密。如果一个消息中的重复组数据中的部分数据要加密，这个重复组必须全部进行加密。<br>预先协商好的加密算法在Logon消息中进行声明。</p>
-<h4 id="自定义域"><a href="#自定义域" class="headerlink" title="自定义域"></a>自定义域</h4><ul>
+<h3 id="Sequence-Num">Sequence Num</h3>
+<p>所有的FIX消息都由一个唯一的序列号进行标示。序列号在每一个FIX会话开始时被初始化为1，并在整个会话期间递增。监控序列号可以使会话参与者识别和处理丢失的消息，当在一个FIX会话中重新连接时能够优雅地进行应用程序同步。每个会话将建立一组互不依赖的接受和发送序列。会话参与者将维护一个赋予发送消息的序列和一个监控接受消息的消息块间隙序列号。</p>
+<h4 id="心跳-Heartbeats">心跳 Heartbeats</h4>
+<p>在消息交互期间，FIX应用程序将周期性产生Heartbeat心跳消息。该心跳消息可以监控通信链路状态及识别接受序列号间隙。发送Heartbeat的周期间隔由会话发起者使用在Logon消息中HeartBtInt域进行定义。Heartbeat心跳消息的时间间隔应当在每一个消息发送后复位，即发送一个消息后，在间隔给定的时间内无其它消息发送则发送一个Heartbeat心跳消息。HeartBtInt的值应当被会话双方认同，由会话发起方定义并由会话接收者通过Logon消息进行确认。同一个HeartBtInt被会话双方——登录的发起者和登录的接受者共同使用。</p>
+<h3 id="Ordered-Message-Processing">Ordered Message Processing</h3>
+<p>FIX协议假设消息在所有参与者间完全按照顺序进行传输。协议的实现者在设计消息间隙填充处理时应当考虑这个假设。有两种方式处理消息间隙。每一个都要求所有的消息时最后一个接收消息的后续消息或在维护一个所有新消息有序序列时，请求特定丢失消息。比如：接收方丢失了5个消息块中的第二个，程序能忽略第3到第5个消息，产生一个对消息2到消息5的重传请求，或者从消息2到无穷大消息编号的重传请求。另外的方式是暂时存储消息3到消息5，仅要求重传消息2。对于这两种方式，消息3到消息5都不应该先于消息2进行处理。</p>
+<h3 id="Possible-Duplicate">Possible Duplicate</h3>
+<p>当一个FIX引擎对一个消息是否成功地被指定的目标接收或者当对一个重传请求进行响应时，将会产生一个可能的消息复制。这个消息将用同样的序列进行重新传送，此时在头部的PossDupFlag域将会被设置为‘Y’。接收端程序负责处理该重发消息，可以作为一个新消息进行处理，或者根据实际情况忽略该消息。所有重传请求的响应消息都将包含其值为‘Y’的PossDupFlag域。没有PossDupFlag域或者PossDupFlag域为‘N’的消息应被当作初始传送消息。注意，一个PossDupFlag值为‘Y’的重传消息需要重新计算其CheckSum值。一个可能的复制消息里发生变化的域包括：CheckSum，OrigSendingTime，SendingTime，BodyLength和PossDupFlag。加密相关域（SecureDataLen和SecureData）也必须被重新构造。</p>
+<h3 id="Possible-Resends">Possible Resends</h3>
+<p>模糊的应用层消息可能随同PossResend标志被重传。当一个指令没有在规定时间长度内进行确认或者终端用户挂起该指令没有进行传送时这种方法非常有用。接收程序必须识别此标志，并质疑其内部域以确定该指令是否在之前已经被接收过。注意，可能的重传消息将包含与原始消息相同的数据体，但包含PossResend标志和一个新的序列号。此外，CheckSum和与加密相关的域值需要重构。</p>
+<h4 id="数据完整校验-Data-Integrity">数据完整校验 Data Integrity</h4>
+<p>消息数据内容的完整性可以参用两种方式来验证：消息长度和效验码检查。程序通过计算BodyLength域到（并包含）在CheckSum标记（“10=”）后的分界符的字符数与在BodyLength中标示的消息长度进行比较来完成完整性效验。ChekSum完整性检查，通过计算从域“8=”中“8”开始，包括紧跟在CheckSum标记域的分界符<SOH>每个字符的2进制和同CheckSum进行比较得到。</p>
+<h4 id="消息确认-Message-Acknowledgements">消息确认 Message Acknowledgements</h4>
+<p>消息数据内容的完整性可以参用两种方式来验证：消息长度和效验码检查。程序通过计算BodyLength域到（并包含）在CheckSum标记（“10=”）后的分界符的字符数与在BodyLength中标示的消息长度进行比较来完成完整性效验。ChekSum完整性检查，通过计算从域“8=”中“8”开始，包括紧跟在CheckSum标记域的分界符<SOH>每个字符的2进制和同CheckSum进行比较得到。</p>
+<h3 id="加密-Encryption">加密 Encryption</h3>
+<p>敏感数据在公众网络上的传输建议采用数据加密技术来掩饰应用消息。<br>
+加密算法由连接双方共同协商。<br>
+一个消息的任何一个域可以被加密并放在SecureData域中。然而，一些显示的标志域必须采用明文进行传输。为确保完整性，明文域可以在SecureData域中重复。<br>
+当使用加密时，建议但不是必须，所有的消息体都进行加密。如果一个消息中的重复组数据中的部分数据要加密，这个重复组必须全部进行加密。<br>
+预先协商好的加密算法在Logon消息中进行声明。</p>
+<h4 id="自定义域">自定义域</h4>
+<ul>
 <li>FIX为给用户提供最大的灵活性，FIX协议允许用户自定义域。这些域在认同的参与者之间实现、应用，并且应注意避免冲突。</li>
 <li>Tag数在5000 到9999保留用于用户自定义域。这些tag值用于企业联盟的信息交换。可以通过FIX网站进行注册。</li>
 <li>10000以上保留用于单一企业内部使用。不用注册。</li>
 </ul>
-<h1 id="消息类型"><a href="#消息类型" class="headerlink" title="消息类型"></a>消息类型</h1><p>初始化过程之后，正常的消息交换将开始。所有有效的消息格式的细节将在“Adminitrative Message ”管理消息和“Application Messages”应用消息部分介绍。</p>
-<h3 id="1-管理信息"><a href="#1-管理信息" class="headerlink" title="1. 管理信息"></a>1. 管理信息</h3><p>它是为了信息交换过程更加顺畅一致而使用的控制,包括:登录、心跳、检验请求、重新发送请求、拒绝(交换过程)顺序重设及注销等。</p>
-<h3 id="2-应用消息"><a href="#2-应用消息" class="headerlink" title="2. 应用消息"></a>2. 应用消息</h3><p>也就是交易的数据,它包括:</p>
+<h1>消息类型</h1>
+<p>初始化过程之后，正常的消息交换将开始。所有有效的消息格式的细节将在“Adminitrative Message ”管理消息和“Application Messages”应用消息部分介绍。</p>
+<h3 id="1-管理信息">1. 管理信息</h3>
+<p>它是为了信息交换过程更加顺畅一致而使用的控制,包括:登录、心跳、检验请求、重新发送请求、拒绝(交换过程)顺序重设及注销等。</p>
+<h3 id="2-应用消息">2. 应用消息</h3>
+<p>也就是交易的数据,它包括:</p>
 <ul>
 <li>公告 宣布已完成的交易信息。</li>
 <li>重要提示 告知由经纪人买卖的证券是由私人股份有限公司所有,还是由代理持有,以及持有量。</li>
@@ -747,9 +959,12 @@ test.print()
 <li>清单订单信息的分解 使用与其它FIX信息相同的方法,支持程序交易中的信息分解。</li>
 <li>交易信息拒绝 拒绝因遵循了交易盘规则而不能以其它方式进行拒绝的应用层面的信息。</li>
 </ul>
-<h1 id="消息格式"><a href="#消息格式" class="headerlink" title="消息格式"></a>消息格式</h1><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>整数int,浮点数float,单个字符char,布尔Boolean,字符串String,数据data</p>
+<h1>消息格式</h1>
+<h3 id="数据类型">数据类型</h3>
+<p>整数int,浮点数float,单个字符char,布尔Boolean,字符串String,数据data</p>
 <p>每条FIX信息都是由一系列带有〈标记〉=〈值〉的域组成。每个标记代表不同的含义,可以是信息的类型,目标商务名称,证券买入价等。FIX协议规定了0～5000的标记含义（fix信息字典）,5000以上可由使用者自己定义,以适用特定的应用。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.fix-events.com/Archives/asianfix2008/cn/pdf/AlanDean_Chi.pdf" target="_blank" rel="noopener">https://www.fix-events.com/Archives/asianfix2008/cn/pdf/AlanDean_Chi.pdf</a></p>
+<h1>参考</h1>
+<p><a href="https://www.fix-events.com/Archives/asianfix2008/cn/pdf/AlanDean_Chi.pdf" target="_blank" rel="noopener">https://www.fix-events.com/Archives/asianfix2008/cn/pdf/AlanDean_Chi.pdf</a></p>
 <p><a href="https://l297.oschina.io/15034517662312.html" target="_blank" rel="noopener">https://l297.oschina.io/15034517662312.html</a></p>
 <p><a href="https://juejin.im/post/5bf7c4ae51882528c4467649" target="_blank" rel="noopener">https://juejin.im/post/5bf7c4ae51882528c4467649</a></p>
 <p><a href="https://www.huiyep.com/knowledge/155062.html" target="_blank" rel="noopener">https://www.huiyep.com/knowledge/155062.html</a></p>
@@ -833,32 +1048,42 @@ test.print()
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="第一章-系统的建立"><a href="#第一章-系统的建立" class="headerlink" title="第一章 系统的建立"></a>第一章 系统的建立</h1><h2 id="1-鉴定可交易的市场"><a href="#1-鉴定可交易的市场" class="headerlink" title="1. 鉴定可交易的市场"></a>1. 鉴定可交易的市场</h2><ul>
-<li>流动性<br>  流动性的最佳度量是交易量和未平仓合约数，观察一段时间的平均值优于观察单日    </li>
-<li>历史波动性<br>  历史上趋势变化范围宽的市场优于平静的趋势变化范围窄的市场</li>
+          <h1>第一章 系统的建立</h1>
+<h2 id="1-鉴定可交易的市场">1. 鉴定可交易的市场</h2>
+<ul>
+<li>流动性<br>
+流动性的最佳度量是交易量和未平仓合约数，观察一段时间的平均值优于观察单日</li>
+<li>历史波动性<br>
+历史上趋势变化范围宽的市场优于平静的趋势变化范围窄的市场</li>
 <li>准确的基本面和技术面数据</li>
 <li>避免新市场</li>
 </ul>
-<h2 id="2-鉴别走势"><a href="#2-鉴别走势" class="headerlink" title="2. 鉴别走势"></a>2. 鉴别走势</h2><ul>
-<li>两条移动平均线，例如: 3和12，9和18，观察不到水平状态<ul>
+<h2 id="2-鉴别走势">2. 鉴别走势</h2>
+<ul>
+<li>两条移动平均线，例如: 3和12，9和18，观察不到水平状态
+<ul>
 <li>3 &gt; 12，上升趋势</li>
 <li>3 &lt; 12，下降趋势</li>
 </ul>
 </li>
-<li>三条移动平均线，例如: 4、9和18<ul>
+<li>三条移动平均线，例如: 4、9和18
+<ul>
 <li>4 &gt; 9 &gt; 18, 上升趋势</li>
 <li>4 &lt; 9 &lt; 18, 下降趋势</li>
 <li>其他，水平状态</li>
 </ul>
 </li>
-<li>移动平均线和其他技术指标组合<br>  当指标发出的信号不一致时，认为市场无趋势或呈横向趋势</li>
+<li>移动平均线和其他技术指标组合<br>
+当指标发出的信号不一致时，认为市场无趋势或呈横向趋势</li>
 <li>简单化</li>
 </ul>
 <blockquote>
 <p>不建议运用翻转策略，因为这不能鉴定横向趋势的市场，并且总是存在于从多头到空头或者空头到多头的市场。这些反转系统总是倾向于在横向趋势的市场中出现锯齿状波动，毫无成功的可能，除非市场趋势持续如此。</p>
 </blockquote>
-<h2 id="3-市场择时"><a href="#3-市场择时" class="headerlink" title="3. 市场择时"></a>3. 市场择时</h2><p>依赖单一的”神奇指标“不现实，要设计一个灵活的动态系统，在真实的不断变化的市场条件也能管用。</p>
-<h4 id="市场的三种走势"><a href="#市场的三种走势" class="headerlink" title="市场的三种走势"></a>市场的三种走势</h4><ul>
+<h2 id="3-市场择时">3. 市场择时</h2>
+<p>依赖单一的”神奇指标“不现实，要设计一个灵活的动态系统，在真实的不断变化的市场条件也能管用。</p>
+<h4 id="市场的三种走势">市场的三种走势</h4>
+<ul>
 <li>长期走势：数周或数月</li>
 <li>中期走势：最近几天</li>
 <li>短期价格变化：前一天和当天</li>
@@ -866,23 +1091,32 @@ test.print()
 <blockquote>
 <p>短期信号最先出现，其次是中期信号，最后是长期信号，当我们鉴别出了长期走势时，第一个中期和短期信号已经出现过了，因子，我们要利用会在长期走势中反复出现的中期和短期信号。</p>
 </blockquote>
-<h4 id="耐心"><a href="#耐心" class="headerlink" title="耐心"></a>耐心</h4><p>等到市场时机成熟时进入，增加了每笔交易的利润，减少了必要的资本，减少了交易数量，大大提高了净利润额</p>
-<h2 id="4-建立止损"><a href="#4-建立止损" class="headerlink" title="4. 建立止损"></a>4. 建立止损</h2><h4 id="止损过近或过远"><a href="#止损过近或过远" class="headerlink" title="止损过近或过远"></a>止损过近或过远</h4><ul>
+<h4 id="耐心">耐心</h4>
+<p>等到市场时机成熟时进入，增加了每笔交易的利润，减少了必要的资本，减少了交易数量，大大提高了净利润额</p>
+<h2 id="4-建立止损">4. 建立止损</h2>
+<h4 id="止损过近或过远">止损过近或过远</h4>
+<ul>
 <li>近止损，损失小、风险低、过早离场</li>
 <li>远止损，胜率高、单笔损失大、风险高</li>
 </ul>
-<h4 id="理想的止损"><a href="#理想的止损" class="headerlink" title="理想的止损"></a>理想的止损</h4><p>建立可接受的止损程序可以通过将止损设立在随机价格波动范围外一点点的位置。</p>
+<h4 id="理想的止损">理想的止损</h4>
+<p>建立可接受的止损程序可以通过将止损设立在随机价格波动范围外一点点的位置。</p>
 <ol>
 <li>一种可行的办法是算出价格移动平均线的标准差,在偏离移动平均线的最高点处建立止损。(布林带)</li>
-<li>把每日价格变化的平均值作为建立止损的最小距离,这样可以避免大部分会产生小型的锯齿状波动的价格波动。<br>例如：建立5或10日移动平均线，将原始止损点设置于移动平均线之间的区间相等的最小距离处。</li>
+<li>把每日价格变化的平均值作为建立止损的最小距离,这样可以避免大部分会产生小型的锯齿状波动的价格波动。<br>
+例如：建立5或10日移动平均线，将原始止损点设置于移动平均线之间的区间相等的最小距离处。</li>
 </ol>
-<h4 id="止损方法要保持一致"><a href="#止损方法要保持一致" class="headerlink" title="止损方法要保持一致"></a>止损方法要保持一致</h4><h2 id="5-退市择时"><a href="#5-退市择时" class="headerlink" title="5. 退市择时"></a>5. 退市择时</h2><ul>
+<h4 id="止损方法要保持一致">止损方法要保持一致</h4>
+<h2 id="5-退市择时">5. 退市择时</h2>
+<ul>
 <li>跟踪止损法</li>
 <li>相对强弱指标（RSI）</li>
 </ul>
 <p>退市策略绩效可使用随机入市的方法验证效果</p>
-<h2 id="6-再入市择时"><a href="#6-再入市择时" class="headerlink" title="6. 再入市择时"></a>6. 再入市择时</h2><p>退市策略是更为重要，所以使用可能的最佳的退市策略，然后调节退市后会被触发的再入市指标的敏感度。</p>
-<h2 id="7-监控系统"><a href="#7-监控系统" class="headerlink" title="7. 监控系统"></a>7. 监控系统</h2><ul>
+<h2 id="6-再入市择时">6. 再入市择时</h2>
+<p>退市策略是更为重要，所以使用可能的最佳的退市策略，然后调节退市后会被触发的再入市指标的敏感度。</p>
+<h2 id="7-监控系统">7. 监控系统</h2>
+<ul>
 <li>每周期交易频率，比如每月1.5笔</li>
 <li>盈利交易笔数与亏损交易笔数的百分比</li>
 <li>最糟糕的周期中盈利笔数</li>
@@ -894,14 +1128,24 @@ test.print()
 <li>最大回吐</li>
 <li>最大回吐恢复时长</li>
 </ul>
-<h1 id="第二章-技术研究"><a href="#第二章-技术研究" class="headerlink" title="第二章 技术研究"></a>第二章 技术研究</h1><h4 id="方向性运动指标DMI和平均方向性运动指数ADX"><a href="#方向性运动指标DMI和平均方向性运动指数ADX" class="headerlink" title="方向性运动指标DMI和平均方向性运动指数ADX"></a>方向性运动指标DMI和平均方向性运动指数ADX</h4><pre><code>* 下降的ADX预示着市场不呈现任何趋势，应该采取逆势策略，而不是顺势策略。
-* ADX滞后性</code></pre><h4 id="布林带、包络线和通道"><a href="#布林带、包络线和通道" class="headerlink" title="布林带、包络线和通道"></a>布林带、包络线和通道</h4><p>通道突破作为确认方法</p>
-<h4 id="商品通道指数CCI"><a href="#商品通道指数CCI" class="headerlink" title="商品通道指数CCI"></a>商品通道指数CCI</h4><h4 id="背离"><a href="#背离" class="headerlink" title="背离"></a>背离</h4><ul>
-<li>趋势性市场和非趋势性市场<br>非趋势性市场偏离交易朝两个方向都可以进行，而在趋势性市场逆势的偏离信号一般应该被忽略（视图抓住大的顶部和底部除外）</li>
-<li>连续偏离<br>连续三次偏离</li>
+<h1>第二章 技术研究</h1>
+<h4 id="方向性运动指标DMI和平均方向性运动指数ADX">方向性运动指标DMI和平均方向性运动指数ADX</h4>
+<pre><code>* 下降的ADX预示着市场不呈现任何趋势，应该采取逆势策略，而不是顺势策略。
+* ADX滞后性
+</code></pre>
+<h4 id="布林带、包络线和通道">布林带、包络线和通道</h4>
+<p>通道突破作为确认方法</p>
+<h4 id="商品通道指数CCI">商品通道指数CCI</h4>
+<h4 id="背离">背离</h4>
+<ul>
+<li>趋势性市场和非趋势性市场<br>
+非趋势性市场偏离交易朝两个方向都可以进行，而在趋势性市场逆势的偏离信号一般应该被忽略（视图抓住大的顶部和底部除外）</li>
+<li>连续偏离<br>
+连续三次偏离</li>
 <li>相关市场偏离</li>
 </ul>
-<h4 id="动力指标和变化率"><a href="#动力指标和变化率" class="headerlink" title="动力指标和变化率"></a>动力指标和变化率</h4><p>动力指标精确测量了市场的运转速度,从某种程度上说,测量了一种趋势完好存在的程度。</p>
+<h4 id="动力指标和变化率">动力指标和变化率</h4>
+<p>动力指标精确测量了市场的运转速度,从某种程度上说,测量了一种趋势完好存在的程度。</p>
 <p>计算过程：用当日的收盘价减去n天前的收盘价,结果是一个位于零点或零线附近的正数或负数。</p>
 <p>公式：</p>
 <blockquote>
@@ -915,70 +1159,117 @@ test.print()
 <p>动力线和零线交叉次数随着动力线指标计算中使用的时间周期的不同而变化。时间周期短，动力线与零线交叉得约频繁，指标发出信号的速度越快。</p>
 <p>动力线最有效的用途之一是界定长期趋势。25周期的动力周线图是个非常可靠的长期走势指标。当动力线迅速离开零线时，顺势交易会带来丰厚的回报。</p>
 <p>其他指标的动力指标量化倾斜度</p>
-<h4 id="移动平均线"><a href="#移动平均线" class="headerlink" title="移动平均线"></a>移动平均线</h4><ul>
-<li><p>简单移动平均线</p>
+<h4 id="移动平均线">移动平均线</h4>
+<ul>
+<li>
+<p>简单移动平均线</p>
 </li>
-<li><p>加权移动平均线</p>
+<li>
+<p>加权移动平均线</p>
 </li>
-<li><p>指数移动平均线</p>
+<li>
+<p>指数移动平均线</p>
 </li>
-<li><p>三条移动平均线: 4-9-18均线法</p>
+<li>
+<p>三条移动平均线: 4-9-18均线法</p>
 </li>
-<li><p>四条移动平均线</p>
+<li>
+<p>四条移动平均线</p>
 </li>
-<li><p>移位后的移动平均线</p>
+<li>
+<p>移位后的移动平均线</p>
 </li>
-<li><p>发现过滤器</p>
+<li>
+<p>发现过滤器</p>
 </li>
 </ul>
-<h4 id="MACD"><a href="#MACD" class="headerlink" title="MACD"></a>MACD</h4><h4 id="抛物线指标SAR"><a href="#抛物线指标SAR" class="headerlink" title="抛物线指标SAR"></a>抛物线指标SAR</h4><p>最大的价值是用来建立止损点</p>
-<h4 id="相对强弱指标RSI"><a href="#相对强弱指标RSI" class="headerlink" title="相对强弱指标RSI"></a>相对强弱指标RSI</h4><p>RSI &gt; 75 or RSI &lt; 25，推迟入市</p>
-<h4 id="慢速随机指标KDJ"><a href="#慢速随机指标KDJ" class="headerlink" title="慢速随机指标KDJ"></a>慢速随机指标KDJ</h4><p>随机指标最不适合用于只有持续的微小变动的趋势性市场</p>
+<h4 id="MACD">MACD</h4>
+<h4 id="抛物线指标SAR">抛物线指标SAR</h4>
+<p>最大的价值是用来建立止损点</p>
+<h4 id="相对强弱指标RSI">相对强弱指标RSI</h4>
+<p>RSI &gt; 75 or RSI &lt; 25，推迟入市</p>
+<h4 id="慢速随机指标KDJ">慢速随机指标KDJ</h4>
+<p>随机指标最不适合用于只有持续的微小变动的趋势性市场</p>
 <ul>
 <li>左右交点</li>
 </ul>
-<h4 id="波动性"><a href="#波动性" class="headerlink" title="波动性"></a>波动性</h4><ul>
+<h4 id="波动性">波动性</h4>
+<ul>
 <li>平均真实区间（ATR）</li>
 <li>突破或价格峰值超出近期区间或平均真实区间是十分重要的信号,应作为入市点。</li>
 </ul>
-<h1 id="第三章-系统测试"><a href="#第三章-系统测试" class="headerlink" title="第三章 系统测试"></a>第三章 系统测试</h1><p>避免最优化</p>
+<h1>第三章 系统测试</h1>
+<p>避免最优化</p>
 <p>从统计学的角度而言,少于30笔交易,产生的结果就不可靠。交易笔数大于30的程度越多</p>
 <p>积累的前进测试，滚动前进最优化处理</p>
-<h2 id="衡量绩效"><a href="#衡量绩效" class="headerlink" title="衡量绩效"></a>衡量绩效</h2><h4 id="夏普比率-Sharpe-Ratio"><a href="#夏普比率-Sharpe-Ratio" class="headerlink" title="夏普比率(Sharpe Ratio)"></a>夏普比率(Sharpe Ratio)</h4><p>其定义为年度化的收益(一种盈利性度量形式)与无风险收益率的差除以年度化的收益标准差(一种波动度量形式)。</p>
-<h4 id="英镑比率-Sterling-Ratio"><a href="#英镑比率-Sterling-Ratio" class="headerlink" title="英镑比率(Sterling Ratio)"></a>英镑比率(Sterling Ratio)</h4><p>英镑比率=年平均收益比率/[(1×3年平均最大亏损) + 10]</p>
-<h4 id="卡尔玛比率-Calmar-Ratio"><a href="#卡尔玛比率-Calmar-Ratio" class="headerlink" title="卡尔玛比率(Calmar Ratio)"></a>卡尔玛比率(Calmar Ratio)</h4><h4 id="几何平均数"><a href="#几何平均数" class="headerlink" title="几何平均数"></a>几何平均数</h4><p>几何平均数衡量的是你的交易系统的增长因子。几何平均数越高,你的系统再投资时创造高收益的潜力就越大。</p>
-<h4 id="净盈利"><a href="#净盈利" class="headerlink" title="净盈利"></a>净盈利</h4><h4 id="测试样例中的交易数"><a href="#测试样例中的交易数" class="headerlink" title="测试样例中的交易数"></a>测试样例中的交易数</h4><p>总交易数必须大于30，这是为了确保统计上的重要结果的可靠性。</p>
-<h4 id="最大盈利及最大的亏损交易"><a href="#最大盈利及最大的亏损交易" class="headerlink" title="最大盈利及最大的亏损交易"></a>最大盈利及最大的亏损交易</h4><p>倘若最大的盈利交易不合理地歪曲了净盈利额，它就很重要。许多保守的系统测试员会剔除每种商品中的最大盈利交易,然后再次评价结果。</p>
-<h4 id="最大的连续盈利交易和亏损交易"><a href="#最大的连续盈利交易和亏损交易" class="headerlink" title="最大的连续盈利交易和亏损交易"></a>最大的连续盈利交易和亏损交易</h4><h4 id="峰到谷式的亏损"><a href="#峰到谷式的亏损" class="headerlink" title="峰到谷式的亏损"></a>峰到谷式的亏损</h4><p>计算最大净资产额最为准确的方法是取日总净资产额的最高值与随后的日总净资产额的最低值之差值。</p>
-<h4 id="盈利交易百分比"><a href="#盈利交易百分比" class="headerlink" title="盈利交易百分比"></a>盈利交易百分比</h4><p>大部分成功的顺势交易商拥有35%到45%的盈利交易。要达到55%以上是很困难的</p>
-<h4 id="平均盈利与平均亏损比率"><a href="#平均盈利与平均亏损比率" class="headerlink" title="平均盈利与平均亏损比率"></a>平均盈利与平均亏损比率</h4><h4 id="总收益的最大亏损"><a href="#总收益的最大亏损" class="headerlink" title="总收益的最大亏损"></a>总收益的最大亏损</h4><h4 id="波动性和破产的概率"><a href="#波动性和破产的概率" class="headerlink" title="波动性和破产的概率"></a>波动性和破产的概率</h4><h2 id="测试入市、退市及止损方法"><a href="#测试入市、退市及止损方法" class="headerlink" title="测试入市、退市及止损方法"></a>测试入市、退市及止损方法</h2><p>如果你的风险控制由两种类型的止损方法组成,一个是简单的定额止损法,另一个是将止损位设置为近期高价或低价，如果你知道每种止损价位被触及的频率,这对设计和测试过程会有帮助的。</p>
-<h2 id="测试入市方法"><a href="#测试入市方法" class="headerlink" title="测试入市方法"></a>测试入市方法</h2><p>在整体方案中,退市方法确实要比入市方法重要,毕竟,交易的结果最终由退市决定,当入市做对了后，找到良好的退市方法就要容易很多。</p>
+<h2 id="衡量绩效">衡量绩效</h2>
+<h4 id="夏普比率-Sharpe-Ratio">夏普比率(Sharpe Ratio)</h4>
+<p>其定义为年度化的收益(一种盈利性度量形式)与无风险收益率的差除以年度化的收益标准差(一种波动度量形式)。</p>
+<h4 id="英镑比率-Sterling-Ratio">英镑比率(Sterling Ratio)</h4>
+<p>英镑比率=年平均收益比率/[(1×3年平均最大亏损) + 10]</p>
+<h4 id="卡尔玛比率-Calmar-Ratio">卡尔玛比率(Calmar Ratio)</h4>
+<h4 id="几何平均数">几何平均数</h4>
+<p>几何平均数衡量的是你的交易系统的增长因子。几何平均数越高,你的系统再投资时创造高收益的潜力就越大。</p>
+<h4 id="净盈利">净盈利</h4>
+<h4 id="测试样例中的交易数">测试样例中的交易数</h4>
+<p>总交易数必须大于30，这是为了确保统计上的重要结果的可靠性。</p>
+<h4 id="最大盈利及最大的亏损交易">最大盈利及最大的亏损交易</h4>
+<p>倘若最大的盈利交易不合理地歪曲了净盈利额，它就很重要。许多保守的系统测试员会剔除每种商品中的最大盈利交易,然后再次评价结果。</p>
+<h4 id="最大的连续盈利交易和亏损交易">最大的连续盈利交易和亏损交易</h4>
+<h4 id="峰到谷式的亏损">峰到谷式的亏损</h4>
+<p>计算最大净资产额最为准确的方法是取日总净资产额的最高值与随后的日总净资产额的最低值之差值。</p>
+<h4 id="盈利交易百分比">盈利交易百分比</h4>
+<p>大部分成功的顺势交易商拥有35%到45%的盈利交易。要达到55%以上是很困难的</p>
+<h4 id="平均盈利与平均亏损比率">平均盈利与平均亏损比率</h4>
+<h4 id="总收益的最大亏损">总收益的最大亏损</h4>
+<h4 id="波动性和破产的概率">波动性和破产的概率</h4>
+<h2 id="测试入市、退市及止损方法">测试入市、退市及止损方法</h2>
+<p>如果你的风险控制由两种类型的止损方法组成,一个是简单的定额止损法,另一个是将止损位设置为近期高价或低价，如果你知道每种止损价位被触及的频率,这对设计和测试过程会有帮助的。</p>
+<h2 id="测试入市方法">测试入市方法</h2>
+<p>在整体方案中,退市方法确实要比入市方法重要,毕竟,交易的结果最终由退市决定,当入市做对了后，找到良好的退市方法就要容易很多。</p>
 <blockquote>
 <p>有效测试一个交易系统的任何单个的要素的最佳方法就是尽量将它分离开来。建立你自己的交易系统，然后删去通常的退出方法。用一种可以在进入每笔交易特定天数后自动退出市场的方法取代原先的退市方法。</p>
 </blockquote>
-<h2 id="测试退市策略"><a href="#测试退市策略" class="headerlink" title="测试退市策略"></a>测试退市策略</h2><p>选择一种结果合理的入市方法作为反转系统，然后用相同的数据和入市方法对每种退市策略一一进行测试。</p>
+<h2 id="测试退市策略">测试退市策略</h2>
+<p>选择一种结果合理的入市方法作为反转系统，然后用相同的数据和入市方法对每种退市策略一一进行测试。</p>
 <p>从理论上讲，比入市方法更敏感的退市方法应该捕捉到每个市场变动的更多的信息。以下是对我们测试的退市策略的一个描述。</p>
-<h4 id="跟踪止损"><a href="#跟踪止损" class="headerlink" title="跟踪止损"></a>跟踪止损</h4><p>初始风险是指进入市场点与控制风险的止损点之间的差距。净资产额风险是指开立的头寸的市场价格与你的退市策略暗示的价格之间的差值。</p>
-<h2 id="测试止损策略"><a href="#测试止损策略" class="headerlink" title="测试止损策略"></a>测试止损策略</h2><h4 id="初始风险止损"><a href="#初始风险止损" class="headerlink" title="初始风险止损"></a>初始风险止损</h4><p>初始风险止损可定义为一种以某种方式限制一笔交易从入市点就可能累积的亏损的止损。当一笔交易对我们不利时，初始风险止损通常先于任何其它类型的退市策略被触发。它是你最基本的“止损”指令。</p>
+<h4 id="跟踪止损">跟踪止损</h4>
+<p>初始风险是指进入市场点与控制风险的止损点之间的差距。净资产额风险是指开立的头寸的市场价格与你的退市策略暗示的价格之间的差值。</p>
+<h2 id="测试止损策略">测试止损策略</h2>
+<h4 id="初始风险止损">初始风险止损</h4>
+<p>初始风险止损可定义为一种以某种方式限制一笔交易从入市点就可能累积的亏损的止损。当一笔交易对我们不利时，初始风险止损通常先于任何其它类型的退市策略被触发。它是你最基本的“止损”指令。</p>
 <ul>
 <li>定额止损</li>
 <li>支撑/阻力</li>
 <li>无利退出, 如果交易在一定天数后无利可获则退出</li>
 </ul>
-<h4 id="保本止损"><a href="#保本止损" class="headerlink" title="保本止损"></a>保本止损</h4><p>保本止损被定义为一旦交易达到一定的利润额，在入市点建立的止损。这种止损的目的明显是要防止合理的利润变为亏损。</p>
-<h4 id="跟踪止损-1"><a href="#跟踪止损-1" class="headerlink" title="跟踪止损"></a>跟踪止损</h4><p>跟踪止损是指达到一些合乎逻辑的价格点后，不断计算得出的止损价。跟踪止损可以用作初始风险止损或取利退市策略，或者兼任两者功能。</p>
+<h4 id="保本止损">保本止损</h4>
+<p>保本止损被定义为一旦交易达到一定的利润额，在入市点建立的止损。这种止损的目的明显是要防止合理的利润变为亏损。</p>
+<h4 id="跟踪止损-2">跟踪止损</h4>
+<p>跟踪止损是指达到一些合乎逻辑的价格点后，不断计算得出的止损价。跟踪止损可以用作初始风险止损或取利退市策略，或者兼任两者功能。</p>
 <ul>
-<li>从收盘价开始跟踪的定额止损<br>  这种止损是从交易方向的最高收盘价或最低收盘价开始计算止损点。</li>
-<li>从高价或低价开始跟踪的定额止损<br>  一旦达到某一盈利高度，就应该跟踪止损保护一定数目的收益。交易的损失将会被限制在交易所达到的高价和低价以及跟踪止损的高价和低价的差额范围内。这种止损可即刻跟踪，并且可以用作初始风险止损，也可以用作跟踪止损。</li>
+<li>从收盘价开始跟踪的定额止损<br>
+这种止损是从交易方向的最高收盘价或最低收盘价开始计算止损点。</li>
+<li>从高价或低价开始跟踪的定额止损<br>
+一旦达到某一盈利高度，就应该跟踪止损保护一定数目的收益。交易的损失将会被限制在交易所达到的高价和低价以及跟踪止损的高价和低价的差额范围内。这种止损可即刻跟踪，并且可以用作初始风险止损，也可以用作跟踪止损。</li>
 </ul>
-<h2 id="创建一个简单的交易系统"><a href="#创建一个简单的交易系统" class="headerlink" title="创建一个简单的交易系统"></a>创建一个简单的交易系统</h2><h4 id="交易系统的目标"><a href="#交易系统的目标" class="headerlink" title="交易系统的目标"></a>交易系统的目标</h4><p>年回报率20% ~ 30%，盈利交易百分比大于40%，平均盈利与平均亏损的比率至少为2:1</p>
-<h4 id="风险控制"><a href="#风险控制" class="headerlink" title="风险控制"></a>风险控制</h4><ul>
-<li>初始风险<br>  即入市点与保护性止损点之间的差距</li>
-<li>资产风险<br>  即投入市场的净资产额与跟踪止损价位之间的差额。这两类风险还可以进一步分为单笔交易中的初始风险和资产风险，以及跨投资组合同时交易的初始风险和资产风险。</li>
+<h2 id="创建一个简单的交易系统">创建一个简单的交易系统</h2>
+<h4 id="交易系统的目标">交易系统的目标</h4>
+<p>年回报率20% ~ 30%，盈利交易百分比大于40%，平均盈利与平均亏损的比率至少为2:1</p>
+<h4 id="风险控制">风险控制</h4>
+<ul>
+<li>初始风险<br>
+即入市点与保护性止损点之间的差距</li>
+<li>资产风险<br>
+即投入市场的净资产额与跟踪止损价位之间的差额。这两类风险还可以进一步分为单笔交易中的初始风险和资产风险，以及跨投资组合同时交易的初始风险和资产风险。</li>
 </ul>
-<h1 id="第四章-日交易"><a href="#第四章-日交易" class="headerlink" title="第四章 日交易"></a>第四章 日交易</h1><h2 id="交易成本"><a href="#交易成本" class="headerlink" title="交易成本"></a>交易成本</h2><p>手续费和点差</p>
-<h2 id="市场选择"><a href="#市场选择" class="headerlink" title="市场选择"></a>市场选择</h2><p>当日high和low价差的绝对值高，或者更高的时间比率。持续的高波动性是日内交易市场或标的选择的重要指标。</p>
-<h3 id="考虑最小变动价位的大小"><a href="#考虑最小变动价位的大小" class="headerlink" title="考虑最小变动价位的大小"></a>考虑最小变动价位的大小</h3><p>流动性及最小价差的大小也是选择日交易市场时应该考虑的因素</p>
+<h1>第四章 日交易</h1>
+<h2 id="交易成本">交易成本</h2>
+<p>手续费和点差</p>
+<h2 id="市场选择">市场选择</h2>
+<p>当日high和low价差的绝对值高，或者更高的时间比率。持续的高波动性是日内交易市场或标的选择的重要指标。</p>
+<h3 id="考虑最小变动价位的大小">考虑最小变动价位的大小</h3>
+<p>流动性及最小价差的大小也是选择日交易市场时应该考虑的因素</p>
 <p>日交易商不断地面临着从相对小的价格变化幅度中获取最大利润的问题。这种情况自然使得交易商采取回调时买进、反弹时卖出的策略,而不是试图去顺应走势。大部分的顺势策略对于日交易而言往往太慢。逆势策略提供了从一个小的价格变化幅度中获取最大利润的可能性。然而，逆势策略往往不如顺势策略那么可靠，因为快速地识别出价格的转轨点比简单的顺势交易要难得多。</p>
 <p>成功的日交易商试图在上升趋势阶段中的回调时买进，在下降趋势阶段在反弹时卖出。想持续赚钱的日交易商必须善于顺应趋势，又要善于发现短期的转折点。许多交易商亏钱是因为他们两者都不擅长。看过一些可能的日交易策略的例子后，请记住两个步骤：首先找出中期走势，然后找出短期转折点。要想获得盈利的日交易，两步都要进行得快而准。</p>
 <p>我的微信公众号：pyquant</p>
@@ -1068,7 +1359,7 @@ test.print()
 <blockquote>
 <p>OTC交易尽量选择交易量大的ID进行交易</p>
 </blockquote>
-<p><a href="https://huobiglobal.zendesk.com/hc/zh-cn/articles/360000159321-关于银行卡冻结及处理办法" target="_blank" rel="noopener">关于银行卡冻结及处理办法</a>  (火币官网链接需要翻墙)，重要内容截图如下</p>
+<p><a href="https://huobiglobal.zendesk.com/hc/zh-cn/articles/360000159321-%E5%85%B3%E4%BA%8E%E9%93%B6%E8%A1%8C%E5%8D%A1%E5%86%BB%E7%BB%93%E5%8F%8A%E5%A4%84%E7%90%86%E5%8A%9E%E6%B3%95" target="_blank" rel="noopener">关于银行卡冻结及处理办法</a>  (火币官网链接需要翻墙)，重要内容截图如下</p>
 <p><img src="/Users/eryk/Desktop/20190613165715.png" alt=""></p>
 <p>我的微信公众号：pyquant</p>
 <p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
@@ -1161,7 +1452,7 @@ test.print()
 </ol>
 <p>通过以上步骤处理后将一份测试数据从1.3GB减少到466MB</p>
 <p>源码如下:</p>
-<pre><code class="python">import numpy as np # linear algebra
+<pre><code class="language-python">import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 
 def reduce_mem_usage(props):
@@ -1170,22 +1461,22 @@ def reduce_mem_usage(props):
     NAlist = [] # Keeps track of columns that have missing values filled in. 
     for col in props.columns:
         if props[col].dtype != object:  # Exclude strings
-
+            
             # Print current column type
             print(&quot;******************************&quot;)
             print(&quot;Column: &quot;,col)
             print(&quot;dtype before: &quot;,props[col].dtype)
-
+            
             # make variables for Int, max and min
             IsInt = False
             mx = props[col].max()
             mn = props[col].min()
-
+            
             # Integer does not support NA, therefore, NA needs to be filled
             if not np.isfinite(props[col]).all(): 
                 NAlist.append(col)
                 props[col].fillna(mn-1,inplace=True)  
-
+                   
             # test if column can be converted to an integer
             asint = props[col].fillna(0).astype(np.int64)
             result = (props[col] - asint)
@@ -1193,7 +1484,7 @@ def reduce_mem_usage(props):
             if result &gt; -0.01 and result &lt; 0.01:
                 IsInt = True
 
-
+            
             # Make Integer/unsigned Integer datatypes
             if IsInt:
                 if mn &gt;= 0:
@@ -1214,21 +1505,22 @@ def reduce_mem_usage(props):
                         props[col] = props[col].astype(np.int32)
                     elif mn &gt; np.iinfo(np.int64).min and mx &lt; np.iinfo(np.int64).max:
                         props[col] = props[col].astype(np.int64)    
-
+            
             # Make float datatypes 32 bit
             else:
                 props[col] = props[col].astype(np.float32)
-
+            
             # Print new column type
             print(&quot;dtype after: &quot;,props[col].dtype)
             print(&quot;******************************&quot;)
-
+    
     # Print final result
     print(&quot;___MEMORY USAGE AFTER COMPLETION:___&quot;)
     mem_usg = props.memory_usage().sum() / 1024**2 
     print(&quot;Memory usage is: &quot;,mem_usg,&quot; MB&quot;)
     print(&quot;This is &quot;,100*mem_usg/start_mem_usg,&quot;% of the initial size&quot;)
-    return props, NAlist</code></pre>
+    return props, NAlist
+</code></pre>
 <p>原文链接：</p>
 <p><a href="https://www.kaggle.com/arjanso/reducing-dataframe-memory-size-by-65" target="_blank" rel="noopener">https://www.kaggle.com/arjanso/reducing-dataframe-memory-size-by-65</a></p>
 <hr>
@@ -1311,27 +1603,32 @@ def reduce_mem_usage(props):
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="读写API"><a href="#读写API" class="headerlink" title="读写API"></a>读写API</h1><p>HDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level API，类似于read_csv和to_csv的工作方式。</p>
+          <h1>读写API</h1>
+<p>HDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level API，类似于read_csv和to_csv的工作方式。</p>
 <p>默认情况下，HDFStore不会丢弃全部为na的行。可以通过设置dropna = True来更改此行为。</p>
-<pre><code class="python">import pandas as pd
+<pre><code class="language-python">import pandas as pd
 import h5py
-df_tl = pd.DataFrame({&#39;A&#39;: list(range(5)), &#39;B&#39;: list(range(5))})
-df_tl.to_hdf(&#39;store_tl.h5&#39;, &#39;table&#39;, append=True)
-pd.read_hdf(&#39;store_tl.h5&#39;, &#39;table&#39;, where=[&#39;index&gt;2&#39;])</code></pre>
-<h1 id="HDF数据类型"><a href="#HDF数据类型" class="headerlink" title="HDF数据类型"></a>HDF数据类型</h1><ul>
-<li>Fixed Format<ul>
+df_tl = pd.DataFrame({'A': list(range(5)), 'B': list(range(5))})
+df_tl.to_hdf('store_tl.h5', 'table', append=True)
+pd.read_hdf('store_tl.h5', 'table', where=['index&gt;2'])
+</code></pre>
+<h1>HDF数据类型</h1>
+<ul>
+<li>Fixed Format
+<ul>
 <li>一次写入，重复读取，不可追加</li>
 <li>不可以使用where查询，比如每次获取指定key的全部内容</li>
 <li>不支持dataframe有非唯一的column</li>
 <li>相比于table格式更快的读写速度</li>
-<li>使用put或者to_hdf时的默认类型，也可以通过format=’fixed’或format=’f’指定类型</li>
+<li>使用put或者to_hdf时的默认类型，也可以通过format='fixed’或format='f’指定类型</li>
 </ul>
 </li>
-<li>Table Format<ul>
+<li>Table Format
+<ul>
 <li>支持append操作</li>
 <li>支持删除和查询类型操作</li>
-<li>执行put或者to_hdf操作时通过设置format=’table’或format=’t’指定table格式</li>
-<li>pd.set_option(‘io.hdf.default_format’,’table’) 设置默认hdf format类型</li>
+<li>执行put或者to_hdf操作时通过设置format='table’或format='t’指定table格式</li>
+<li>pd.set_option(‘io.hdf.default_format’,‘table’) 设置默认hdf format类型</li>
 </ul>
 </li>
 </ul>
@@ -1342,27 +1639,30 @@ pd.read_hdf(&#39;store_tl.h5&#39;, &#39;table&#39;, where=[&#39;index&gt;2&#39;]
 <p>警告HDFStore对于写入不是线程安全的。底层PyTables仅支持并发读取（通过线程或进程）。如果您需要同时进行读写，则需要在单个进程中在单个线程中序列化这些操作。否则你将破坏你的数据。</p>
 </blockquote>
 <p>TODO 验证append是否会按照index排序的例子</p>
-<h1 id="Hierarchical-Keys"><a href="#Hierarchical-Keys" class="headerlink" title="Hierarchical Keys"></a>Hierarchical Keys</h1><p>key可以包含路径，例如’/food/apple’, 存储时会自动创建sub-stores(在pytables中是groups)，可以省略路径开头的’/‘，’/food/apple’和’food/apple’表示相同的key。</p>
+<h1>Hierarchical Keys</h1>
+<p>key可以包含路径，例如’/food/apple’, 存储时会自动创建sub-stores(在pytables中是groups)，可以省略路径开头的’/’，’/food/apple’和’food/apple’表示相同的key。</p>
 <blockquote>
 <p>注意：删除操作会删除子路径下的所有内容，请小心使用</p>
 </blockquote>
-<pre><code class="python">df = pd.DataFrame({&#39;A&#39;: list(range(2)), &#39;B&#39;: list(range(2))})
-store = pd.HDFStore(&#39;hk_test.h5&#39;)
-store.append(&#39;/food/apple&#39;, df)
-store.append(&#39;food/orange&#39;, df)
-store.append(&#39;df&#39;,df)
+<pre><code class="language-python">df = pd.DataFrame({'A': list(range(2)), 'B': list(range(2))})
+store = pd.HDFStore('hk_test.h5')
+store.append('/food/apple', df)
+store.append('food/orange', df)
+store.append('df',df)
 print(store.keys())
 
 for (path, subgroups, subkeys) in store.walk():
     for subgroup in subgroups:
-        print(&#39;GROUP: {}/{}&#39;.format(path, subgroup))
+        print('GROUP: {}/{}'.format(path, subgroup))
     for subkey in subkeys:
-        key = &#39;/&#39;.join([path, subkey])
-        print(&#39;KEY: {}&#39;.format(key))
+        key = '/'.join([path, subkey])
+        print('KEY: {}'.format(key))
         print(store.get(key))
 
-print(store[&#39;food/orange&#39;])</code></pre>
-<h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1><p>select和delete操作可以通过查询语句对数据子集进行操作，好处是可以在非常大的数据集上只检索一小部分数据。</p>
+print(store['food/orange'])
+</code></pre>
+<h1>查询</h1>
+<p>select和delete操作可以通过查询语句对数据子集进行操作，好处是可以在非常大的数据集上只检索一小部分数据。</p>
 <p>查询表达式:</p>
 <ul>
 <li>支持使用index和columns查询dataframe</li>
@@ -1380,29 +1680,35 @@ print(store[&#39;food/orange&#39;])</code></pre>
 <p>例子：</p>
 <ul>
 <li>‘index &gt;= date’</li>
-<li>“columns = [‘A’, ‘D’]“</li>
-<li>“columns in [‘A’, ‘D’]“</li>
+<li>“columns = [‘A’, ‘D’]”</li>
+<li>“columns in [‘A’, ‘D’]”</li>
 <li>‘columns = A’</li>
 <li>‘columns == A’</li>
 <li>“~(columns = [‘A’, ‘B’])”</li>
-<li>‘index &gt; df.index[3] &amp; string = “bar”‘</li>
-<li>‘(index &gt; df.index[3] &amp; index &lt;= df.index[6]) | string = “bar”‘</li>
+<li>‘index &gt; df.index[3] &amp; string = “bar”’</li>
+<li>‘(index &gt; df.index[3] &amp; index &lt;= df.index[6]) | string = “bar”’</li>
 <li>“ts &gt;= Timestamp(‘2012-02-01’)”</li>
 <li>“major_axis&gt;=20130101”</li>
 </ul>
-<p>不建议通过将字符串插入查询表达式来将字符串传递给查询。只需将感兴趣的字符串分配给变量，并在表达式中使用该变量。<br>例如：</p>
-<pre><code class="python">string = &quot;HolyMoly&#39;&quot;
-store.select(&#39;df&#39;, &#39;index == string&#39;)
-store.select(&#39;dfq&#39;, &quot;index&gt;pd.Timestamp(&#39;20130104&#39;) &amp; columns=[&#39;A&#39;, &#39;B&#39;]&quot;)
-store.select(&#39;dfq&#39;, where=&quot;A&gt;0 or C&gt;0&quot;)
-store.select(&#39;df&#39;, &quot;columns=[&#39;A&#39;, &#39;B&#39;]&quot;)</code></pre>
-<h1 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h1><pre><code class="python">store.remove(&#39;wp&#39;, &#39;major_axis &gt; 20000102&#39;)</code></pre>
+<p>不建议通过将字符串插入查询表达式来将字符串传递给查询。只需将感兴趣的字符串分配给变量，并在表达式中使用该变量。<br>
+例如：</p>
+<pre><code class="language-python">string = &quot;HolyMoly'&quot;
+store.select('df', 'index == string')
+store.select('dfq', &quot;index&gt;pd.Timestamp('20130104') &amp; columns=['A', 'B']&quot;)
+store.select('dfq', where=&quot;A&gt;0 or C&gt;0&quot;)
+store.select('df', &quot;columns=['A', 'B']&quot;)
+</code></pre>
+<h1>删除</h1>
+<pre><code class="language-python">store.remove('wp', 'major_axis &gt; 20000102')
+</code></pre>
 <blockquote>
 <p>警告: 请注意HDF5不会自动回收h5文件中的空格。因此，反复删除（或删除节点）并再次添加，将趋于增加文件大小。</p>
 </blockquote>
-<h1 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h1><ul>
+<h1>压缩</h1>
+<ul>
 <li>complevel指定压缩强度，complevel = 0和complevel = None禁用压缩，0 &lt;complevel &lt;10启用压缩。</li>
-<li>complib 指定压缩库，默认使用zlib<ul>
+<li>complib 指定压缩库，默认使用zlib
+<ul>
 <li>zlib：默认的压缩库。压缩方面的经典之作可以实现良好的压缩率，但速度有些慢。</li>
 <li>lzo：快速压缩和减压。</li>
 <li>bzip2：良好的压缩率。</li>
@@ -1416,13 +1722,17 @@ store.select(&#39;df&#39;, &quot;columns=[&#39;A&#39;, &#39;B&#39;]&quot;)</code
 </ul>
 </li>
 </ul>
-<pre><code class="python">store_compressed = pd.HDFStore(&#39;store_compressed.h5&#39;, complevel=9,complib=&#39;blosc:blosclz&#39;)
+<pre><code class="language-python">store_compressed = pd.HDFStore('store_compressed.h5', complevel=9,complib='blosc:blosclz')
 
-store.append(&#39;df&#39;, df, complib=&#39;zlib&#39;, complevel=5)</code></pre>
-<h3 id="ptrepack"><a href="#ptrepack" class="headerlink" title="ptrepack"></a>ptrepack</h3><p>重新生成压缩文件，重写文件将回收已删除的空间，也可以改变complevel</p>
-<pre><code class="shell">ptrepack --chunkshape=auto --propindexes --complevel=9 --complib=blosc in.h5 out.h5
+store.append('df', df, complib='zlib', complevel=5)
 </code></pre>
-<h1 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h1><ul>
+<h3 id="ptrepack">ptrepack</h3>
+<p>重新生成压缩文件，重写文件将回收已删除的空间，也可以改变complevel</p>
+<pre><code class="language-shell">ptrepack --chunkshape=auto --propindexes --complevel=9 --complib=blosc in.h5 out.h5
+
+</code></pre>
+<h1>性能</h1>
+<ul>
 <li>fixed stores 读写速度快于 tables 格式，但tables支持追加、删除和查询操作</li>
 <li>可以设置chunksize=&lt; int &gt;来指定chunsize大小，这将会降低写入时的内存使用量</li>
 <li>设置expectedrows 可以优化读写性能</li>
@@ -1508,117 +1818,31 @@ store.append(&#39;df&#39;, df, complib=&#39;zlib&#39;, complevel=5)</code></pre>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>之前写过一篇文章实现了一个简单的双均线策略，传送门：<a href="https://mp.weixin.qq.com/s?__biz=MjM5Njc1Mjg0Mw==&mid=2247483716&idx=1&sn=678ac24a3d00cac08bb71a8d8546f113&chksm=a6e53de09192b4f604fe8e91dff9bfef5ecfcfe5c2317b9d310318605e1d9b7ec7f96e07e1f3&token=1630830994&lang=zh_CN#rd" target="_blank" rel="noopener">使用Pandas开发一个双均线策略</a></p>
+          <p>之前写过一篇文章实现了一个简单的双均线策略，传送门：<a href="https://mp.weixin.qq.com/s?__biz=MjM5Njc1Mjg0Mw==&amp;mid=2247483716&amp;idx=1&amp;sn=678ac24a3d00cac08bb71a8d8546f113&amp;chksm=a6e53de09192b4f604fe8e91dff9bfef5ecfcfe5c2317b9d310318605e1d9b7ec7f96e07e1f3&amp;token=1630830994&amp;lang=zh_CN#rd" target="_blank" rel="noopener">使用Pandas开发一个双均线策略</a></p>
 <p>文章最后一张图看到策略收益并没有跑赢中证500指数，想更深入的了解下具体的收益情况，可以使用pyfolio工具，这个工具是著名的量化研究平台quantopian开发的，主要用途就是对投资组合进行风险分析。</p>
 <p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190423225315.png" alt=""></p>
-<p>pyfolio github地址：<a href="https://github.com/quantopian/pyfolio，安装非常简单" target="_blank" rel="noopener">https://github.com/quantopian/pyfolio，安装非常简单</a>:</p>
-<pre><code class="shell">pip install pyfolio</code></pre>
+<p>pyfolio github地址：<a href="https://github.com/quantopian/pyfolio%EF%BC%8C%E5%AE%89%E8%A3%85%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95:" target="_blank" rel="noopener">https://github.com/quantopian/pyfolio，安装非常简单:</a></p>
+<pre><code class="language-shell">pip install pyfolio
+</code></pre>
 <p>安装之后导入模块</p>
-<pre><code class="python">import pyfolio as pf
+<pre><code class="language-python">import pyfolio as pf
 # silence warnings
 import warnings
-warnings.filterwarnings(&#39;ignore&#39;)</code></pre>
+warnings.filterwarnings('ignore')
+</code></pre>
 <p>对上一篇文章中生成的策略回报和市场回报的series进行分析</p>
-<pre><code class="python">pf.show_perf_stats(etf500[&#39;Strategy&#39;],etf500[&#39;Market Returns&#39;],live_start_date=&#39;2018-1-1&#39;)</code></pre>
-<p>live_start_date参数是模拟策略实盘开始交易的时间点，下图中 ‘2018-1-1’ 之前的样本内数据一共有55个月，’2018-1-1’之后的样本外数据一共15个月</p>
+<pre><code class="language-python">pf.show_perf_stats(etf500['Strategy'],etf500['Market Returns'],live_start_date='2018-1-1')
+</code></pre>
+<p>live_start_date参数是模拟策略实盘开始交易的时间点，下图中 ‘2018-1-1’ 之前的样本内数据一共有55个月，'2018-1-1’之后的样本外数据一共15个月</p>
 <p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190430132342.png" alt=""></p>
 <p>年化回报率为17.7%</p>
 <p>从2013年3月15日开始累计投资回报率为161.6%</p>
 <p>整体测试时间段内的最大回撤为59.1%，夏普值只有0.47</p>
 <p>我们再来看下最大回测的时间段，下图显示最大回撤发生在2015年6月12日 - 2019年2月20日，累计最大回撤59.12%，2015年6月12日刚好是股灾开始的时候，惨痛的回忆。。。</p>
-<pre><code class="python">pf.show_worst_drawdown_periods(etf500[&#39;Strategy&#39;])</code></pre>
+<pre><code class="language-python">pf.show_worst_drawdown_periods(etf500['Strategy'])
+</code></pre>
 <p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190430133103.png" alt=""></p>
 <p>其实这个策略还有优化的空间，下一篇文章介绍下如果对双均线策略进行参数优化。</p>
-<p>我的微信公众号：pyquant</p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2019/04/26/2019-04-26%20%E5%A4%84%E7%90%86linux%E7%B3%BB%E7%BB%9F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/04/26/2019-04-26%20%E5%A4%84%E7%90%86linux%E7%B3%BB%E7%BB%9F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B/" class="post-title-link" itemprop="url">处理linux系统僵尸进程</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-04-26 15:36:00" itemprop="dateCreated datePublished" datetime="2019-04-26T15:36:00+08:00">2019-04-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
-                    <span itemprop="name">系统运维</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近在使用jupyter运行多进程程序时，发现重启jupyter notebook偶尔会留下一些僵尸进程，应该是python父进程被终止之后子进程没有被正确释放造成的。僵尸进程依然会占用系统资源，如果不及时清理可能会严重影响系统性能。</p>
-<p>先解释下什么是僵尸进程</p>
-<blockquote>
-<p>僵尸进程是当子进程比父进程先结束，而父进程又没有回收子进程，释放子进程占用的资源，此时子进程将成为一个僵尸进程。如果父进程先退出 ，子进程被init接管，子进程退出后init会回收其占用的相关资源。</p>
-<p>在UNIX 系统中，一个进程结束了，但是他的父进程没有等待(调用wait / waitpid)他， 那么他将变成一个僵尸进程。<br>                                                                                                                       — 百度百科</p>
-</blockquote>
-<p> 在jupyter中使用多进程执行程序时，如果程序还没有执行完成就点击菜单栏的 Kernel -&gt; Restart xxx，就有可能会造成僵尸进程。</p>
-<p>如何检查僵尸进程是否存在呢？在命令行中执行如下命令就可以返回僵尸进程状态、父进程ID、进程ID和执行的具体命令：</p>
-<pre><code class="shell">ps -A -ostat,ppid,pid,cmd | grep -e &#39;^[Zz]&#39;</code></pre>
-<p>杀死僵尸进程也比较容易，执行如下命令就可以清理僵尸进程：</p>
-<pre><code class="shell">kill -9 `ps -A -ostat,ppid,pid,cmd | grep -e &#39;^[Zz]&#39; | awk &#39;{print $2}&#39;`</code></pre>
 <p>我的微信公众号：pyquant</p>
 <p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
 
@@ -1642,7 +1866,7 @@ warnings.filterwarnings(&#39;ignore&#39;)</code></pre>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1710,7 +1934,7 @@ warnings.filterwarnings(&#39;ignore&#39;)</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

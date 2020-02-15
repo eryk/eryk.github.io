@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"xuqi365.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="我的微信公众号：pyquant  背景开发股票行情推送的引擎时遇到一个问题，在9:30开盘后的一段时间内行情消息总是堆积，尤其是开头15-20分钟，堆积的数据量会越来越多，经过debug发现是内部消息传输使用Queue性能问题导致了消息延迟，在stackoverflow上找到一个帖子对Queue的性能进行了测试和解释说明，下面先来介绍下Multiprocessing下的Queue和Pipe 介绍当">
+  <meta name="description" content="我的微信公众号：pyquant  背景 开发股票行情推送的引擎时遇到一个问题，在9:30开盘后的一段时间内行情消息总是堆积，尤其是开头15-20分钟，堆积的数据量会越来越多，经过debug发现是内部消息传输使用Queue性能问题导致了消息延迟，在stackoverflow上找到一个帖子对Queue的性能进行了测试和解释说明，下面先来介绍下Multiprocessing下的Queue和Pipe 介绍">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Multiprocessing Pipe和Queue性能测试">
 <meta property="og:url" content="http://xuqi365.com/2019/04/22/2019-04-22%20Multiprocessing%20Pipe%E5%92%8CQueue%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/index.html">
 <meta property="og:site_name" content="Python量化交易实战">
-<meta property="og:description" content="我的微信公众号：pyquant  背景开发股票行情推送的引擎时遇到一个问题，在9:30开盘后的一段时间内行情消息总是堆积，尤其是开头15-20分钟，堆积的数据量会越来越多，经过debug发现是内部消息传输使用Queue性能问题导致了消息延迟，在stackoverflow上找到一个帖子对Queue的性能进行了测试和解释说明，下面先来介绍下Multiprocessing下的Queue和Pipe 介绍当">
+<meta property="og:description" content="我的微信公众号：pyquant  背景 开发股票行情推送的引擎时遇到一个问题，在9:30开盘后的一段时间内行情消息总是堆积，尤其是开头15-20分钟，堆积的数据量会越来越多，经过debug发现是内部消息传输使用Queue性能问题导致了消息延迟，在stackoverflow上找到一个帖子对Queue的性能进行了测试和解释说明，下面先来介绍下Multiprocessing下的Queue和Pipe 介绍">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
 <meta property="article:published_time" content="2019-04-22T02:47:00.000Z">
@@ -210,10 +210,15 @@
       
         <p>我的微信公众号：pyquant</p>
 <p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
-<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>开发股票行情推送的引擎时遇到一个问题，在9:30开盘后的一段时间内行情消息总是堆积，尤其是开头15-20分钟，堆积的数据量会越来越多，经过debug发现是内部消息传输使用Queue性能问题导致了消息延迟，在stackoverflow上找到一个帖子对Queue的性能进行了测试和解释说明，下面先来介绍下Multiprocessing下的Queue和Pipe</p>
-<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>当使用多个进程时，通常使用消息传递来进行进程之间的通信，为了不损耗性能也会尽量避免使用同步机制。对于消息传递：</p>
+<h1>背景</h1>
+<p>开发股票行情推送的引擎时遇到一个问题，在9:30开盘后的一段时间内行情消息总是堆积，尤其是开头15-20分钟，堆积的数据量会越来越多，经过debug发现是内部消息传输使用Queue性能问题导致了消息延迟，在stackoverflow上找到一个帖子对Queue的性能进行了测试和解释说明，下面先来介绍下Multiprocessing下的Queue和Pipe</p>
+<h1>介绍</h1>
+<p>当使用多个进程时，通常使用消息传递来进行进程之间的通信，为了不损耗性能也会尽量避免使用同步机制。对于消息传递：</p>
 <pre><code>* Pipe适用于两个进程间的消息传递。
-* Queue适用于多个进程间的消息传递，适用于多生产者和消费者的模式。</code></pre><h1 id="Pipe-VS-Queue"><a href="#Pipe-VS-Queue" class="headerlink" title="Pipe VS Queue"></a>Pipe VS Queue</h1><pre><code class="python">from multiprocessing import Process, Pipe
+* Queue适用于多个进程间的消息传递，适用于多生产者和消费者的模式。
+</code></pre>
+<h1>Pipe VS Queue</h1>
+<pre><code class="language-python">from multiprocessing import Process, Pipe
 import time
 
 def reader_proc(pipe):
@@ -222,15 +227,15 @@ def reader_proc(pipe):
     p_input.close()  # We are only reading
     while True:
         msg = p_output.recv()  # Read from the output pipe and do nothing
-        if msg == &#39;DONE&#39;:
+        if msg == 'DONE':
             break
 
 def writer(count, p_input):
     for ii in range(0, count):
-        p_input.send(ii)  # Write &#39;count&#39; numbers into the input pipe
-    p_input.send(&#39;DONE&#39;)
+        p_input.send(ii)  # Write 'count' numbers into the input pipe
+    p_input.send('DONE')
 
-if __name__ == &#39;__main__&#39;:
+if __name__ == '__main__':
     for count in [10 ** 4, 10 ** 5, 10 ** 6]:
         # Pipes are unidirectional with two endpoints:  p_input ------&gt; p_output
         p_output, p_input = Pipe()  # writer() writes to p_input from _this_ process
@@ -245,11 +250,14 @@ if __name__ == &#39;__main__&#39;:
         reader_p.join()
         print(&quot;Sending {0} numbers to Pipe() took {1} seconds&quot;.format(count,
                                                                       (time.time() - _start)))
+
 </code></pre>
-<h3 id="Pipe输出结果"><a href="#Pipe输出结果" class="headerlink" title="Pipe输出结果"></a>Pipe输出结果</h3><pre><code class="shell">Sending 10000 numbers to Pipe() took 0.0744009017944336 seconds
+<h3 id="Pipe输出结果">Pipe输出结果</h3>
+<pre><code class="language-shell">Sending 10000 numbers to Pipe() took 0.0744009017944336 seconds
 Sending 100000 numbers to Pipe() took 0.7794349193572998 seconds
-Sending 1000000 numbers to Pipe() took 7.425454139709473 seconds</code></pre>
-<pre><code class="python">from multiprocessing import Process, Queue
+Sending 1000000 numbers to Pipe() took 7.425454139709473 seconds
+</code></pre>
+<pre><code class="language-python">from multiprocessing import Process, Queue
 import time
 import sys
 
@@ -257,16 +265,16 @@ def reader_proc(queue):
     ## Read from the queue; this will be spawned as a separate Process
     while True:
         msg = queue.get()  # Read from the queue and do nothing
-        if (msg == &#39;DONE&#39;):
+        if (msg == 'DONE'):
             break
 
 def writer(count, queue):
     ## Write to the queue
     for ii in range(0, count):
-        queue.put(ii)  # Write &#39;count&#39; numbers into the queue
-    queue.put(&#39;DONE&#39;)
+        queue.put(ii)  # Write 'count' numbers into the queue
+    queue.put('DONE')
 
-if __name__ == &#39;__main__&#39;:
+if __name__ == '__main__':
     pqueue = Queue()  # writer() writes to pqueue from _this_ process
     for count in [10 ** 4, 10 ** 5, 10 ** 6]:
         ### reader_proc() reads from pqueue as a separate process
@@ -279,38 +287,44 @@ if __name__ == &#39;__main__&#39;:
         reader_p.join()  # Wait for the reader to finish
         print(&quot;Sending {0} numbers to Queue() took {1} seconds&quot;.format(count,
                                                                        (time.time() - _start)))
+
 </code></pre>
-<h4 id="Queue-输出结果"><a href="#Queue-输出结果" class="headerlink" title="Queue 输出结果"></a>Queue 输出结果</h4><pre><code class="shell">Sending 10000 numbers to Queue() took 0.2558887004852295 seconds
+<h4 id="Queue-输出结果">Queue 输出结果</h4>
+<pre><code class="language-shell">Sending 10000 numbers to Queue() took 0.2558887004852295 seconds
 Sending 100000 numbers to Queue() took 2.4320709705352783 seconds
-Sending 1000000 numbers to Queue() took 23.602338075637817 seconds</code></pre>
+Sending 1000000 numbers to Queue() took 23.602338075637817 seconds
+</code></pre>
 <p>让我们把结果整理成表格方便对比查看:</p>
 <table>
 <thead>
 <tr>
-<th align="right">循环次数</th>
-<th align="right">Pipe</th>
-<th align="right">Queue</th>
+<th style="text-align:right">循环次数</th>
+<th style="text-align:right">Pipe</th>
+<th style="text-align:right">Queue</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="right">10000</td>
-<td align="right">0.0744</td>
-<td align="right">0.2558</td>
+<tbody>
+<tr>
+<td style="text-align:right">10000</td>
+<td style="text-align:right">0.0744</td>
+<td style="text-align:right">0.2558</td>
 </tr>
 <tr>
-<td align="right">100000</td>
-<td align="right">0.7794</td>
-<td align="right">2.4320</td>
+<td style="text-align:right">100000</td>
+<td style="text-align:right">0.7794</td>
+<td style="text-align:right">2.4320</td>
 </tr>
 <tr>
-<td align="right">1000000</td>
-<td align="right">7.4254</td>
-<td align="right">23.6023</td>
+<td style="text-align:right">1000000</td>
+<td style="text-align:right">7.4254</td>
+<td style="text-align:right">23.6023</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>通过对比测试可以发现，Pipe性能大约为Queue的3倍，所以在仅有两端通信的情况下应该优先使用Pipe。</p>
-<h1 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h1><p>通过阅读Queue的源码，我们可以发现，其实在Queue内部是用Lock来实现对Pipe的安全读写操作的。所以相比于Pipe会有额外的锁的开销。</p>
-<pre><code class="python">class Queue(object):
+<h1>源码分析</h1>
+<p>通过阅读Queue的源码，我们可以发现，其实在Queue内部是用Lock来实现对Pipe的安全读写操作的。所以相比于Pipe会有额外的锁的开销。</p>
+<pre><code class="language-python">class Queue(object):
 
     def __init__(self, maxsize=0, *, ctx):
         if maxsize &lt;= 0:
@@ -320,7 +334,7 @@ Sending 1000000 numbers to Queue() took 23.602338075637817 seconds</code></pre>
         self._reader, self._writer = connection.Pipe(duplex=False) # 这里初始化了Pipe对象
         self._rlock = ctx.Lock()
         self._opid = os.getpid()
-        if sys.platform == &#39;win32&#39;:
+        if sys.platform == 'win32':
             self._wlock = None
         else:
             self._wlock = ctx.Lock()
@@ -328,7 +342,7 @@ Sending 1000000 numbers to Queue() took 23.602338075637817 seconds</code></pre>
         # For use by concurrent.futures
         self._ignore_epipe = False
         self._after_fork()
-        if sys.platform != &#39;win32&#39;:
+        if sys.platform != 'win32':
             register_after_fork(self, Queue._after_fork)
 
     def put(self, obj, block=True, timeout=None):
@@ -367,8 +381,10 @@ Sending 1000000 numbers to Queue() took 23.602338075637817 seconds</code></pre>
             finally:
                 self._rlock.release()
         # unserialize the data after having released the lock
-        return _ForkingPickler.loads(res)</code></pre>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://stackoverflow.com/questions/8463008/multiprocessing-pipe-vs-queue" target="_blank" rel="noopener">https://stackoverflow.com/questions/8463008/multiprocessing-pipe-vs-queue</a></p>
+        return _ForkingPickler.loads(res)
+</code></pre>
+<h1>参考</h1>
+<p><a href="https://stackoverflow.com/questions/8463008/multiprocessing-pipe-vs-queue" target="_blank" rel="noopener">https://stackoverflow.com/questions/8463008/multiprocessing-pipe-vs-queue</a></p>
 
 
 <img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
@@ -496,7 +512,7 @@ Sending 1000000 numbers to Queue() took 23.602338075637817 seconds</code></pre>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pipe-VS-Queue"><span class="nav-number">3.</span> <span class="nav-text">Pipe VS Queue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pipe输出结果"><span class="nav-number">3.0.1.</span> <span class="nav-text">Pipe输出结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Queue-输出结果"><span class="nav-number">3.0.1.1.</span> <span class="nav-text">Queue 输出结果</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码分析"><span class="nav-number">4.</span> <span class="nav-text">源码分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">Pipe VS Queue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pipe输出结果"><span class="nav-number">3.0.1.</span> <span class="nav-text">Pipe输出结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Queue-输出结果"><span class="nav-number">3.0.1.1.</span> <span class="nav-text">Queue 输出结果</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">源码分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -512,7 +528,7 @@ Sending 1000000 numbers to Queue() took 23.602338075637817 seconds</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

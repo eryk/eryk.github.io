@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"xuqi365.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="cd $1 python3 -O -m compileall . find . -name &#39;*.pyc&#39; -exec rename &#39;s&#x2F;.cpython-36.opt-1&#x2F;&#x2F;&#39; {} \; find . -name &#39;*.pyc&#39; -execdir mv {} .. \; find . -name &#39;*.py&#39; -type f -">
+  <meta name="description" content="cd $1 python3 -O -m compileall . find . -name &#39;*.pyc&#39; -exec rename &#39;s&#x2F;.cpython-36.opt-1&#x2F;&#x2F;&#39; {} \; find . -name &#39;*.pyc&#39; -execdir mv {} .. \; find . -name &#39;*.py&#39; -type f -print -exec rm {} \; find . -nam">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python编译打包pyc脚本">
 <meta property="og:url" content="http://xuqi365.com/2017/10/27/python%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85pyc%E8%84%9A%E6%9C%AC/index.html">
 <meta property="og:site_name" content="Python量化交易实战">
-<meta property="og:description" content="cd $1 python3 -O -m compileall . find . -name &#39;*.pyc&#39; -exec rename &#39;s&#x2F;.cpython-36.opt-1&#x2F;&#x2F;&#39; {} \; find . -name &#39;*.pyc&#39; -execdir mv {} .. \; find . -name &#39;*.py&#39; -type f -">
+<meta property="og:description" content="cd $1 python3 -O -m compileall . find . -name &#39;*.pyc&#39; -exec rename &#39;s&#x2F;.cpython-36.opt-1&#x2F;&#x2F;&#39; {} \; find . -name &#39;*.pyc&#39; -execdir mv {} .. \; find . -name &#39;*.py&#39; -type f -print -exec rm {} \; find . -nam">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-10-27T04:18:00.000Z">
 <meta property="article:modified_time" content="2020-02-08T17:11:26.021Z">
@@ -205,13 +205,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <pre><code class="shell">cd $1
+        <pre><code class="language-shell">cd $1
 python3 -O -m compileall .
-find . -name &#39;*.pyc&#39; -exec rename &#39;s/.cpython-36.opt-1//&#39; {} \;
-find . -name &#39;*.pyc&#39; -execdir mv {} .. \;
-find . -name &#39;*.py&#39; -type f -print -exec rm {} \;
-find . -name &#39;__pycache__&#39; -exec rmdir {} \;
-zip -r ../$1.zip ./*</code></pre>
+find . -name '*.pyc' -exec rename 's/.cpython-36.opt-1//' {} \;
+find . -name '*.pyc' -execdir mv {} .. \;
+find . -name '*.py' -type f -print -exec rm {} \;
+find . -name '__pycache__' -exec rmdir {} \;
+zip -r ../$1.zip ./*
+</code></pre>
 <p>转自：<a href="https://my.oschina.net/bfbd/blog/864310" target="_blank" rel="noopener">https://my.oschina.net/bfbd/blog/864310</a></p>
 
 
@@ -354,7 +355,7 @@ zip -r ../$1.zip ./*</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

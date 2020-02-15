@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"xuqi365.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="转自：http:&#x2F;&#x2F;www.dataivy.cn&#x2F;blog&#x2F;data_etl&#x2F;?wt_tb&#x3D;1%7C1511709850969 当数据质量校验完成后，针对有问题的数据要进行的是数据清洗和转换，另外还包括对正常数据的转换。数据清洗的主要作用包括：纠正错误、删除重复项、统一规格、修正逻辑、转换构造和数据压缩。 1. 纠正错误错误数据是数据源环境中经常出现的一类问题。数据错误的形式包括：  数据值错误：">
+  <meta name="description" content="转自：http:&#x2F;&#x2F;www.dataivy.cn&#x2F;blog&#x2F;data_etl&#x2F;?wt_tb&#x3D;1|1511709850969 当数据质量校验完成后，针对有问题的数据要进行的是数据清洗和转换，另外还包括对正常数据的转换。数据清洗的主要作用包括：纠正错误、删除重复项、统一规格、修正逻辑、转换构造和数据压缩。 1. 纠正错误 错误数据是数据源环境中经常出现的一类问题。数据错误的形式包括：  数据值错误：数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据预处理-清洗转换">
 <meta property="og:url" content="http://xuqi365.com/2017/11/30/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86-%E6%B8%85%E6%B4%97%E8%BD%AC%E6%8D%A2/index.html">
 <meta property="og:site_name" content="Python量化交易实战">
-<meta property="og:description" content="转自：http:&#x2F;&#x2F;www.dataivy.cn&#x2F;blog&#x2F;data_etl&#x2F;?wt_tb&#x3D;1%7C1511709850969 当数据质量校验完成后，针对有问题的数据要进行的是数据清洗和转换，另外还包括对正常数据的转换。数据清洗的主要作用包括：纠正错误、删除重复项、统一规格、修正逻辑、转换构造和数据压缩。 1. 纠正错误错误数据是数据源环境中经常出现的一类问题。数据错误的形式包括：  数据值错误：">
+<meta property="og:description" content="转自：http:&#x2F;&#x2F;www.dataivy.cn&#x2F;blog&#x2F;data_etl&#x2F;?wt_tb&#x3D;1|1511709850969 当数据质量校验完成后，针对有问题的数据要进行的是数据清洗和转换，另外还包括对正常数据的转换。数据清洗的主要作用包括：纠正错误、删除重复项、统一规格、修正逻辑、转换构造和数据压缩。 1. 纠正错误 错误数据是数据源环境中经常出现的一类问题。数据错误的形式包括：  数据值错误：数">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-11-30T07:39:00.000Z">
 <meta property="article:modified_time" content="2020-02-08T17:11:26.045Z">
@@ -205,9 +205,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>转自：<a href="http://www.dataivy.cn/blog/data_etl/?wt_tb=1%7C1511709850969" target="_blank" rel="noopener">http://www.dataivy.cn/blog/data_etl/?wt_tb=1%7C1511709850969</a></p>
+        <p>转自：<a href="http://www.dataivy.cn/blog/data_etl/?wt_tb=1%7C1511709850969" target="_blank" rel="noopener">http://www.dataivy.cn/blog/data_etl/?wt_tb=1|1511709850969</a></p>
 <p>当数据质量校验完成后，针对有问题的数据要进行的是数据清洗和转换，另外还包括对正常数据的转换。数据清洗的主要作用包括：纠正错误、删除重复项、统一规格、修正逻辑、转换构造和数据压缩。</p>
-<h1 id="1-纠正错误"><a href="#1-纠正错误" class="headerlink" title="1. 纠正错误"></a>1. 纠正错误</h1><p>错误数据是数据源环境中经常出现的一类问题。数据错误的形式包括：</p>
+<h1>1. 纠正错误</h1>
+<p>错误数据是数据源环境中经常出现的一类问题。数据错误的形式包括：</p>
 <ul>
 <li>数据值错误：数据直接是错误的，例如超过固定域集、超过极值、拼写错误、属性错误、源错误等。</li>
 <li>数据类型错误：数据的存储类型不符合实际情况，如日期类型的以数值型存储，时间戳存为字符串等。</li>
@@ -215,9 +216,11 @@
 <li>数据格式错误：数据的存储格式问题，如半角全角字符、中英文字符等。</li>
 <li>数据异常错误：如数值数据输成全角数字字符、字符串数据后面有一个回车操作、日期越界、数据前后有不可见字符等。</li>
 <li>依赖冲突：某些数据字段间存储依赖关系，例如城市与邮政编码应该满足对应关系，但可能存在二者不匹配的问题。</li>
-<li>多值错误：大多数情况下，每个字段存储的是单个值，但也存在一个字段存储多个值的情况，其中有些可能是不符合实际业务规则的。<br>这类错误产生的原因是业务系统不够健全，尤其是在数据产生之初的校验和入库规则不规范，导致在接收输入后没有进行判断或无法检测而直接写入后台数据库造成的。</li>
+<li>多值错误：大多数情况下，每个字段存储的是单个值，但也存在一个字段存储多个值的情况，其中有些可能是不符合实际业务规则的。<br>
+这类错误产生的原因是业务系统不够健全，尤其是在数据产生之初的校验和入库规则不规范，导致在接收输入后没有进行判断或无法检测而直接写入后台数据库造成的。</li>
 </ul>
-<h1 id="2-删除重复项"><a href="#2-删除重复项" class="headerlink" title="2. 删除重复项"></a>2. 删除重复项</h1><p>由于各种原因，数据中可能存在重复记录或重复字段（列），对于这些重复项目（行和列）需要做去重处理。</p>
+<h1>2. 删除重复项</h1>
+<p>由于各种原因，数据中可能存在重复记录或重复字段（列），对于这些重复项目（行和列）需要做去重处理。</p>
 <p>对于重复项的判断，基本思想是“排序和合并”，先将数据库中的记录按一定规则排序，然后通过比较邻近记录是否相似来检测记录是否重复。这里面其实包含了两个操作，一是排序，二是计算相似度。</p>
 <p>常见的排序算法：</p>
 <ul>
@@ -246,7 +249,8 @@
 <li>信息熵</li>
 </ul>
 <p>对于重复的数据项，尽量需要经过业务确认并进行整理提取出规则。在清洗转换阶段，对于重复数据项尽量不要轻易做出删除决策，尤其不能将重要的或有业务意义的数据过滤掉，校验和重复确认的工作必不可少。</p>
-<h1 id="3-统一规格"><a href="#3-统一规格" class="headerlink" title="3. 统一规格"></a>3. 统一规格</h1><p>由于数据源系统分散在各个业务线，不同业务线对于数据的要求、理解和规格不同，导致对于同一数据对象描述规格完全不同，因此在清洗过程中需要统一数据规格并将一致性的内容抽象出来。</p>
+<h1>3. 统一规格</h1>
+<p>由于数据源系统分散在各个业务线，不同业务线对于数据的要求、理解和规格不同，导致对于同一数据对象描述规格完全不同，因此在清洗过程中需要统一数据规格并将一致性的内容抽象出来。</p>
 <p>数据字段的规则大致可以从以下几个方面进行统一：</p>
 <ul>
 <li>名称，对于同一个数据对象的名称首先应该是一致的。例如对于访问深度这个字段，可能的名称包括访问深度、人均页面浏览量、每访问PV数。</li>
@@ -261,22 +265,34 @@
 <li>约束：是否允许控制、唯一性、外键约束、主键等的统一。</li>
 </ul>
 <p>统一数据规格的过程中，需要重要的一点是确认不同业务线带来数据的规格一致性，这需要业务部门的参与、讨论和确认，以明确不同体系数据的统一标准。</p>
-<h1 id="4-修正逻辑"><a href="#4-修正逻辑" class="headerlink" title="4. 修正逻辑"></a>4. 修正逻辑</h1><p>在多数据源的环境下，很可能存在数据异常或冲突的问题。</p>
+<h1>4. 修正逻辑</h1>
+<p>在多数据源的环境下，很可能存在数据异常或冲突的问题。</p>
 <p>例如不同的数据源对于订单数量的数据统计冲突问题，结果出现矛盾的记录。通常，这是由于不同系统对于同一个数据对象的统计逻辑不同而造成的，逻辑的不一致会直接导致结果的差异性；除了统计逻辑和口径的差异，也有因为源数据系统基于性能的考虑，放弃了外键约束，从而导致数据不一致的结果；另外，也存在极小的数据丢失的可能性，通常由于并发量和负载过高、服务器延迟甚至宕机等原因导致的数据采集的差异。</p>
 <p>对于这类的数据矛盾，首先需要明确各个源系统的逻辑、条件、口径，然后定义一套符合各个系统采集逻辑的规则，并对异常源系统的采集逻辑进行修正。</p>
 <p>某些情况下，也可能存在业务规则的错误导致的数据采集的错误，此时需要从源头纠正错误的采集逻辑，然后再进行数据清洗和转换。</p>
-<h1 id="5-转换构造"><a href="#5-转换构造" class="headerlink" title="5. 转换构造"></a>5. 转换构造</h1><p>数据变换是数据清理过程的重要步骤，是对数据的一个的标准的处理，几乎所有的数据处理过程都会涉及该步骤。数据转换常见的内容包括：数据类型转换、数据语义转换、数据值域转换、数据粒度转换、表/数据拆分、行列转换、数据离散化、数据离散化、提炼新字段、属性构造、数据压缩等。</p>
-<h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><p>当数据来自不同数据源时，不同类型的数据源数据类型不兼容可能导致系统报错。这时需要将不同数据源的数据类型进行统一转换为一种兼容的数据类型。</p>
-<h2 id="数据语义转换"><a href="#数据语义转换" class="headerlink" title="数据语义转换"></a>数据语义转换</h2><p>传统数据仓库中基于第三范式可能存在维度表、事实表等，此时在事实表中会有很多字段需要结合维度表才能进行语义上的解析。例如，假如字段M的业务含义是浏览器类型，其取值分为是1/2/3/4/5，这5个数字如果不加转换则很难理解为业务语言，更无法在后期被解读和应用。</p>
-<h2 id="数据粒度转换"><a href="#数据粒度转换" class="headerlink" title="数据粒度转换"></a>数据粒度转换</h2><p>业务系统一般存储的是明细数据，有些系统甚至存储的是基于时间戳的数据，而数据仓库中的数据是用来分析的，不需要非常明细的数据，一般情况下，会将业务系统数据按照数据仓库中不同的粒度需求进行聚合。</p>
-<h2 id="表-数据拆分"><a href="#表-数据拆分" class="headerlink" title="表/数据拆分"></a>表/数据拆分</h2><p>某些字段可能存储多中数据信息，例如时间戳中包含了年、月、日、小时、分、秒等信息，有些规则中需要将其中部分或者全部时间属性进行拆分，以此来满足多粒度下的数据聚合需求。同样的，一个表内的多个字段，也可能存在表字段拆分的情况。</p>
-<h2 id="行列转换"><a href="#行列转换" class="headerlink" title="行列转换"></a>行列转换</h2><p>某些情况下，表内的行列数据会需要进行转换（又称为转置），例如协同过滤的计算之前，user和term之间的关系即互为行列并且可相互转换，可用来满足基于项目和基于用户的相似度推荐计算。</p>
-<h2 id="数据离散化"><a href="#数据离散化" class="headerlink" title="数据离散化"></a>数据离散化</h2><p>将连续取值的属性离散化成若干区间，来帮助消减一个连续属性的取值个数。例如对于收入这个字段，为了便于做统计，根据业务经验可能分为几个不同的区间：0～3000、3001～5000、5001～10000、10001～30000、大于30000，或者在此基础上分别用1、2、3、4、5来表示。</p>
-<h2 id="数据标准化"><a href="#数据标准化" class="headerlink" title="数据标准化"></a>数据标准化</h2><p>不同字段间由于字段本身的业务含义不同，有些时间需要消除变量之间不同数量级造成的数值之间的悬殊差异。例如将销售额进行离散化处理，以消除不同销售额之间由于量级关系导致的无法进行多列的复合计算。数据标准化过程还可以用来解决个别数值较高的属性对聚类结果的影响。</p>
-<h2 id="提炼新字段"><a href="#提炼新字段" class="headerlink" title="提炼新字段"></a>提炼新字段</h2><p>很多情况下，需要基于业务规则提取新的字段，这些字段也称为复合字段。这些字段通常都是基于单一字段产生，但需要进行复合运算甚至复杂算法模型才能得到新的指标。</p>
-<h2 id="属性构造"><a href="#属性构造" class="headerlink" title="属性构造"></a>属性构造</h2><p>有些建模过程中，也会需要根据已有的属性集构造新的属性。例如，几乎所有的机器学习都会讲样本分为训练集、测试集、验证集三类，那么数据集的分类（或者叫分区）就属于需要新构建的属性，用户做机器学习不同阶段的样本使用。</p>
+<h1>5. 转换构造</h1>
+<p>数据变换是数据清理过程的重要步骤，是对数据的一个的标准的处理，几乎所有的数据处理过程都会涉及该步骤。数据转换常见的内容包括：数据类型转换、数据语义转换、数据值域转换、数据粒度转换、表/数据拆分、行列转换、数据离散化、数据离散化、提炼新字段、属性构造、数据压缩等。</p>
+<h2 id="数据类型转换">数据类型转换</h2>
+<p>当数据来自不同数据源时，不同类型的数据源数据类型不兼容可能导致系统报错。这时需要将不同数据源的数据类型进行统一转换为一种兼容的数据类型。</p>
+<h2 id="数据语义转换">数据语义转换</h2>
+<p>传统数据仓库中基于第三范式可能存在维度表、事实表等，此时在事实表中会有很多字段需要结合维度表才能进行语义上的解析。例如，假如字段M的业务含义是浏览器类型，其取值分为是1/2/3/4/5，这5个数字如果不加转换则很难理解为业务语言，更无法在后期被解读和应用。</p>
+<h2 id="数据粒度转换">数据粒度转换</h2>
+<p>业务系统一般存储的是明细数据，有些系统甚至存储的是基于时间戳的数据，而数据仓库中的数据是用来分析的，不需要非常明细的数据，一般情况下，会将业务系统数据按照数据仓库中不同的粒度需求进行聚合。</p>
+<h2 id="表-数据拆分">表/数据拆分</h2>
+<p>某些字段可能存储多中数据信息，例如时间戳中包含了年、月、日、小时、分、秒等信息，有些规则中需要将其中部分或者全部时间属性进行拆分，以此来满足多粒度下的数据聚合需求。同样的，一个表内的多个字段，也可能存在表字段拆分的情况。</p>
+<h2 id="行列转换">行列转换</h2>
+<p>某些情况下，表内的行列数据会需要进行转换（又称为转置），例如协同过滤的计算之前，user和term之间的关系即互为行列并且可相互转换，可用来满足基于项目和基于用户的相似度推荐计算。</p>
+<h2 id="数据离散化">数据离散化</h2>
+<p>将连续取值的属性离散化成若干区间，来帮助消减一个连续属性的取值个数。例如对于收入这个字段，为了便于做统计，根据业务经验可能分为几个不同的区间：0～3000、3001～5000、5001～10000、10001～30000、大于30000，或者在此基础上分别用1、2、3、4、5来表示。</p>
+<h2 id="数据标准化">数据标准化</h2>
+<p>不同字段间由于字段本身的业务含义不同，有些时间需要消除变量之间不同数量级造成的数值之间的悬殊差异。例如将销售额进行离散化处理，以消除不同销售额之间由于量级关系导致的无法进行多列的复合计算。数据标准化过程还可以用来解决个别数值较高的属性对聚类结果的影响。</p>
+<h2 id="提炼新字段">提炼新字段</h2>
+<p>很多情况下，需要基于业务规则提取新的字段，这些字段也称为复合字段。这些字段通常都是基于单一字段产生，但需要进行复合运算甚至复杂算法模型才能得到新的指标。</p>
+<h2 id="属性构造">属性构造</h2>
+<p>有些建模过程中，也会需要根据已有的属性集构造新的属性。例如，几乎所有的机器学习都会讲样本分为训练集、测试集、验证集三类，那么数据集的分类（或者叫分区）就属于需要新构建的属性，用户做机器学习不同阶段的样本使用。</p>
 <p>提示  在某些场景中，也存在一些特殊转换方法。例如在机器学习中，有些值是离散型的数据但存在一定意义，例如最高学历这个字段中包含博士、研究生、大学、高中这4个值，某些算法不支持直接对文本进行计算，此时需要将学历这个字段进行转换。常见的方法是将值域集中的每个值拆解为一个字段，每个字段取值为0或1（布尔型或数值型）。这时，就会出现4个新的字段，对于一条记录来看（通常是一个人），其最高学历只能满足一个，例如字段博士为1，那么其余的字段（研究生、大学、高中）则为0。因此这个过程实际上是将1个字段根据值域（4个值的集合）拆解为4个字段。</p>
-<h1 id="6-数据压缩"><a href="#6-数据压缩" class="headerlink" title="6. 数据压缩"></a>6. 数据压缩</h1><p>数据压缩是指在保持原有数据集的完整性和准确性，不丢失有用信息的前提下，按照一定的算法和方式对数据进行重新组织的一种技术方法。</p>
+<h1>6. 数据压缩</h1>
+<p>数据压缩是指在保持原有数据集的完整性和准确性，不丢失有用信息的前提下，按照一定的算法和方式对数据进行重新组织的一种技术方法。</p>
 <p>对大规模的数据进行复杂的数据分析与数据计算通常需要耗费大量时间，所以在这之前需要进行数据的约减和压缩，减小数据规模，而且还可能面临交互式的数据挖掘，根据数据挖掘前后对比对数据进行信息反馈。这样在精简数据集上进行数据挖掘显然效率更高，并且挖掘出来的结果与使用原有数据集所获得结果基本相同。</p>
 <p>数据压缩的意义不止体现在数据计算过程中，还有利于减少存储空间，提高其传输、存储和处理效率，减少数据的冗余和存储的空间，这对于底层大数据平台具有非常重要的意义。</p>
 <p>数据压缩有多种方式可供选择：</p>
@@ -412,7 +428,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-纠正错误"><span class="nav-number">1.</span> <span class="nav-text">1. 纠正错误</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-删除重复项"><span class="nav-number">2.</span> <span class="nav-text">2. 删除重复项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-统一规格"><span class="nav-number">3.</span> <span class="nav-text">3. 统一规格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-修正逻辑"><span class="nav-number">4.</span> <span class="nav-text">4. 修正逻辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-转换构造"><span class="nav-number">5.</span> <span class="nav-text">5. 转换构造</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型转换"><span class="nav-number">5.1.</span> <span class="nav-text">数据类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据语义转换"><span class="nav-number">5.2.</span> <span class="nav-text">数据语义转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据粒度转换"><span class="nav-number">5.3.</span> <span class="nav-text">数据粒度转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表-数据拆分"><span class="nav-number">5.4.</span> <span class="nav-text">表&#x2F;数据拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行列转换"><span class="nav-number">5.5.</span> <span class="nav-text">行列转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据离散化"><span class="nav-number">5.6.</span> <span class="nav-text">数据离散化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据标准化"><span class="nav-number">5.7.</span> <span class="nav-text">数据标准化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提炼新字段"><span class="nav-number">5.8.</span> <span class="nav-text">提炼新字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性构造"><span class="nav-number">5.9.</span> <span class="nav-text">属性构造</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-数据压缩"><span class="nav-number">6.</span> <span class="nav-text">6. 数据压缩</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">1. 纠正错误</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">2. 删除重复项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">3. 统一规格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">4. 修正逻辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">5. 转换构造</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型转换"><span class="nav-number">5.1.</span> <span class="nav-text">数据类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据语义转换"><span class="nav-number">5.2.</span> <span class="nav-text">数据语义转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据粒度转换"><span class="nav-number">5.3.</span> <span class="nav-text">数据粒度转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表-数据拆分"><span class="nav-number">5.4.</span> <span class="nav-text">表&#x2F;数据拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行列转换"><span class="nav-number">5.5.</span> <span class="nav-text">行列转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据离散化"><span class="nav-number">5.6.</span> <span class="nav-text">数据离散化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据标准化"><span class="nav-number">5.7.</span> <span class="nav-text">数据标准化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提炼新字段"><span class="nav-number">5.8.</span> <span class="nav-text">提炼新字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性构造"><span class="nav-number">5.9.</span> <span class="nav-text">属性构造</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text">6. 数据压缩</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -428,7 +444,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

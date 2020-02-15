@@ -145,6 +145,141 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/24/leve1%E5%92%8Clevel2%20%E8%A7%A3%E9%87%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/24/leve1%E5%92%8Clevel2%20%E8%A7%A3%E9%87%8A/" class="post-title-link" itemprop="url">leve1、level2 解释</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-24 16:36:21" itemprop="dateCreated datePublished" datetime="2017-08-24T16:36:21+08:00">2017-08-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>Level 1 Market Data</h1>
+<p>Basic market data is known as level 1 market data, and includes the following information:</p>
+<ul>
+<li><strong>Bid price</strong>: The highest price that a trader is willing to buy an asset at.</li>
+<li><strong>Bid size</strong>: The number of shares, forex lots or contracts that are available at the bid price.</li>
+<li><strong>Ask price</strong>: The lowest price that a trader is willing to sell an asset at.</li>
+<li><strong>Ask size</strong>: The number of shares, forex lots or contracts that are available at the ask price.</li>
+<li><strong>Last price</strong>: The price at which the most recent trade was completed.</li>
+<li><strong>Last size</strong>: The number of shares, forex lots or contracts that were traded in the most recent trade.</li>
+</ul>
+<p>Level 1 market data provides all of the information needed to trade using most trading systems. If you are trading a price action or indicator based strategy, then Level 1 market data should satisfy your informational needs.</p>
+<p>Scalpers, and traders who trade based on changes in how other traders are bidding and offering (offer and ask are used interchangeably), will need Level 2 market data, which provides multiple levels of bids and offers.</p>
+<h1>Level 2 Market Data</h1>
+<p>Additional market data is known as level 2 market data, the order book, or the depth of market, and includes the following additional information:</p>
+<ul>
+<li>
+<p><strong>Highest bid prices</strong>: The highest 5 to 15 prices (depending upon the market) where traders are willing to buy an asset. This means you not only see the current bid, but also all the bids currently below it. In actively traded stocks, there will typically be bids every $0.01 below the current bid, and in actively traded futures, there will typically be a bid each tick below the current bid. If there is a gap between the current bid and next bid, that typically means the stock or contract may experience a larger bid/ask spread and less volume.</p>
+</li>
+<li>
+<p><strong>Bid sizes</strong>: The number of shares, forex lots or contracts that are available at each of the bid prices.</p>
+</li>
+<li>
+<p><strong>Lowest ask prices</strong>: The lowest 5 to 15 prices (depending upon the market) where traders are willing to sell an asset. This means you not only see the current ask, but also all the asks above the current ask. In actively traded stocks, there will typically be asks every $0.01 above the current ask, and in actively traded futures, there will typically be an ask each tick above the current ask. If there is a gap between the current ask and next ask, that typically means the stock or contract may experience a larger bid/ask spread and less volume.</p>
+</li>
+<li>
+<p><strong>Ask sizes</strong>: The number of shares, forex lots or contracts that are available at each of the ask prices.</p>
+</li>
+</ul>
+<p>Level 2 market data provides the additional information that is needed to trade based on changes that occur in the bids and offers. Level 2 market data is also known as the order book, because it shows the orders that are currently pending for the market. It is also known as the depth of market, or market depth, because it shows the number of contracts (or shares or lots) that are available at each of the bid and ask prices.</p>
+<p><img src="images/15035650306126.jpg" alt=""></p>
+<h1>Order Book</h1>
+<blockquote>
+<p>An order book is the list of orders (manual or electronic) that a trading venue (in particular stock exchanges) uses to record the interest of buyers and sellers in a particular financial instrument. A matching engine uses the book to determine which orders can be fulfilled i.e. what trades can be made.   --wikipedia</p>
+</blockquote>
+<h1>Level2行情</h1>
+<h3 id="买卖行情">买卖行情</h3>
+<p>买入委托和卖出委托前10档的委托价和委托量,投资者可以看得更远,哪个价位有阻力？哪个价位有支撑？哪个价位有大笔挂单,一目了然。</p>
+<h3 id="总买总卖">总买总卖</h3>
+<p>当前全部买入(卖出)委托的总量和加权均价,据此投资者可以判断盘中的支撑位(委买均价)、阻力位(委卖均价)、支撑力度(委买总量)、阻力大小(委卖总量),还可以根据这些数据的动态变化分析多空双方力量的变化,寻找行情的转折点</p>
+<h3 id="成交明细">成交明细</h3>
+<p>在Level-2之前,沪深交易所提供的都是行情快照,大家看到的分笔成交其实是两次快照期间累计的成交量和最后一笔的价格,而逐笔成交则是真实的每笔成交价和成交量的明细数据。逐笔成交极大地提高了行情的透明度。</p>
+<h3 id="买卖队列">买卖队列</h3>
+<p>买一或卖一的前50笔委托单明细,根据委托单的大小或委托单是否有规律,可以判断委托是机构、大户、或散户所为。</p>
+<h1>逐笔数据与分笔数据的根本区别</h1>
+<p>国内的Tick数据指的是 按固定时间间隔取个快照记录下来</p>
+<ol>
+<li>逐笔成交一般显示的数据格式为在几分几秒以多少价格分几笔成交了多少手。在这里我们要注意的是成交手数有时候是带小数点的，这是因为股票买进的股数最少是100股，委托的股数也应是100的整数倍，卖出却没有限制，因此成交的手数会有小数点。另外一点就是如果在成交价格和手数前面没有显示，则一半是默认的1笔。</li>
+<li>分时成交一般显示的数据格式为在几分几秒以多少价格成交了多少手。这里需要注意的是成交手数永远是整数，不会出现小数点数字。其中现手累计数就是总手数。总手数也叫做成交量。有些软件在现量后面标注蓝色S和红色B，前者代表卖，后者代表买。目前市面上出现了LEVEL-2行情数据，比较具有代表性的是大智慧，在那里把分笔成交是叫分时成交，实际上就是我们在普通分析软件上F1看到的“分笔成交明细”，但是他和LEVEL-2行情数据提供的逐笔成交明细是不一样的。</li>
+<li>分笔数据由于是合成混合数据，它是以最后1笔的买卖方向来表示该时间内（3秒或者6秒）的买卖方向，所以误差很大。（见下图说明）</li>
+<li>一个孤独的数字是缺乏意义的，但是一些连续的数字则是充满想像的。一般来说，成交笔数越少，金额越大，表示成交比较强势，反之是弱势。尤其是成交手数比较大而集中的时候，表示有大资金活跃迹象，该股出现价格异动的概率就大，应该引起投资者的注意。而如果半天也没人买或者都是一些小单子在交易，则至少短期不大可能成为好股。</li>
+<li>交易数据三要素----成交量、成交价格和成交笔数。不陌生的是前面两个，笔数就是交易批次。在成交量一定的前提下，笔数少说明交易力度强，反之就弱。笔数的变动与数量方向一致，交易为常态，反之就是非常态。</li>
+</ol>
+<p><img src="images/15035663072399.gif" alt=""></p>
+<h1>引用</h1>
+<p><a href="https://www.thebalance.com/order-book-level-2-market-data-and-depth-of-market-1031118" target="_blank" rel="noopener">https://www.thebalance.com/order-book-level-2-market-data-and-depth-of-market-1031118</a></p>
+<p><a href="https://baike.baidu.com/item/Level-2" target="_blank" rel="noopener">https://baike.baidu.com/item/Level-2</a></p>
+<p><a href="https://www.zhihu.com/question/26950456" target="_blank" rel="noopener">https://www.zhihu.com/question/26950456</a></p>
+<p><a href="http://www.cnblogs.com/chuncn/archive/2009/03/13/1410144.html" target="_blank" rel="noopener">http://www.cnblogs.com/chuncn/archive/2009/03/13/1410144.html</a></p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/24/%E8%BF%85%E6%8A%95%E4%BA%A4%E6%98%93%E7%BB%88%E7%AB%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -203,12 +338,32 @@
       
           <p>迅投交易终端——股票期货一体交易</p>
 <p>迅投交易终端是一款集股票交易、期货交易、组合交易为一体的智能化金融交易工具软件。其开放式的策略接口、智能算法交易、组合交易管理、多账户管理、高度自定义交易界面、完整数据导入导出功能，为大资金客户、机构客户和自动化交易客户提供了一支虚拟交易团队，高效、精准、优秀地完成每一个任务指令，为用户做多品种交易、大资金分批建仓、对冲套利交易提供极大的便利性，是投资者最强大的交易助手。</p>
-<h1 id="策略接口："><a href="#策略接口：" class="headerlink" title="策略接口："></a>策略接口：</h1><p>√ 开放的策略交易接口，无缝对接多种研发平台；<br>√ 迅投解决交易周边问题，复杂策略高效执行；<br>√ 策略与交易安全隔离，核心策略安全有保障。</p>
-<h1 id="智能算法交易："><a href="#智能算法交易：" class="headerlink" title="智能算法交易："></a>智能算法交易：</h1><p>√ 一键智能下单，软件自动下单、撤单、追单，减少人为操作失误；<br>√ 支持多种算法交易策略，有效控制冲击成本、减少交易滑点；<br>√ 各种策略参数在交易界面灵活设置，方便调用；<br>√ 自动化执行与人工监控相结合，交易任务高效有序完成。</p>
-<h1 id="组合交易管理："><a href="#组合交易管理：" class="headerlink" title="组合交易管理："></a>组合交易管理：</h1><p>√ 完美股票组合导入导出，支持多篮子股票并行操作；<br>√ 配合高效算法交易模块，一键轻松实现一篮子股票的批量交易，自动下单、撤单、追单；<br>√ 支持多种策略快速下达组合交易任务；<br>√ 支持预设多种手动补单策略；<br>√ 篮子交易任务过程动态可视、人为可控。</p>
-<h1 id="多账户管理："><a href="#多账户管理：" class="headerlink" title="多账户管理："></a>多账户管理：</h1><p>√ 多账户统一管理，实现多个账户的登录、委托、撤单、查询等功能；<br>√ 分组管理、分组交易、批量下单；<br>√ 支持多种交易任务分配方式；<br>√ 支持跨公司账户交易管理。</p>
-<h1 id="高度自定义交易界面："><a href="#高度自定义交易界面：" class="headerlink" title="高度自定义交易界面："></a>高度自定义交易界面：</h1><p>√ 所有模块随意拖拽、组合、定制，打造独一无二的自定义交易界面；<br>√ 支持下单面板快捷复制，多品种交易尽在掌握；<br>√ 单面板一键快捷下单，前所未有的轻松交易体验。</p>
-<h1 id="完整数据导入导出："><a href="#完整数据导入导出：" class="headerlink" title="完整数据导入导出："></a>完整数据导入导出：</h1><p>√ 支持多种格式的交易、分析数据导入导出，为投资者的交易分析、交易策略实现提供最大的便利性。</p>
+<h1>策略接口：</h1>
+<p>√ 开放的策略交易接口，无缝对接多种研发平台；<br>
+√ 迅投解决交易周边问题，复杂策略高效执行；<br>
+√ 策略与交易安全隔离，核心策略安全有保障。</p>
+<h1>智能算法交易：</h1>
+<p>√ 一键智能下单，软件自动下单、撤单、追单，减少人为操作失误；<br>
+√ 支持多种算法交易策略，有效控制冲击成本、减少交易滑点；<br>
+√ 各种策略参数在交易界面灵活设置，方便调用；<br>
+√ 自动化执行与人工监控相结合，交易任务高效有序完成。</p>
+<h1>组合交易管理：</h1>
+<p>√ 完美股票组合导入导出，支持多篮子股票并行操作；<br>
+√ 配合高效算法交易模块，一键轻松实现一篮子股票的批量交易，自动下单、撤单、追单；<br>
+√ 支持多种策略快速下达组合交易任务；<br>
+√ 支持预设多种手动补单策略；<br>
+√ 篮子交易任务过程动态可视、人为可控。</p>
+<h1>多账户管理：</h1>
+<p>√ 多账户统一管理，实现多个账户的登录、委托、撤单、查询等功能；<br>
+√ 分组管理、分组交易、批量下单；<br>
+√ 支持多种交易任务分配方式；<br>
+√ 支持跨公司账户交易管理。</p>
+<h1>高度自定义交易界面：</h1>
+<p>√ 所有模块随意拖拽、组合、定制，打造独一无二的自定义交易界面；<br>
+√ 支持下单面板快捷复制，多品种交易尽在掌握；<br>
+√ 单面板一键快捷下单，前所未有的轻松交易体验。</p>
+<h1>完整数据导入导出：</h1>
+<p>√ 支持多种格式的交易、分析数据导入导出，为投资者的交易分析、交易策略实现提供最大的便利性。</p>
 <p>原文地址: <a href="http://www.thinktrader.net/product/index.html" target="_blank" rel="noopener">http://www.thinktrader.net/product/index.html</a></p>
 
       
@@ -280,7 +435,9 @@
 ```
 Exception in thread &quot;main&quot; java.lang.NoSuchMethodError: scala.collection.immutable.HashSet$.empty()Lscala/collection/immutable/HashSet;
 ```
-原因是因为spark依赖的scala版本与系统的不匹配，我的系统环境中scala版本是2.11.11，spark2.2.0目录下jars的scala版本是2.11.8</code></pre>
+原因是因为spark依赖的scala版本与系统的不匹配，我的系统环境中scala版本是2.11.11，spark2.2.0目录下jars的scala版本是2.11.8
+</code></pre>
+
       
 
 <img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
@@ -364,8 +521,10 @@ Exception in thread &quot;main&quot; java.lang.NoSuchMethodError: scala.collecti
 
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
 
-conda config --set show_channel_urls yes</code></pre><p>说明：</p>
-<p>conda-forge: </p>
+conda config --set show_channel_urls yes
+</code></pre>
+<p>说明：</p>
+<p>conda-forge:</p>
 <blockquote>
 <p>A community led collection of recipes, build infrastructure and distributions for the conda package manager.</p>
 </blockquote>
@@ -446,144 +605,41 @@ conda config --set show_channel_urls yes</code></pre><p>说明：</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="搭建github博客，参考如下步骤"><a href="#搭建github博客，参考如下步骤" class="headerlink" title="搭建github博客，参考如下步骤"></a>搭建github博客，参考如下步骤</h3><pre><code>https://pages.github.com/</code></pre><h3 id="注册域名，修改域名DNS地址"><a href="#注册域名，修改域名DNS地址" class="headerlink" title="注册域名，修改域名DNS地址"></a>注册域名，修改域名DNS地址</h3><p>找个域名服务商注册个域名，我使用的是godaddy，如果以后需要指向国内空间，建议在国内域名服务商注册。</p>
+          <h3 id="搭建github博客，参考如下步骤">搭建github博客，参考如下步骤</h3>
+<pre><code>https://pages.github.com/
+</code></pre>
+<h3 id="注册域名，修改域名DNS地址">注册域名，修改域名DNS地址</h3>
+<p>找个域名服务商注册个域名，我使用的是godaddy，如果以后需要指向国内空间，建议在国内域名服务商注册。</p>
 <p>注册好域名后，可以直接将域名cname到github博客地址，也可以使用dnspod.com的dns解析域名，在域名管理中把dns地址修改dnspod的dns：</p>
 <pre><code>    a.dnspod.com
     b.dnspod.com
-    c.dnspod.com</code></pre><p>然后需要在github上做个设置，把域名绑定到github账号上，否则直接访问域名会报404，具体设置步骤如下：</p>
-<p><a href="https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/" target="_blank" rel="noopener">https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/</a>   </p>
-<h3 id="使用hexo管理博客"><a href="#使用hexo管理博客" class="headerlink" title="使用hexo管理博客"></a>使用hexo管理博客</h3><p>Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdown格式，有众多优秀插件和主题。</p>
+    c.dnspod.com
+</code></pre>
+<p>然后需要在github上做个设置，把域名绑定到github账号上，否则直接访问域名会报404，具体设置步骤如下：</p>
+<p><a href="https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/" target="_blank" rel="noopener">https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/</a></p>
+<h3 id="使用hexo管理博客">使用hexo管理博客</h3>
+<p>Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdown格式，有众多优秀插件和主题。</p>
 <p>hexo安装步骤参考：</p>
 <p><a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></p>
 <p>推荐next博客主题，我的博客就是使用的这个主题，地址是：</p>
 <p><a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">https://github.com/iissnan/hexo-theme-next</a></p>
-<h3 id="设置-config-yml和github-sshkey"><a href="#设置-config-yml和github-sshkey" class="headerlink" title="设置_config.yml和github sshkey"></a>设置_config.yml和github sshkey</h3><pre><code>deploy:
+<h3 id="设置-config-yml和github-sshkey">设置_config.yml和github sshkey</h3>
+<pre><code>deploy:
   type: git
   repo: https://github.com/YourgithubName/YourgithubName.github.io.git
-  branch: master</code></pre><p>hexo发布时会把更新提交到仓库，所以需要设置github sshkey</p>
-<h3 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h3><p>基本命令如下：</p>
+  branch: master
+</code></pre>
+<p>hexo发布时会把更新提交到仓库，所以需要设置github sshkey</p>
+<h3 id="发布文章">发布文章</h3>
+<p>基本命令如下：</p>
 <p>进入blog目录下，执行如下命令创建一篇博客</p>
-<pre><code>hexo new post 文章标题</code></pre><p>创建好后可以在markdown工具中编写文章，macbook下推荐用MWeb来写博客，MWeb有两种模式：文档库和外部模式，使用外部模式到blog目录下就可以编写了</p>
+<pre><code>hexo new post 文章标题
+</code></pre>
+<p>创建好后可以在markdown工具中编写文章，macbook下推荐用MWeb来写博客，MWeb有两种模式：文档库和外部模式，使用外部模式到blog目录下就可以编写了</p>
 <p>编写好博客后发布：</p>
-<pre><code>hexo d -g</code></pre><p>等待几秒中后刷新博客地址就可以看到更新了。</p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/18/%E9%87%91%E8%9E%8D%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/08/18/%E9%87%91%E8%9E%8D%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" class="post-title-link" itemprop="url">金融名词解释（持续更新）</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-08-18 09:02:57" itemprop="dateCreated datePublished" datetime="2017-08-18T09:02:57+08:00">2017-08-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
-                    <span itemprop="name">金融</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h1><ul>
-<li><p>证券市场的交易机制</p>
-<p>  分为报价驱动市场(Quote-driven Market 和订单驱动市场(Order-driven Market)两类，前者依赖做市商提供流动性，后者通过限价单订单提供流动性,交易通过投资者的买进委托和卖出委托竞价所形成。中国的证券市场属于订单驱动市场，包括股票市场和期货市场。</p>
-</li>
-<li><p>金融市场微观结构理论</p>
-<p>  是对金融市场上金融资产的交易机制及其价格形成过程和原因进行分析。一般认为该理论产生于1960年代末，德姆塞茨1968年发表的论文《交易成本》奠定了其基础。</p>
-</li>
-<li><p>订单簿(order book)</p>
-</li>
-</ul>
-<p><img src="source/images/15030188412534.jpg" alt=""></p>
-<ul>
-<li><p>信息簿(MessageBook)</p>
-<p>  包括最明细的订单撮合数据，包括每个订单的下单量、成交价、订单类型等信息</p>
-</li>
-<li><p>对冲</p>
-</li>
-</ul>
-<p>金融学上，对冲（hedge）指特意减低另一项投资的风险的投资。它是一种在减低商业风险的同时仍然能在投资中获利的手法。一般对冲是同时进行两笔行情相关、方向相反、数量相当、盈亏相抵的交易。行情相关是指影响两种商品价格行情的市场供求关系存在同一性，供求关系若发生变化，同时会影响两种商品的价格，且价格变化的方向大体一致。方向相反指两笔交易的买卖方向相反，这样无论价格向什么方向变化，总是一盈一亏。当然要做到盈亏相抵，两笔交易的数量大小须根据各自价格变动的幅度来确定，大体做到数量相当。</p>
-<h1 id="期货"><a href="#期货" class="headerlink" title="期货"></a>期货</h1><ul>
-<li>合约</li>
-</ul>
-<blockquote>
-<p>指由期货交易所统一制订的、规定在将来某一特定的时间和地点交割一定数量和质量实物商品或金融商品的标准化合约。通常所说的期货就是指期货合约。</p>
-</blockquote>
-<ul>
-<li>主力合约</li>
-</ul>
-<blockquote>
-<p>指的是成交量最大的合约。因为它是市场上最活跃的合约，所有投机者基本上都在参与这个合约。也有说法是主力合约是持仓量最大的合约，因为通常来讲，持仓量最大的合约也是成交量最大的合约。</p>
-</blockquote>
-<ul>
-<li>IF、IH、IC</li>
-</ul>
-<blockquote>
-<p>IF：（share price）Index Future，直译就是股指期货，标的物是沪深300指数。命名来自英文。<br>IH：I表示股指期货，H是“沪”的拼音第一个字母。标的物是上证50。命名中英混杂。<br>IC：I表示股指期货，C是China的第一个字母，标的物是中证500。命名更是不伦不类。</p>
-</blockquote>
-<ul>
-<li>Open Interest</li>
-</ul>
-<p>未平仓合约，持仓兴趣</p>
+<pre><code>hexo d -g
+</code></pre>
+<p>等待几秒中后刷新博客地址就可以看到更新了。</p>
 
       
 
@@ -605,7 +661,7 @@ conda config --set show_channel_urls yes</code></pre><p>说明：</p>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -673,7 +729,7 @@ conda config --set show_channel_urls yes</code></pre><p>说明：</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

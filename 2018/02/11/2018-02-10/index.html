@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"xuqi365.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="我的微信公众号：pyquant  区块链的价值是共识共识算法其实分很多种，目前最常提到的，比特币和以太坊所用到的，是叫做POW的共识算法，基于工作量证明的一种信息保障的算法。 POW共识算法，效率低下POW目前的局限是出块速度被限定了，比特币差不多10分钟出一个区块，所有交易均需要记录在区块内，所以这样也就限制了交易频率，由于一个区块只有1M，可以承载的交易信息是有限的，所以目前比特币的交易频次被">
+  <meta name="description" content="我的微信公众号：pyquant  区块链的价值是共识 共识算法其实分很多种，目前最常提到的，比特币和以太坊所用到的，是叫做POW的共识算法，基于工作量证明的一种信息保障的算法。 POW共识算法，效率低下 POW目前的局限是出块速度被限定了，比特币差不多10分钟出一个区块，所有交易均需要记录在区块内，所以这样也就限制了交易频率，由于一个区块只有1M，可以承载的交易信息是有限的，所以目前比特币的交易频">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正本清源区块链1 笔记">
 <meta property="og:url" content="http://xuqi365.com/2018/02/11/2018-02-10/index.html">
 <meta property="og:site_name" content="Python量化交易实战">
-<meta property="og:description" content="我的微信公众号：pyquant  区块链的价值是共识共识算法其实分很多种，目前最常提到的，比特币和以太坊所用到的，是叫做POW的共识算法，基于工作量证明的一种信息保障的算法。 POW共识算法，效率低下POW目前的局限是出块速度被限定了，比特币差不多10分钟出一个区块，所有交易均需要记录在区块内，所以这样也就限制了交易频率，由于一个区块只有1M，可以承载的交易信息是有限的，所以目前比特币的交易频次被">
+<meta property="og:description" content="我的微信公众号：pyquant  区块链的价值是共识 共识算法其实分很多种，目前最常提到的，比特币和以太坊所用到的，是叫做POW的共识算法，基于工作量证明的一种信息保障的算法。 POW共识算法，效率低下 POW目前的局限是出块速度被限定了，比特币差不多10分钟出一个区块，所有交易均需要记录在区块内，所以这样也就限制了交易频率，由于一个区块只有1M，可以承载的交易信息是有限的，所以目前比特币的交易频">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
 <meta property="og:image" content="http://xuqi365.com/2018/02/11/2018-02-10/images/15182776820585.jpg">
@@ -211,33 +211,50 @@
       
         <p>我的微信公众号：pyquant</p>
 <p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
-<h1 id="区块链的价值是共识"><a href="#区块链的价值是共识" class="headerlink" title="区块链的价值是共识"></a>区块链的价值是共识</h1><p>共识算法其实分很多种，目前最常提到的，比特币和以太坊所用到的，是叫做POW的共识算法，基于工作量证明的一种信息保障的算法。</p>
-<h4 id="POW共识算法，效率低下"><a href="#POW共识算法，效率低下" class="headerlink" title="POW共识算法，效率低下"></a>POW共识算法，效率低下</h4><p>POW目前的局限是出块速度被限定了，比特币差不多10分钟出一个区块，所有交易均需要记录在区块内，所以这样也就限制了交易频率，由于一个区块只有1M，可以承载的交易信息是有限的，所以目前比特币的交易频次被限定在非常低的量级上，差不多一秒才可以支撑不到10个交易。</p>
+<h1>区块链的价值是共识</h1>
+<p>共识算法其实分很多种，目前最常提到的，比特币和以太坊所用到的，是叫做POW的共识算法，基于工作量证明的一种信息保障的算法。</p>
+<h4 id="POW共识算法，效率低下">POW共识算法，效率低下</h4>
+<p>POW目前的局限是出块速度被限定了，比特币差不多10分钟出一个区块，所有交易均需要记录在区块内，所以这样也就限制了交易频率，由于一个区块只有1M，可以承载的交易信息是有限的，所以目前比特币的交易频次被限定在非常低的量级上，差不多一秒才可以支撑不到10个交易。</p>
 <p><img src="images/15182776820585.jpg" alt=""></p>
-<h4 id="升级方案："><a href="#升级方案：" class="headerlink" title="升级方案："></a>升级方案：</h4><ul>
+<h4 id="升级方案：">升级方案：</h4>
+<ul>
 <li>提升出块大小，比特现金把区块大小提升到了8M区块</li>
 <li>提升出块速度，降低出块奖励</li>
 <li>区块分片化存储的方案，现在比特币这样的区块链虽然是去中心化分布式存储，但每个全节点存储的是记录全集，也就是规模总量和本地查询明显是受到制约的。</li>
 <li>闪电网络是指将小额的，频繁交易，先通过一些分支节点进行储存和计算，并在一定时间内整合归并到主链</li>
 </ul>
-<h1 id="以太坊是平台"><a href="#以太坊是平台" class="headerlink" title="以太坊是平台"></a>以太坊是平台</h1><p>以太坊可以认为是区块链的第二代平台，因为对智能合约的支持，以太坊的应用想象空间增加了很多，而且其出块效率也明显高于比特币。交易结算周期也明显有了更好的表现。</p>
+<h1>以太坊是平台</h1>
+<p>以太坊可以认为是区块链的第二代平台，因为对智能合约的支持，以太坊的应用想象空间增加了很多，而且其出块效率也明显高于比特币。交易结算周期也明显有了更好的表现。</p>
 <p>以太坊是一个平台，上面跑了几千种虚拟货币，其中之一是以太坊自身的代币。而这个平台不但可以发布货币，还可以发布应用，智能合约的应用</p>
-<h1 id="智能合约"><a href="#智能合约" class="headerlink" title="智能合约"></a>智能合约</h1><p>在区块中传递的合约，或者说传递的字符串，不是单纯的字符串和信息，而是一段可执行的脚本，比如说，有触发条件，有交互能力。</p>
+<h1>智能合约</h1>
+<p>在区块中传递的合约，或者说传递的字符串，不是单纯的字符串和信息，而是一段可执行的脚本，比如说，有触发条件，有交互能力。</p>
 <p><img src="images/15182781379931.jpg" alt=""></p>
 <blockquote>
 <p>比特币是资产还是货币？</p>
 </blockquote>
-<h1 id="硬分叉"><a href="#硬分叉" class="headerlink" title="硬分叉"></a>硬分叉</h1><p>硬分叉，是分叉方约定，在某个区块节点开始，启用新的系统架构继续前进，不再和主链保持一致，但同时也继承了该节点之前的所有区块。在这个节点之后，双方各自挖各自的矿，各自爆各自的块，各自走各自的路</p>
+<h1>硬分叉</h1>
+<p>硬分叉，是分叉方约定，在某个区块节点开始，启用新的系统架构继续前进，不再和主链保持一致，但同时也继承了该节点之前的所有区块。在这个节点之后，双方各自挖各自的矿，各自爆各自的块，各自走各自的路</p>
 <p>其实硬分叉不需要主链允许或通过，任何人都可以发起硬分叉，都可以基于自己的理解和判断发起一个新的分支，但对于信仰者来说，每个分叉都是对共识的撕裂，是在破坏共识。共识算法本身就是防范故障或者恶意分叉的，而人为强行分叉显然是算法所不能处理的。</p>
-<h1 id="EOS"><a href="#EOS" class="headerlink" title="EOS"></a>EOS</h1><p>99%的ICO是基于以太坊的，其实EOS的ICO，目前而言，也是基于以太坊的。但EOS要做的并不只是躺在以太坊身上薅点韭菜的钱。他们的野心还是蛮大的，按照白皮书的说法，感觉是想成为第三代区块链的平台，</p>
-<h1 id="零知识证明"><a href="#零知识证明" class="headerlink" title="零知识证明"></a>零知识证明</h1><p>可以有效保护交易隐私，隐藏交易来源并防止追溯，同时也能保证交易是安全的，因为任何试图修改交易的行为都无法通过验证。</p>
-<h1 id="信息安全"><a href="#信息安全" class="headerlink" title="信息安全"></a>信息安全</h1><p>第一，算力劫持，其实共识算法并非是完美无瑕的，其存在的假设前提是，大部分节点是正确的，可信任的。所以不同的共识算法，理论上都存在一些风险，就是如果坏人掌握了足够多的节点。比如说基于POW共识的比特币，如果一家矿场或者矿池掌握了超过全网51%的算力，理论上可以劫持所有交易，改变交易数据。而基于DPOS的需要保障2/3的节点是可靠的，否则也存在强行分叉或者干扰主链的风险。</p>
+<h1>EOS</h1>
+<p>99%的ICO是基于以太坊的，其实EOS的ICO，目前而言，也是基于以太坊的。但EOS要做的并不只是躺在以太坊身上薅点韭菜的钱。他们的野心还是蛮大的，按照白皮书的说法，感觉是想成为第三代区块链的平台，</p>
+<h1>零知识证明</h1>
+<p>可以有效保护交易隐私，隐藏交易来源并防止追溯，同时也能保证交易是安全的，因为任何试图修改交易的行为都无法通过验证。</p>
+<h1>信息安全</h1>
+<p>第一，算力劫持，其实共识算法并非是完美无瑕的，其存在的假设前提是，大部分节点是正确的，可信任的。所以不同的共识算法，理论上都存在一些风险，就是如果坏人掌握了足够多的节点。比如说基于POW共识的比特币，如果一家矿场或者矿池掌握了超过全网51%的算力，理论上可以劫持所有交易，改变交易数据。而基于DPOS的需要保障2/3的节点是可靠的，否则也存在强行分叉或者干扰主链的风险。</p>
 <p>第二，重放攻击，这是硬分叉首先需要小心解决的问题，如果系统设计不周全，会导致在分叉上执行的交易被复制到主链，从而带来币拥有者未确认的交易发生，造成损失。所以很多交易所和钱包服务商，不敢去支持名目繁多的分叉币，也是担心由此带来风险。</p>
 <p>第三，关于私钥安全，由于新入场的区块链玩家很多，实际上很多人并不明白区块链私钥的意义和价值，会出现这样的情况，认为在交易所，或者钱包的账号和密码是最关键的，保护好了账号密码就万无一失，但糊里糊涂就被人钓鱼，把私钥拱手送出。</p>
 <p>第四，交易平台和钱包工具的安全，这在历史上出现过很多起，最近也出现过，一些交易所失窃，或者钱包工具失窃，导致用户的币丢失，而且基本上全都无可挽回。</p>
 <p>第五，智能合约的安全，有一个基于区块链众筹的风险投资基金，叫做the DAO，这个众筹计划是用一段智能合约代码约束的，这段代码被发布到了网上，并募集了超过数亿美元的资金，看上去是一个非常不错的故事，但很遗憾，这段代码中有一个安全风险，结果，黑客通过代码漏洞轻松劫持了超过5500万美元</p>
-<h1 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h1><p>1、共识算法是区块链的核心技术；<br>2、当前的共识算法存在一些问题，是区块链应用场景普及所需要面对的重大问题。<br>3、从比特币到以太坊，实际上区块链的技术方案正在演进，但谁是第三代，目前还有待争议。<br>4、智能合约是区块链应用场景扩展最具有想象力的地方，不过受限于基础架构和算力问题，目前智能合约还很难做出复杂应用，图灵完备在当前阶段尚不具备应用意义。<br>5、零知识证明还没有全面应用起来，但这个逻辑被认可度是非常高的。<br>6、共识算法，零知识证明，都是人类数学和信息科学的重大进步，并不单纯是为区块链服务的，更不是为发币的骗子们服务的。<br>8、信息安全在区块链投资中的重要性非常高，而目前绝大部分新入场的用户对此并没有足够清醒的认识，整个区块链产业出现的严重安全事故已经很多起了，入局者希望能引以为诫。</p>
-<h1 id="代币"><a href="#代币" class="headerlink" title="代币"></a>代币</h1><p>现在主要有两种模式，一种是跟法币绑定的，一个很神奇的东西，叫做USDT，是香港一家公司发行的，他宣称 ，每发行一个USDT，背后都有1美元的储蓄作为担保，并且有多个商业银行担保。也就是和美元1：1购买，1：1赎回，那么他的商业模式是什么呢？赎回的时候收取1%的手续费。</p>
+<h1>回顾</h1>
+<p>1、共识算法是区块链的核心技术；<br>
+2、当前的共识算法存在一些问题，是区块链应用场景普及所需要面对的重大问题。<br>
+3、从比特币到以太坊，实际上区块链的技术方案正在演进，但谁是第三代，目前还有待争议。<br>
+4、智能合约是区块链应用场景扩展最具有想象力的地方，不过受限于基础架构和算力问题，目前智能合约还很难做出复杂应用，图灵完备在当前阶段尚不具备应用意义。<br>
+5、零知识证明还没有全面应用起来，但这个逻辑被认可度是非常高的。<br>
+6、共识算法，零知识证明，都是人类数学和信息科学的重大进步，并不单纯是为区块链服务的，更不是为发币的骗子们服务的。<br>
+8、信息安全在区块链投资中的重要性非常高，而目前绝大部分新入场的用户对此并没有足够清醒的认识，整个区块链产业出现的严重安全事故已经很多起了，入局者希望能引以为诫。</p>
+<h1>代币</h1>
+<p>现在主要有两种模式，一种是跟法币绑定的，一个很神奇的东西，叫做USDT，是香港一家公司发行的，他宣称 ，每发行一个USDT，背后都有1美元的储蓄作为担保，并且有多个商业银行担保。也就是和美元1：1购买，1：1赎回，那么他的商业模式是什么呢？赎回的时候收取1%的手续费。</p>
 
 
 <img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
@@ -364,7 +381,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#区块链的价值是共识"><span class="nav-number">1.</span> <span class="nav-text">区块链的价值是共识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#POW共识算法，效率低下"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">POW共识算法，效率低下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#升级方案："><span class="nav-number">1.0.0.2.</span> <span class="nav-text">升级方案：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#以太坊是平台"><span class="nav-number">2.</span> <span class="nav-text">以太坊是平台</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#智能合约"><span class="nav-number">3.</span> <span class="nav-text">智能合约</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#硬分叉"><span class="nav-number">4.</span> <span class="nav-text">硬分叉</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EOS"><span class="nav-number">5.</span> <span class="nav-text">EOS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#零知识证明"><span class="nav-number">6.</span> <span class="nav-text">零知识证明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#信息安全"><span class="nav-number">7.</span> <span class="nav-text">信息安全</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回顾"><span class="nav-number">8.</span> <span class="nav-text">回顾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代币"><span class="nav-number">9.</span> <span class="nav-text">代币</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">区块链的价值是共识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#POW共识算法，效率低下"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">POW共识算法，效率低下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#升级方案："><span class="nav-number">1.0.0.2.</span> <span class="nav-text">升级方案：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">以太坊是平台</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">智能合约</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">硬分叉</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">EOS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text">零知识证明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">7.</span> <span class="nav-text">信息安全</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">8.</span> <span class="nav-text">回顾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">9.</span> <span class="nav-text">代币</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -380,7 +397,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

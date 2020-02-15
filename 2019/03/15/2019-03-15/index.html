@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"xuqi365.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="开启&#x2F;关闭ufwufw enable ufw disable允许某端口被访问ufw allow 80禁止某端口被访问ufw deny 8888添加规则允许10.168.2.137访问30004端口 ufw allow from 10.168.2.137 to any port 30004插入规则在第二条位置插入规则，允许192.168.1.1访问8888端口 ufw insert 2 allow">
+  <meta name="description" content="开启&#x2F;关闭ufw ufw enable ufw disable  允许某端口被访问 ufw allow 80  禁止某端口被访问 ufw deny 8888  添加规则 允许10.168.2.137访问30004端口 ufw allow from 10.168.2.137 to any port 30004  插入规则 在第二条位置插入规则，允许192.168.1.1访问8888端口 ufw in">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ufw防火墙使用常用命令">
 <meta property="og:url" content="http://xuqi365.com/2019/03/15/2019-03-15/index.html">
 <meta property="og:site_name" content="Python量化交易实战">
-<meta property="og:description" content="开启&#x2F;关闭ufwufw enable ufw disable允许某端口被访问ufw allow 80禁止某端口被访问ufw deny 8888添加规则允许10.168.2.137访问30004端口 ufw allow from 10.168.2.137 to any port 30004插入规则在第二条位置插入规则，允许192.168.1.1访问8888端口 ufw insert 2 allow">
+<meta property="og:description" content="开启&#x2F;关闭ufw ufw enable ufw disable  允许某端口被访问 ufw allow 80  禁止某端口被访问 ufw deny 8888  添加规则 允许10.168.2.137访问30004端口 ufw allow from 10.168.2.137 to any port 30004  插入规则 在第二条位置插入规则，允许192.168.1.1访问8888端口 ufw in">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-03-15T01:38:00.000Z">
 <meta property="article:modified_time" content="2020-02-08T17:11:25.951Z">
@@ -205,13 +205,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="开启-关闭ufw"><a href="#开启-关闭ufw" class="headerlink" title="开启/关闭ufw"></a>开启/关闭ufw</h3><pre><code>ufw enable
-ufw disable</code></pre><h3 id="允许某端口被访问"><a href="#允许某端口被访问" class="headerlink" title="允许某端口被访问"></a>允许某端口被访问</h3><pre><code>ufw allow 80</code></pre><h3 id="禁止某端口被访问"><a href="#禁止某端口被访问" class="headerlink" title="禁止某端口被访问"></a>禁止某端口被访问</h3><pre><code>ufw deny 8888</code></pre><h3 id="添加规则"><a href="#添加规则" class="headerlink" title="添加规则"></a>添加规则</h3><p>允许10.168.2.137访问30004端口</p>
-<pre><code>ufw allow from 10.168.2.137 to any port 30004</code></pre><h3 id="插入规则"><a href="#插入规则" class="headerlink" title="插入规则"></a>插入规则</h3><p>在第二条位置插入规则，允许192.168.1.1访问8888端口</p>
-<pre><code>ufw insert 2 allow from 192.168.1.1 to any port 8888</code></pre><h3 id="按编号显示规则"><a href="#按编号显示规则" class="headerlink" title="按编号显示规则"></a>按编号显示规则</h3><blockquote>
+        <h3 id="开启-关闭ufw">开启/关闭ufw</h3>
+<pre><code>ufw enable
+ufw disable
+</code></pre>
+<h3 id="允许某端口被访问">允许某端口被访问</h3>
+<pre><code>ufw allow 80
+</code></pre>
+<h3 id="禁止某端口被访问">禁止某端口被访问</h3>
+<pre><code>ufw deny 8888
+</code></pre>
+<h3 id="添加规则">添加规则</h3>
+<p>允许10.168.2.137访问30004端口</p>
+<pre><code>ufw allow from 10.168.2.137 to any port 30004
+</code></pre>
+<h3 id="插入规则">插入规则</h3>
+<p>在第二条位置插入规则，允许192.168.1.1访问8888端口</p>
+<pre><code>ufw insert 2 allow from 192.168.1.1 to any port 8888
+</code></pre>
+<h3 id="按编号显示规则">按编号显示规则</h3>
+<blockquote>
 <p>ufw status numbered</p>
 </blockquote>
-<h3 id="按编号删除规则"><a href="#按编号删除规则" class="headerlink" title="按编号删除规则"></a>按编号删除规则</h3><blockquote>
+<h3 id="按编号删除规则">按编号删除规则</h3>
+<blockquote>
 <p>ufw delete 编号</p>
 </blockquote>
 
@@ -356,7 +373,7 @@ ufw disable</code></pre><h3 id="允许某端口被访问"><a href="#允许某端
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

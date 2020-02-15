@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xuqi365.com/"/>
-  <updated>2020-02-09T08:19:57.119Z</updated>
+  <updated>2020-02-15T17:40:20.141Z</updated>
   <id>http://xuqi365.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用Python抓取同花顺资金流数据</title>
+    <link href="http://xuqi365.com/2020/02/16/2020-02-16%20%E4%BD%BF%E7%94%A8Python%E6%8A%93%E5%8F%96%E5%90%8C%E8%8A%B1%E9%A1%BA%E8%B5%84%E9%87%91%E6%B5%81%E6%95%B0%E6%8D%AE/"/>
+    <id>http://xuqi365.com/2020/02/16/2020-02-16%20%E4%BD%BF%E7%94%A8Python%E6%8A%93%E5%8F%96%E5%90%8C%E8%8A%B1%E9%A1%BA%E8%B5%84%E9%87%91%E6%B5%81%E6%95%B0%E6%8D%AE/</id>
+    <published>2020-02-15T17:14:00.000Z</published>
+    <updated>2020-02-15T17:40:20.141Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;今天我们通过一个例子来介绍python爬取数据的一般步骤，用到的工具包括python的经典模块requests和BeautifulSoup，另外结合刚学习的任务流工具TaskFlow来完成代码开发。&lt;/p&gt;
+&lt;p&gt;我们先来看一下要爬取的数据，网址是http://data.1
+        
+      
+    
+    </summary>
+    
+    
+      <category term="量化交易系统" scheme="http://xuqi365.com/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="TaskFlow" scheme="http://xuqi365.com/tags/TaskFlow/"/>
+    
+  </entry>
   
   <entry>
     <title>OpenStack公共组件TaskFlow介绍</title>
@@ -57,7 +85,7 @@
         
         
           &lt;p&gt;最近工作上遇到一个问题，某券商提供的文件单接口需要用其提供的c语言工具调用，由于我们的交易框架是python开发的，所以需要用到cython来调用c开发的工具包，学习了cython的官方入门教程顺便记录如下。&lt;/p&gt;
-&lt;h3 id=&quot;cython介绍&quot;&gt;&lt;a
+&lt;h3
         
       
     
@@ -84,7 +112,7 @@
       
         
         
-          &lt;h3 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1. 背景&quot;&gt;&lt;/a&gt;1.
+          &lt;h3 id=&quot;1-背景&quot;&gt;1.
         
       
     
@@ -111,7 +139,9 @@
       
         
         
-          &lt;h1 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot;
+          &lt;h1&gt;定义&lt;/h1&gt;
+&lt;p&gt;FIX协议是由国际FIX协会组织提供的一个开放式协议，目的是推动国际贸易电子化的进程，在各类参与者之间，包括投资经理、经纪人，买方、卖方建立起实时的电子化通讯协议。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;FIX协议的目标是把各类证券金融业务需求流程格式化，使
         
       
     
@@ -138,7 +168,8 @@
       
         
         
-          &lt;h1 id=&quot;第一章-系统的建立&quot;&gt;&lt;a href=&quot;#第一章-系统的建立&quot; class=&quot;headerlink&quot; title=&quot;第一章 系统的建立&quot;&gt;&lt;/a&gt;第一章 系统的建立&lt;/h1&gt;&lt;h2 id=&quot;1-鉴定可交易的市场&quot;&gt;&lt;a href=&quot;#1-鉴定可交易的市场&quot;
+          &lt;h1&gt;第一章 系统的建立&lt;/h1&gt;
+&lt;h2 id=&quot;1-鉴定可交易的市场&quot;&gt;1.
         
       
     
@@ -223,7 +254,8 @@
       
         
         
-          &lt;h1 id=&quot;读写API&quot;&gt;&lt;a href=&quot;#读写API&quot; class=&quot;headerlink&quot; title=&quot;读写API&quot;&gt;&lt;/a&gt;读写API&lt;/h1&gt;&lt;p&gt;HDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level
+          &lt;h1&gt;读写API&lt;/h1&gt;
+&lt;p&gt;HDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level
         
       
     
@@ -337,8 +369,7 @@
         
         
           &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;背景&quot;&gt;&lt;a
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot;
         
       
     
@@ -426,8 +457,12 @@
       
         
         
-          &lt;h3 id=&quot;开启-关闭ufw&quot;&gt;&lt;a href=&quot;#开启-关闭ufw&quot; class=&quot;headerlink&quot; title=&quot;开启/关闭ufw&quot;&gt;&lt;/a&gt;开启/关闭ufw&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;ufw enable
-ufw
+          &lt;h3 id=&quot;开启-关闭ufw&quot;&gt;开启/关闭ufw&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;ufw enable
+ufw disable
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;允许某端口被访问&quot;&gt;允许某端口被访问&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;ufw allow
         
       
     
@@ -513,8 +548,7 @@ ufw
         
         
           &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;概念&quot;&gt;&lt;a
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot;
         
       
     
@@ -543,7 +577,7 @@ ufw
         
           &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;概念&quot;&gt;&lt;a
+&lt;h3
         
       
     
@@ -558,33 +592,6 @@ ufw
       <category term="合约" scheme="http://xuqi365.com/tags/%E5%90%88%E7%BA%A6/"/>
     
       <category term="okex" scheme="http://xuqi365.com/tags/okex/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《如何验证因子有效性》 听课笔记</title>
-    <link href="http://xuqi365.com/2018/05/19/%E3%80%8A%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E5%9B%A0%E5%AD%90%E6%9C%89%E6%95%88%E6%80%A7%E3%80%8B%20%E5%90%AC%E8%AF%BE%E7%AC%94%E8%AE%B0/"/>
-    <id>http://xuqi365.com/2018/05/19/%E3%80%8A%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E5%9B%A0%E5%AD%90%E6%9C%89%E6%95%88%E6%80%A7%E3%80%8B%20%E5%90%AC%E8%AF%BE%E7%AC%94%E8%AE%B0/</id>
-    <published>2018-05-19T03:29:00.000Z</published>
-    <updated>2020-02-08T17:11:26.048Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;一维零投资组合&quot;&gt;&lt;a href=&quot;#一维零投资组合&quot; class=&quot;headerlink&quot; title=&quot;一维零投资组合&quot;&gt;&lt;/a&gt;一维零投资组合&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;images/15267001868391.jpg&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="策略研究" scheme="http://xuqi365.com/categories/%E7%AD%96%E7%95%A5%E7%A0%94%E7%A9%B6/"/>
-    
-    
-      <category term="多因子" scheme="http://xuqi365.com/tags/%E5%A4%9A%E5%9B%A0%E5%AD%90/"/>
     
   </entry>
   

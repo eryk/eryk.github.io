@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"xuqi365.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="我的微信公众号：pyquant  在写代码时经常会遇到对抛出异常的代码进行重试，常见于网页爬虫的代码中，使用计数器 + 循环的方式对抛出异常的代码进行捕获和重试。tenacity是使用Python装饰器模式对方法异常进行捕获，通过灵活的参数实现简单优雅的异常重试。 特性： 简单灵活的装饰模式api 可以指定重试停止条件（比如：设置重试次数） 也可以指定等待条件（比如：使用指数避让间隔重试） 自定义">
+  <meta name="description" content="我的微信公众号：pyquant  在写代码时经常会遇到对抛出异常的代码进行重试，常见于网页爬虫的代码中，使用计数器 + 循环的方式对抛出异常的代码进行捕获和重试。tenacity是使用Python装饰器模式对方法异常进行捕获，通过灵活的参数实现简单优雅的异常重试。 特性：  简单灵活的装饰模式api 可以指定重试停止条件（比如：设置重试次数） 也可以指定等待条件（比如：使用指数避让间隔重试） 自定">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python异常处理伴侣 -- tenacity模块使用介绍">
 <meta property="og:url" content="http://xuqi365.com/2018/12/19/2018-12-18/index.html">
 <meta property="og:site_name" content="Python量化交易实战">
-<meta property="og:description" content="我的微信公众号：pyquant  在写代码时经常会遇到对抛出异常的代码进行重试，常见于网页爬虫的代码中，使用计数器 + 循环的方式对抛出异常的代码进行捕获和重试。tenacity是使用Python装饰器模式对方法异常进行捕获，通过灵活的参数实现简单优雅的异常重试。 特性： 简单灵活的装饰模式api 可以指定重试停止条件（比如：设置重试次数） 也可以指定等待条件（比如：使用指数避让间隔重试） 自定义">
+<meta property="og:description" content="我的微信公众号：pyquant  在写代码时经常会遇到对抛出异常的代码进行重试，常见于网页爬虫的代码中，使用计数器 + 循环的方式对抛出异常的代码进行捕获和重试。tenacity是使用Python装饰器模式对方法异常进行捕获，通过灵活的参数实现简单优雅的异常重试。 特性：  简单灵活的装饰模式api 可以指定重试停止条件（比如：设置重试次数） 也可以指定等待条件（比如：使用指数避让间隔重试） 自定">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
 <meta property="article:published_time" content="2018-12-19T03:15:00.000Z">
@@ -211,7 +211,8 @@
         <p>我的微信公众号：pyquant</p>
 <p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
 <p>在写代码时经常会遇到对抛出异常的代码进行重试，常见于网页爬虫的代码中，使用计数器 + 循环的方式对抛出异常的代码进行捕获和重试。tenacity是使用Python装饰器模式对方法异常进行捕获，通过灵活的参数实现简单优雅的异常重试。</p>
-<h1 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h1><ol>
+<h1>特性：</h1>
+<ol>
 <li>简单灵活的装饰模式api</li>
 <li>可以指定重试停止条件（比如：设置重试次数）</li>
 <li>也可以指定等待条件（比如：使用指数避让间隔重试）</li>
@@ -219,57 +220,71 @@
 <li>自定义重试预期的返回结果</li>
 <li>基于协程的重试</li>
 </ol>
-<h1 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式:"></a>安装方式:</h1><blockquote>
+<h1>安装方式:</h1>
+<blockquote>
 <p>pip install tenacity</p>
 </blockquote>
-<h1 id="API使用介绍"><a href="#API使用介绍" class="headerlink" title="API使用介绍"></a>API使用介绍</h1><h3 id="1-retry"><a href="#1-retry" class="headerlink" title="1. @retry"></a>1. @retry</h3><p>给需要重试的方法加上@retry修饰器之后，方法抛出异常就会被装饰器捕获到并进行重试，异常抛出时会不断重试直到方法成功返回</p>
-<pre><code class="python">@retry
+<h1>API使用介绍</h1>
+<h3 id="1-retry">1. @retry</h3>
+<p>给需要重试的方法加上@retry修饰器之后，方法抛出异常就会被装饰器捕获到并进行重试，异常抛出时会不断重试直到方法成功返回</p>
+<pre><code class="language-python">@retry
 def never_give_up_never_surrender():
-    print(&quot;Retry forever ignoring Exceptions, don&#39;t wait between retries&quot;)
-    raise Exception</code></pre>
-<h3 id="2-带终止条件的retry"><a href="#2-带终止条件的retry" class="headerlink" title="2. 带终止条件的retry"></a>2. 带终止条件的retry</h3><p>我们也可以给retry加一个参数设置重试n次后不再重试并抛出异常</p>
-<pre><code class="python">@retry(stop=stop_after_attempt(7))
+    print(&quot;Retry forever ignoring Exceptions, don't wait between retries&quot;)
+    raise Exception
+</code></pre>
+<h3 id="2-带终止条件的retry">2. 带终止条件的retry</h3>
+<p>我们也可以给retry加一个参数设置重试n次后不再重试并抛出异常</p>
+<pre><code class="language-python">@retry(stop=stop_after_attempt(7))
 def stop_after_7_attempts():
     print(&quot;Stopping after 7 attempts&quot;)
-    raise Exception</code></pre>
+    raise Exception
+</code></pre>
 <p>使用@stop_after_delay 可以指定重试间隔，比如如下的例子指定10秒后重试</p>
-<pre><code class="python">@retry(stop=stop_after_delay(10))
+<pre><code class="language-python">@retry(stop=stop_after_delay(10))
 def stop_after_10_s():
     print(&quot;Stopping after 10 seconds&quot;)
-    raise Exception</code></pre>
+    raise Exception
+</code></pre>
 <p>可以使用 “|” 把多个条件组合起来</p>
-<pre><code class="python">@retry(stop=(stop_after_delay(10) | stop_after_attempt(5)))
+<pre><code class="language-python">@retry(stop=(stop_after_delay(10) | stop_after_attempt(5)))
 def stop_after_10_s_or_5_retries():
     print(&quot;Stopping after 10 seconds or 5 retries&quot;)
-    raise Exception</code></pre>
-<h3 id="3-在重试前等待"><a href="#3-在重试前等待" class="headerlink" title="3. 在重试前等待"></a>3. 在重试前等待</h3><p>使用@wait_fixed 在重试前等待固定时间</p>
-<pre><code class="python">@retry(wait=wait_fixed(2))
+    raise Exception
+</code></pre>
+<h3 id="3-在重试前等待">3. 在重试前等待</h3>
+<p>使用@wait_fixed 在重试前等待固定时间</p>
+<pre><code class="language-python">@retry(wait=wait_fixed(2))
 def wait_2_s():
     print(&quot;Wait 2 second between retries&quot;)
-    raise Exception</code></pre>
+    raise Exception
+</code></pre>
 <p>随机等待1-2秒钟，这在爬虫爬网页时比较有用</p>
-<pre><code class="python">@retry(wait=wait_random(min=1, max=2))
+<pre><code class="language-python">@retry(wait=wait_random(min=1, max=2))
 def wait_random_1_to_2_s():
     print(&quot;Randomly wait 1 to 2 seconds between retries&quot;)
-    raise Exception</code></pre>
+    raise Exception
+</code></pre>
 <p>增加指数避让等待间</p>
-<pre><code class="python">@retry(wait=wait_exponential(multiplier=1, min=4, max=10))
+<pre><code class="language-python">@retry(wait=wait_exponential(multiplier=1, min=4, max=10))
 def wait_exponential_1():
     print(&quot;Wait 2^x * 1 second between each retry starting with 4 seconds, then up to 10 seconds, then 10 seconds afterwards&quot;)
     raise Exception
-
+    
 @retry(wait=wait_fixed(3) + wait_random(0, 2))
 def wait_fixed_jitter():
     print(&quot;Wait at least 3 seconds, and add up to 2 seconds of random delay&quot;)
-    raise Exception</code></pre>
+    raise Exception
+</code></pre>
 <p>看一个更复杂点的例子</p>
-<pre><code class="python">@retry(wait=wait_chain(*[wait_fixed(3) for i in range(3)] +
+<pre><code class="language-python">@retry(wait=wait_chain(*[wait_fixed(3) for i in range(3)] +
                        [wait_fixed(7) for i in range(2)] +
                        [wait_fixed(9)]))
 def wait_fixed_chained():
     print(&quot;Wait 3s for 3 attempts, 7s for the next 2 attempts and 9s for all attempts thereafter&quot;)
-    raise Exception</code></pre>
-<h3 id="4-带触发条件的retry语句"><a href="#4-带触发条件的retry语句" class="headerlink" title="4. 带触发条件的retry语句"></a>4. 带触发条件的retry语句</h3><pre><code class="python">@retry(retry=retry_if_exception_type(IOError))
+    raise Exception
+</code></pre>
+<h3 id="4-带触发条件的retry语句">4. 带触发条件的retry语句</h3>
+<pre><code class="language-python">@retry(retry=retry_if_exception_type(IOError))
 def might_io_error():
     print(&quot;Retry forever with no wait if an IOError occurs, raise any other errors&quot;)
     raise Exception
@@ -281,12 +296,14 @@ def is_none_p(value):
 @retry(retry=retry_if_result(is_none_p))
 def might_return_none():
     print(&quot;Retry with no wait if return value is None&quot;)
-
+    
 @retry(retry=(retry_if_result(is_none_p) | retry_if_exception_type()))
 def might_return_none():
-    print(&quot;Retry forever ignoring Exceptions with no wait if return value is None&quot;)</code></pre>
-<h3 id="5-异常处理"><a href="#5-异常处理" class="headerlink" title="5. 异常处理"></a>5. 异常处理</h3><p> 虽然tenacity会帮我们处理异常，我们依然可以在重试失败后使用reraise来决定我们时候进行最后的尝试，使用reraise会把异常抛出交给我们的try except来处理</p>
-<pre><code class="python">@retry(reraise=True, stop=stop_after_attempt(3))
+    print(&quot;Retry forever ignoring Exceptions with no wait if return value is None&quot;)
+</code></pre>
+<h3 id="5-异常处理">5. 异常处理</h3>
+<p>虽然tenacity会帮我们处理异常，我们依然可以在重试失败后使用reraise来决定我们时候进行最后的尝试，使用reraise会把异常抛出交给我们的try except来处理</p>
+<pre><code class="language-python">@retry(reraise=True, stop=stop_after_attempt(3))
 def raise_my_exception():
     raise MyException(&quot;Fail&quot;)
 
@@ -294,22 +311,26 @@ try:
     raise_my_exception()
 except MyException:
     # timed out retrying
-    pass</code></pre>
-<h3 id="6-在retry前后增加log"><a href="#6-在retry前后增加log" class="headerlink" title="6. 在retry前后增加log"></a>6. 在retry前后增加log</h3><pre><code class="python">logger = logging.getLogger(__name__)
+    pass
+</code></pre>
+<h3 id="6-在retry前后增加log">6. 在retry前后增加log</h3>
+<pre><code class="language-python">logger = logging.getLogger(__name__)
 
 @retry(stop=stop_after_attempt(3), before=before_log(logger, logging.DEBUG))
 def raise_my_exception():
     raise MyException(&quot;Fail&quot;)
-
+    
 @retry(stop=stop_after_attempt(3), after=after_log(logger, logging.DEBUG))
 def raise_my_exception():
     raise MyException(&quot;Fail&quot;)
-
+    
 @retry(stop=stop_after_attempt(3),
        before_sleep=before_sleep_log(logger, logging.DEBUG))
 def raise_my_exception():
-    raise MyException(&quot;Fail&quot;)</code></pre>
-<h3 id="7-统计异常情况"><a href="#7-统计异常情况" class="headerlink" title="7. 统计异常情况"></a>7. 统计异常情况</h3><pre><code class="python">@retry(stop=stop_after_attempt(3))
+    raise MyException(&quot;Fail&quot;)
+</code></pre>
+<h3 id="7-统计异常情况">7. 统计异常情况</h3>
+<pre><code class="language-python">@retry(stop=stop_after_attempt(3))
 def raise_my_exception():
     raise MyException(&quot;Fail&quot;)
 
@@ -318,9 +339,13 @@ try:
 except Exception:
     pass
 
-print(raise_my_exception.retry.statistics)</code></pre>
+print(raise_my_exception.retry.statistics)
+</code></pre>
 <p>输出如下内容：</p>
-<pre><code>{&#39;start_time&#39;: 283085.571804807, &#39;attempt_number&#39;: 3, &#39;idle_for&#39;: 0, &#39;delay_since_first_attempt&#39;: 0.0002240639878436923}</code></pre><h3 id="8-自定义异常回调函数"><a href="#8-自定义异常回调函数" class="headerlink" title="8. 自定义异常回调函数"></a>8. 自定义异常回调函数</h3><pre><code class="python">from tenacity import stop_after_attempt, retry_if_result, retry
+<pre><code>{'start_time': 283085.571804807, 'attempt_number': 3, 'idle_for': 0, 'delay_since_first_attempt': 0.0002240639878436923}
+</code></pre>
+<h3 id="8-自定义异常回调函数">8. 自定义异常回调函数</h3>
+<pre><code class="language-python">from tenacity import stop_after_attempt, retry_if_result, retry
 
 def return_last_value(retry_state):
     &quot;&quot;&quot;return the result of the last call attempt&quot;&quot;&quot;
@@ -337,9 +362,11 @@ def is_false(value):
 def eventually_return_false():
     return False
 
-print(eventually_return_false())</code></pre>
+print(eventually_return_false())
+</code></pre>
 <p>输出结果为 False</p>
-<h1 id="项目Git地址"><a href="#项目Git地址" class="headerlink" title="项目Git地址"></a>项目Git地址</h1><p><a href="https://github.com/jd/tenacity" target="_blank" rel="noopener">https://github.com/jd/tenacity</a></p>
+<h1>项目Git地址</h1>
+<p><a href="https://github.com/jd/tenacity" target="_blank" rel="noopener">https://github.com/jd/tenacity</a></p>
 
 
 <img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
@@ -467,7 +494,7 @@ print(eventually_return_false())</code></pre>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#特性："><span class="nav-number">1.</span> <span class="nav-text">特性：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装方式"><span class="nav-number">2.</span> <span class="nav-text">安装方式:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#API使用介绍"><span class="nav-number">3.</span> <span class="nav-text">API使用介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-retry"><span class="nav-number">3.0.1.</span> <span class="nav-text">1. @retry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-带终止条件的retry"><span class="nav-number">3.0.2.</span> <span class="nav-text">2. 带终止条件的retry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在重试前等待"><span class="nav-number">3.0.3.</span> <span class="nav-text">3. 在重试前等待</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-带触发条件的retry语句"><span class="nav-number">3.0.4.</span> <span class="nav-text">4. 带触发条件的retry语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-异常处理"><span class="nav-number">3.0.5.</span> <span class="nav-text">5. 异常处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-在retry前后增加log"><span class="nav-number">3.0.6.</span> <span class="nav-text">6. 在retry前后增加log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-统计异常情况"><span class="nav-number">3.0.7.</span> <span class="nav-text">7. 统计异常情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-自定义异常回调函数"><span class="nav-number">3.0.8.</span> <span class="nav-text">8. 自定义异常回调函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目Git地址"><span class="nav-number">4.</span> <span class="nav-text">项目Git地址</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">特性：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">安装方式:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">API使用介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-retry"><span class="nav-number">3.0.1.</span> <span class="nav-text">1. @retry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-带终止条件的retry"><span class="nav-number">3.0.2.</span> <span class="nav-text">2. 带终止条件的retry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在重试前等待"><span class="nav-number">3.0.3.</span> <span class="nav-text">3. 在重试前等待</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-带触发条件的retry语句"><span class="nav-number">3.0.4.</span> <span class="nav-text">4. 带触发条件的retry语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-异常处理"><span class="nav-number">3.0.5.</span> <span class="nav-text">5. 异常处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-在retry前后增加log"><span class="nav-number">3.0.6.</span> <span class="nav-text">6. 在retry前后增加log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-统计异常情况"><span class="nav-number">3.0.7.</span> <span class="nav-text">7. 统计异常情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-自定义异常回调函数"><span class="nav-number">3.0.8.</span> <span class="nav-text">8. 自定义异常回调函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">项目Git地址</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -483,7 +510,7 @@ print(eventually_return_false())</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -216,7 +216,10 @@ Sep 22 12:40:44 gpu01 systemd[1453]: Reached target Shutdown.
 Sep 22 12:40:44 gpu01 systemd[1453]: Starting Exit the Session...
 Sep 22 12:40:44 gpu01 systemd[1453]: Received SIGRTMIN+24 from PID 28725 (kill).
 Sep 22 12:40:44 gpu01 systemd[1]: Stopped User Manager for UID 1001.
-Sep 22 12:40:44 gpu01 systemd[1]: Removed slice User Slice of xxx.</code></pre><p>google到如下解释：<br><a href="https://serverfault.com/questions/774491/what-is-sigrtmin24-in-syslog" target="_blank" rel="noopener">https://serverfault.com/questions/774491/what-is-sigrtmin24-in-syslog</a></p>
+Sep 22 12:40:44 gpu01 systemd[1]: Removed slice User Slice of xxx.
+</code></pre>
+<p>google到如下解释：<br>
+<a href="https://serverfault.com/questions/774491/what-is-sigrtmin24-in-syslog" target="_blank" rel="noopener">https://serverfault.com/questions/774491/what-is-sigrtmin24-in-syslog</a></p>
 <p>当用户session都退出之后，之前后台执行的进程就会被kill掉</p>
 <p>所以程序运行最好用nohup xxx &amp;</p>
 <p>这还有一篇文章介绍nohup 和 &amp; 的区别，核心意思是说：</p>
@@ -366,7 +369,7 @@ Sep 22 12:40:44 gpu01 systemd[1]: Removed slice User Slice of xxx.</code></pre><
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

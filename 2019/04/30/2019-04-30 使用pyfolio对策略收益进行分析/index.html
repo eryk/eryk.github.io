@@ -210,25 +210,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>之前写过一篇文章实现了一个简单的双均线策略，传送门：<a href="https://mp.weixin.qq.com/s?__biz=MjM5Njc1Mjg0Mw==&mid=2247483716&idx=1&sn=678ac24a3d00cac08bb71a8d8546f113&chksm=a6e53de09192b4f604fe8e91dff9bfef5ecfcfe5c2317b9d310318605e1d9b7ec7f96e07e1f3&token=1630830994&lang=zh_CN#rd" target="_blank" rel="noopener">使用Pandas开发一个双均线策略</a></p>
+        <p>之前写过一篇文章实现了一个简单的双均线策略，传送门：<a href="https://mp.weixin.qq.com/s?__biz=MjM5Njc1Mjg0Mw==&amp;mid=2247483716&amp;idx=1&amp;sn=678ac24a3d00cac08bb71a8d8546f113&amp;chksm=a6e53de09192b4f604fe8e91dff9bfef5ecfcfe5c2317b9d310318605e1d9b7ec7f96e07e1f3&amp;token=1630830994&amp;lang=zh_CN#rd" target="_blank" rel="noopener">使用Pandas开发一个双均线策略</a></p>
 <p>文章最后一张图看到策略收益并没有跑赢中证500指数，想更深入的了解下具体的收益情况，可以使用pyfolio工具，这个工具是著名的量化研究平台quantopian开发的，主要用途就是对投资组合进行风险分析。</p>
 <p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190423225315.png" alt=""></p>
-<p>pyfolio github地址：<a href="https://github.com/quantopian/pyfolio，安装非常简单" target="_blank" rel="noopener">https://github.com/quantopian/pyfolio，安装非常简单</a>:</p>
-<pre><code class="shell">pip install pyfolio</code></pre>
+<p>pyfolio github地址：<a href="https://github.com/quantopian/pyfolio%EF%BC%8C%E5%AE%89%E8%A3%85%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95:" target="_blank" rel="noopener">https://github.com/quantopian/pyfolio，安装非常简单:</a></p>
+<pre><code class="language-shell">pip install pyfolio
+</code></pre>
 <p>安装之后导入模块</p>
-<pre><code class="python">import pyfolio as pf
+<pre><code class="language-python">import pyfolio as pf
 # silence warnings
 import warnings
-warnings.filterwarnings(&#39;ignore&#39;)</code></pre>
+warnings.filterwarnings('ignore')
+</code></pre>
 <p>对上一篇文章中生成的策略回报和市场回报的series进行分析</p>
-<pre><code class="python">pf.show_perf_stats(etf500[&#39;Strategy&#39;],etf500[&#39;Market Returns&#39;],live_start_date=&#39;2018-1-1&#39;)</code></pre>
-<p>live_start_date参数是模拟策略实盘开始交易的时间点，下图中 ‘2018-1-1’ 之前的样本内数据一共有55个月，’2018-1-1’之后的样本外数据一共15个月</p>
+<pre><code class="language-python">pf.show_perf_stats(etf500['Strategy'],etf500['Market Returns'],live_start_date='2018-1-1')
+</code></pre>
+<p>live_start_date参数是模拟策略实盘开始交易的时间点，下图中 ‘2018-1-1’ 之前的样本内数据一共有55个月，'2018-1-1’之后的样本外数据一共15个月</p>
 <p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190430132342.png" alt=""></p>
 <p>年化回报率为17.7%</p>
 <p>从2013年3月15日开始累计投资回报率为161.6%</p>
 <p>整体测试时间段内的最大回撤为59.1%，夏普值只有0.47</p>
 <p>我们再来看下最大回测的时间段，下图显示最大回撤发生在2015年6月12日 - 2019年2月20日，累计最大回撤59.12%，2015年6月12日刚好是股灾开始的时候，惨痛的回忆。。。</p>
-<pre><code class="python">pf.show_worst_drawdown_periods(etf500[&#39;Strategy&#39;])</code></pre>
+<pre><code class="language-python">pf.show_worst_drawdown_periods(etf500['Strategy'])
+</code></pre>
 <p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190430133103.png" alt=""></p>
 <p>其实这个策略还有优化的空间，下一篇文章介绍下如果对双均线策略进行参数优化。</p>
 <p>我的微信公众号：pyquant</p>
@@ -374,7 +378,7 @@ warnings.filterwarnings(&#39;ignore&#39;)</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

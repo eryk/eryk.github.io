@@ -212,9 +212,10 @@
 <p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
 <p>使用的docker镜像是 <a href="https://github.com/stilliard/docker-pure-ftpd" target="_blank" rel="noopener">https://github.com/stilliard/docker-pure-ftpd</a></p>
 <p>创建步骤如下</p>
-<pre><code class="shell">docker pull stilliard/pure-ftpd:hardened
+<pre><code class="language-shell">docker pull stilliard/pure-ftpd:hardened
 
-docker run -d -e FTP_USER_NAME=test -e FTP_USER_PASS=test --name ftpd_server -p 21:21 -e FTP_PASSIVE_PORTS=45020:45100 --expose=45020-45100 -p 45020-45100:45020-45100 -v /home/test:/home/ftpusers -e &quot;PUBLICHOST=10.168.2.178&quot; -e FTP_USER_HOME=/home/ftpusers stilliard/pure-ftpd:hardened</code></pre>
+docker run -d -e FTP_USER_NAME=test -e FTP_USER_PASS=test --name ftpd_server -p 21:21 -e FTP_PASSIVE_PORTS=45020:45100 --expose=45020-45100 -p 45020-45100:45020-45100 -v /home/test:/home/ftpusers -e &quot;PUBLICHOST=10.168.2.178&quot; -e FTP_USER_HOME=/home/ftpusers stilliard/pure-ftpd:hardened
+</code></pre>
 <p>注意：FileZilla传输模式需要选择“主动”</p>
 <p>提供的参数解释说明</p>
 <pre><code>/usr/sbin/pure-ftpd # path to pure-ftpd executable
@@ -226,7 +227,9 @@ docker run -d -e FTP_USER_NAME=test -e FTP_USER_PASS=test --name ftpd_server -p 
 -R # --nochmod (prevent usage of the CHMOD command)
 -P $PUBLICHOST # IP/Host setting for PASV support, passed in your the PUBLICHOST env var
 -p 30000:30009 # PASV port range (10 ports for 5 max clients)
--tls 1 # Enables optional TLS support</code></pre>
+-tls 1 # Enables optional TLS support
+</code></pre>
+
 
 <img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
     </div>
@@ -368,7 +371,7 @@ docker run -d -e FTP_USER_NAME=test -e FTP_USER_PASS=test --name ftpd_server -p 
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

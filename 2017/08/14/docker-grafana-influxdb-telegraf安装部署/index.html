@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"xuqi365.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="docker启动Grafana + Influexdbdocker run -d \   --name docker-statsd-influxdb-grafana \   -p 3003:3003 \   -p 8083:8083 \   -p 8086:8086 \   -p 22022:22 \   -p 8125:8125&#x2F;udp \   samuelebistoletti&#x2F;docker-">
+  <meta name="description" content="docker启动Grafana + Influexdb docker run -d \   --name docker-statsd-influxdb-grafana \   -p 3003:3003 \   -p 8083:8083 \   -p 8086:8086 \   -p 22022:22 \   -p 8125:8125&#x2F;udp \   samuelebistoletti&#x2F;docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker+Grafana+Influxdb+Telegraf安装部署">
 <meta property="og:url" content="http://xuqi365.com/2017/08/14/docker-grafana-influxdb-telegraf%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/index.html">
 <meta property="og:site_name" content="Python量化交易实战">
-<meta property="og:description" content="docker启动Grafana + Influexdbdocker run -d \   --name docker-statsd-influxdb-grafana \   -p 3003:3003 \   -p 8083:8083 \   -p 8086:8086 \   -p 22022:22 \   -p 8125:8125&#x2F;udp \   samuelebistoletti&#x2F;docker-">
+<meta property="og:description" content="docker启动Grafana + Influexdb docker run -d \   --name docker-statsd-influxdb-grafana \   -p 3003:3003 \   -p 8083:8083 \   -p 8086:8086 \   -p 22022:22 \   -p 8125:8125&#x2F;udp \   samuelebistoletti&#x2F;docker">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-08-14T15:53:13.000Z">
 <meta property="article:modified_time" content="2020-02-08T17:17:54.230Z">
@@ -208,32 +208,50 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="docker启动Grafana-Influexdb"><a href="#docker启动Grafana-Influexdb" class="headerlink" title="docker启动Grafana + Influexdb"></a>docker启动Grafana + Influexdb</h1><pre><code>docker run -d \
+        <h1>docker启动Grafana + Influexdb</h1>
+<pre><code>docker run -d \
   --name docker-statsd-influxdb-grafana \
   -p 3003:3003 \
   -p 8083:8083 \
   -p 8086:8086 \
   -p 22022:22 \
   -p 8125:8125/udp \
-  samuelebistoletti/docker-statsd-influxdb-grafana:latest</code></pre><h1 id="设置InfluxDB"><a href="#设置InfluxDB" class="headerlink" title="设置InfluxDB"></a>设置InfluxDB</h1><p>打开 http:localhost:8083，设置用户名密码</p>
+  samuelebistoletti/docker-statsd-influxdb-grafana:latest
+</code></pre>
+<h1>设置InfluxDB</h1>
+<p>打开 http:localhost:8083，设置用户名密码</p>
 <pre><code>Username: root
 Password: root
-Port: 8086</code></pre><h1 id="设置Grafana"><a href="#设置Grafana" class="headerlink" title="设置Grafana"></a>设置Grafana</h1><p>打开http:localhost:3003，登录用户名密码为</p>
+Port: 8086
+</code></pre>
+<h1>设置Grafana</h1>
+<p>打开http:localhost:3003，登录用户名密码为</p>
 <pre><code>Username: root
-Password: root</code></pre><p>登录之后按步骤设置数据源</p>
+Password: root
+</code></pre>
+<p>登录之后按步骤设置数据源</p>
 <pre><code>Url: http://localhost:8086
-Database:    telegraf
+Database:	telegraf
 User: telegraf
-Password:    telegraf</code></pre><h1 id="安装并设置TeleGraf"><a href="#安装并设置TeleGraf" class="headerlink" title="安装并设置TeleGraf"></a>安装并设置TeleGraf</h1><p>下载地址：<a href="https://portal.influxdata.com/downloads" target="_blank" rel="noopener">https://portal.influxdata.com/downloads</a></p>
-<h2 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h2><p>/etc/telegraf/telegraf.conf<br>修改influxdb地址，用户名及密码，设置hostname</p>
+Password:	telegraf
+</code></pre>
+<h1>安装并设置TeleGraf</h1>
+<p>下载地址：<a href="https://portal.influxdata.com/downloads" target="_blank" rel="noopener">https://portal.influxdata.com/downloads</a></p>
+<h2 id="设置">设置</h2>
+<p>/etc/telegraf/telegraf.conf<br>
+修改influxdb地址，用户名及密码，设置hostname</p>
 <p>重启服务</p>
 <blockquote>
 <p>service telegraf restart</p>
 </blockquote>
-<h1 id="导入Grafana-Dashboard"><a href="#导入Grafana-Dashboard" class="headerlink" title="导入Grafana Dashboard"></a>导入Grafana Dashboard</h1><p>下载最新版本的dashboard配置：<br><a href="https://grafana.com/dashboards/1443/revisions" target="_blank" rel="noopener">https://grafana.com/dashboards/1443/revisions</a></p>
+<h1>导入Grafana Dashboard</h1>
+<p>下载最新版本的dashboard配置：<br>
+<a href="https://grafana.com/dashboards/1443/revisions" target="_blank" rel="noopener">https://grafana.com/dashboards/1443/revisions</a></p>
 <p>在grafana的新建dashboard并导入配置，完成。</p>
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>docker内部已经启动了telegraf，如果不需要的话可以停掉，在多台服务器上安装并配置Telegraf写入同一Influxdb就可以实现对集群进行系统监控。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<h1>注意</h1>
+<p>docker内部已经启动了telegraf，如果不需要的话可以停掉，在多台服务器上安装并配置Telegraf写入同一Influxdb就可以实现对集群进行系统监控。</p>
+<h1>参考</h1>
+<ol>
 <li><a href="https://linux.cn/article-5252-1.html" target="_blank" rel="noopener">使用 Grafana、collectd 和 InfluxDB 打造现代监控系统</a></li>
 <li><a href="https://github.com/samuelebistoletti/docker-statsd-influxdb-grafana" target="_blank" rel="noopener">docker-statsd-influxdb-grafana</a></li>
 <li><a href="https://anomaly.io/collectd-metrics-to-influxdb/" target="_blank" rel="noopener">Send CollectD metrics to InfluxDB</a></li>
@@ -367,7 +385,7 @@ Password:    telegraf</code></pre><h1 id="安装并设置TeleGraf"><a href="#安
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#docker启动Grafana-Influexdb"><span class="nav-number">1.</span> <span class="nav-text">docker启动Grafana + Influexdb</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置InfluxDB"><span class="nav-number">2.</span> <span class="nav-text">设置InfluxDB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置Grafana"><span class="nav-number">3.</span> <span class="nav-text">设置Grafana</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装并设置TeleGraf"><span class="nav-number">4.</span> <span class="nav-text">安装并设置TeleGraf</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置"><span class="nav-number">4.1.</span> <span class="nav-text">设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#导入Grafana-Dashboard"><span class="nav-number">5.</span> <span class="nav-text">导入Grafana Dashboard</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">6.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">docker启动Grafana + Influexdb</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">设置InfluxDB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">设置Grafana</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">安装并设置TeleGraf</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置"><span class="nav-number">4.1.</span> <span class="nav-text">设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">导入Grafana Dashboard</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -383,7 +401,7 @@ Password:    telegraf</code></pre><h1 id="安装并设置TeleGraf"><a href="#安
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

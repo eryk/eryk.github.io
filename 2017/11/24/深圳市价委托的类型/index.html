@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"xuqi365.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="深圳市价委托的类型有五种，分别为：对手方最优价格、本方最优价格、最优五档即时成交剩余撤销、即时成交剩余撤销（FAK）、全额成交或撤销委托（FOK）。 对手方最优价格委托对手方最优价格委托指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内对手方队列的最优价格为其指定价格的委托类型。  “对手方最优价格委托”无需输入指定价格，如果当时交易主机中集中申报簿的对">
+  <meta name="description" content="深圳市价委托的类型有五种，分别为：对手方最优价格、本方最优价格、最优五档即时成交剩余撤销、即时成交剩余撤销（FAK）、全额成交或撤销委托（FOK）。 对手方最优价格委托 对手方最优价格委托指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内对手方队列的最优价格为其指定价格的委托类型。  “对手方最优价格委托”无需输入指定价格，如果当时交易主机中集中申报簿的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深圳市价委托的类型">
 <meta property="og:url" content="http://xuqi365.com/2017/11/24/%E6%B7%B1%E5%9C%B3%E5%B8%82%E4%BB%B7%E5%A7%94%E6%89%98%E7%9A%84%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Python量化交易实战">
-<meta property="og:description" content="深圳市价委托的类型有五种，分别为：对手方最优价格、本方最优价格、最优五档即时成交剩余撤销、即时成交剩余撤销（FAK）、全额成交或撤销委托（FOK）。 对手方最优价格委托对手方最优价格委托指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内对手方队列的最优价格为其指定价格的委托类型。  “对手方最优价格委托”无需输入指定价格，如果当时交易主机中集中申报簿的对">
+<meta property="og:description" content="深圳市价委托的类型有五种，分别为：对手方最优价格、本方最优价格、最优五档即时成交剩余撤销、即时成交剩余撤销（FAK）、全额成交或撤销委托（FOK）。 对手方最优价格委托 对手方最优价格委托指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内对手方队列的最优价格为其指定价格的委托类型。  “对手方最优价格委托”无需输入指定价格，如果当时交易主机中集中申报簿的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-11-24T01:29:00.000Z">
 <meta property="article:modified_time" content="2020-02-08T17:11:26.048Z">
@@ -206,56 +206,71 @@
 
       
         <p>深圳市价委托的类型有五种，分别为：对手方最优价格、本方最优价格、最优五档即时成交剩余撤销、即时成交剩余撤销（FAK）、全额成交或撤销委托（FOK）。</p>
-<h1 id="对手方最优价格委托"><a href="#对手方最优价格委托" class="headerlink" title="对手方最优价格委托"></a>对手方最优价格委托</h1><p>对手方最优价格委托指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内对手方队列的最优价格为其指定价格的委托类型。</p>
+<h1>对手方最优价格委托</h1>
+<p>对手方最优价格委托指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内对手方队列的最优价格为其指定价格的委托类型。</p>
 <ol>
 <li>“对手方最优价格委托”无需输入指定价格，如果当时交易主机中集中申报簿的对手方队列中存在有效申报，则与当时对手方队列中价格最优的申报成交；“价格最优的申报”是指集中申报簿中买方“买一”队列或卖方“卖一”队列。</li>
 <li>没有完全成交的“对手方最优价格委托”将以限价形式保存在交易主机集中申报簿的本方队列中，其指定价格为委托已成交部分的成交价，也就是委托申报进入交易主机当时对手方队列的最优价格.</li>
 <li>如果当时集中申报簿中对手方队列没有有效对手盘，交易主机直接对“对手方最优价格委托”作撤单处理。</li>
 </ol>
-<h1 id="本方最优价格委托"><a href="#本方最优价格委托" class="headerlink" title="本方最优价格委托"></a>本方最优价格委托</h1><p>本方最优价格委托是指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内本方队列最优价格为其指定价格的委托类型。</p>
+<h1>本方最优价格委托</h1>
+<p>本方最优价格委托是指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内本方队列最优价格为其指定价格的委托类型。</p>
 <ol>
 <li>“本方最优价格委托”无需输入指定价格，如果当时交易主机中集中申报簿的本方队列存在有效申报，则以当时本方队列的最优价格为指定价格以限价形式保存在交易主机的集中申报簿中；</li>
 <li>如果当时集中申报簿本方队列中没有有效申报，交易主机对“本方最优价格委托”作撤销处理。</li>
 </ol>
-<h1 id="即时成交剩余撤销委托"><a href="#即时成交剩余撤销委托" class="headerlink" title="即时成交剩余撤销委托"></a>即时成交剩余撤销委托</h1><p>即时成交剩余撤销委托是指无需指定委托价格，委托进入交易主机时能立即成交部分即予以撮合，未成交部分立即自动撤销的委托方式，一笔委托可以同对手方数笔不同价格的委托撮合成交。</p>
+<h1>即时成交剩余撤销委托</h1>
+<p>即时成交剩余撤销委托是指无需指定委托价格，委托进入交易主机时能立即成交部分即予以撮合，未成交部分立即自动撤销的委托方式，一笔委托可以同对手方数笔不同价格的委托撮合成交。</p>
 <ol>
 <li>“即时成交剩余撤销委托”无需指定价格，如果当时交易主机集中申报簿的对手方队列中存在有效申报，则按对手方申报队列顺序以对手方价格为成交价进行逐笔配对；</li>
 <li>“即时成交剩余撤销委托”可以与不同价格的对手方委托撮合成交，直至无有效对手盘（即在涨跌幅限制范围内或在最后一笔成交价为基础的有效竞价范围内交易主机中现有的对手方队列中无委托）；</li>
 <li>若“即时成交剩余撤销委托”成交后有剩余的委托（包括部分成交、未有成交的情形），交易主机立即对剩余部分作撤单处理。</li>
 </ol>
-<h1 id="最优五档即时成交剩余撤销委托"><a href="#最优五档即时成交剩余撤销委托" class="headerlink" title="最优五档即时成交剩余撤销委托"></a>最优五档即时成交剩余撤销委托</h1><p>“最优五档即时成交剩余撤销委托”是为了避免市场价格波动过大而对“即时成交剩余撤销委托”的改良。其与“即时成交剩余撤销委托”方式的区别就在于“即时成交剩余撤销委托”可以与对手方数笔不同价格的委托撮合，直至无有效对手盘，而“最优五档即时成交剩余撤销委托”只能与一定范围内的对手方队列成交。</p>
-<h1 id="全额成交或撤销委托"><a href="#全额成交或撤销委托" class="headerlink" title="全额成交或撤销委托"></a>全额成交或撤销委托</h1><p>全额成交或撤销委托是指无需指定委托价格，委托进入交易主机时能立即全部成交即予以撮合，否则委托全部撤销的委托方式，该委托可以与对手方数笔不同价格的委托撮合成交。</p>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
-<li><p>市价委托可以撤单吗</p>
-<p> 根据《深圳证券交易所交易规则》，市价申报主要包括：对手方最优价格申报、本方最优价格申报、最优五档即时成交剩余撤销申报、即时成交剩余撤销申报、全额成交或撤销申报等五种，其中对手方最优价格申报和本方最优价格申报部分成交时，未成交部分可以主动撤单，其余情况主机会自动撤单，而不能主动撤单。</p>
+<h1>最优五档即时成交剩余撤销委托</h1>
+<p>“最优五档即时成交剩余撤销委托”是为了避免市场价格波动过大而对“即时成交剩余撤销委托”的改良。其与“即时成交剩余撤销委托”方式的区别就在于“即时成交剩余撤销委托”可以与对手方数笔不同价格的委托撮合，直至无有效对手盘，而“最优五档即时成交剩余撤销委托”只能与一定范围内的对手方队列成交。</p>
+<h1>全额成交或撤销委托</h1>
+<p>全额成交或撤销委托是指无需指定委托价格，委托进入交易主机时能立即全部成交即予以撮合，否则委托全部撤销的委托方式，该委托可以与对手方数笔不同价格的委托撮合成交。</p>
+<h1>问题</h1>
+<ol>
+<li>
+<p>市价委托可以撤单吗</p>
+<p>根据《深圳证券交易所交易规则》，市价申报主要包括：对手方最优价格申报、本方最优价格申报、最优五档即时成交剩余撤销申报、即时成交剩余撤销申报、全额成交或撤销申报等五种，其中对手方最优价格申报和本方最优价格申报部分成交时，未成交部分可以主动撤单，其余情况主机会自动撤单，而不能主动撤单。</p>
 </li>
 </ol>
-<h1 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h1><ol>
-<li>市价委托(深圳对方最优价格)<ul>
+<h1>测试结果</h1>
+<ol>
+<li>市价委托(深圳对方最优价格)
+<ul>
 <li>买入: 按照涨停价下单</li>
 <li>卖出: 按照价格0下单</li>
 </ul>
 </li>
-<li>市价委托(深圳本方最优价格)<ul>
+<li>市价委托(深圳本方最优价格)
+<ul>
 <li>买入: 按照买一价下单，按照时间优先原则排列订单</li>
 <li>卖出: 按照卖一价下单，按照时间优先原则排列订单</li>
 </ul>
 </li>
-<li>市价委托(深圳即时成交剩余撤销)<ul>
+<li>市价委托(深圳即时成交剩余撤销)
+<ul>
 <li>买入: 按照涨停价下单</li>
 </ul>
 </li>
-<li>市价委托(上海五档即成剩撤 / 深圳五档即成剩撤)<ul>
+<li>市价委托(上海五档即成剩撤 / 深圳五档即成剩撤)
+<ul>
 <li>卖出： 按照价格0下单</li>
 </ul>
 </li>
-<li>市价委托(深圳全额成交或撤销)<ul>
+<li>市价委托(深圳全额成交或撤销)
+<ul>
 <li>买入: 按照涨停价下单，买入量大于5档时还会继续买入</li>
 </ul>
 </li>
 <li>市价委托(上海五档即成转限价)</li>
 </ol>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>深圳证券交易所关于五种市价委托方式的业务说明<br><a href="http://www.szse.cn/UpFiles/Attach/1045/2005/11/14/1442302347.doc" target="_blank" rel="noopener">http://www.szse.cn/UpFiles/Attach/1045/2005/11/14/1442302347.doc</a> </p>
+<h1>参考</h1>
+<p>深圳证券交易所关于五种市价委托方式的业务说明<br>
+<a href="http://www.szse.cn/UpFiles/Attach/1045/2005/11/14/1442302347.doc" target="_blank" rel="noopener">http://www.szse.cn/UpFiles/Attach/1045/2005/11/14/1442302347.doc</a></p>
 
 
 <img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
@@ -382,7 +397,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对手方最优价格委托"><span class="nav-number">1.</span> <span class="nav-text">对手方最优价格委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本方最优价格委托"><span class="nav-number">2.</span> <span class="nav-text">本方最优价格委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#即时成交剩余撤销委托"><span class="nav-number">3.</span> <span class="nav-text">即时成交剩余撤销委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最优五档即时成交剩余撤销委托"><span class="nav-number">4.</span> <span class="nav-text">最优五档即时成交剩余撤销委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#全额成交或撤销委托"><span class="nav-number">5.</span> <span class="nav-text">全额成交或撤销委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">6.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试结果"><span class="nav-number">7.</span> <span class="nav-text">测试结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">对手方最优价格委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">本方最优价格委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">即时成交剩余撤销委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">最优五档即时成交剩余撤销委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">全额成交或撤销委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">7.</span> <span class="nav-text">测试结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -398,7 +413,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

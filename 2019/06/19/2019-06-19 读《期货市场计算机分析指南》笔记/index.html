@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"xuqi365.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="第一章 系统的建立1. 鉴定可交易的市场 流动性  流动性的最佳度量是交易量和未平仓合约数，观察一段时间的平均值优于观察单日     历史波动性  历史上趋势变化范围宽的市场优于平静的趋势变化范围窄的市场 准确的基本面和技术面数据 避免新市场  2. 鉴别走势 两条移动平均线，例如: 3和12，9和18，观察不到水平状态 3 &gt; 12，上升趋势 3 &lt; 12，下降趋势   三条移动平均">
+  <meta name="description" content="第一章 系统的建立 1. 鉴定可交易的市场  流动性 流动性的最佳度量是交易量和未平仓合约数，观察一段时间的平均值优于观察单日 历史波动性 历史上趋势变化范围宽的市场优于平静的趋势变化范围窄的市场 准确的基本面和技术面数据 避免新市场  2. 鉴别走势  两条移动平均线，例如: 3和12，9和18，观察不到水平状态  3 &gt; 12，上升趋势 3 &lt; 12，下降趋势   三条移动平均线，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="读《期货市场计算机分析指南》笔记">
 <meta property="og:url" content="http://xuqi365.com/2019/06/19/2019-06-19%20%E8%AF%BB%E3%80%8A%E6%9C%9F%E8%B4%A7%E5%B8%82%E5%9C%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%88%86%E6%9E%90%E6%8C%87%E5%8D%97%E3%80%8B%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Python量化交易实战">
-<meta property="og:description" content="第一章 系统的建立1. 鉴定可交易的市场 流动性  流动性的最佳度量是交易量和未平仓合约数，观察一段时间的平均值优于观察单日     历史波动性  历史上趋势变化范围宽的市场优于平静的趋势变化范围窄的市场 准确的基本面和技术面数据 避免新市场  2. 鉴别走势 两条移动平均线，例如: 3和12，9和18，观察不到水平状态 3 &gt; 12，上升趋势 3 &lt; 12，下降趋势   三条移动平均">
+<meta property="og:description" content="第一章 系统的建立 1. 鉴定可交易的市场  流动性 流动性的最佳度量是交易量和未平仓合约数，观察一段时间的平均值优于观察单日 历史波动性 历史上趋势变化范围宽的市场优于平静的趋势变化范围窄的市场 准确的基本面和技术面数据 避免新市场  2. 鉴别走势  两条移动平均线，例如: 3和12，9和18，观察不到水平状态  3 &gt; 12，上升趋势 3 &lt; 12，下降趋势   三条移动平均线，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
 <meta property="article:published_time" content="2019-06-19T01:42:00.000Z">
@@ -207,32 +207,42 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="第一章-系统的建立"><a href="#第一章-系统的建立" class="headerlink" title="第一章 系统的建立"></a>第一章 系统的建立</h1><h2 id="1-鉴定可交易的市场"><a href="#1-鉴定可交易的市场" class="headerlink" title="1. 鉴定可交易的市场"></a>1. 鉴定可交易的市场</h2><ul>
-<li>流动性<br>  流动性的最佳度量是交易量和未平仓合约数，观察一段时间的平均值优于观察单日    </li>
-<li>历史波动性<br>  历史上趋势变化范围宽的市场优于平静的趋势变化范围窄的市场</li>
+        <h1>第一章 系统的建立</h1>
+<h2 id="1-鉴定可交易的市场">1. 鉴定可交易的市场</h2>
+<ul>
+<li>流动性<br>
+流动性的最佳度量是交易量和未平仓合约数，观察一段时间的平均值优于观察单日</li>
+<li>历史波动性<br>
+历史上趋势变化范围宽的市场优于平静的趋势变化范围窄的市场</li>
 <li>准确的基本面和技术面数据</li>
 <li>避免新市场</li>
 </ul>
-<h2 id="2-鉴别走势"><a href="#2-鉴别走势" class="headerlink" title="2. 鉴别走势"></a>2. 鉴别走势</h2><ul>
-<li>两条移动平均线，例如: 3和12，9和18，观察不到水平状态<ul>
+<h2 id="2-鉴别走势">2. 鉴别走势</h2>
+<ul>
+<li>两条移动平均线，例如: 3和12，9和18，观察不到水平状态
+<ul>
 <li>3 &gt; 12，上升趋势</li>
 <li>3 &lt; 12，下降趋势</li>
 </ul>
 </li>
-<li>三条移动平均线，例如: 4、9和18<ul>
+<li>三条移动平均线，例如: 4、9和18
+<ul>
 <li>4 &gt; 9 &gt; 18, 上升趋势</li>
 <li>4 &lt; 9 &lt; 18, 下降趋势</li>
 <li>其他，水平状态</li>
 </ul>
 </li>
-<li>移动平均线和其他技术指标组合<br>  当指标发出的信号不一致时，认为市场无趋势或呈横向趋势</li>
+<li>移动平均线和其他技术指标组合<br>
+当指标发出的信号不一致时，认为市场无趋势或呈横向趋势</li>
 <li>简单化</li>
 </ul>
 <blockquote>
 <p>不建议运用翻转策略，因为这不能鉴定横向趋势的市场，并且总是存在于从多头到空头或者空头到多头的市场。这些反转系统总是倾向于在横向趋势的市场中出现锯齿状波动，毫无成功的可能，除非市场趋势持续如此。</p>
 </blockquote>
-<h2 id="3-市场择时"><a href="#3-市场择时" class="headerlink" title="3. 市场择时"></a>3. 市场择时</h2><p>依赖单一的”神奇指标“不现实，要设计一个灵活的动态系统，在真实的不断变化的市场条件也能管用。</p>
-<h4 id="市场的三种走势"><a href="#市场的三种走势" class="headerlink" title="市场的三种走势"></a>市场的三种走势</h4><ul>
+<h2 id="3-市场择时">3. 市场择时</h2>
+<p>依赖单一的”神奇指标“不现实，要设计一个灵活的动态系统，在真实的不断变化的市场条件也能管用。</p>
+<h4 id="市场的三种走势">市场的三种走势</h4>
+<ul>
 <li>长期走势：数周或数月</li>
 <li>中期走势：最近几天</li>
 <li>短期价格变化：前一天和当天</li>
@@ -240,23 +250,32 @@
 <blockquote>
 <p>短期信号最先出现，其次是中期信号，最后是长期信号，当我们鉴别出了长期走势时，第一个中期和短期信号已经出现过了，因子，我们要利用会在长期走势中反复出现的中期和短期信号。</p>
 </blockquote>
-<h4 id="耐心"><a href="#耐心" class="headerlink" title="耐心"></a>耐心</h4><p>等到市场时机成熟时进入，增加了每笔交易的利润，减少了必要的资本，减少了交易数量，大大提高了净利润额</p>
-<h2 id="4-建立止损"><a href="#4-建立止损" class="headerlink" title="4. 建立止损"></a>4. 建立止损</h2><h4 id="止损过近或过远"><a href="#止损过近或过远" class="headerlink" title="止损过近或过远"></a>止损过近或过远</h4><ul>
+<h4 id="耐心">耐心</h4>
+<p>等到市场时机成熟时进入，增加了每笔交易的利润，减少了必要的资本，减少了交易数量，大大提高了净利润额</p>
+<h2 id="4-建立止损">4. 建立止损</h2>
+<h4 id="止损过近或过远">止损过近或过远</h4>
+<ul>
 <li>近止损，损失小、风险低、过早离场</li>
 <li>远止损，胜率高、单笔损失大、风险高</li>
 </ul>
-<h4 id="理想的止损"><a href="#理想的止损" class="headerlink" title="理想的止损"></a>理想的止损</h4><p>建立可接受的止损程序可以通过将止损设立在随机价格波动范围外一点点的位置。</p>
+<h4 id="理想的止损">理想的止损</h4>
+<p>建立可接受的止损程序可以通过将止损设立在随机价格波动范围外一点点的位置。</p>
 <ol>
 <li>一种可行的办法是算出价格移动平均线的标准差,在偏离移动平均线的最高点处建立止损。(布林带)</li>
-<li>把每日价格变化的平均值作为建立止损的最小距离,这样可以避免大部分会产生小型的锯齿状波动的价格波动。<br>例如：建立5或10日移动平均线，将原始止损点设置于移动平均线之间的区间相等的最小距离处。</li>
+<li>把每日价格变化的平均值作为建立止损的最小距离,这样可以避免大部分会产生小型的锯齿状波动的价格波动。<br>
+例如：建立5或10日移动平均线，将原始止损点设置于移动平均线之间的区间相等的最小距离处。</li>
 </ol>
-<h4 id="止损方法要保持一致"><a href="#止损方法要保持一致" class="headerlink" title="止损方法要保持一致"></a>止损方法要保持一致</h4><h2 id="5-退市择时"><a href="#5-退市择时" class="headerlink" title="5. 退市择时"></a>5. 退市择时</h2><ul>
+<h4 id="止损方法要保持一致">止损方法要保持一致</h4>
+<h2 id="5-退市择时">5. 退市择时</h2>
+<ul>
 <li>跟踪止损法</li>
 <li>相对强弱指标（RSI）</li>
 </ul>
 <p>退市策略绩效可使用随机入市的方法验证效果</p>
-<h2 id="6-再入市择时"><a href="#6-再入市择时" class="headerlink" title="6. 再入市择时"></a>6. 再入市择时</h2><p>退市策略是更为重要，所以使用可能的最佳的退市策略，然后调节退市后会被触发的再入市指标的敏感度。</p>
-<h2 id="7-监控系统"><a href="#7-监控系统" class="headerlink" title="7. 监控系统"></a>7. 监控系统</h2><ul>
+<h2 id="6-再入市择时">6. 再入市择时</h2>
+<p>退市策略是更为重要，所以使用可能的最佳的退市策略，然后调节退市后会被触发的再入市指标的敏感度。</p>
+<h2 id="7-监控系统">7. 监控系统</h2>
+<ul>
 <li>每周期交易频率，比如每月1.5笔</li>
 <li>盈利交易笔数与亏损交易笔数的百分比</li>
 <li>最糟糕的周期中盈利笔数</li>
@@ -268,14 +287,24 @@
 <li>最大回吐</li>
 <li>最大回吐恢复时长</li>
 </ul>
-<h1 id="第二章-技术研究"><a href="#第二章-技术研究" class="headerlink" title="第二章 技术研究"></a>第二章 技术研究</h1><h4 id="方向性运动指标DMI和平均方向性运动指数ADX"><a href="#方向性运动指标DMI和平均方向性运动指数ADX" class="headerlink" title="方向性运动指标DMI和平均方向性运动指数ADX"></a>方向性运动指标DMI和平均方向性运动指数ADX</h4><pre><code>* 下降的ADX预示着市场不呈现任何趋势，应该采取逆势策略，而不是顺势策略。
-* ADX滞后性</code></pre><h4 id="布林带、包络线和通道"><a href="#布林带、包络线和通道" class="headerlink" title="布林带、包络线和通道"></a>布林带、包络线和通道</h4><p>通道突破作为确认方法</p>
-<h4 id="商品通道指数CCI"><a href="#商品通道指数CCI" class="headerlink" title="商品通道指数CCI"></a>商品通道指数CCI</h4><h4 id="背离"><a href="#背离" class="headerlink" title="背离"></a>背离</h4><ul>
-<li>趋势性市场和非趋势性市场<br>非趋势性市场偏离交易朝两个方向都可以进行，而在趋势性市场逆势的偏离信号一般应该被忽略（视图抓住大的顶部和底部除外）</li>
-<li>连续偏离<br>连续三次偏离</li>
+<h1>第二章 技术研究</h1>
+<h4 id="方向性运动指标DMI和平均方向性运动指数ADX">方向性运动指标DMI和平均方向性运动指数ADX</h4>
+<pre><code>* 下降的ADX预示着市场不呈现任何趋势，应该采取逆势策略，而不是顺势策略。
+* ADX滞后性
+</code></pre>
+<h4 id="布林带、包络线和通道">布林带、包络线和通道</h4>
+<p>通道突破作为确认方法</p>
+<h4 id="商品通道指数CCI">商品通道指数CCI</h4>
+<h4 id="背离">背离</h4>
+<ul>
+<li>趋势性市场和非趋势性市场<br>
+非趋势性市场偏离交易朝两个方向都可以进行，而在趋势性市场逆势的偏离信号一般应该被忽略（视图抓住大的顶部和底部除外）</li>
+<li>连续偏离<br>
+连续三次偏离</li>
 <li>相关市场偏离</li>
 </ul>
-<h4 id="动力指标和变化率"><a href="#动力指标和变化率" class="headerlink" title="动力指标和变化率"></a>动力指标和变化率</h4><p>动力指标精确测量了市场的运转速度,从某种程度上说,测量了一种趋势完好存在的程度。</p>
+<h4 id="动力指标和变化率">动力指标和变化率</h4>
+<p>动力指标精确测量了市场的运转速度,从某种程度上说,测量了一种趋势完好存在的程度。</p>
 <p>计算过程：用当日的收盘价减去n天前的收盘价,结果是一个位于零点或零线附近的正数或负数。</p>
 <p>公式：</p>
 <blockquote>
@@ -289,70 +318,117 @@
 <p>动力线和零线交叉次数随着动力线指标计算中使用的时间周期的不同而变化。时间周期短，动力线与零线交叉得约频繁，指标发出信号的速度越快。</p>
 <p>动力线最有效的用途之一是界定长期趋势。25周期的动力周线图是个非常可靠的长期走势指标。当动力线迅速离开零线时，顺势交易会带来丰厚的回报。</p>
 <p>其他指标的动力指标量化倾斜度</p>
-<h4 id="移动平均线"><a href="#移动平均线" class="headerlink" title="移动平均线"></a>移动平均线</h4><ul>
-<li><p>简单移动平均线</p>
+<h4 id="移动平均线">移动平均线</h4>
+<ul>
+<li>
+<p>简单移动平均线</p>
 </li>
-<li><p>加权移动平均线</p>
+<li>
+<p>加权移动平均线</p>
 </li>
-<li><p>指数移动平均线</p>
+<li>
+<p>指数移动平均线</p>
 </li>
-<li><p>三条移动平均线: 4-9-18均线法</p>
+<li>
+<p>三条移动平均线: 4-9-18均线法</p>
 </li>
-<li><p>四条移动平均线</p>
+<li>
+<p>四条移动平均线</p>
 </li>
-<li><p>移位后的移动平均线</p>
+<li>
+<p>移位后的移动平均线</p>
 </li>
-<li><p>发现过滤器</p>
+<li>
+<p>发现过滤器</p>
 </li>
 </ul>
-<h4 id="MACD"><a href="#MACD" class="headerlink" title="MACD"></a>MACD</h4><h4 id="抛物线指标SAR"><a href="#抛物线指标SAR" class="headerlink" title="抛物线指标SAR"></a>抛物线指标SAR</h4><p>最大的价值是用来建立止损点</p>
-<h4 id="相对强弱指标RSI"><a href="#相对强弱指标RSI" class="headerlink" title="相对强弱指标RSI"></a>相对强弱指标RSI</h4><p>RSI &gt; 75 or RSI &lt; 25，推迟入市</p>
-<h4 id="慢速随机指标KDJ"><a href="#慢速随机指标KDJ" class="headerlink" title="慢速随机指标KDJ"></a>慢速随机指标KDJ</h4><p>随机指标最不适合用于只有持续的微小变动的趋势性市场</p>
+<h4 id="MACD">MACD</h4>
+<h4 id="抛物线指标SAR">抛物线指标SAR</h4>
+<p>最大的价值是用来建立止损点</p>
+<h4 id="相对强弱指标RSI">相对强弱指标RSI</h4>
+<p>RSI &gt; 75 or RSI &lt; 25，推迟入市</p>
+<h4 id="慢速随机指标KDJ">慢速随机指标KDJ</h4>
+<p>随机指标最不适合用于只有持续的微小变动的趋势性市场</p>
 <ul>
 <li>左右交点</li>
 </ul>
-<h4 id="波动性"><a href="#波动性" class="headerlink" title="波动性"></a>波动性</h4><ul>
+<h4 id="波动性">波动性</h4>
+<ul>
 <li>平均真实区间（ATR）</li>
 <li>突破或价格峰值超出近期区间或平均真实区间是十分重要的信号,应作为入市点。</li>
 </ul>
-<h1 id="第三章-系统测试"><a href="#第三章-系统测试" class="headerlink" title="第三章 系统测试"></a>第三章 系统测试</h1><p>避免最优化</p>
+<h1>第三章 系统测试</h1>
+<p>避免最优化</p>
 <p>从统计学的角度而言,少于30笔交易,产生的结果就不可靠。交易笔数大于30的程度越多</p>
 <p>积累的前进测试，滚动前进最优化处理</p>
-<h2 id="衡量绩效"><a href="#衡量绩效" class="headerlink" title="衡量绩效"></a>衡量绩效</h2><h4 id="夏普比率-Sharpe-Ratio"><a href="#夏普比率-Sharpe-Ratio" class="headerlink" title="夏普比率(Sharpe Ratio)"></a>夏普比率(Sharpe Ratio)</h4><p>其定义为年度化的收益(一种盈利性度量形式)与无风险收益率的差除以年度化的收益标准差(一种波动度量形式)。</p>
-<h4 id="英镑比率-Sterling-Ratio"><a href="#英镑比率-Sterling-Ratio" class="headerlink" title="英镑比率(Sterling Ratio)"></a>英镑比率(Sterling Ratio)</h4><p>英镑比率=年平均收益比率/[(1×3年平均最大亏损) + 10]</p>
-<h4 id="卡尔玛比率-Calmar-Ratio"><a href="#卡尔玛比率-Calmar-Ratio" class="headerlink" title="卡尔玛比率(Calmar Ratio)"></a>卡尔玛比率(Calmar Ratio)</h4><h4 id="几何平均数"><a href="#几何平均数" class="headerlink" title="几何平均数"></a>几何平均数</h4><p>几何平均数衡量的是你的交易系统的增长因子。几何平均数越高,你的系统再投资时创造高收益的潜力就越大。</p>
-<h4 id="净盈利"><a href="#净盈利" class="headerlink" title="净盈利"></a>净盈利</h4><h4 id="测试样例中的交易数"><a href="#测试样例中的交易数" class="headerlink" title="测试样例中的交易数"></a>测试样例中的交易数</h4><p>总交易数必须大于30，这是为了确保统计上的重要结果的可靠性。</p>
-<h4 id="最大盈利及最大的亏损交易"><a href="#最大盈利及最大的亏损交易" class="headerlink" title="最大盈利及最大的亏损交易"></a>最大盈利及最大的亏损交易</h4><p>倘若最大的盈利交易不合理地歪曲了净盈利额，它就很重要。许多保守的系统测试员会剔除每种商品中的最大盈利交易,然后再次评价结果。</p>
-<h4 id="最大的连续盈利交易和亏损交易"><a href="#最大的连续盈利交易和亏损交易" class="headerlink" title="最大的连续盈利交易和亏损交易"></a>最大的连续盈利交易和亏损交易</h4><h4 id="峰到谷式的亏损"><a href="#峰到谷式的亏损" class="headerlink" title="峰到谷式的亏损"></a>峰到谷式的亏损</h4><p>计算最大净资产额最为准确的方法是取日总净资产额的最高值与随后的日总净资产额的最低值之差值。</p>
-<h4 id="盈利交易百分比"><a href="#盈利交易百分比" class="headerlink" title="盈利交易百分比"></a>盈利交易百分比</h4><p>大部分成功的顺势交易商拥有35%到45%的盈利交易。要达到55%以上是很困难的</p>
-<h4 id="平均盈利与平均亏损比率"><a href="#平均盈利与平均亏损比率" class="headerlink" title="平均盈利与平均亏损比率"></a>平均盈利与平均亏损比率</h4><h4 id="总收益的最大亏损"><a href="#总收益的最大亏损" class="headerlink" title="总收益的最大亏损"></a>总收益的最大亏损</h4><h4 id="波动性和破产的概率"><a href="#波动性和破产的概率" class="headerlink" title="波动性和破产的概率"></a>波动性和破产的概率</h4><h2 id="测试入市、退市及止损方法"><a href="#测试入市、退市及止损方法" class="headerlink" title="测试入市、退市及止损方法"></a>测试入市、退市及止损方法</h2><p>如果你的风险控制由两种类型的止损方法组成,一个是简单的定额止损法,另一个是将止损位设置为近期高价或低价，如果你知道每种止损价位被触及的频率,这对设计和测试过程会有帮助的。</p>
-<h2 id="测试入市方法"><a href="#测试入市方法" class="headerlink" title="测试入市方法"></a>测试入市方法</h2><p>在整体方案中,退市方法确实要比入市方法重要,毕竟,交易的结果最终由退市决定,当入市做对了后，找到良好的退市方法就要容易很多。</p>
+<h2 id="衡量绩效">衡量绩效</h2>
+<h4 id="夏普比率-Sharpe-Ratio">夏普比率(Sharpe Ratio)</h4>
+<p>其定义为年度化的收益(一种盈利性度量形式)与无风险收益率的差除以年度化的收益标准差(一种波动度量形式)。</p>
+<h4 id="英镑比率-Sterling-Ratio">英镑比率(Sterling Ratio)</h4>
+<p>英镑比率=年平均收益比率/[(1×3年平均最大亏损) + 10]</p>
+<h4 id="卡尔玛比率-Calmar-Ratio">卡尔玛比率(Calmar Ratio)</h4>
+<h4 id="几何平均数">几何平均数</h4>
+<p>几何平均数衡量的是你的交易系统的增长因子。几何平均数越高,你的系统再投资时创造高收益的潜力就越大。</p>
+<h4 id="净盈利">净盈利</h4>
+<h4 id="测试样例中的交易数">测试样例中的交易数</h4>
+<p>总交易数必须大于30，这是为了确保统计上的重要结果的可靠性。</p>
+<h4 id="最大盈利及最大的亏损交易">最大盈利及最大的亏损交易</h4>
+<p>倘若最大的盈利交易不合理地歪曲了净盈利额，它就很重要。许多保守的系统测试员会剔除每种商品中的最大盈利交易,然后再次评价结果。</p>
+<h4 id="最大的连续盈利交易和亏损交易">最大的连续盈利交易和亏损交易</h4>
+<h4 id="峰到谷式的亏损">峰到谷式的亏损</h4>
+<p>计算最大净资产额最为准确的方法是取日总净资产额的最高值与随后的日总净资产额的最低值之差值。</p>
+<h4 id="盈利交易百分比">盈利交易百分比</h4>
+<p>大部分成功的顺势交易商拥有35%到45%的盈利交易。要达到55%以上是很困难的</p>
+<h4 id="平均盈利与平均亏损比率">平均盈利与平均亏损比率</h4>
+<h4 id="总收益的最大亏损">总收益的最大亏损</h4>
+<h4 id="波动性和破产的概率">波动性和破产的概率</h4>
+<h2 id="测试入市、退市及止损方法">测试入市、退市及止损方法</h2>
+<p>如果你的风险控制由两种类型的止损方法组成,一个是简单的定额止损法,另一个是将止损位设置为近期高价或低价，如果你知道每种止损价位被触及的频率,这对设计和测试过程会有帮助的。</p>
+<h2 id="测试入市方法">测试入市方法</h2>
+<p>在整体方案中,退市方法确实要比入市方法重要,毕竟,交易的结果最终由退市决定,当入市做对了后，找到良好的退市方法就要容易很多。</p>
 <blockquote>
 <p>有效测试一个交易系统的任何单个的要素的最佳方法就是尽量将它分离开来。建立你自己的交易系统，然后删去通常的退出方法。用一种可以在进入每笔交易特定天数后自动退出市场的方法取代原先的退市方法。</p>
 </blockquote>
-<h2 id="测试退市策略"><a href="#测试退市策略" class="headerlink" title="测试退市策略"></a>测试退市策略</h2><p>选择一种结果合理的入市方法作为反转系统，然后用相同的数据和入市方法对每种退市策略一一进行测试。</p>
+<h2 id="测试退市策略">测试退市策略</h2>
+<p>选择一种结果合理的入市方法作为反转系统，然后用相同的数据和入市方法对每种退市策略一一进行测试。</p>
 <p>从理论上讲，比入市方法更敏感的退市方法应该捕捉到每个市场变动的更多的信息。以下是对我们测试的退市策略的一个描述。</p>
-<h4 id="跟踪止损"><a href="#跟踪止损" class="headerlink" title="跟踪止损"></a>跟踪止损</h4><p>初始风险是指进入市场点与控制风险的止损点之间的差距。净资产额风险是指开立的头寸的市场价格与你的退市策略暗示的价格之间的差值。</p>
-<h2 id="测试止损策略"><a href="#测试止损策略" class="headerlink" title="测试止损策略"></a>测试止损策略</h2><h4 id="初始风险止损"><a href="#初始风险止损" class="headerlink" title="初始风险止损"></a>初始风险止损</h4><p>初始风险止损可定义为一种以某种方式限制一笔交易从入市点就可能累积的亏损的止损。当一笔交易对我们不利时，初始风险止损通常先于任何其它类型的退市策略被触发。它是你最基本的“止损”指令。</p>
+<h4 id="跟踪止损">跟踪止损</h4>
+<p>初始风险是指进入市场点与控制风险的止损点之间的差距。净资产额风险是指开立的头寸的市场价格与你的退市策略暗示的价格之间的差值。</p>
+<h2 id="测试止损策略">测试止损策略</h2>
+<h4 id="初始风险止损">初始风险止损</h4>
+<p>初始风险止损可定义为一种以某种方式限制一笔交易从入市点就可能累积的亏损的止损。当一笔交易对我们不利时，初始风险止损通常先于任何其它类型的退市策略被触发。它是你最基本的“止损”指令。</p>
 <ul>
 <li>定额止损</li>
 <li>支撑/阻力</li>
 <li>无利退出, 如果交易在一定天数后无利可获则退出</li>
 </ul>
-<h4 id="保本止损"><a href="#保本止损" class="headerlink" title="保本止损"></a>保本止损</h4><p>保本止损被定义为一旦交易达到一定的利润额，在入市点建立的止损。这种止损的目的明显是要防止合理的利润变为亏损。</p>
-<h4 id="跟踪止损-1"><a href="#跟踪止损-1" class="headerlink" title="跟踪止损"></a>跟踪止损</h4><p>跟踪止损是指达到一些合乎逻辑的价格点后，不断计算得出的止损价。跟踪止损可以用作初始风险止损或取利退市策略，或者兼任两者功能。</p>
+<h4 id="保本止损">保本止损</h4>
+<p>保本止损被定义为一旦交易达到一定的利润额，在入市点建立的止损。这种止损的目的明显是要防止合理的利润变为亏损。</p>
+<h4 id="跟踪止损-2">跟踪止损</h4>
+<p>跟踪止损是指达到一些合乎逻辑的价格点后，不断计算得出的止损价。跟踪止损可以用作初始风险止损或取利退市策略，或者兼任两者功能。</p>
 <ul>
-<li>从收盘价开始跟踪的定额止损<br>  这种止损是从交易方向的最高收盘价或最低收盘价开始计算止损点。</li>
-<li>从高价或低价开始跟踪的定额止损<br>  一旦达到某一盈利高度，就应该跟踪止损保护一定数目的收益。交易的损失将会被限制在交易所达到的高价和低价以及跟踪止损的高价和低价的差额范围内。这种止损可即刻跟踪，并且可以用作初始风险止损，也可以用作跟踪止损。</li>
+<li>从收盘价开始跟踪的定额止损<br>
+这种止损是从交易方向的最高收盘价或最低收盘价开始计算止损点。</li>
+<li>从高价或低价开始跟踪的定额止损<br>
+一旦达到某一盈利高度，就应该跟踪止损保护一定数目的收益。交易的损失将会被限制在交易所达到的高价和低价以及跟踪止损的高价和低价的差额范围内。这种止损可即刻跟踪，并且可以用作初始风险止损，也可以用作跟踪止损。</li>
 </ul>
-<h2 id="创建一个简单的交易系统"><a href="#创建一个简单的交易系统" class="headerlink" title="创建一个简单的交易系统"></a>创建一个简单的交易系统</h2><h4 id="交易系统的目标"><a href="#交易系统的目标" class="headerlink" title="交易系统的目标"></a>交易系统的目标</h4><p>年回报率20% ~ 30%，盈利交易百分比大于40%，平均盈利与平均亏损的比率至少为2:1</p>
-<h4 id="风险控制"><a href="#风险控制" class="headerlink" title="风险控制"></a>风险控制</h4><ul>
-<li>初始风险<br>  即入市点与保护性止损点之间的差距</li>
-<li>资产风险<br>  即投入市场的净资产额与跟踪止损价位之间的差额。这两类风险还可以进一步分为单笔交易中的初始风险和资产风险，以及跨投资组合同时交易的初始风险和资产风险。</li>
+<h2 id="创建一个简单的交易系统">创建一个简单的交易系统</h2>
+<h4 id="交易系统的目标">交易系统的目标</h4>
+<p>年回报率20% ~ 30%，盈利交易百分比大于40%，平均盈利与平均亏损的比率至少为2:1</p>
+<h4 id="风险控制">风险控制</h4>
+<ul>
+<li>初始风险<br>
+即入市点与保护性止损点之间的差距</li>
+<li>资产风险<br>
+即投入市场的净资产额与跟踪止损价位之间的差额。这两类风险还可以进一步分为单笔交易中的初始风险和资产风险，以及跨投资组合同时交易的初始风险和资产风险。</li>
 </ul>
-<h1 id="第四章-日交易"><a href="#第四章-日交易" class="headerlink" title="第四章 日交易"></a>第四章 日交易</h1><h2 id="交易成本"><a href="#交易成本" class="headerlink" title="交易成本"></a>交易成本</h2><p>手续费和点差</p>
-<h2 id="市场选择"><a href="#市场选择" class="headerlink" title="市场选择"></a>市场选择</h2><p>当日high和low价差的绝对值高，或者更高的时间比率。持续的高波动性是日内交易市场或标的选择的重要指标。</p>
-<h3 id="考虑最小变动价位的大小"><a href="#考虑最小变动价位的大小" class="headerlink" title="考虑最小变动价位的大小"></a>考虑最小变动价位的大小</h3><p>流动性及最小价差的大小也是选择日交易市场时应该考虑的因素</p>
+<h1>第四章 日交易</h1>
+<h2 id="交易成本">交易成本</h2>
+<p>手续费和点差</p>
+<h2 id="市场选择">市场选择</h2>
+<p>当日high和low价差的绝对值高，或者更高的时间比率。持续的高波动性是日内交易市场或标的选择的重要指标。</p>
+<h3 id="考虑最小变动价位的大小">考虑最小变动价位的大小</h3>
+<p>流动性及最小价差的大小也是选择日交易市场时应该考虑的因素</p>
 <p>日交易商不断地面临着从相对小的价格变化幅度中获取最大利润的问题。这种情况自然使得交易商采取回调时买进、反弹时卖出的策略,而不是试图去顺应走势。大部分的顺势策略对于日交易而言往往太慢。逆势策略提供了从一个小的价格变化幅度中获取最大利润的可能性。然而，逆势策略往往不如顺势策略那么可靠，因为快速地识别出价格的转轨点比简单的顺势交易要难得多。</p>
 <p>成功的日交易商试图在上升趋势阶段中的回调时买进，在下降趋势阶段在反弹时卖出。想持续赚钱的日交易商必须善于顺应趋势，又要善于发现短期的转折点。许多交易商亏钱是因为他们两者都不擅长。看过一些可能的日交易策略的例子后，请记住两个步骤：首先找出中期走势，然后找出短期转折点。要想获得盈利的日交易，两步都要进行得快而准。</p>
 <p>我的微信公众号：pyquant</p>
@@ -483,7 +559,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-系统的建立"><span class="nav-number">1.</span> <span class="nav-text">第一章 系统的建立</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-鉴定可交易的市场"><span class="nav-number">1.1.</span> <span class="nav-text">1. 鉴定可交易的市场</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-鉴别走势"><span class="nav-number">1.2.</span> <span class="nav-text">2. 鉴别走势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-市场择时"><span class="nav-number">1.3.</span> <span class="nav-text">3. 市场择时</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#市场的三种走势"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">市场的三种走势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#耐心"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">耐心</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-建立止损"><span class="nav-number">1.4.</span> <span class="nav-text">4. 建立止损</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#止损过近或过远"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">止损过近或过远</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#理想的止损"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">理想的止损</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#止损方法要保持一致"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">止损方法要保持一致</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-退市择时"><span class="nav-number">1.5.</span> <span class="nav-text">5. 退市择时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-再入市择时"><span class="nav-number">1.6.</span> <span class="nav-text">6. 再入市择时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-监控系统"><span class="nav-number">1.7.</span> <span class="nav-text">7. 监控系统</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-技术研究"><span class="nav-number">2.</span> <span class="nav-text">第二章 技术研究</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方向性运动指标DMI和平均方向性运动指数ADX"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">方向性运动指标DMI和平均方向性运动指数ADX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#布林带、包络线和通道"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">布林带、包络线和通道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#商品通道指数CCI"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">商品通道指数CCI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#背离"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">背离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动力指标和变化率"><span class="nav-number">2.0.0.5.</span> <span class="nav-text">动力指标和变化率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移动平均线"><span class="nav-number">2.0.0.6.</span> <span class="nav-text">移动平均线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MACD"><span class="nav-number">2.0.0.7.</span> <span class="nav-text">MACD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抛物线指标SAR"><span class="nav-number">2.0.0.8.</span> <span class="nav-text">抛物线指标SAR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相对强弱指标RSI"><span class="nav-number">2.0.0.9.</span> <span class="nav-text">相对强弱指标RSI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#慢速随机指标KDJ"><span class="nav-number">2.0.0.10.</span> <span class="nav-text">慢速随机指标KDJ</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#波动性"><span class="nav-number">2.0.0.11.</span> <span class="nav-text">波动性</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三章-系统测试"><span class="nav-number">3.</span> <span class="nav-text">第三章 系统测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#衡量绩效"><span class="nav-number">3.1.</span> <span class="nav-text">衡量绩效</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#夏普比率-Sharpe-Ratio"><span class="nav-number">3.1.0.1.</span> <span class="nav-text">夏普比率(Sharpe Ratio)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#英镑比率-Sterling-Ratio"><span class="nav-number">3.1.0.2.</span> <span class="nav-text">英镑比率(Sterling Ratio)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卡尔玛比率-Calmar-Ratio"><span class="nav-number">3.1.0.3.</span> <span class="nav-text">卡尔玛比率(Calmar Ratio)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#几何平均数"><span class="nav-number">3.1.0.4.</span> <span class="nav-text">几何平均数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#净盈利"><span class="nav-number">3.1.0.5.</span> <span class="nav-text">净盈利</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试样例中的交易数"><span class="nav-number">3.1.0.6.</span> <span class="nav-text">测试样例中的交易数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最大盈利及最大的亏损交易"><span class="nav-number">3.1.0.7.</span> <span class="nav-text">最大盈利及最大的亏损交易</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最大的连续盈利交易和亏损交易"><span class="nav-number">3.1.0.8.</span> <span class="nav-text">最大的连续盈利交易和亏损交易</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#峰到谷式的亏损"><span class="nav-number">3.1.0.9.</span> <span class="nav-text">峰到谷式的亏损</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#盈利交易百分比"><span class="nav-number">3.1.0.10.</span> <span class="nav-text">盈利交易百分比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平均盈利与平均亏损比率"><span class="nav-number">3.1.0.11.</span> <span class="nav-text">平均盈利与平均亏损比率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总收益的最大亏损"><span class="nav-number">3.1.0.12.</span> <span class="nav-text">总收益的最大亏损</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#波动性和破产的概率"><span class="nav-number">3.1.0.13.</span> <span class="nav-text">波动性和破产的概率</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试入市、退市及止损方法"><span class="nav-number">3.2.</span> <span class="nav-text">测试入市、退市及止损方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试入市方法"><span class="nav-number">3.3.</span> <span class="nav-text">测试入市方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试退市策略"><span class="nav-number">3.4.</span> <span class="nav-text">测试退市策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#跟踪止损"><span class="nav-number">3.4.0.1.</span> <span class="nav-text">跟踪止损</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试止损策略"><span class="nav-number">3.5.</span> <span class="nav-text">测试止损策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始风险止损"><span class="nav-number">3.5.0.1.</span> <span class="nav-text">初始风险止损</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保本止损"><span class="nav-number">3.5.0.2.</span> <span class="nav-text">保本止损</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跟踪止损-1"><span class="nav-number">3.5.0.3.</span> <span class="nav-text">跟踪止损</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个简单的交易系统"><span class="nav-number">3.6.</span> <span class="nav-text">创建一个简单的交易系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#交易系统的目标"><span class="nav-number">3.6.0.1.</span> <span class="nav-text">交易系统的目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#风险控制"><span class="nav-number">3.6.0.2.</span> <span class="nav-text">风险控制</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第四章-日交易"><span class="nav-number">4.</span> <span class="nav-text">第四章 日交易</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#交易成本"><span class="nav-number">4.1.</span> <span class="nav-text">交易成本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#市场选择"><span class="nav-number">4.2.</span> <span class="nav-text">市场选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考虑最小变动价位的大小"><span class="nav-number">4.2.1.</span> <span class="nav-text">考虑最小变动价位的大小</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">第一章 系统的建立</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-鉴定可交易的市场"><span class="nav-number">1.1.</span> <span class="nav-text">1. 鉴定可交易的市场</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-鉴别走势"><span class="nav-number">1.2.</span> <span class="nav-text">2. 鉴别走势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-市场择时"><span class="nav-number">1.3.</span> <span class="nav-text">3. 市场择时</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#市场的三种走势"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">市场的三种走势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#耐心"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">耐心</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-建立止损"><span class="nav-number">1.4.</span> <span class="nav-text">4. 建立止损</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#止损过近或过远"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">止损过近或过远</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#理想的止损"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">理想的止损</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#止损方法要保持一致"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">止损方法要保持一致</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-退市择时"><span class="nav-number">1.5.</span> <span class="nav-text">5. 退市择时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-再入市择时"><span class="nav-number">1.6.</span> <span class="nav-text">6. 再入市择时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-监控系统"><span class="nav-number">1.7.</span> <span class="nav-text">7. 监控系统</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">第二章 技术研究</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方向性运动指标DMI和平均方向性运动指数ADX"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">方向性运动指标DMI和平均方向性运动指数ADX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#布林带、包络线和通道"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">布林带、包络线和通道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#商品通道指数CCI"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">商品通道指数CCI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#背离"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">背离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动力指标和变化率"><span class="nav-number">2.0.0.5.</span> <span class="nav-text">动力指标和变化率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移动平均线"><span class="nav-number">2.0.0.6.</span> <span class="nav-text">移动平均线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MACD"><span class="nav-number">2.0.0.7.</span> <span class="nav-text">MACD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抛物线指标SAR"><span class="nav-number">2.0.0.8.</span> <span class="nav-text">抛物线指标SAR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相对强弱指标RSI"><span class="nav-number">2.0.0.9.</span> <span class="nav-text">相对强弱指标RSI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#慢速随机指标KDJ"><span class="nav-number">2.0.0.10.</span> <span class="nav-text">慢速随机指标KDJ</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#波动性"><span class="nav-number">2.0.0.11.</span> <span class="nav-text">波动性</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">第三章 系统测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#衡量绩效"><span class="nav-number">3.1.</span> <span class="nav-text">衡量绩效</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#夏普比率-Sharpe-Ratio"><span class="nav-number">3.1.0.1.</span> <span class="nav-text">夏普比率(Sharpe Ratio)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#英镑比率-Sterling-Ratio"><span class="nav-number">3.1.0.2.</span> <span class="nav-text">英镑比率(Sterling Ratio)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卡尔玛比率-Calmar-Ratio"><span class="nav-number">3.1.0.3.</span> <span class="nav-text">卡尔玛比率(Calmar Ratio)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#几何平均数"><span class="nav-number">3.1.0.4.</span> <span class="nav-text">几何平均数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#净盈利"><span class="nav-number">3.1.0.5.</span> <span class="nav-text">净盈利</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试样例中的交易数"><span class="nav-number">3.1.0.6.</span> <span class="nav-text">测试样例中的交易数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最大盈利及最大的亏损交易"><span class="nav-number">3.1.0.7.</span> <span class="nav-text">最大盈利及最大的亏损交易</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最大的连续盈利交易和亏损交易"><span class="nav-number">3.1.0.8.</span> <span class="nav-text">最大的连续盈利交易和亏损交易</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#峰到谷式的亏损"><span class="nav-number">3.1.0.9.</span> <span class="nav-text">峰到谷式的亏损</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#盈利交易百分比"><span class="nav-number">3.1.0.10.</span> <span class="nav-text">盈利交易百分比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平均盈利与平均亏损比率"><span class="nav-number">3.1.0.11.</span> <span class="nav-text">平均盈利与平均亏损比率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总收益的最大亏损"><span class="nav-number">3.1.0.12.</span> <span class="nav-text">总收益的最大亏损</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#波动性和破产的概率"><span class="nav-number">3.1.0.13.</span> <span class="nav-text">波动性和破产的概率</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试入市、退市及止损方法"><span class="nav-number">3.2.</span> <span class="nav-text">测试入市、退市及止损方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试入市方法"><span class="nav-number">3.3.</span> <span class="nav-text">测试入市方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试退市策略"><span class="nav-number">3.4.</span> <span class="nav-text">测试退市策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#跟踪止损"><span class="nav-number">3.4.0.1.</span> <span class="nav-text">跟踪止损</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试止损策略"><span class="nav-number">3.5.</span> <span class="nav-text">测试止损策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始风险止损"><span class="nav-number">3.5.0.1.</span> <span class="nav-text">初始风险止损</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保本止损"><span class="nav-number">3.5.0.2.</span> <span class="nav-text">保本止损</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跟踪止损-2"><span class="nav-number">3.5.0.3.</span> <span class="nav-text">跟踪止损</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个简单的交易系统"><span class="nav-number">3.6.</span> <span class="nav-text">创建一个简单的交易系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#交易系统的目标"><span class="nav-number">3.6.0.1.</span> <span class="nav-text">交易系统的目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#风险控制"><span class="nav-number">3.6.0.2.</span> <span class="nav-text">风险控制</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">第四章 日交易</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#交易成本"><span class="nav-number">4.1.</span> <span class="nav-text">交易成本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#市场选择"><span class="nav-number">4.2.</span> <span class="nav-text">市场选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#考虑最小变动价位的大小"><span class="nav-number">4.2.1.</span> <span class="nav-text">考虑最小变动价位的大小</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -499,7 +575,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"xuqi365.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="读写APIHDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level API，类似于read_csv和to_csv的工作方式。 默认情况下，HDFStore不会丢弃全部为na的行。可以通过设置dropna &#x3D; True来更改此行为。 import pandas as pd import h5py df_tl &#x3D; pd.DataFrame({&#39;A&#39;">
+  <meta name="description" content="读写API HDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level API，类似于read_csv和to_csv的工作方式。 默认情况下，HDFStore不会丢弃全部为na的行。可以通过设置dropna &#x3D; True来更改此行为。 import pandas as pd import h5py df_tl &#x3D; pd.DataFrame({&#39;A&#39;: list(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pandas hdf5使用指南翻译">
 <meta property="og:url" content="http://xuqi365.com/2019/05/08/2019-05-08%20Pandas%20hdf5%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E7%BF%BB%E8%AF%91/index.html">
 <meta property="og:site_name" content="Python量化交易实战">
-<meta property="og:description" content="读写APIHDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level API，类似于read_csv和to_csv的工作方式。 默认情况下，HDFStore不会丢弃全部为na的行。可以通过设置dropna &#x3D; True来更改此行为。 import pandas as pd import h5py df_tl &#x3D; pd.DataFrame({&#39;A&#39;">
+<meta property="og:description" content="读写API HDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level API，类似于read_csv和to_csv的工作方式。 默认情况下，HDFStore不会丢弃全部为na的行。可以通过设置dropna &#x3D; True来更改此行为。 import pandas as pd import h5py df_tl &#x3D; pd.DataFrame({&#39;A&#39;: list(">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
 <meta property="article:published_time" content="2019-05-08T13:51:00.000Z">
@@ -208,27 +208,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="读写API"><a href="#读写API" class="headerlink" title="读写API"></a>读写API</h1><p>HDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level API，类似于read_csv和to_csv的工作方式。</p>
+        <h1>读写API</h1>
+<p>HDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level API，类似于read_csv和to_csv的工作方式。</p>
 <p>默认情况下，HDFStore不会丢弃全部为na的行。可以通过设置dropna = True来更改此行为。</p>
-<pre><code class="python">import pandas as pd
+<pre><code class="language-python">import pandas as pd
 import h5py
-df_tl = pd.DataFrame({&#39;A&#39;: list(range(5)), &#39;B&#39;: list(range(5))})
-df_tl.to_hdf(&#39;store_tl.h5&#39;, &#39;table&#39;, append=True)
-pd.read_hdf(&#39;store_tl.h5&#39;, &#39;table&#39;, where=[&#39;index&gt;2&#39;])</code></pre>
-<h1 id="HDF数据类型"><a href="#HDF数据类型" class="headerlink" title="HDF数据类型"></a>HDF数据类型</h1><ul>
-<li>Fixed Format<ul>
+df_tl = pd.DataFrame({'A': list(range(5)), 'B': list(range(5))})
+df_tl.to_hdf('store_tl.h5', 'table', append=True)
+pd.read_hdf('store_tl.h5', 'table', where=['index&gt;2'])
+</code></pre>
+<h1>HDF数据类型</h1>
+<ul>
+<li>Fixed Format
+<ul>
 <li>一次写入，重复读取，不可追加</li>
 <li>不可以使用where查询，比如每次获取指定key的全部内容</li>
 <li>不支持dataframe有非唯一的column</li>
 <li>相比于table格式更快的读写速度</li>
-<li>使用put或者to_hdf时的默认类型，也可以通过format=’fixed’或format=’f’指定类型</li>
+<li>使用put或者to_hdf时的默认类型，也可以通过format='fixed’或format='f’指定类型</li>
 </ul>
 </li>
-<li>Table Format<ul>
+<li>Table Format
+<ul>
 <li>支持append操作</li>
 <li>支持删除和查询类型操作</li>
-<li>执行put或者to_hdf操作时通过设置format=’table’或format=’t’指定table格式</li>
-<li>pd.set_option(‘io.hdf.default_format’,’table’) 设置默认hdf format类型</li>
+<li>执行put或者to_hdf操作时通过设置format='table’或format='t’指定table格式</li>
+<li>pd.set_option(‘io.hdf.default_format’,‘table’) 设置默认hdf format类型</li>
 </ul>
 </li>
 </ul>
@@ -239,27 +244,30 @@ pd.read_hdf(&#39;store_tl.h5&#39;, &#39;table&#39;, where=[&#39;index&gt;2&#39;]
 <p>警告HDFStore对于写入不是线程安全的。底层PyTables仅支持并发读取（通过线程或进程）。如果您需要同时进行读写，则需要在单个进程中在单个线程中序列化这些操作。否则你将破坏你的数据。</p>
 </blockquote>
 <p>TODO 验证append是否会按照index排序的例子</p>
-<h1 id="Hierarchical-Keys"><a href="#Hierarchical-Keys" class="headerlink" title="Hierarchical Keys"></a>Hierarchical Keys</h1><p>key可以包含路径，例如’/food/apple’, 存储时会自动创建sub-stores(在pytables中是groups)，可以省略路径开头的’/‘，’/food/apple’和’food/apple’表示相同的key。</p>
+<h1>Hierarchical Keys</h1>
+<p>key可以包含路径，例如’/food/apple’, 存储时会自动创建sub-stores(在pytables中是groups)，可以省略路径开头的’/’，’/food/apple’和’food/apple’表示相同的key。</p>
 <blockquote>
 <p>注意：删除操作会删除子路径下的所有内容，请小心使用</p>
 </blockquote>
-<pre><code class="python">df = pd.DataFrame({&#39;A&#39;: list(range(2)), &#39;B&#39;: list(range(2))})
-store = pd.HDFStore(&#39;hk_test.h5&#39;)
-store.append(&#39;/food/apple&#39;, df)
-store.append(&#39;food/orange&#39;, df)
-store.append(&#39;df&#39;,df)
+<pre><code class="language-python">df = pd.DataFrame({'A': list(range(2)), 'B': list(range(2))})
+store = pd.HDFStore('hk_test.h5')
+store.append('/food/apple', df)
+store.append('food/orange', df)
+store.append('df',df)
 print(store.keys())
 
 for (path, subgroups, subkeys) in store.walk():
     for subgroup in subgroups:
-        print(&#39;GROUP: {}/{}&#39;.format(path, subgroup))
+        print('GROUP: {}/{}'.format(path, subgroup))
     for subkey in subkeys:
-        key = &#39;/&#39;.join([path, subkey])
-        print(&#39;KEY: {}&#39;.format(key))
+        key = '/'.join([path, subkey])
+        print('KEY: {}'.format(key))
         print(store.get(key))
 
-print(store[&#39;food/orange&#39;])</code></pre>
-<h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1><p>select和delete操作可以通过查询语句对数据子集进行操作，好处是可以在非常大的数据集上只检索一小部分数据。</p>
+print(store['food/orange'])
+</code></pre>
+<h1>查询</h1>
+<p>select和delete操作可以通过查询语句对数据子集进行操作，好处是可以在非常大的数据集上只检索一小部分数据。</p>
 <p>查询表达式:</p>
 <ul>
 <li>支持使用index和columns查询dataframe</li>
@@ -277,29 +285,35 @@ print(store[&#39;food/orange&#39;])</code></pre>
 <p>例子：</p>
 <ul>
 <li>‘index &gt;= date’</li>
-<li>“columns = [‘A’, ‘D’]“</li>
-<li>“columns in [‘A’, ‘D’]“</li>
+<li>“columns = [‘A’, ‘D’]”</li>
+<li>“columns in [‘A’, ‘D’]”</li>
 <li>‘columns = A’</li>
 <li>‘columns == A’</li>
 <li>“~(columns = [‘A’, ‘B’])”</li>
-<li>‘index &gt; df.index[3] &amp; string = “bar”‘</li>
-<li>‘(index &gt; df.index[3] &amp; index &lt;= df.index[6]) | string = “bar”‘</li>
+<li>‘index &gt; df.index[3] &amp; string = “bar”’</li>
+<li>‘(index &gt; df.index[3] &amp; index &lt;= df.index[6]) | string = “bar”’</li>
 <li>“ts &gt;= Timestamp(‘2012-02-01’)”</li>
 <li>“major_axis&gt;=20130101”</li>
 </ul>
-<p>不建议通过将字符串插入查询表达式来将字符串传递给查询。只需将感兴趣的字符串分配给变量，并在表达式中使用该变量。<br>例如：</p>
-<pre><code class="python">string = &quot;HolyMoly&#39;&quot;
-store.select(&#39;df&#39;, &#39;index == string&#39;)
-store.select(&#39;dfq&#39;, &quot;index&gt;pd.Timestamp(&#39;20130104&#39;) &amp; columns=[&#39;A&#39;, &#39;B&#39;]&quot;)
-store.select(&#39;dfq&#39;, where=&quot;A&gt;0 or C&gt;0&quot;)
-store.select(&#39;df&#39;, &quot;columns=[&#39;A&#39;, &#39;B&#39;]&quot;)</code></pre>
-<h1 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h1><pre><code class="python">store.remove(&#39;wp&#39;, &#39;major_axis &gt; 20000102&#39;)</code></pre>
+<p>不建议通过将字符串插入查询表达式来将字符串传递给查询。只需将感兴趣的字符串分配给变量，并在表达式中使用该变量。<br>
+例如：</p>
+<pre><code class="language-python">string = &quot;HolyMoly'&quot;
+store.select('df', 'index == string')
+store.select('dfq', &quot;index&gt;pd.Timestamp('20130104') &amp; columns=['A', 'B']&quot;)
+store.select('dfq', where=&quot;A&gt;0 or C&gt;0&quot;)
+store.select('df', &quot;columns=['A', 'B']&quot;)
+</code></pre>
+<h1>删除</h1>
+<pre><code class="language-python">store.remove('wp', 'major_axis &gt; 20000102')
+</code></pre>
 <blockquote>
 <p>警告: 请注意HDF5不会自动回收h5文件中的空格。因此，反复删除（或删除节点）并再次添加，将趋于增加文件大小。</p>
 </blockquote>
-<h1 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h1><ul>
+<h1>压缩</h1>
+<ul>
 <li>complevel指定压缩强度，complevel = 0和complevel = None禁用压缩，0 &lt;complevel &lt;10启用压缩。</li>
-<li>complib 指定压缩库，默认使用zlib<ul>
+<li>complib 指定压缩库，默认使用zlib
+<ul>
 <li>zlib：默认的压缩库。压缩方面的经典之作可以实现良好的压缩率，但速度有些慢。</li>
 <li>lzo：快速压缩和减压。</li>
 <li>bzip2：良好的压缩率。</li>
@@ -313,13 +327,17 @@ store.select(&#39;df&#39;, &quot;columns=[&#39;A&#39;, &#39;B&#39;]&quot;)</code
 </ul>
 </li>
 </ul>
-<pre><code class="python">store_compressed = pd.HDFStore(&#39;store_compressed.h5&#39;, complevel=9,complib=&#39;blosc:blosclz&#39;)
+<pre><code class="language-python">store_compressed = pd.HDFStore('store_compressed.h5', complevel=9,complib='blosc:blosclz')
 
-store.append(&#39;df&#39;, df, complib=&#39;zlib&#39;, complevel=5)</code></pre>
-<h3 id="ptrepack"><a href="#ptrepack" class="headerlink" title="ptrepack"></a>ptrepack</h3><p>重新生成压缩文件，重写文件将回收已删除的空间，也可以改变complevel</p>
-<pre><code class="shell">ptrepack --chunkshape=auto --propindexes --complevel=9 --complib=blosc in.h5 out.h5
+store.append('df', df, complib='zlib', complevel=5)
 </code></pre>
-<h1 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h1><ul>
+<h3 id="ptrepack">ptrepack</h3>
+<p>重新生成压缩文件，重写文件将回收已删除的空间，也可以改变complevel</p>
+<pre><code class="language-shell">ptrepack --chunkshape=auto --propindexes --complevel=9 --complib=blosc in.h5 out.h5
+
+</code></pre>
+<h1>性能</h1>
+<ul>
 <li>fixed stores 读写速度快于 tables 格式，但tables支持追加、删除和查询操作</li>
 <li>可以设置chunksize=&lt; int &gt;来指定chunsize大小，这将会降低写入时的内存使用量</li>
 <li>设置expectedrows 可以优化读写性能</li>
@@ -455,7 +473,7 @@ store.append(&#39;df&#39;, df, complib=&#39;zlib&#39;, complevel=5)</code></pre>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#读写API"><span class="nav-number">1.</span> <span class="nav-text">读写API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HDF数据类型"><span class="nav-number">2.</span> <span class="nav-text">HDF数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hierarchical-Keys"><span class="nav-number">3.</span> <span class="nav-text">Hierarchical Keys</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查询"><span class="nav-number">4.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除"><span class="nav-number">5.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#压缩"><span class="nav-number">6.</span> <span class="nav-text">压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ptrepack"><span class="nav-number">6.0.1.</span> <span class="nav-text">ptrepack</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#性能"><span class="nav-number">7.</span> <span class="nav-text">性能</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">读写API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">HDF数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">Hierarchical Keys</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text">压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ptrepack"><span class="nav-number">6.0.1.</span> <span class="nav-text">ptrepack</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">7.</span> <span class="nav-text">性能</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -471,7 +489,7 @@ store.append(&#39;df&#39;, df, complib=&#39;zlib&#39;, complevel=5)</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

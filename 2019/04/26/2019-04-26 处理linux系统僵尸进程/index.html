@@ -212,13 +212,16 @@
 <p>先解释下什么是僵尸进程</p>
 <blockquote>
 <p>僵尸进程是当子进程比父进程先结束，而父进程又没有回收子进程，释放子进程占用的资源，此时子进程将成为一个僵尸进程。如果父进程先退出 ，子进程被init接管，子进程退出后init会回收其占用的相关资源。</p>
-<p>在UNIX 系统中，一个进程结束了，但是他的父进程没有等待(调用wait / waitpid)他， 那么他将变成一个僵尸进程。<br>                                                                                                                       — 百度百科</p>
+<p>在UNIX 系统中，一个进程结束了，但是他的父进程没有等待(调用wait / waitpid)他， 那么他将变成一个僵尸进程。<br>
+— 百度百科</p>
 </blockquote>
-<p> 在jupyter中使用多进程执行程序时，如果程序还没有执行完成就点击菜单栏的 Kernel -&gt; Restart xxx，就有可能会造成僵尸进程。</p>
+<p>在jupyter中使用多进程执行程序时，如果程序还没有执行完成就点击菜单栏的 Kernel -&gt; Restart xxx，就有可能会造成僵尸进程。</p>
 <p>如何检查僵尸进程是否存在呢？在命令行中执行如下命令就可以返回僵尸进程状态、父进程ID、进程ID和执行的具体命令：</p>
-<pre><code class="shell">ps -A -ostat,ppid,pid,cmd | grep -e &#39;^[Zz]&#39;</code></pre>
+<pre><code class="language-shell">ps -A -ostat,ppid,pid,cmd | grep -e '^[Zz]'
+</code></pre>
 <p>杀死僵尸进程也比较容易，执行如下命令就可以清理僵尸进程：</p>
-<pre><code class="shell">kill -9 `ps -A -ostat,ppid,pid,cmd | grep -e &#39;^[Zz]&#39; | awk &#39;{print $2}&#39;`</code></pre>
+<pre><code class="language-shell">kill -9 `ps -A -ostat,ppid,pid,cmd | grep -e '^[Zz]' | awk '{print $2}'`
+</code></pre>
 <p>我的微信公众号：pyquant</p>
 <p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
 
@@ -363,7 +366,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

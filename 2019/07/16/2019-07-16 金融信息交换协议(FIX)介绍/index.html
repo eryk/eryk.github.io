@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"xuqi365.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="定义FIX协议是由国际FIX协会组织提供的一个开放式协议，目的是推动国际贸易电子化的进程，在各类参与者之间，包括投资经理、经纪人，买方、卖方建立起实时的电子化通讯协议。 FIX协议的目标是把各类证券金融业务需求流程格式化，使之成为一个个可用计算机语言描述的功能流程，并在每个业务功能接口上统一交换格式，方便各个功能模块的连接。 FIX协议各个版本对股票、期权和期货的支持程度，目前市场上使用FIX4.">
+  <meta name="description" content="定义 FIX协议是由国际FIX协会组织提供的一个开放式协议，目的是推动国际贸易电子化的进程，在各类参与者之间，包括投资经理、经纪人，买方、卖方建立起实时的电子化通讯协议。 FIX协议的目标是把各类证券金融业务需求流程格式化，使之成为一个个可用计算机语言描述的功能流程，并在每个业务功能接口上统一交换格式，方便各个功能模块的连接。 FIX协议各个版本对股票、期权和期货的支持程度，目前市场上使用FIX4">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FIX协议介绍与QuickFIX使用入门(上)">
 <meta property="og:url" content="http://xuqi365.com/2019/07/16/2019-07-16%20%E9%87%91%E8%9E%8D%E4%BF%A1%E6%81%AF%E4%BA%A4%E6%8D%A2%E5%8D%8F%E8%AE%AE(FIX)%E4%BB%8B%E7%BB%8D/index.html">
 <meta property="og:site_name" content="Python量化交易实战">
-<meta property="og:description" content="定义FIX协议是由国际FIX协会组织提供的一个开放式协议，目的是推动国际贸易电子化的进程，在各类参与者之间，包括投资经理、经纪人，买方、卖方建立起实时的电子化通讯协议。 FIX协议的目标是把各类证券金融业务需求流程格式化，使之成为一个个可用计算机语言描述的功能流程，并在每个业务功能接口上统一交换格式，方便各个功能模块的连接。 FIX协议各个版本对股票、期权和期货的支持程度，目前市场上使用FIX4.">
+<meta property="og:description" content="定义 FIX协议是由国际FIX协会组织提供的一个开放式协议，目的是推动国际贸易电子化的进程，在各类参与者之间，包括投资经理、经纪人，买方、卖方建立起实时的电子化通讯协议。 FIX协议的目标是把各类证券金融业务需求流程格式化，使之成为一个个可用计算机语言描述的功能流程，并在每个业务功能接口上统一交换格式，方便各个功能模块的连接。 FIX协议各个版本对股票、期权和期货的支持程度，目前市场上使用FIX4">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://xuqi365.com/Users/eryk/Desktop/20190716213709.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg">
@@ -208,35 +208,56 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>FIX协议是由国际FIX协会组织提供的一个开放式协议，目的是推动国际贸易电子化的进程，在各类参与者之间，包括投资经理、经纪人，买方、卖方建立起实时的电子化通讯协议。</p>
+        <h1>定义</h1>
+<p>FIX协议是由国际FIX协会组织提供的一个开放式协议，目的是推动国际贸易电子化的进程，在各类参与者之间，包括投资经理、经纪人，买方、卖方建立起实时的电子化通讯协议。</p>
 <p><strong>FIX协议的目标是把各类证券金融业务需求流程格式化，使之成为一个个可用计算机语言描述的功能流程，并在每个业务功能接口上统一交换格式，方便各个功能模块的连接。</strong></p>
 <p>FIX协议各个版本对股票、期权和期货的支持程度，目前市场上使用FIX4.4的较多。</p>
 <p><img src="/Users/eryk/Desktop/20190716213709.png" alt=""></p>
-<h1 id="FIX通信模型"><a href="#FIX通信模型" class="headerlink" title="FIX通信模型"></a>FIX通信模型</h1><ul>
-<li>Initiator：发起者，建立通信连路，通过发送初始Logon消息发起会话的参与方。  </li>
-<li>Acceptor：接收方 FIX会话的接收方。负责执行第一层次的认证和通过传输Logon消息的确认正式声明连接请求被接受。 </li>
-<li>原则：先发起者为Initiator ，接受者为Acceptor 。  </li>
+<h1>FIX通信模型</h1>
+<ul>
+<li>Initiator：发起者，建立通信连路，通过发送初始Logon消息发起会话的参与方。</li>
+<li>Acceptor：接收方 FIX会话的接收方。负责执行第一层次的认证和通过传输Logon消息的确认正式声明连接请求被接受。</li>
+<li>原则：先发起者为Initiator ，接受者为Acceptor 。</li>
 <li>标准模式以网关为Acceptor，客户端为Initiator做为常用模式。</li>
 </ul>
-<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h3 id="FIX-Connection"><a href="#FIX-Connection" class="headerlink" title="FIX Connection"></a>FIX Connection</h3><p>FIX连接 由3部分组成：logon登录，message exchange消息传输，和logout注销.</p>
-<h3 id="FIX-Session"><a href="#FIX-Session" class="headerlink" title="FIX Session"></a>FIX Session</h3><p>FIX会话由一个或多个FIX Connection FIX连接组成。一个FIX会话可以有多次登录。一个FIX会话定义为一个在连接双方间的的带有连续序列号的有序消息双向传输流。 单个FIX会话能够跨越多个连续（不是并行的）的物理连接。在一个维持的，单独的FIX会话中，参与方能够多次连接和断开连接。连接的参与方必须根据单个系统及时间区域需求，公共协商会话的开始和结束。无论什么原因，重新设置接收和发送序列号为1，意味着一个新的FIX会话的开始。</p>
+<h1>基本概念</h1>
+<h3 id="FIX-Connection">FIX Connection</h3>
+<p>FIX连接 由3部分组成：logon登录，message exchange消息传输，和logout注销.</p>
+<h3 id="FIX-Session">FIX Session</h3>
+<p>FIX会话由一个或多个FIX Connection FIX连接组成。一个FIX会话可以有多次登录。一个FIX会话定义为一个在连接双方间的的带有连续序列号的有序消息双向传输流。 单个FIX会话能够跨越多个连续（不是并行的）的物理连接。在一个维持的，单独的FIX会话中，参与方能够多次连接和断开连接。连接的参与方必须根据单个系统及时间区域需求，公共协商会话的开始和结束。无论什么原因，重新设置接收和发送序列号为1，意味着一个新的FIX会话的开始。</p>
 <p>建议一个新的FIX会话在每24小时期间建立一次。可以维持24小时的连接和通过设置在Logon消息中的ResetSeqNumFlag建立一套新的序列号。</p>
-<h3 id="Sequence-Num"><a href="#Sequence-Num" class="headerlink" title="Sequence Num"></a>Sequence Num</h3><p>所有的FIX消息都由一个唯一的序列号进行标示。序列号在每一个FIX会话开始时被初始化为1，并在整个会话期间递增。监控序列号可以使会话参与者识别和处理丢失的消息，当在一个FIX会话中重新连接时能够优雅地进行应用程序同步。每个会话将建立一组互不依赖的接受和发送序列。会话参与者将维护一个赋予发送消息的序列和一个监控接受消息的消息块间隙序列号。</p>
-<h4 id="心跳-Heartbeats"><a href="#心跳-Heartbeats" class="headerlink" title="心跳 Heartbeats"></a>心跳 Heartbeats</h4><p>在消息交互期间，FIX应用程序将周期性产生Heartbeat心跳消息。该心跳消息可以监控通信链路状态及识别接受序列号间隙。发送Heartbeat的周期间隔由会话发起者使用在Logon消息中HeartBtInt域进行定义。Heartbeat心跳消息的时间间隔应当在每一个消息发送后复位，即发送一个消息后，在间隔给定的时间内无其它消息发送则发送一个Heartbeat心跳消息。HeartBtInt的值应当被会话双方认同，由会话发起方定义并由会话接收者通过Logon消息进行确认。同一个HeartBtInt被会话双方——登录的发起者和登录的接受者共同使用。</p>
-<h3 id="Ordered-Message-Processing"><a href="#Ordered-Message-Processing" class="headerlink" title="Ordered Message Processing"></a>Ordered Message Processing</h3><p>FIX协议假设消息在所有参与者间完全按照顺序进行传输。协议的实现者在设计消息间隙填充处理时应当考虑这个假设。有两种方式处理消息间隙。每一个都要求所有的消息时最后一个接收消息的后续消息或在维护一个所有新消息有序序列时，请求特定丢失消息。比如：接收方丢失了5个消息块中的第二个，程序能忽略第3到第5个消息，产生一个对消息2到消息5的重传请求，或者从消息2到无穷大消息编号的重传请求。另外的方式是暂时存储消息3到消息5，仅要求重传消息2。对于这两种方式，消息3到消息5都不应该先于消息2进行处理。</p>
-<h3 id="Possible-Duplicate"><a href="#Possible-Duplicate" class="headerlink" title="Possible Duplicate"></a>Possible Duplicate</h3><p>当一个FIX引擎对一个消息是否成功地被指定的目标接收或者当对一个重传请求进行响应时，将会产生一个可能的消息复制。这个消息将用同样的序列进行重新传送，此时在头部的PossDupFlag域将会被设置为‘Y’。接收端程序负责处理该重发消息，可以作为一个新消息进行处理，或者根据实际情况忽略该消息。所有重传请求的响应消息都将包含其值为‘Y’的PossDupFlag域。没有PossDupFlag域或者PossDupFlag域为‘N’的消息应被当作初始传送消息。注意，一个PossDupFlag值为‘Y’的重传消息需要重新计算其CheckSum值。一个可能的复制消息里发生变化的域包括：CheckSum，OrigSendingTime，SendingTime，BodyLength和PossDupFlag。加密相关域（SecureDataLen和SecureData）也必须被重新构造。</p>
-<h3 id="Possible-Resends"><a href="#Possible-Resends" class="headerlink" title="Possible Resends"></a>Possible Resends</h3><p>模糊的应用层消息可能随同PossResend标志被重传。当一个指令没有在规定时间长度内进行确认或者终端用户挂起该指令没有进行传送时这种方法非常有用。接收程序必须识别此标志，并质疑其内部域以确定该指令是否在之前已经被接收过。注意，可能的重传消息将包含与原始消息相同的数据体，但包含PossResend标志和一个新的序列号。此外，CheckSum和与加密相关的域值需要重构。</p>
-<h4 id="数据完整校验-Data-Integrity"><a href="#数据完整校验-Data-Integrity" class="headerlink" title="数据完整校验 Data Integrity"></a>数据完整校验 Data Integrity</h4><p>消息数据内容的完整性可以参用两种方式来验证：消息长度和效验码检查。程序通过计算BodyLength域到（并包含）在CheckSum标记（“10=”）后的分界符的字符数与在BodyLength中标示的消息长度进行比较来完成完整性效验。ChekSum完整性检查，通过计算从域“8=”中“8”开始，包括紧跟在CheckSum标记域的分界符<SOH>每个字符的2进制和同CheckSum进行比较得到。</p>
-<h4 id="消息确认-Message-Acknowledgements"><a href="#消息确认-Message-Acknowledgements" class="headerlink" title="消息确认 Message Acknowledgements"></a>消息确认 Message Acknowledgements</h4><p>消息数据内容的完整性可以参用两种方式来验证：消息长度和效验码检查。程序通过计算BodyLength域到（并包含）在CheckSum标记（“10=”）后的分界符的字符数与在BodyLength中标示的消息长度进行比较来完成完整性效验。ChekSum完整性检查，通过计算从域“8=”中“8”开始，包括紧跟在CheckSum标记域的分界符<SOH>每个字符的2进制和同CheckSum进行比较得到。</p>
-<h3 id="加密-Encryption"><a href="#加密-Encryption" class="headerlink" title="加密 Encryption"></a>加密 Encryption</h3><p>敏感数据在公众网络上的传输建议采用数据加密技术来掩饰应用消息。<br>加密算法由连接双方共同协商。<br>一个消息的任何一个域可以被加密并放在SecureData域中。然而，一些显示的标志域必须采用明文进行传输。为确保完整性，明文域可以在SecureData域中重复。<br>当使用加密时，建议但不是必须，所有的消息体都进行加密。如果一个消息中的重复组数据中的部分数据要加密，这个重复组必须全部进行加密。<br>预先协商好的加密算法在Logon消息中进行声明。</p>
-<h4 id="自定义域"><a href="#自定义域" class="headerlink" title="自定义域"></a>自定义域</h4><ul>
+<h3 id="Sequence-Num">Sequence Num</h3>
+<p>所有的FIX消息都由一个唯一的序列号进行标示。序列号在每一个FIX会话开始时被初始化为1，并在整个会话期间递增。监控序列号可以使会话参与者识别和处理丢失的消息，当在一个FIX会话中重新连接时能够优雅地进行应用程序同步。每个会话将建立一组互不依赖的接受和发送序列。会话参与者将维护一个赋予发送消息的序列和一个监控接受消息的消息块间隙序列号。</p>
+<h4 id="心跳-Heartbeats">心跳 Heartbeats</h4>
+<p>在消息交互期间，FIX应用程序将周期性产生Heartbeat心跳消息。该心跳消息可以监控通信链路状态及识别接受序列号间隙。发送Heartbeat的周期间隔由会话发起者使用在Logon消息中HeartBtInt域进行定义。Heartbeat心跳消息的时间间隔应当在每一个消息发送后复位，即发送一个消息后，在间隔给定的时间内无其它消息发送则发送一个Heartbeat心跳消息。HeartBtInt的值应当被会话双方认同，由会话发起方定义并由会话接收者通过Logon消息进行确认。同一个HeartBtInt被会话双方——登录的发起者和登录的接受者共同使用。</p>
+<h3 id="Ordered-Message-Processing">Ordered Message Processing</h3>
+<p>FIX协议假设消息在所有参与者间完全按照顺序进行传输。协议的实现者在设计消息间隙填充处理时应当考虑这个假设。有两种方式处理消息间隙。每一个都要求所有的消息时最后一个接收消息的后续消息或在维护一个所有新消息有序序列时，请求特定丢失消息。比如：接收方丢失了5个消息块中的第二个，程序能忽略第3到第5个消息，产生一个对消息2到消息5的重传请求，或者从消息2到无穷大消息编号的重传请求。另外的方式是暂时存储消息3到消息5，仅要求重传消息2。对于这两种方式，消息3到消息5都不应该先于消息2进行处理。</p>
+<h3 id="Possible-Duplicate">Possible Duplicate</h3>
+<p>当一个FIX引擎对一个消息是否成功地被指定的目标接收或者当对一个重传请求进行响应时，将会产生一个可能的消息复制。这个消息将用同样的序列进行重新传送，此时在头部的PossDupFlag域将会被设置为‘Y’。接收端程序负责处理该重发消息，可以作为一个新消息进行处理，或者根据实际情况忽略该消息。所有重传请求的响应消息都将包含其值为‘Y’的PossDupFlag域。没有PossDupFlag域或者PossDupFlag域为‘N’的消息应被当作初始传送消息。注意，一个PossDupFlag值为‘Y’的重传消息需要重新计算其CheckSum值。一个可能的复制消息里发生变化的域包括：CheckSum，OrigSendingTime，SendingTime，BodyLength和PossDupFlag。加密相关域（SecureDataLen和SecureData）也必须被重新构造。</p>
+<h3 id="Possible-Resends">Possible Resends</h3>
+<p>模糊的应用层消息可能随同PossResend标志被重传。当一个指令没有在规定时间长度内进行确认或者终端用户挂起该指令没有进行传送时这种方法非常有用。接收程序必须识别此标志，并质疑其内部域以确定该指令是否在之前已经被接收过。注意，可能的重传消息将包含与原始消息相同的数据体，但包含PossResend标志和一个新的序列号。此外，CheckSum和与加密相关的域值需要重构。</p>
+<h4 id="数据完整校验-Data-Integrity">数据完整校验 Data Integrity</h4>
+<p>消息数据内容的完整性可以参用两种方式来验证：消息长度和效验码检查。程序通过计算BodyLength域到（并包含）在CheckSum标记（“10=”）后的分界符的字符数与在BodyLength中标示的消息长度进行比较来完成完整性效验。ChekSum完整性检查，通过计算从域“8=”中“8”开始，包括紧跟在CheckSum标记域的分界符<SOH>每个字符的2进制和同CheckSum进行比较得到。</p>
+<h4 id="消息确认-Message-Acknowledgements">消息确认 Message Acknowledgements</h4>
+<p>消息数据内容的完整性可以参用两种方式来验证：消息长度和效验码检查。程序通过计算BodyLength域到（并包含）在CheckSum标记（“10=”）后的分界符的字符数与在BodyLength中标示的消息长度进行比较来完成完整性效验。ChekSum完整性检查，通过计算从域“8=”中“8”开始，包括紧跟在CheckSum标记域的分界符<SOH>每个字符的2进制和同CheckSum进行比较得到。</p>
+<h3 id="加密-Encryption">加密 Encryption</h3>
+<p>敏感数据在公众网络上的传输建议采用数据加密技术来掩饰应用消息。<br>
+加密算法由连接双方共同协商。<br>
+一个消息的任何一个域可以被加密并放在SecureData域中。然而，一些显示的标志域必须采用明文进行传输。为确保完整性，明文域可以在SecureData域中重复。<br>
+当使用加密时，建议但不是必须，所有的消息体都进行加密。如果一个消息中的重复组数据中的部分数据要加密，这个重复组必须全部进行加密。<br>
+预先协商好的加密算法在Logon消息中进行声明。</p>
+<h4 id="自定义域">自定义域</h4>
+<ul>
 <li>FIX为给用户提供最大的灵活性，FIX协议允许用户自定义域。这些域在认同的参与者之间实现、应用，并且应注意避免冲突。</li>
 <li>Tag数在5000 到9999保留用于用户自定义域。这些tag值用于企业联盟的信息交换。可以通过FIX网站进行注册。</li>
 <li>10000以上保留用于单一企业内部使用。不用注册。</li>
 </ul>
-<h1 id="消息类型"><a href="#消息类型" class="headerlink" title="消息类型"></a>消息类型</h1><p>初始化过程之后，正常的消息交换将开始。所有有效的消息格式的细节将在“Adminitrative Message ”管理消息和“Application Messages”应用消息部分介绍。</p>
-<h3 id="1-管理信息"><a href="#1-管理信息" class="headerlink" title="1. 管理信息"></a>1. 管理信息</h3><p>它是为了信息交换过程更加顺畅一致而使用的控制,包括:登录、心跳、检验请求、重新发送请求、拒绝(交换过程)顺序重设及注销等。</p>
-<h3 id="2-应用消息"><a href="#2-应用消息" class="headerlink" title="2. 应用消息"></a>2. 应用消息</h3><p>也就是交易的数据,它包括:</p>
+<h1>消息类型</h1>
+<p>初始化过程之后，正常的消息交换将开始。所有有效的消息格式的细节将在“Adminitrative Message ”管理消息和“Application Messages”应用消息部分介绍。</p>
+<h3 id="1-管理信息">1. 管理信息</h3>
+<p>它是为了信息交换过程更加顺畅一致而使用的控制,包括:登录、心跳、检验请求、重新发送请求、拒绝(交换过程)顺序重设及注销等。</p>
+<h3 id="2-应用消息">2. 应用消息</h3>
+<p>也就是交易的数据,它包括:</p>
 <ul>
 <li>公告 宣布已完成的交易信息。</li>
 <li>重要提示 告知由经纪人买卖的证券是由私人股份有限公司所有,还是由代理持有,以及持有量。</li>
@@ -278,9 +299,12 @@
 <li>清单订单信息的分解 使用与其它FIX信息相同的方法,支持程序交易中的信息分解。</li>
 <li>交易信息拒绝 拒绝因遵循了交易盘规则而不能以其它方式进行拒绝的应用层面的信息。</li>
 </ul>
-<h1 id="消息格式"><a href="#消息格式" class="headerlink" title="消息格式"></a>消息格式</h1><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>整数int,浮点数float,单个字符char,布尔Boolean,字符串String,数据data</p>
+<h1>消息格式</h1>
+<h3 id="数据类型">数据类型</h3>
+<p>整数int,浮点数float,单个字符char,布尔Boolean,字符串String,数据data</p>
 <p>每条FIX信息都是由一系列带有〈标记〉=〈值〉的域组成。每个标记代表不同的含义,可以是信息的类型,目标商务名称,证券买入价等。FIX协议规定了0～5000的标记含义（fix信息字典）,5000以上可由使用者自己定义,以适用特定的应用。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.fix-events.com/Archives/asianfix2008/cn/pdf/AlanDean_Chi.pdf" target="_blank" rel="noopener">https://www.fix-events.com/Archives/asianfix2008/cn/pdf/AlanDean_Chi.pdf</a></p>
+<h1>参考</h1>
+<p><a href="https://www.fix-events.com/Archives/asianfix2008/cn/pdf/AlanDean_Chi.pdf" target="_blank" rel="noopener">https://www.fix-events.com/Archives/asianfix2008/cn/pdf/AlanDean_Chi.pdf</a></p>
 <p><a href="https://l297.oschina.io/15034517662312.html" target="_blank" rel="noopener">https://l297.oschina.io/15034517662312.html</a></p>
 <p><a href="https://juejin.im/post/5bf7c4ae51882528c4467649" target="_blank" rel="noopener">https://juejin.im/post/5bf7c4ae51882528c4467649</a></p>
 <p><a href="https://www.huiyep.com/knowledge/155062.html" target="_blank" rel="noopener">https://www.huiyep.com/knowledge/155062.html</a></p>
@@ -413,7 +437,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FIX通信模型"><span class="nav-number">2.</span> <span class="nav-text">FIX通信模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">3.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FIX-Connection"><span class="nav-number">3.0.1.</span> <span class="nav-text">FIX Connection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FIX-Session"><span class="nav-number">3.0.2.</span> <span class="nav-text">FIX Session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sequence-Num"><span class="nav-number">3.0.3.</span> <span class="nav-text">Sequence Num</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#心跳-Heartbeats"><span class="nav-number">3.0.3.1.</span> <span class="nav-text">心跳 Heartbeats</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ordered-Message-Processing"><span class="nav-number">3.0.4.</span> <span class="nav-text">Ordered Message Processing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Possible-Duplicate"><span class="nav-number">3.0.5.</span> <span class="nav-text">Possible Duplicate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Possible-Resends"><span class="nav-number">3.0.6.</span> <span class="nav-text">Possible Resends</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据完整校验-Data-Integrity"><span class="nav-number">3.0.6.1.</span> <span class="nav-text">数据完整校验 Data Integrity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息确认-Message-Acknowledgements"><span class="nav-number">3.0.6.2.</span> <span class="nav-text">消息确认 Message Acknowledgements</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加密-Encryption"><span class="nav-number">3.0.7.</span> <span class="nav-text">加密 Encryption</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义域"><span class="nav-number">3.0.7.1.</span> <span class="nav-text">自定义域</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#消息类型"><span class="nav-number">4.</span> <span class="nav-text">消息类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-管理信息"><span class="nav-number">4.0.1.</span> <span class="nav-text">1. 管理信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-应用消息"><span class="nav-number">4.0.2.</span> <span class="nav-text">2. 应用消息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#消息格式"><span class="nav-number">5.</span> <span class="nav-text">消息格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-number">5.0.1.</span> <span class="nav-text">数据类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">FIX通信模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FIX-Connection"><span class="nav-number">3.0.1.</span> <span class="nav-text">FIX Connection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FIX-Session"><span class="nav-number">3.0.2.</span> <span class="nav-text">FIX Session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sequence-Num"><span class="nav-number">3.0.3.</span> <span class="nav-text">Sequence Num</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#心跳-Heartbeats"><span class="nav-number">3.0.3.1.</span> <span class="nav-text">心跳 Heartbeats</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ordered-Message-Processing"><span class="nav-number">3.0.4.</span> <span class="nav-text">Ordered Message Processing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Possible-Duplicate"><span class="nav-number">3.0.5.</span> <span class="nav-text">Possible Duplicate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Possible-Resends"><span class="nav-number">3.0.6.</span> <span class="nav-text">Possible Resends</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据完整校验-Data-Integrity"><span class="nav-number">3.0.6.1.</span> <span class="nav-text">数据完整校验 Data Integrity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息确认-Message-Acknowledgements"><span class="nav-number">3.0.6.2.</span> <span class="nav-text">消息确认 Message Acknowledgements</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加密-Encryption"><span class="nav-number">3.0.7.</span> <span class="nav-text">加密 Encryption</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义域"><span class="nav-number">3.0.7.1.</span> <span class="nav-text">自定义域</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">消息类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-管理信息"><span class="nav-number">4.0.1.</span> <span class="nav-text">1. 管理信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-应用消息"><span class="nav-number">4.0.2.</span> <span class="nav-text">2. 应用消息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">消息格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-number">5.0.1.</span> <span class="nav-text">数据类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -429,7 +453,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
