@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xuqi365.com/"/>
-  <updated>2020-02-16T02:21:03.613Z</updated>
+  <updated>2020-03-01T02:54:10.448Z</updated>
   <id>http://xuqi365.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>股票重大利好开盘封涨停买不到？试试这个办法</title>
+    <link href="http://xuqi365.com/2020/03/01/2020-02-20%20%E8%82%A1%E7%A5%A8%E9%87%8D%E5%A4%A7%E5%88%A9%E5%A5%BD%E5%BC%80%E7%9B%98%E5%B0%81%E6%B6%A8%E5%81%9C%EF%BC%9F%E8%AF%95%E8%AF%95%E8%BF%99%E4%B8%AA%E5%8A%9E%E6%B3%95/"/>
+    <id>http://xuqi365.com/2020/03/01/2020-02-20%20%E8%82%A1%E7%A5%A8%E9%87%8D%E5%A4%A7%E5%88%A9%E5%A5%BD%E5%BC%80%E7%9B%98%E5%B0%81%E6%B6%A8%E5%81%9C%EF%BC%9F%E8%AF%95%E8%AF%95%E8%BF%99%E4%B8%AA%E5%8A%9E%E6%B3%95/</id>
+    <published>2020-02-29T17:27:00.000Z</published>
+    <updated>2020-03-01T02:54:10.448Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;大家也许有过这种经历，关注的某只股票突发利好消息预判会连续涨停，赶紧打开炒股软件准备下单，发现这只股票已经涨停了，而且是几十万手的大单封死，根本没机会下手，随后几天只能看着股票一个涨停接一个涨停的一路上涨，后悔下手太慢。这种情况还有办法上车吗，散户一般能想到的办法都没戏，但
+        
+      
+    
+    </summary>
+    
+    
+      <category term="量化交易系统" scheme="http://xuqi365.com/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="ETF" scheme="http://xuqi365.com/tags/ETF/"/>
+    
+  </entry>
   
   <entry>
     <title>使用Python抓取同花顺资金流数据</title>
@@ -559,39 +586,6 @@ ufw disable
     
     
       <category term="期货" scheme="http://xuqi365.com/tags/%E6%9C%9F%E8%B4%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Okex合约交易基本概念介绍</title>
-    <link href="http://xuqi365.com/2018/05/25/Okex%E5%90%88%E7%BA%A6%E4%BA%A4%E6%98%93%E5%85%A5%E9%97%A8/"/>
-    <id>http://xuqi365.com/2018/05/25/Okex%E5%90%88%E7%BA%A6%E4%BA%A4%E6%98%93%E5%85%A5%E9%97%A8/</id>
-    <published>2018-05-25T02:19:00.000Z</published>
-    <updated>2020-02-08T17:11:25.959Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3
-        
-      
-    
-    </summary>
-    
-    
-      <category term="金融" scheme="http://xuqi365.com/categories/%E9%87%91%E8%9E%8D/"/>
-    
-    
-      <category term="期货" scheme="http://xuqi365.com/tags/%E6%9C%9F%E8%B4%A7/"/>
-    
-      <category term="合约" scheme="http://xuqi365.com/tags/%E5%90%88%E7%BA%A6/"/>
-    
-      <category term="okex" scheme="http://xuqi365.com/tags/okex/"/>
     
   </entry>
   

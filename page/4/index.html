@@ -145,6 +145,119 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/12/03/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE+osmc%E6%90%AD%E5%BB%BA%E5%A4%9A%E5%AA%92%E4%BD%93%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/12/03/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE+osmc%E6%90%AD%E5%BB%BA%E5%A4%9A%E5%AA%92%E4%BD%93%E7%8E%AF%E5%A2%83/" class="post-title-link" itemprop="url">使用树莓派+kodi搭建多媒体环境</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-12-03 14:26:00" itemprop="dateCreated datePublished" datetime="2017-12-03T14:26:00+08:00">2017-12-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>制作启动盘</h1>
+<ul>
+<li>下载 RASPBIAN STRETCH WITH DESKTOP，地址如下</li>
+</ul>
+<p><a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="noopener">https://www.raspberrypi.org/downloads/raspbian/</a></p>
+<ul>
+<li>使用SDFormatter 格式化sd卡</li>
+<li>使用win32diskimager将 .img文件写入sd卡</li>
+</ul>
+<h1>安装kodi</h1>
+<p>参考如下步骤</p>
+<p><a href="http://kodi.wiki/view/HOW-TO:Install_Kodi_on_Raspberry_Pi" target="_blank" rel="noopener">http://kodi.wiki/view/HOW-TO:Install_Kodi_on_Raspberry_Pi</a></p>
+<h1>mac 添加nfs服务</h1>
+<p>在 /etc/exports 文件中添加如下内容，IP地址为树莓派ip地址</p>
+<blockquote>
+<p>/Users/eryk/Documents/movie 192.168.1.10 (rw)</p>
+</blockquote>
+<p>然后启动nfs服务，树莓派可以从mac目录读取视频文件</p>
+<pre><code>sudo nfsd enable
+sudo nfsd update
+sudo nfsd status
+</code></pre>
+<h1>树莓派开机mount nfs目录</h1>
+<p>使用如下命令mount nfs 目录</p>
+<blockquote>
+<p>sudo mount 192.168.1.4:/Users/eryk/Documents/movie /home/pi/movie</p>
+</blockquote>
+<p>如果想在树莓派开机启动自动mount nfs目录，需要在/etc/fstab中添加如下设置</p>
+<blockquote>
+<p>192.168.1.4:/Users/eryk/Documents/movie /home/pi/movie nfs defaults 0 0</p>
+</blockquote>
+<h1>kodi设置中文</h1>
+<ol>
+<li>system–&gt;settings–&gt;Interface–&gt;skin，把 fonts 改成 Arial based；</li>
+<li>system–&gt;settings–&gt;Interface–&gt;Regional，改Language改成Chinese(Simple)</li>
+</ol>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/11/30/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86-%E6%B8%85%E6%B4%97%E8%BD%AC%E6%8D%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1148,97 +1261,6 @@ Sep 22 12:40:44 gpu01 systemd[1]: Removed slice User Slice of xxx.
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/28/2017-08-28/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/08/28/2017-08-28/" class="post-title-link" itemprop="url">PB系统介绍</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-08-28 10:00:00" itemprop="dateCreated datePublished" datetime="2017-08-28T10:00:00+08:00">2017-08-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">量化交易系统</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1>概念</h1>
-<p>证券公司PB业务（Prime Broker），即主经纪商业务，也称为主券商业务或大宗经纪业务，是指证券公司向专业机构投资者和高净值客户等提供集中托管清算、后台运营、研究支持、杠杆融资、证券拆借、资金募集等一站式综合金融服务。</p>
-<h1>模式</h1>
-<p><img src="images/15038839873491.jpg" alt=""></p>
-<h1>相关文档</h1>
-<p>券商PB业务历史演进及对私募基金的影响浅析<br>
-<a href="https://wenku.baidu.com/view/c9a4952ae45c3b3566ec8b2e.html" target="_blank" rel="noopener">https://wenku.baidu.com/view/c9a4952ae45c3b3566ec8b2e.html</a></p>
-<p>PB业务整体情况介绍及相关建议<br>
-<a href="https://wenku.baidu.com/view/ae353b446529647d26285208.html" target="_blank" rel="noopener">https://wenku.baidu.com/view/ae353b446529647d26285208.html</a></p>
-<p>PB系统介绍<br>
-<a href="https://wenku.baidu.com/view/d55488ca376baf1ffd4fad8f.html" target="_blank" rel="noopener">https://wenku.baidu.com/view/d55488ca376baf1ffd4fad8f.html</a></p>
-<p>我国证券公司发展PB业务现状及建议<br>
-<a href="https://wenku.baidu.com/view/a794f2475022aaea998f0fba.html" target="_blank" rel="noopener">https://wenku.baidu.com/view/a794f2475022aaea998f0fba.html</a></p>
-<p><a href="https://www.zhihu.com/question/41086914/answer/98165214" target="_blank" rel="noopener">https://www.zhihu.com/question/41086914/answer/98165214</a></p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1311,7 +1333,7 @@ Sep 22 12:40:44 gpu01 systemd[1]: Removed slice User Slice of xxx.
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1322,7 +1344,7 @@ Sep 22 12:40:44 gpu01 systemd[1]: Removed slice User Slice of xxx.
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-count">55</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
