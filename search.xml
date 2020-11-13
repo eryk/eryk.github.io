@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>pandas-profiling 数据分析利器</title>
-    <url>/2020/03/01/2020-11-13%20pandas-profiling-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8/</url>
+    <url>/2020/11/13/2020-11-13%20pandas-profiling-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8/</url>
     <content><![CDATA[<h3 id="介绍">介绍</h3>
 <p>pandas-profiling可以为DataFrame生成一份报告，在pandas中 df.describe() 是比较基础的探索性数据分析函数，而pandas_profiling则是在DataFrame的基础上扩展，用于快速数据分析。</p>
 <p>对于每个column，以下统计信息（与列类型相关）将显示在交互式HTML报告中：</p>
