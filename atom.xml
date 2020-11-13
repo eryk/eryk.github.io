@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xuqi365.com/"/>
-  <updated>2020-03-01T04:18:37.096Z</updated>
+  <updated>2020-11-13T08:36:56.994Z</updated>
   <id>http://xuqi365.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pandas-profiling 数据分析利器</title>
+    <link href="http://xuqi365.com/2020/03/01/2020-11-13%20pandas-profiling-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8/"/>
+    <id>http://xuqi365.com/2020/03/01/2020-11-13%20pandas-profiling-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8/</id>
+    <published>2020-02-29T17:27:00.000Z</published>
+    <updated>2020-11-13T08:36:56.994Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;介绍&quot;&gt;介绍&lt;/h3&gt;
+&lt;p&gt;pandas-profiling可以为DataFrame生成一份报告，在pandas中 df.describe()
+        
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://xuqi365.com/categories/python/"/>
+    
+    
+      <category term="pandas" scheme="http://xuqi365.com/tags/pandas/"/>
+    
+  </entry>
   
   <entry>
     <title>股票重大利好开盘封涨停买不到？试试这个办法</title>
@@ -558,34 +586,6 @@ ufw disable
     
     
       <category term="ssh" scheme="http://xuqi365.com/tags/ssh/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>股指期货概念介绍</title>
-    <link href="http://xuqi365.com/2018/08/13/2018-08-14/"/>
-    <id>http://xuqi365.com/2018/08/13/2018-08-14/</id>
-    <published>2018-08-13T02:40:00.000Z</published>
-    <updated>2020-02-08T17:11:25.950Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="金融" scheme="http://xuqi365.com/categories/%E9%87%91%E8%9E%8D/"/>
-    
-    
-      <category term="期货" scheme="http://xuqi365.com/tags/%E6%9C%9F%E8%B4%A7/"/>
     
   </entry>
   
