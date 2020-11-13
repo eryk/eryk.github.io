@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xuqi365.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Python量化交易实战">
+<meta property="og:url" content="http://xuqi365.com/page/10/index.html">
+<meta property="og:site_name" content="Python量化交易实战">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="eryk">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://xuqi365.com/page/10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
+  };
+</script>
+
+  <title>Python量化交易实战</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Python量化交易实战" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python量化交易实战</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/18/10%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/18/10%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">10分钟搭建github博客</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-18 10:16:44" itemprop="dateCreated datePublished" datetime="2017-08-18T10:16:44+08:00">2017-08-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="搭建github博客，参考如下步骤">搭建github博客，参考如下步骤</h3>
+<pre><code>https://pages.github.com/
+</code></pre>
+<h3 id="注册域名，修改域名DNS地址">注册域名，修改域名DNS地址</h3>
+<p>找个域名服务商注册个域名，我使用的是godaddy，如果以后需要指向国内空间，建议在国内域名服务商注册。</p>
+<p>注册好域名后，可以直接将域名cname到github博客地址，也可以使用dnspod.com的dns解析域名，在域名管理中把dns地址修改dnspod的dns：</p>
+<pre><code>    a.dnspod.com
+    b.dnspod.com
+    c.dnspod.com
+</code></pre>
+<p>然后需要在github上做个设置，把域名绑定到github账号上，否则直接访问域名会报404，具体设置步骤如下：</p>
+<p><a href="https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/" target="_blank" rel="noopener">https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/</a></p>
+<h3 id="使用hexo管理博客">使用hexo管理博客</h3>
+<p>Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdown格式，有众多优秀插件和主题。</p>
+<p>hexo安装步骤参考：</p>
+<p><a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></p>
+<p>推荐next博客主题，我的博客就是使用的这个主题，地址是：</p>
+<p><a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">https://github.com/iissnan/hexo-theme-next</a></p>
+<h3 id="设置-config-yml和github-sshkey">设置_config.yml和github sshkey</h3>
+<pre><code>deploy:
+  type: git
+  repo: https://github.com/YourgithubName/YourgithubName.github.io.git
+  branch: master
+</code></pre>
+<p>hexo发布时会把更新提交到仓库，所以需要设置github sshkey</p>
+<h3 id="发布文章">发布文章</h3>
+<p>基本命令如下：</p>
+<p>进入blog目录下，执行如下命令创建一篇博客</p>
+<pre><code>hexo new post 文章标题
+</code></pre>
+<p>创建好后可以在markdown工具中编写文章，macbook下推荐用MWeb来写博客，MWeb有两种模式：文档库和外部模式，使用外部模式到blog目录下就可以编写了</p>
+<p>编写好博客后发布：</p>
+<pre><code>hexo d -g
+</code></pre>
+<p>等待几秒中后刷新博客地址就可以看到更新了。</p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/18/%E9%87%91%E8%9E%8D%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/18/%E9%87%91%E8%9E%8D%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" class="post-title-link" itemprop="url">金融名词解释（持续更新）</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-18 09:02:57" itemprop="dateCreated datePublished" datetime="2017-08-18T09:02:57+08:00">2017-08-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>基础概念</h1>
+<ul>
+<li>
+<p>证券市场的交易机制</p>
+<p>分为报价驱动市场(Quote-driven Market 和订单驱动市场(Order-driven Market)两类，前者依赖做市商提供流动性，后者通过限价单订单提供流动性,交易通过投资者的买进委托和卖出委托竞价所形成。中国的证券市场属于订单驱动市场，包括股票市场和期货市场。</p>
+</li>
+<li>
+<p>金融市场微观结构理论</p>
+<p>是对金融市场上金融资产的交易机制及其价格形成过程和原因进行分析。一般认为该理论产生于1960年代末，德姆塞茨1968年发表的论文《交易成本》奠定了其基础。</p>
+</li>
+<li>
+<p>订单簿(order book)</p>
+</li>
+</ul>
+<p><img src="source/images/15030188412534.jpg" alt=""></p>
+<ul>
+<li>
+<p>信息簿(MessageBook)</p>
+<p>包括最明细的订单撮合数据，包括每个订单的下单量、成交价、订单类型等信息</p>
+</li>
+<li>
+<p>对冲</p>
+</li>
+</ul>
+<p>金融学上，对冲（hedge）指特意减低另一项投资的风险的投资。它是一种在减低商业风险的同时仍然能在投资中获利的手法。一般对冲是同时进行两笔行情相关、方向相反、数量相当、盈亏相抵的交易。行情相关是指影响两种商品价格行情的市场供求关系存在同一性，供求关系若发生变化，同时会影响两种商品的价格，且价格变化的方向大体一致。方向相反指两笔交易的买卖方向相反，这样无论价格向什么方向变化，总是一盈一亏。当然要做到盈亏相抵，两笔交易的数量大小须根据各自价格变动的幅度来确定，大体做到数量相当。</p>
+<h1>期货</h1>
+<ul>
+<li>合约</li>
+</ul>
+<blockquote>
+<p>指由期货交易所统一制订的、规定在将来某一特定的时间和地点交割一定数量和质量实物商品或金融商品的标准化合约。通常所说的期货就是指期货合约。</p>
+</blockquote>
+<ul>
+<li>主力合约</li>
+</ul>
+<blockquote>
+<p>指的是成交量最大的合约。因为它是市场上最活跃的合约，所有投机者基本上都在参与这个合约。也有说法是主力合约是持仓量最大的合约，因为通常来讲，持仓量最大的合约也是成交量最大的合约。</p>
+</blockquote>
+<ul>
+<li>IF、IH、IC</li>
+</ul>
+<blockquote>
+<p>IF：（share price）Index Future，直译就是股指期货，标的物是沪深300指数。命名来自英文。<br>
+IH：I表示股指期货，H是“沪”的拼音第一个字母。标的物是上证50。命名中英混杂。<br>
+IC：I表示股指期货，C是China的第一个字母，标的物是中证500。命名更是不伦不类。</p>
+</blockquote>
+<ul>
+<li>Open Interest</li>
+</ul>
+<p>未平仓合约，持仓兴趣</p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/17/python%E8%A3%85pymssql%E6%97%B6%E9%81%87%E5%88%B0error-command-gcc-failed-with-exit-status-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/17/python%E8%A3%85pymssql%E6%97%B6%E9%81%87%E5%88%B0error-command-gcc-failed-with-exit-status-1/" class="post-title-link" itemprop="url">python装pymssql时遇到error: command 'gcc' failed with exit status 1</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-17 16:15:54" itemprop="dateCreated datePublished" datetime="2017-08-17T16:15:54+08:00">2017-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>执行命令:</p>
+<pre><code class="language-shell">pip install pymssql
+</code></pre>
+<p>报错信息如下：</p>
+<pre><code>  Running setup.py install for pymssql ... error
+    Complete output from command /home/lthpc/anaconda3/bin/python -u -c &quot;import setuptools, tokenize;__file__='/tmp/pip-build-cpwncwyq/pymssql/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))&quot; install --record /tmp/pip-4l_hdx9q-record/install-record.txt --single-version-externally-managed --compile:
+    setup.py: platform.system() =&gt; 'Linux'
+    setup.py: platform.architecture() =&gt; ('64bit', 'ELF')
+    setup.py: platform.linux_distribution() =&gt; ('debian', 'stretch/sid', '')
+    setup.py: platform.libc_ver() =&gt; ('glibc', '2.2.5')
+    setup.py: Not using bundled FreeTDS
+    setup.py: include_dirs = ['/usr/local/include']
+    setup.py: library_dirs = ['/usr/local/lib']
+    running install
+    running build
+    running build_ext
+    cythoning _mssql.pyx to _mssql.c
+    warning: _mssql.pyx:143:4: Exception already a builtin Cython type
+    building '_mssql' extension
+    creating build
+    creating build/temp.linux-x86_64-3.6
+    gcc -pthread -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/local/include -I/home/lthpc/anaconda3/include/python3.6m -c _mssql.c -o build/temp.linux-x86_64-3.6/_mssql.o -DMSDBLIB
+    _mssql.c:435:22: fatal error: sqlfront.h: No such file or directory
+    compilation terminated.
+    error: command 'gcc' failed with exit status 1
+</code></pre>
+<p>google得到以下解决办法：</p>
+<p><a href="https://stackoverflow.com/questions/17368964/trying-to-install-pymssql-on-ubuntu-12-04-using-pip" target="_blank" rel="noopener">https://stackoverflow.com/questions/17368964/trying-to-install-pymssql-on-ubuntu-12-04-using-pip</a></p>
+<p>尝试执行命令安装FreeTDS依赖包：</p>
+<blockquote>
+<p>sudo apt-get install freetds-dev</p>
+</blockquote>
+<p>如果安装过程出现依赖包版本的问题请先更新ubuntu软件源</p>
+<blockquote>
+<p>sudo apt-get update</p>
+</blockquote>
+<p>再次执行pymssql，安装成功:</p>
+<pre><code class="language-shell">$ pip install pymssql
+Collecting pymssql
+  Using cached pymssql-2.1.3.tar.gz
+Building wheels for collected packages: pymssql
+  Running setup.py bdist_wheel for pymssql ... done
+  Stored in directory: /home/lthpc/.cache/pip/wheels/c1/1e/75/bc600eb8a5c9ed77fb1edf15ae5a48b5b427b0390c9a7c9dff
+Successfully built pymssql
+Installing collected packages: pymssql
+Successfully installed pymssql-2.1.3
+</code></pre>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/14/docker-grafana-influxdb-telegraf%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/14/docker-grafana-influxdb-telegraf%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" class="post-title-link" itemprop="url">Docker+Grafana+Influxdb+Telegraf安装部署</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-14 23:53:13" itemprop="dateCreated datePublished" datetime="2017-08-14T23:53:13+08:00">2017-08-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:17:54" itemprop="dateModified" datetime="2020-02-09T01:17:54+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
+                    <span itemprop="name">系统运维</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>docker启动Grafana + Influexdb</h1>
+<pre><code>docker run -d \
+  --name docker-statsd-influxdb-grafana \
+  -p 3003:3003 \
+  -p 8083:8083 \
+  -p 8086:8086 \
+  -p 22022:22 \
+  -p 8125:8125/udp \
+  samuelebistoletti/docker-statsd-influxdb-grafana:latest
+</code></pre>
+<h1>设置InfluxDB</h1>
+<p>打开 http:localhost:8083，设置用户名密码</p>
+<pre><code>Username: root
+Password: root
+Port: 8086
+</code></pre>
+<h1>设置Grafana</h1>
+<p>打开http:localhost:3003，登录用户名密码为</p>
+<pre><code>Username: root
+Password: root
+</code></pre>
+<p>登录之后按步骤设置数据源</p>
+<pre><code>Url: http://localhost:8086
+Database:	telegraf
+User: telegraf
+Password:	telegraf
+</code></pre>
+<h1>安装并设置TeleGraf</h1>
+<p>下载地址：<a href="https://portal.influxdata.com/downloads" target="_blank" rel="noopener">https://portal.influxdata.com/downloads</a></p>
+<h2 id="设置">设置</h2>
+<p>/etc/telegraf/telegraf.conf<br>
+修改influxdb地址，用户名及密码，设置hostname</p>
+<p>重启服务</p>
+<blockquote>
+<p>service telegraf restart</p>
+</blockquote>
+<h1>导入Grafana Dashboard</h1>
+<p>下载最新版本的dashboard配置：<br>
+<a href="https://grafana.com/dashboards/1443/revisions" target="_blank" rel="noopener">https://grafana.com/dashboards/1443/revisions</a></p>
+<p>在grafana的新建dashboard并导入配置，完成。</p>
+<h1>注意</h1>
+<p>docker内部已经启动了telegraf，如果不需要的话可以停掉，在多台服务器上安装并配置Telegraf写入同一Influxdb就可以实现对集群进行系统监控。</p>
+<h1>参考</h1>
+<ol>
+<li><a href="https://linux.cn/article-5252-1.html" target="_blank" rel="noopener">使用 Grafana、collectd 和 InfluxDB 打造现代监控系统</a></li>
+<li><a href="https://github.com/samuelebistoletti/docker-statsd-influxdb-grafana" target="_blank" rel="noopener">docker-statsd-influxdb-grafana</a></li>
+<li><a href="https://anomaly.io/collectd-metrics-to-influxdb/" target="_blank" rel="noopener">Send CollectD metrics to InfluxDB</a></li>
+</ol>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/13/%E6%88%91%E7%9A%84jupyter%E6%8F%92%E4%BB%B6%E5%88%97%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/13/%E6%88%91%E7%9A%84jupyter%E6%8F%92%E4%BB%B6%E5%88%97%E8%A1%A8/" class="post-title-link" itemprop="url">我的jupyter插件列表</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-13 16:25:19" itemprop="dateCreated datePublished" datetime="2017-08-13T16:25:19+08:00">2017-08-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>jupyter notebook extensions 安装</h1>
+<h2 id="pip方式安装">pip方式安装</h2>
+<blockquote>
+<p>pip install jupyter_contrib_nbextensions</p>
+</blockquote>
+<p>或者通过github master branch安装</p>
+<blockquote>
+<p>pip install <a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions/tarball/master" target="_blank" rel="noopener">https://github.com/ipython-contrib/jupyter_contrib_nbextensions/tarball/master</a></p>
+</blockquote>
+<h2 id="Conda方式安装">Conda方式安装</h2>
+<blockquote>
+<p>conda install -c conda-forge jupyter_contrib_nbextensions</p>
+</blockquote>
+<h2 id="通过github-仓库安装">通过github 仓库安装</h2>
+<pre><code>git clone https://github.com/ipython-contrib/jupyter_contrib_nbextensions.git
+pip install -e jupyter_contrib_nbextensions
+</code></pre>
+<h1>常用插件列表</h1>
+<p>全部jupyter插件列表在这里：</p>
+<blockquote>
+<p><a href="http://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions.html" target="_blank" rel="noopener">http://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions.html</a></p>
+</blockquote>
+<p>我觉得有用的插件列表：</p>
+<ul>
+<li>
+<p>Autopep8</p>
+<p>格式化代码插件</p>
+</li>
+<li>
+<p>Codefolding 和 Codefolding in Editor</p>
+<p>折叠代码插件</p>
+</li>
+<li>
+<p>Collapsible Headings</p>
+<p>Collapsible Headings icon<br>
+Allows notebook to have collapsible sections, separated by headings</p>
+</li>
+<li>
+<p>contrib_nbextensions_help_item：帮助</p>
+</li>
+<li>
+<p>Drag and Drop</p>
+<p>This extension allows dragging&amp;dropping images from the desktop or other programs into a notebook.</p>
+</li>
+<li>
+<p>ExecuteTime：</p>
+<p>Display when each cell has been executed and how long it took</p>
+</li>
+<li>
+<p>Freeze</p>
+<p>Freeze cells (forbid editing and executing) or make them read-only</p>
+</li>
+<li>
+<p>highlighter</p>
+<p>markdown内容高亮</p>
+</li>
+<li>
+<p>Hinterland</p>
+<p>实时的自动补全，很不错</p>
+</li>
+<li>
+<p>Nbextensions dashboard tab &amp; Nbextensions edit menu item</p>
+</li>
+<li>
+<p>ScrollDown</p>
+<p>自动向下滚动输出</p>
+</li>
+<li>
+<p>Snippets &amp; Snippets Menu</p>
+<p>插入代码片段的，可以自定义</p>
+</li>
+<li>
+<p>Table of Contents (2)</p>
+<p>The toc2 extension enables to collect all running headers and display them in a floating window, as a sidebar or with a navigation menu. The extension is also draggable, resizable, collapsable, dockable and features automatic numerotation with unique links ids, and an optional toc cell.</p>
+</li>
+<li>
+<p>table_beautifier</p>
+<p>Add bootstrap styling to tables in markdown cells and in html/md output</p>
+</li>
+<li>
+<p>Toggle all line numbers</p>
+<p>Add a toolbar button and hotkey to toggle all cells’ line numbers on or off</p>
+</li>
+<li>
+<p>Tree Filter</p>
+<p>An extension that allows you to filter by filename in the Jupyter notebook file tree (aka dashboard) page.</p>
+</li>
+<li>
+<p>Variable Inspector</p>
+<p>The Variable Inspector extension collects all defined variables and display them in a floating window.</p>
+</li>
+</ul>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Author"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Author</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/eryk" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;eryk" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.weibo.com/eryk86" title="Weibo → https:&#x2F;&#x2F;www.weibo.com&#x2F;eryk86" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+</body>
+</html>

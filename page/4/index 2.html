@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xuqi365.com","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Python量化交易实战">
+<meta property="og:url" content="http://xuqi365.com/page/4/index.html">
+<meta property="og:site_name" content="Python量化交易实战">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="eryk">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://xuqi365.com/page/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
+  };
+</script>
+
+  <title>Python量化交易实战</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Python量化交易实战" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Python量化交易实战</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/12/03/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE+osmc%E6%90%AD%E5%BB%BA%E5%A4%9A%E5%AA%92%E4%BD%93%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/12/03/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE+osmc%E6%90%AD%E5%BB%BA%E5%A4%9A%E5%AA%92%E4%BD%93%E7%8E%AF%E5%A2%83/" class="post-title-link" itemprop="url">使用树莓派+kodi搭建多媒体环境</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-12-03 14:26:00" itemprop="dateCreated datePublished" datetime="2017-12-03T14:26:00+08:00">2017-12-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>制作启动盘</h1>
+<ul>
+<li>下载 RASPBIAN STRETCH WITH DESKTOP，地址如下</li>
+</ul>
+<p><a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank" rel="noopener">https://www.raspberrypi.org/downloads/raspbian/</a></p>
+<ul>
+<li>使用SDFormatter 格式化sd卡</li>
+<li>使用win32diskimager将 .img文件写入sd卡</li>
+</ul>
+<h1>安装kodi</h1>
+<p>参考如下步骤</p>
+<p><a href="http://kodi.wiki/view/HOW-TO:Install_Kodi_on_Raspberry_Pi" target="_blank" rel="noopener">http://kodi.wiki/view/HOW-TO:Install_Kodi_on_Raspberry_Pi</a></p>
+<h1>mac 添加nfs服务</h1>
+<p>在 /etc/exports 文件中添加如下内容，IP地址为树莓派ip地址</p>
+<blockquote>
+<p>/Users/eryk/Documents/movie 192.168.1.10 (rw)</p>
+</blockquote>
+<p>然后启动nfs服务，树莓派可以从mac目录读取视频文件</p>
+<pre><code>sudo nfsd enable
+sudo nfsd update
+sudo nfsd status
+</code></pre>
+<h1>树莓派开机mount nfs目录</h1>
+<p>使用如下命令mount nfs 目录</p>
+<blockquote>
+<p>sudo mount 192.168.1.4:/Users/eryk/Documents/movie /home/pi/movie</p>
+</blockquote>
+<p>如果想在树莓派开机启动自动mount nfs目录，需要在/etc/fstab中添加如下设置</p>
+<blockquote>
+<p>192.168.1.4:/Users/eryk/Documents/movie /home/pi/movie nfs defaults 0 0</p>
+</blockquote>
+<h1>kodi设置中文</h1>
+<ol>
+<li>system–&gt;settings–&gt;Interface–&gt;skin，把 fonts 改成 Arial based；</li>
+<li>system–&gt;settings–&gt;Interface–&gt;Regional，改Language改成Chinese(Simple)</li>
+</ol>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/11/30/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86-%E6%B8%85%E6%B4%97%E8%BD%AC%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/30/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86-%E6%B8%85%E6%B4%97%E8%BD%AC%E6%8D%A2/" class="post-title-link" itemprop="url">数据预处理-清洗转换</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-30 15:39:00" itemprop="dateCreated datePublished" datetime="2017-11-30T15:39:00+08:00">2017-11-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>转自：<a href="http://www.dataivy.cn/blog/data_etl/?wt_tb=1%7C1511709850969" target="_blank" rel="noopener">http://www.dataivy.cn/blog/data_etl/?wt_tb=1|1511709850969</a></p>
+<p>当数据质量校验完成后，针对有问题的数据要进行的是数据清洗和转换，另外还包括对正常数据的转换。数据清洗的主要作用包括：纠正错误、删除重复项、统一规格、修正逻辑、转换构造和数据压缩。</p>
+<h1>1. 纠正错误</h1>
+<p>错误数据是数据源环境中经常出现的一类问题。数据错误的形式包括：</p>
+<ul>
+<li>数据值错误：数据直接是错误的，例如超过固定域集、超过极值、拼写错误、属性错误、源错误等。</li>
+<li>数据类型错误：数据的存储类型不符合实际情况，如日期类型的以数值型存储，时间戳存为字符串等。</li>
+<li>数据编码错误：数据存储的编码错误，例如将UTF-8写成UTF-80。</li>
+<li>数据格式错误：数据的存储格式问题，如半角全角字符、中英文字符等。</li>
+<li>数据异常错误：如数值数据输成全角数字字符、字符串数据后面有一个回车操作、日期越界、数据前后有不可见字符等。</li>
+<li>依赖冲突：某些数据字段间存储依赖关系，例如城市与邮政编码应该满足对应关系，但可能存在二者不匹配的问题。</li>
+<li>多值错误：大多数情况下，每个字段存储的是单个值，但也存在一个字段存储多个值的情况，其中有些可能是不符合实际业务规则的。<br>
+这类错误产生的原因是业务系统不够健全，尤其是在数据产生之初的校验和入库规则不规范，导致在接收输入后没有进行判断或无法检测而直接写入后台数据库造成的。</li>
+</ul>
+<h1>2. 删除重复项</h1>
+<p>由于各种原因，数据中可能存在重复记录或重复字段（列），对于这些重复项目（行和列）需要做去重处理。</p>
+<p>对于重复项的判断，基本思想是“排序和合并”，先将数据库中的记录按一定规则排序，然后通过比较邻近记录是否相似来检测记录是否重复。这里面其实包含了两个操作，一是排序，二是计算相似度。</p>
+<p>常见的排序算法：</p>
+<ul>
+<li>插入排序</li>
+<li>冒泡排序</li>
+<li>选择排序</li>
+<li>快速排序</li>
+<li>堆排序</li>
+<li>归并排序</li>
+<li>基数排序</li>
+<li>希尔排序</li>
+</ul>
+<p>常见的判断相似度的算法：</p>
+<ul>
+<li>基本的字段匹配算法</li>
+<li>标准化欧氏距离</li>
+<li>汉明距离</li>
+<li>夹角余弦</li>
+<li>杰卡德距离</li>
+<li>马氏距离</li>
+<li>曼哈顿距离</li>
+<li>闵可夫斯基距离</li>
+<li>欧氏距离</li>
+<li>切比雪夫距离</li>
+<li>相关系数</li>
+<li>信息熵</li>
+</ul>
+<p>对于重复的数据项，尽量需要经过业务确认并进行整理提取出规则。在清洗转换阶段，对于重复数据项尽量不要轻易做出删除决策，尤其不能将重要的或有业务意义的数据过滤掉，校验和重复确认的工作必不可少。</p>
+<h1>3. 统一规格</h1>
+<p>由于数据源系统分散在各个业务线，不同业务线对于数据的要求、理解和规格不同，导致对于同一数据对象描述规格完全不同，因此在清洗过程中需要统一数据规格并将一致性的内容抽象出来。</p>
+<p>数据字段的规则大致可以从以下几个方面进行统一：</p>
+<ul>
+<li>名称，对于同一个数据对象的名称首先应该是一致的。例如对于访问深度这个字段，可能的名称包括访问深度、人均页面浏览量、每访问PV数。</li>
+<li>类型：同一个数据对象的数据类型必须统一，且表示方法一致。例如普通日期的类型和时间戳的类型需要区分。</li>
+<li>单位：对于数值型字段，单位需要统一。例如万、十万、百万等单位度量。</li>
+<li>格式：在同一类型下，不同的表示格式也会产生差异。例如日期中的长日期、短日期、英文、中文、年月日制式和缩写等格式均不一样。</li>
+<li>长度：同一字段长度必须一致。</li>
+<li>小数位数：小数位数对于数值型字段尤为重要，尤其当数据量累积较大时会因为位数的不同而产生巨大偏差。</li>
+<li>计数方法：对于数值型等的千分位、科学计数法等的计数方法的统一。</li>
+<li>缩写规则：对于常用字段的缩写，例如单位、姓名、日期、月份等的统一。例如将周一表示为Monday还是Mon还是M。</li>
+<li>值域：对于离散型和连续型的变量都应该根据业务规则进行统一的值域约束。</li>
+<li>约束：是否允许控制、唯一性、外键约束、主键等的统一。</li>
+</ul>
+<p>统一数据规格的过程中，需要重要的一点是确认不同业务线带来数据的规格一致性，这需要业务部门的参与、讨论和确认，以明确不同体系数据的统一标准。</p>
+<h1>4. 修正逻辑</h1>
+<p>在多数据源的环境下，很可能存在数据异常或冲突的问题。</p>
+<p>例如不同的数据源对于订单数量的数据统计冲突问题，结果出现矛盾的记录。通常，这是由于不同系统对于同一个数据对象的统计逻辑不同而造成的，逻辑的不一致会直接导致结果的差异性；除了统计逻辑和口径的差异，也有因为源数据系统基于性能的考虑，放弃了外键约束，从而导致数据不一致的结果；另外，也存在极小的数据丢失的可能性，通常由于并发量和负载过高、服务器延迟甚至宕机等原因导致的数据采集的差异。</p>
+<p>对于这类的数据矛盾，首先需要明确各个源系统的逻辑、条件、口径，然后定义一套符合各个系统采集逻辑的规则，并对异常源系统的采集逻辑进行修正。</p>
+<p>某些情况下，也可能存在业务规则的错误导致的数据采集的错误，此时需要从源头纠正错误的采集逻辑，然后再进行数据清洗和转换。</p>
+<h1>5. 转换构造</h1>
+<p>数据变换是数据清理过程的重要步骤，是对数据的一个的标准的处理，几乎所有的数据处理过程都会涉及该步骤。数据转换常见的内容包括：数据类型转换、数据语义转换、数据值域转换、数据粒度转换、表/数据拆分、行列转换、数据离散化、数据离散化、提炼新字段、属性构造、数据压缩等。</p>
+<h2 id="数据类型转换">数据类型转换</h2>
+<p>当数据来自不同数据源时，不同类型的数据源数据类型不兼容可能导致系统报错。这时需要将不同数据源的数据类型进行统一转换为一种兼容的数据类型。</p>
+<h2 id="数据语义转换">数据语义转换</h2>
+<p>传统数据仓库中基于第三范式可能存在维度表、事实表等，此时在事实表中会有很多字段需要结合维度表才能进行语义上的解析。例如，假如字段M的业务含义是浏览器类型，其取值分为是1/2/3/4/5，这5个数字如果不加转换则很难理解为业务语言，更无法在后期被解读和应用。</p>
+<h2 id="数据粒度转换">数据粒度转换</h2>
+<p>业务系统一般存储的是明细数据，有些系统甚至存储的是基于时间戳的数据，而数据仓库中的数据是用来分析的，不需要非常明细的数据，一般情况下，会将业务系统数据按照数据仓库中不同的粒度需求进行聚合。</p>
+<h2 id="表-数据拆分">表/数据拆分</h2>
+<p>某些字段可能存储多中数据信息，例如时间戳中包含了年、月、日、小时、分、秒等信息，有些规则中需要将其中部分或者全部时间属性进行拆分，以此来满足多粒度下的数据聚合需求。同样的，一个表内的多个字段，也可能存在表字段拆分的情况。</p>
+<h2 id="行列转换">行列转换</h2>
+<p>某些情况下，表内的行列数据会需要进行转换（又称为转置），例如协同过滤的计算之前，user和term之间的关系即互为行列并且可相互转换，可用来满足基于项目和基于用户的相似度推荐计算。</p>
+<h2 id="数据离散化">数据离散化</h2>
+<p>将连续取值的属性离散化成若干区间，来帮助消减一个连续属性的取值个数。例如对于收入这个字段，为了便于做统计，根据业务经验可能分为几个不同的区间：0～3000、3001～5000、5001～10000、10001～30000、大于30000，或者在此基础上分别用1、2、3、4、5来表示。</p>
+<h2 id="数据标准化">数据标准化</h2>
+<p>不同字段间由于字段本身的业务含义不同，有些时间需要消除变量之间不同数量级造成的数值之间的悬殊差异。例如将销售额进行离散化处理，以消除不同销售额之间由于量级关系导致的无法进行多列的复合计算。数据标准化过程还可以用来解决个别数值较高的属性对聚类结果的影响。</p>
+<h2 id="提炼新字段">提炼新字段</h2>
+<p>很多情况下，需要基于业务规则提取新的字段，这些字段也称为复合字段。这些字段通常都是基于单一字段产生，但需要进行复合运算甚至复杂算法模型才能得到新的指标。</p>
+<h2 id="属性构造">属性构造</h2>
+<p>有些建模过程中，也会需要根据已有的属性集构造新的属性。例如，几乎所有的机器学习都会讲样本分为训练集、测试集、验证集三类，那么数据集的分类（或者叫分区）就属于需要新构建的属性，用户做机器学习不同阶段的样本使用。</p>
+<p>提示  在某些场景中，也存在一些特殊转换方法。例如在机器学习中，有些值是离散型的数据但存在一定意义，例如最高学历这个字段中包含博士、研究生、大学、高中这4个值，某些算法不支持直接对文本进行计算，此时需要将学历这个字段进行转换。常见的方法是将值域集中的每个值拆解为一个字段，每个字段取值为0或1（布尔型或数值型）。这时，就会出现4个新的字段，对于一条记录来看（通常是一个人），其最高学历只能满足一个，例如字段博士为1，那么其余的字段（研究生、大学、高中）则为0。因此这个过程实际上是将1个字段根据值域（4个值的集合）拆解为4个字段。</p>
+<h1>6. 数据压缩</h1>
+<p>数据压缩是指在保持原有数据集的完整性和准确性，不丢失有用信息的前提下，按照一定的算法和方式对数据进行重新组织的一种技术方法。</p>
+<p>对大规模的数据进行复杂的数据分析与数据计算通常需要耗费大量时间，所以在这之前需要进行数据的约减和压缩，减小数据规模，而且还可能面临交互式的数据挖掘，根据数据挖掘前后对比对数据进行信息反馈。这样在精简数据集上进行数据挖掘显然效率更高，并且挖掘出来的结果与使用原有数据集所获得结果基本相同。</p>
+<p>数据压缩的意义不止体现在数据计算过程中，还有利于减少存储空间，提高其传输、存储和处理效率，减少数据的冗余和存储的空间，这对于底层大数据平台具有非常重要的意义。</p>
+<p>数据压缩有多种方式可供选择：</p>
+<ul>
+<li>数据聚合：将数据聚合后使用，例如如果汇总全部数据，那么基于更粗粒度的数据更加便利。</li>
+<li>维度约减：通过相关分析手动消除多余属性，使得参与计算的维度（字段）减少；也可以使用主成分分析、因子分析等进行维度聚合，得到的同样是更少的参与计算的数据维度。</li>
+<li>数据块消减：利用聚类或参数模型替代原有数据，这种方式常见于多个模型综合进行机器学习和数据挖掘。</li>
+<li>数据压缩：数据压缩包括无损压缩和有损压缩两种类型。数据压缩常用于磁盘文件、视频、音频、图像等。</li>
+</ul>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/11/24/%E6%B7%B1%E5%9C%B3%E5%B8%82%E4%BB%B7%E5%A7%94%E6%89%98%E7%9A%84%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/24/%E6%B7%B1%E5%9C%B3%E5%B8%82%E4%BB%B7%E5%A7%94%E6%89%98%E7%9A%84%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">深圳市价委托的类型</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-24 09:29:00" itemprop="dateCreated datePublished" datetime="2017-11-24T09:29:00+08:00">2017-11-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>深圳市价委托的类型有五种，分别为：对手方最优价格、本方最优价格、最优五档即时成交剩余撤销、即时成交剩余撤销（FAK）、全额成交或撤销委托（FOK）。</p>
+<h1>对手方最优价格委托</h1>
+<p>对手方最优价格委托指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内对手方队列的最优价格为其指定价格的委托类型。</p>
+<ol>
+<li>“对手方最优价格委托”无需输入指定价格，如果当时交易主机中集中申报簿的对手方队列中存在有效申报，则与当时对手方队列中价格最优的申报成交；“价格最优的申报”是指集中申报簿中买方“买一”队列或卖方“卖一”队列。</li>
+<li>没有完全成交的“对手方最优价格委托”将以限价形式保存在交易主机集中申报簿的本方队列中，其指定价格为委托已成交部分的成交价，也就是委托申报进入交易主机当时对手方队列的最优价格.</li>
+<li>如果当时集中申报簿中对手方队列没有有效对手盘，交易主机直接对“对手方最优价格委托”作撤单处理。</li>
+</ol>
+<h1>本方最优价格委托</h1>
+<p>本方最优价格委托是指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内本方队列最优价格为其指定价格的委托类型。</p>
+<ol>
+<li>“本方最优价格委托”无需输入指定价格，如果当时交易主机中集中申报簿的本方队列存在有效申报，则以当时本方队列的最优价格为指定价格以限价形式保存在交易主机的集中申报簿中；</li>
+<li>如果当时集中申报簿本方队列中没有有效申报，交易主机对“本方最优价格委托”作撤销处理。</li>
+</ol>
+<h1>即时成交剩余撤销委托</h1>
+<p>即时成交剩余撤销委托是指无需指定委托价格，委托进入交易主机时能立即成交部分即予以撮合，未成交部分立即自动撤销的委托方式，一笔委托可以同对手方数笔不同价格的委托撮合成交。</p>
+<ol>
+<li>“即时成交剩余撤销委托”无需指定价格，如果当时交易主机集中申报簿的对手方队列中存在有效申报，则按对手方申报队列顺序以对手方价格为成交价进行逐笔配对；</li>
+<li>“即时成交剩余撤销委托”可以与不同价格的对手方委托撮合成交，直至无有效对手盘（即在涨跌幅限制范围内或在最后一笔成交价为基础的有效竞价范围内交易主机中现有的对手方队列中无委托）；</li>
+<li>若“即时成交剩余撤销委托”成交后有剩余的委托（包括部分成交、未有成交的情形），交易主机立即对剩余部分作撤单处理。</li>
+</ol>
+<h1>最优五档即时成交剩余撤销委托</h1>
+<p>“最优五档即时成交剩余撤销委托”是为了避免市场价格波动过大而对“即时成交剩余撤销委托”的改良。其与“即时成交剩余撤销委托”方式的区别就在于“即时成交剩余撤销委托”可以与对手方数笔不同价格的委托撮合，直至无有效对手盘，而“最优五档即时成交剩余撤销委托”只能与一定范围内的对手方队列成交。</p>
+<h1>全额成交或撤销委托</h1>
+<p>全额成交或撤销委托是指无需指定委托价格，委托进入交易主机时能立即全部成交即予以撮合，否则委托全部撤销的委托方式，该委托可以与对手方数笔不同价格的委托撮合成交。</p>
+<h1>问题</h1>
+<ol>
+<li>
+<p>市价委托可以撤单吗</p>
+<p>根据《深圳证券交易所交易规则》，市价申报主要包括：对手方最优价格申报、本方最优价格申报、最优五档即时成交剩余撤销申报、即时成交剩余撤销申报、全额成交或撤销申报等五种，其中对手方最优价格申报和本方最优价格申报部分成交时，未成交部分可以主动撤单，其余情况主机会自动撤单，而不能主动撤单。</p>
+</li>
+</ol>
+<h1>测试结果</h1>
+<ol>
+<li>市价委托(深圳对方最优价格)
+<ul>
+<li>买入: 按照涨停价下单</li>
+<li>卖出: 按照价格0下单</li>
+</ul>
+</li>
+<li>市价委托(深圳本方最优价格)
+<ul>
+<li>买入: 按照买一价下单，按照时间优先原则排列订单</li>
+<li>卖出: 按照卖一价下单，按照时间优先原则排列订单</li>
+</ul>
+</li>
+<li>市价委托(深圳即时成交剩余撤销)
+<ul>
+<li>买入: 按照涨停价下单</li>
+</ul>
+</li>
+<li>市价委托(上海五档即成剩撤 / 深圳五档即成剩撤)
+<ul>
+<li>卖出： 按照价格0下单</li>
+</ul>
+</li>
+<li>市价委托(深圳全额成交或撤销)
+<ul>
+<li>买入: 按照涨停价下单，买入量大于5档时还会继续买入</li>
+</ul>
+</li>
+<li>市价委托(上海五档即成转限价)</li>
+</ol>
+<h1>参考</h1>
+<p>深圳证券交易所关于五种市价委托方式的业务说明<br>
+<a href="http://www.szse.cn/UpFiles/Attach/1045/2005/11/14/1442302347.doc" target="_blank" rel="noopener">http://www.szse.cn/UpFiles/Attach/1045/2005/11/14/1442302347.doc</a></p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/11/06/Tradex%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/06/Tradex%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Tradex笔记</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-06 09:29:00" itemprop="dateCreated datePublished" datetime="2017-11-06T09:29:00+08:00">2017-11-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">量化交易系统</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>TradeX 是为从事股票程序化交易的投资者提供一个接口，通过将自己的交易策略编写成计算机代码，实现自动 自动快速读取行情进行分析，以及股票下单、撤单、查询，做到股票的全自动买卖。</p>
+<p>优势</p>
+<ol>
+<li>多语言支持: 封装 C++,C#，Python，Delphi，Java，VB</li>
+<li>支持 Level 2 行情(专用账户版，用户需自行购买通达信 Level2 行情账户)包含十档行情、逐笔成交、买卖队列和深圳逐笔委托行情(上交所不对外提供逐笔委托)，需开通通达信的 Level 2 金融终端账户</li>
+<li>支持扩展行情: 包含期货、期权、三版、港股数据</li>
+<li>支持股票五档实时行情，实测速度比 TdxhqApi 快 10%~30%;包含各周期 K 线、分时、分笔成交，五档行情，F10 公司信息资料</li>
+<li>社区活跃</li>
+<li>支持市场上绝大部分券商</li>
+<li>接口是 tcp 直连获取行情</li>
+</ol>
+<p>劣势:</p>
+<ol>
+<li>所有行情接口均要求客户端主动查询请求行情数据，而非推送行情;每种行情接口各自对应于不同的通讯协议。每种行情接口的都可以建立单连接和批量多连接;如果要快速获取大量股票数据，则可能需要用到批量多连接。</li>
+<li>只支持windows系统，32 位的 Python 2.7 / Python 3.6.x</li>
+<li></li>
+</ol>
+<p>问题：</p>
+<ol>
+<li>需要自行维护停牌/退市股票列表，否则查询股票时服务器会自动返回600839的行情信息</li>
+<li>分笔数据间隔3s，建议更小的时间间隔获取数据，否则最多可能出现3s延迟</li>
+<li>不支持使用同一 Level 2 行情账户同时从多点连接，如果的确需要，您需要购买多个 Level 2 账户。 普通的五档实时行情、扩展行情没有任何 IP 限制，可以多点登录连接</li>
+</ol>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/11/06/%E6%9C%9F%E8%B4%A7%E5%88%86%E6%9E%90%E4%B8%8E%E4%BA%A4%E6%98%93%E5%85%A5%E9%97%A8%20live%20%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/06/%E6%9C%9F%E8%B4%A7%E5%88%86%E6%9E%90%E4%B8%8E%E4%BA%A4%E6%98%93%E5%85%A5%E9%97%A8%20live%20%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">期货分析与交易入门 live 笔记</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-06 09:29:00" itemprop="dateCreated datePublished" datetime="2017-11-06T09:29:00+08:00">2017-11-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>手续费</h1>
+<p>包括期货交易所和期货公司收取，期货公司手续费是交易所基础上的1.1 ～ 1.5 倍</p>
+<h1>书籍推荐</h1>
+<ol>
+<li>道：斯坦利·克罗的《期货交易策略》和江恩的《如何从商品期货交易中获利》</li>
+<li>术：中国期货业协会编的《铁矿石期货》，我们必须要了解铁矿石供给来源、中国铁矿石的进口量、铁矿石需求情况、铁矿石现货有哪些关键指标</li>
+</ol>
+<h1>关于大周期和小周期趋势问题</h1>
+<p>把握好小周期，积少成多</p>
+<h1>期货定义</h1>
+<p>期货合约指由期货交易所统一制订的、规定在将来某一特定的时间和地点交割一定数量和质量实物商品或金融商品的标准化合约。</p>
+<h1>期货交易所</h1>
+<ol>
+<li>商品期货交易所：大连商品期货交易所、郑州商品期货交易所、上海期货交易所</li>
+<li>金融期货交易所：中国金融期货交易所</li>
+</ol>
+<h1>仓单</h1>
+<h1>交易平台</h1>
+<p>文华财经、随身行（手机版）</p>
+<h1>期货结算</h1>
+<h1>涨跌停板</h1>
+<p>不同品种幅度不同，不同保证金会放大涨跌停，比如10倍杠杆，涨幅5%，对应本金则涨幅50%</p>
+<h1>持仓限额</h1>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/10/27/python%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85pyc%E8%84%9A%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/27/python%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85pyc%E8%84%9A%E6%9C%AC/" class="post-title-link" itemprop="url">python编译打包pyc脚本</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-27 12:18:00" itemprop="dateCreated datePublished" datetime="2017-10-27T12:18:00+08:00">2017-10-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <pre><code class="language-shell">cd $1
+python3 -O -m compileall .
+find . -name '*.pyc' -exec rename 's/.cpython-36.opt-1//' {} \;
+find . -name '*.pyc' -execdir mv {} .. \;
+find . -name '*.py' -type f -print -exec rm {} \;
+find . -name '__pycache__' -exec rmdir {} \;
+zip -r ../$1.zip ./*
+</code></pre>
+<p>转自：<a href="https://my.oschina.net/bfbd/blog/864310" target="_blank" rel="noopener">https://my.oschina.net/bfbd/blog/864310</a></p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/10/23/2017-10-23/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/23/2017-10-23/" class="post-title-link" itemprop="url">jupyter-notebook启动报错</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-23 10:32:00" itemprop="dateCreated datePublished" datetime="2017-10-23T10:32:00+08:00">2017-10-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>执行启动命令如下：</p>
+<pre><code>nohup jupyter-notebook --ip=127.0.0.1 --port=8801 --notebook-dir=/home/eryk/jupyter_home &amp;
+</code></pre>
+<p>错误信息如下：</p>
+<pre><code>PermissionError: [Errno 13] Permission denied: '/run/user/1000/jupyter'
+</code></pre>
+<p>解决办法：</p>
+<pre><code>unset XDG_RUNTIME_DIR
+</code></pre>
+<p>参考：<br>
+<a href="https://github.com/jupyter/notebook/issues/1318" target="_blank" rel="noopener">https://github.com/jupyter/notebook/issues/1318</a></p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/09/22/linux%E7%94%A8%E6%88%B7%E8%BF%9B%E7%A8%8B%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E8%A2%AB%E7%B3%BB%E7%BB%9Fkill%E6%8E%89%E4%BA%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/09/22/linux%E7%94%A8%E6%88%B7%E8%BF%9B%E7%A8%8B%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E8%A2%AB%E7%B3%BB%E7%BB%9Fkill%E6%8E%89%E4%BA%86/" class="post-title-link" itemprop="url">linux用户进程执行过程被系统kill掉了</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-09-22 15:16:00" itemprop="dateCreated datePublished" datetime="2017-09-22T15:16:00+08:00">2017-09-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>系统日志显示</p>
+<pre><code>Sep 22 12:40:44 gpu01 systemd[1]: Stopping User Manager for UID 1001...
+Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Default.
+Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Basic System.
+Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Timers.
+Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Sockets.
+Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Paths.
+Sep 22 12:40:44 gpu01 systemd[1453]: Reached target Shutdown.
+Sep 22 12:40:44 gpu01 systemd[1453]: Starting Exit the Session...
+Sep 22 12:40:44 gpu01 systemd[1453]: Received SIGRTMIN+24 from PID 28725 (kill).
+Sep 22 12:40:44 gpu01 systemd[1]: Stopped User Manager for UID 1001.
+Sep 22 12:40:44 gpu01 systemd[1]: Removed slice User Slice of xxx.
+</code></pre>
+<p>google到如下解释：<br>
+<a href="https://serverfault.com/questions/774491/what-is-sigrtmin24-in-syslog" target="_blank" rel="noopener">https://serverfault.com/questions/774491/what-is-sigrtmin24-in-syslog</a></p>
+<p>当用户session都退出之后，之前后台执行的进程就会被kill掉</p>
+<p>所以程序运行最好用nohup xxx &amp;</p>
+<p>这还有一篇文章介绍nohup 和 &amp; 的区别，核心意思是说：</p>
+<blockquote>
+<p>用nohup运行命令可以使命令永久的执行下去，和用户终端没有关系，例如我们断开SSH连接都不会影响他的运行，注意了nohup没有后台运行的意思；&amp;才是后台运行</p>
+<p>&amp;是指在后台运行，但当用户推出(挂起)的时候，命令自动也跟着退出</p>
+</blockquote>
+<p><a href="http://blog.csdn.net/zhang_red/article/details/52789691" target="_blank" rel="noopener">http://blog.csdn.net/zhang_red/article/details/52789691</a></p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/09/21/2017-09-21/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/09/21/2017-09-21/" class="post-title-link" itemprop="url">CTA策略(Commodity Trading Advisor Strategy)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-09-21 09:27:00" itemprop="dateCreated datePublished" datetime="2017-09-21T09:27:00+08:00">2017-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">交易策略</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>CTA(Commodity Trading Advisors)商品交易顾问，通常也被称作管理期货基金，是由于其最初主要活跃于商品市场。CTA基金起源于1949年，随着期货交易品种的不断扩展，CTA基金在资产的风险管理与运作方面显得日趋重要，很多机构投资者诸如养老金、信托基金等都开始大量采用CTA作为他们投资组合中的重要组成部分，并在优化组合、分散风险等方面取得了良好的效果。</p>
+<h2 id="研究对象">研究对象</h2>
+<ul>
+<li>狭义：期货</li>
+<li>广义：大宗商品期货，国债期货（利率期货），股票，外汇（包括spots和futures）</li>
+</ul>
+<h2 id="研究周期">研究周期</h2>
+<p>分钟、小时和日线，少量tick</p>
+<h2 id="研究方法">研究方法</h2>
+<p>量价指标总结规律</p>
+<h2 id="特点">特点</h2>
+<ul>
+<li>低相关性</li>
+</ul>
+<p>CTA策略投资于期货市场，和市场上大多数基础资产的相关性低</p>
+<ul>
+<li>高收益（回撤可控）</li>
+<li>非线性（横盘期=加仓期）</li>
+</ul>
+<p>除去低相关、高收益（回撤可控）之外，量化CTA基金还有一个显著的特性就是收益非线性。CTA基金的收益方式体现在低胜率、高盈亏比上，即一年的2-3波行情就能将全年的收益实现，其他时间是处于横盘或者回撤的状态。</p>
+<h2 id="CTA分类">CTA分类</h2>
+<p>传统的CTA策略都是趋势追随策略</p>
+<p>广义上来说，CTA策略应该是趋势追踪策略为主，反转策略为辅</p>
+<h2 id="CTA基金分类">CTA基金分类</h2>
+<ul>
+<li>公募期货基金(Public Funds)</li>
+<li>私募期货基金(Private Pools)</li>
+<li>个人管理期货账户</li>
+</ul>
+<h2 id="参考">参考</h2>
+<p>什么是CTA策略？<br>
+<a href="https://zhuanlan.zhihu.com/p/20494478" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/20494478</a></p>
+<p>如何理解CTA交易策略?<br>
+<a href="https://www.zhihu.com/question/38663897" target="_blank" rel="noopener">https://www.zhihu.com/question/38663897</a></p>
+<p>量化CTA策略背后的逻辑？<br>
+<a href="https://www.zhihu.com/question/36960610?sort=created" target="_blank" rel="noopener">https://www.zhihu.com/question/36960610?sort=created</a></p>
+<p>CTA Fund<br>
+<a href="https://baike.baidu.com/item/CTA%20Fund/1785877" target="_blank" rel="noopener">https://baike.baidu.com/item/CTA Fund/1785877</a></p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/09/06/ETF%E5%A5%97%E5%88%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/09/06/ETF%E5%A5%97%E5%88%A9/" class="post-title-link" itemprop="url">ETF套利(ETF’s Arbitrage)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-09-06 17:31:00" itemprop="dateCreated datePublished" datetime="2017-09-06T17:31:00+08:00">2017-09-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">交易策略</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>什么是ETF套利</h1>
+<p>ETF套利，是指投资者可以在一级市场通过指定的ETF交易商向基金管理公司用一篮子股票组合申购ETF份额或把ETF份额赎回成一篮子股票组合，同时又可以在二级市场上以市场价格买卖ETF。</p>
+<p>假设在某个时段中，某只ETF成分股暴跌，使得该ETF的净值迅速走低，但该ETF的市场价格未能及时跟上，两者短暂地出现了一个价差，这时就可以选择买入ETF一篮子股票组合申购成ETF(以净值计价)，然后将ETF在二级市场上出售(以市场价格计价)，从而实现低买高卖，获取价差。</p>
+<h1>ETF套利的原理</h1>
+<p>一切要从ETF套利交易开始说起。这项交易模式在国内券商中比较普遍，甚至大型的私募基金也在做这种交易。</p>
+<p>ETF套利交易原理通俗地说，就是一价原则，同一件产品在不同的市场有不同的价格，通过利用这些价差来获得盈利。比如上证50ETF对应的是上证50指数(1594.903, -6.48, -0.40%)成份股所组成的一揽子股票组合，组合中各只成份股权重不同，而不同的权重造成了一个兑换比例，投资者可以通过这种比例获得ETF份额，同时这些ETF份额也可以像股票一样在二级市场上交易。</p>
+<p>于是ETF套利就有两种交易顺序，一种是从股票二级市场购入一揽子股票，按照一定比例兑换成ETF份额，然后在ETF二级市场上卖出份额，这样的前提是一揽子股票价格比ETF价格低，所谓溢价；另一种则刚好相反，从ETF二级市场买入份额，按照一定比例兑换成一揽子股票，再拿到股票二级市场卖出，这样的前提是ETF价格低于一揽子股票价格，所谓折价。</p>
+<p>以光大证券操作ETF套利为例，8月16日上午，套利交易指令已经成交了72.7亿元股票，这说明光大证券正在进行溢价套利，希望用一揽子股票组合兑换ETF份额，并卖出ETF份额。</p>
+<p>该公司公告称，捅娄子的策略投资部在当天卖出了18.5亿元的50ETF、180ETF，如此计算尚有近54亿元的误操作股票没有处理，按照上述套利原则，这有可能是当日的溢价套利空间已经消失。</p>
+<h1>ETF套利四大技巧</h1>
+<p>交易型开放式指数基金（ETF）综合了开放式和封闭式基金的优点，既可向基金公司申购或赎回基金份额，又可像封闭式基金一样在二级市场按照市价进行买卖。由于跨市场间交易形式和交易机制的不同，基金一级市场份额净值和二级市场买卖价格间会存在价差的情况，这样套利空间应运而生。</p>
+<h2 id="瞬间套利">瞬间套利</h2>
+<p>ETF基本的套利交易主要有两种。一是折价套利，当ETF基金份额二级市场价格小于基金份额净值时，可通过二级市场买入ETF，之后在一级市场赎回一篮子股票，卖出股票组合获取现金。另外一种是溢价套利，和折价套利的方向相反，当ETF二级市场价格超过份额净值时，可买入股票组合，一级市场申购基金份额，之后在二级市场卖出获取现金。这两种就是ETF最常规的套利模式——瞬间套利。需要注意的是由于ETF申购赎回都有最小规模限制，例如100万份，瞬间套利并不适合中小投资者操作。</p>
+<h2 id="延时套利">延时套利</h2>
+<p>作为瞬间套利的延伸，ETF套利可以采取延时套利模式，也就是说投资者“非同步”地买卖ETF和一篮子股票，完成一圈完整交易的时间较长，这类套利其实更像是T+0交易。</p>
+<p>充分利用ETF交易规则，在相对低点，申购或买入ETF，在相对高点，再将ETF卖出或赎回。和瞬间套利相比，这类套利能否成功更看重指数短期的走势，风险更大。在实际操作中，为了确保收益的稳定性，减少风险，一般是当天完成一个交易轮回。</p>
+<h2 id="事件套利">事件套利</h2>
+<p>第三类ETF套利是事件套利。当ETF标的指数成分股停牌或涨跌停时，可利用ETF进行事件套利，套取看涨的股票或者减持看空的股票。事件套利的收益取决于停牌成分股的个体因素，具体包括两种模式。如果预计成分股在复牌后大幅度上涨，折价套利具体操作是在二级市场买入ETF，在一级市场进行赎回，得到一篮子股票组合，留下停牌股票，卖出其他股票。 　　例如，2008年10月9日长安汽车停牌，2009年2月16日复牌，期间深100指数涨幅32%，汽车板块因国家政策鼓励涨幅更甚，预计长安汽车开盘后会涨停复牌，投资者二级市场成功买入可能性较低。可通过赎回深100ETF，按停牌前价格3.67元获得长安汽车股票，复牌后该股有7个涨停板。如果预估成分股在复牌后会大幅度下跌，溢价套利具体操作是在二级市场上买入其他成分股组合和利用“允许现金替代”的标志，用现金来替代停牌股票，然后在一级市场申购ETF，然后在二级市场上卖出ETF。2008年的“长电事件”是这种套利的典型案例，当年5月8日，长江电力因整体上市开始停牌，此后沪深股市大幅下挫，上证指数跌幅近50%，为了降低损失，将长电套现，可先从二级市场市价买入上证50ETF其他49只股票，之后一级市场申购上证50ETF份额，再在二级市场卖出上证50ETF，顺利将长江电力出货。</p>
+<h2 id="期现套利">期现套利</h2>
+<p>股指期货和融资融券的推出，为做空A股市场提供了较好的工具。沪深指数期货是国内A股市场第一只也是唯一一只指数期货品种。沪深300指数包含的成分股多达300只，采用完全复制法难道较大，ETF根据标的指数，且能在二级市场交易，是期现套利中较好的现货工具。由于技术上的原因，国内目前还没有直接标的沪深300指数的ETF，多数进行期现套利的投资者采用的是“75%上证180ETF+25%深证100ETF”复合指数ETF作为现货替代品。</p>
+<p>自从2010年4月16日股指期货上市以来，上证180ETF和深100ETF二级市场成交量大幅激增。例如，股指期货上市初期，期货相对现货存在着一定的溢价，所谓的套利基本都是买入ETF，卖出股指期货合约，而在期现价差消除后，套利平仓盘卖出ETF，买入股指期货合约。</p>
+<h1>ETF套利与衍生品</h1>
+<p>A股首只股票指数期货品种沪深300期货自推出以来，成交活跃，已成为期货市场的主力品种之一。理论上来讲，剔除时间价值后，期货应与现货具有完全相同的走势。但事实上，由于期货投资者与现货投资者大多情况下分属两个投资群体，其对市场事件会有不同程度的解读，从而造成期货价格与现货价格的偏离。</p>
+<p>一旦价格偏离幅度大于套利成本，则套利投资者可以通过买入低估品种，同时卖出高估品种锁定价差。具体而言，当期货价格高于现货时，投资者可以通过买入沪深300ETF，卖出期货合约，锁定溢价，也就是我们常说的正向套利；相反，当期货价格低于现货时，投资者则可以通过买入期货，卖出沪深300ETF的方式获得反向套利折价。</p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Author"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Author</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/eryk" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;eryk" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.weibo.com/eryk86" title="Weibo → https:&#x2F;&#x2F;www.weibo.com&#x2F;eryk86" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+</body>
+</html>
