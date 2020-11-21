@@ -1,6 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Quantopian单因子分析工具：Alphalens</title>
+    <url>/2020/11/20/2020-11-20%20Quantopian%E5%9B%A0%E5%AD%90%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8_Alphalens/</url>
+    <content><![CDATA[<p>Quantopian是国外著名的量化交易平台，早期聚宽就是仿照这个网站开发的，算是这类平台的鼻祖了，可惜Quantopian最近刚宣布要停止运营了。Quantopian开发了许多优秀的开源项目，其中比较著名的有zipline、pyfolio和alphalens，zipline是事件驱动的回测引擎，Alphalens与Zipline开源回溯测试库以及Pyfolio配合使用，Pyfolio提供金融投资组合的绩效和风险分析。</p>
+<p>Alphalens主要功能是alpha因子的相关性统计数据和图表展示，包括：</p>
+<ul>
+<li>Returns Analysis</li>
+<li>Information Coefficient Analysis</li>
+<li>Turnover Analysis</li>
+<li>Grouped Analysis</li>
+</ul>
+<p>下面通过一个例子来了解下Alphalens的主要用法，最重要的函数有两个:</p>
+<ul>
+<li>
+<p>get_clean_factor_and_forward_returns：数据预处理，将因子数据，价格数据和组映射格式化为包含对齐的时间戳和资产代码的MultiIndex索引的DataFrame。返回的数据将被格式化为适合Alphalens函数的格式。因子数据格式是MultiIndex索引，level0是时间，level1是资产代码，数据值只有一列为因子值，数据格式如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201121235400.png" alt=""></p>
+</li>
+<li>
+<p>create_full_tear_sheet: 生成全面的单因子分析和评估数据。</p>
+</li>
+</ul>
+<p>通过tushare获取A股股票数据，并将结果处理成get_clean_factor_and_forward_returns参数要求的格式</p>
+<pre><code class="language-python">import pandas as pd
+import tushare as ts
+
+pro = ts.pro_api()
+# 此接口获取的数据为未复权数据，回测建议使用后复权数据，这里为批量获取股票数据做了简化
+df = pro.daily(ts_code='000001.SZ,600000.SH', start_date='20200101', end_date='20201231')
+df.index = pd.to_datetime(df['trade_date'])
+df.index.name = None
+df.sort_index(inplace=True)
+# MultiIndex，level0为日期，level1为股票代码，assets为get_clean_factor_and_forward_returns所需的因子数据格式
+assets = df.set_index([df.index, df['ts_code']], drop=True)
+# column为股票代码，index为日期，值为股票收盘价
+close = df.pivot_table(index='trade_date',columns='ts_code',values='close')
+close.index = pd.to_datetime(close.index)
+</code></pre>
+<p>生成的assets格式入下图所示，红框为index：</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122003628.png" alt=""></p>
+<p>生成的close格式如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122003811.png" alt=""></p>
+<p>接下来使用alphalens工具对数据进行分析，这里我们使用股票涨跌幅(字段名为pct_chg)作为因子数据</p>
+<pre><code class="language-python">from alphalens.utils import get_clean_factor_and_forward_returns
+from alphalens.tears import create_full_tear_sheet
+# 需要将pct_chg做shift处理，否则将使用未来数据
+ret = get_clean_factor_and_forward_returns(assets[['pct_chg']].shift(2),close)
+create_full_tear_sheet(ret, long_short=False)
+</code></pre>
+<p>使用默认参数的情况下，ret将包含未来1、5、10日收益率，factor因子值，这里对应pct_chg列，factor_quantile为因子分组结果，默认会将因子分成5组，ret结果如图所示:</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122004722.png" alt=""></p>
+<p>调用create_full_tear_sheet会生成因子分析结果，包含分位数统计信息、收益率信息、分组平均收益率柱状图、所有收益率分布图、单信号组合构建收益率图等，截取部分数据图如下：</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122005223.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122005156.png" alt=""></p>
+<p>以上就是样例全部内容，可以看到alphalens功能非常丰富，还需要继续深入学习了解。</p>
+<h3 id="参考">参考</h3>
+<p><a href="http://quantopian.github.io/alphalens/" target="_blank" rel="noopener">http://quantopian.github.io/alphalens/</a></p>
+<p><a href="https://www.quantopian.com/posts/alphalens-a-new-tool-for-analyzing-alpha-factors" target="_blank" rel="noopener">https://www.quantopian.com/posts/alphalens-a-new-tool-for-analyzing-alpha-factors</a></p>
+]]></content>
+      <categories>
+        <category>量化交易系统</category>
+      </categories>
+      <tags>
+        <tag>Alphalens</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>pandas-profiling 数据分析利器</title>
     <url>/2020/11/13/2020-11-13%20pandas-profiling-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8/</url>
     <content><![CDATA[<h3 id="介绍">介绍</h3>
@@ -2180,36 +2245,6 @@ print(eventually_return_false())
       </tags>
   </entry>
   <entry>
-    <title>逐笔，分笔，逐单，分时数据概念区别</title>
-    <url>/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>我的微信公众号：pyquant</p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
-<h1>逐笔成交：</h1>
-<p>交易过程中的单次成交，是交易过程的真实成交情况。这是Level-2的专有数据，用一个实例来解释这个概念：假设目前的卖一是10元、100手，这时有人以10元委托买入100手，那么这100手是如何成交的呢？这要取决于卖盘由几个委托单构成，如果卖一是一个委托单，那就是一笔成交，即100手；而如果卖一是由40手和60手两笔委托构成，那么这100股就会分成两次成交，即40手一次，60手一次，逐笔成交就是2笔。</p>
-<p>一般显示的数据格式为在几分几秒以多少价格分几笔成交了多少手。<strong>在这里我们要注意的是成交手数有时候是带小数点的，这是因为股票买进的股数最少是100股，委托的股数也应是100的整数倍，卖出却没有限制，因此成交的手数会有小数点。</strong> 另外一点就是如果在成交价格和手数前面没有显示，则一半是默认的1笔。</p>
-<h1>分笔/分时成交：</h1>
-<p>3-5秒一次的行情采集期间累计的成交量和最后的成交价，可能是几笔成交的集合。这是大家长期以来唯一能看到的成交数据.</p>
-<p>一般显示的数据格式为在几分几秒以多少价格成交了多少手。**这里需要注意的是成交手数永远是整数，不会出现小数点数字。**其中现手累计数就是总手数。总手数也叫做成交量。有些软件在现量后面标注蓝色S和红色B，前者代表卖，后者代表买。（软件自己根据时间估计主动买还是主动卖）</p>
-<p>目前市面上出现了LEVEL-2行情数据，比较具有代表性的是大智慧，在那里把分笔成交是叫分时成交，实际上就是我们在普通分析软件上F1看到的“分笔成交明细”，但是他和LEVEL-2行情数据提供的逐笔成交明细是不一样的。**分笔数据由于是合成混合数据，它是以最后1笔的买卖方向来表示该时间内（3秒或者5秒）的买卖方向。**目前市面上的成交明细数据都是分笔成交，有些号称是LEVEL-2逐笔的明细数据其实也是分笔，即LEVEL-2行情软件里右侧小窗口显示的3秒分笔数据，虽然来自LEVEL-2行情，但仍然是分笔（分时）成交，而不是LEVEL-2行情软件里左侧显示的逐笔成交。因为左侧显示的逐笔成交在LEVEL-2行情软件里是不能保存的，也不能够导出供二次开发。能够导出的只有右侧小窗口里的分笔成交</p>
-<h1>逐单/委托单：</h1>
-<p>我们每次向系统发出委托时，都有个委托合同编号，这个就是单。例如你一次买2000股股票，则是20手，那么这一单就是20手。但目前每种软件的推测统计都不一致，会导致不同软件显示数据出现差异。</p>
-<p>委托单的明细，这是交易所行情系统中没有发布的数据，还以刚才的例子说明，交易所只发出了40手和60手两笔成交（逐笔），并没有指出是一笔100手的买单吃掉了40手、60手两笔卖单。LEVEL-2行情能够根据成交的时间和队列等数据计算出全部已成交的委托单明细，这在交易分析中具有重大意义。（股票盘子越大，推测逐单数据误差越大,因为委托队列只显示前50个委托单;相对来说小盘股的DDE指标更为可靠）</p>
-<h1>分时:</h1>
-<p>一般指一分钟成交集合;</p>
-<h1>问题：</h1>
-<p>盘中数据的统计分析长期以来是对分时数据的统计分析，比如最简单的内盘和外盘，大单买入/卖出等，这种统计有两个明显的缺陷：</p>
-<p>第一、仅统计了主动成交方单方面的成交数据，而机构交易完全可能在被动成交方</p>
-<p>第二、分时数据不是真实的成交数据，大单不一定是大单，可能是很多散户在几秒中之内同时交易的结果，虽然使用level-2的逐笔成交来统计可以避免这一情况的发生，但立即就又产生了新的问题，即一笔真实的大单委托往往被分割成数笔成交，又捕捉不到真实的大单了。</p>
-<p>其他：一个孤独的数字是缺乏意义的，但是一些连续的数字则是充满想像的。一般来说，成交手数比较大而集中的时候，表示有大资金活跃迹象，该股出现价格异动的概率就大，应该引起投资者的注意。而如果半天也没人买或者都是一些小单子在交易，则至少短期不大可能成为好股。</p>
-]]></content>
-      <categories>
-        <category>金融</category>
-      </categories>
-      <tags>
-        <tag>tick</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>systemd入门教程</title>
     <url>/2018/03/29/systemd%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<p>最近在处理数字货币行情数据，使用websocket接收行情数据写入磁盘，发现运行时间久了偶尔出现socket close的异常，重试多次无效后程序异常退出，所以考虑将python程序作为linux 守护进程运行，了解了supervisord和systemd，决定使用更强大的systemd。</p>
@@ -2361,6 +2396,36 @@ Mar 29 13:30:45 ip-172-31-4-62 systemd[1]: Started huobi downloader.
       </categories>
       <tags>
         <tag>systemd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>逐笔，分笔，逐单，分时数据概念区别</title>
+    <url>/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>我的微信公众号：pyquant</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
+<h1>逐笔成交：</h1>
+<p>交易过程中的单次成交，是交易过程的真实成交情况。这是Level-2的专有数据，用一个实例来解释这个概念：假设目前的卖一是10元、100手，这时有人以10元委托买入100手，那么这100手是如何成交的呢？这要取决于卖盘由几个委托单构成，如果卖一是一个委托单，那就是一笔成交，即100手；而如果卖一是由40手和60手两笔委托构成，那么这100股就会分成两次成交，即40手一次，60手一次，逐笔成交就是2笔。</p>
+<p>一般显示的数据格式为在几分几秒以多少价格分几笔成交了多少手。<strong>在这里我们要注意的是成交手数有时候是带小数点的，这是因为股票买进的股数最少是100股，委托的股数也应是100的整数倍，卖出却没有限制，因此成交的手数会有小数点。</strong> 另外一点就是如果在成交价格和手数前面没有显示，则一半是默认的1笔。</p>
+<h1>分笔/分时成交：</h1>
+<p>3-5秒一次的行情采集期间累计的成交量和最后的成交价，可能是几笔成交的集合。这是大家长期以来唯一能看到的成交数据.</p>
+<p>一般显示的数据格式为在几分几秒以多少价格成交了多少手。**这里需要注意的是成交手数永远是整数，不会出现小数点数字。**其中现手累计数就是总手数。总手数也叫做成交量。有些软件在现量后面标注蓝色S和红色B，前者代表卖，后者代表买。（软件自己根据时间估计主动买还是主动卖）</p>
+<p>目前市面上出现了LEVEL-2行情数据，比较具有代表性的是大智慧，在那里把分笔成交是叫分时成交，实际上就是我们在普通分析软件上F1看到的“分笔成交明细”，但是他和LEVEL-2行情数据提供的逐笔成交明细是不一样的。**分笔数据由于是合成混合数据，它是以最后1笔的买卖方向来表示该时间内（3秒或者5秒）的买卖方向。**目前市面上的成交明细数据都是分笔成交，有些号称是LEVEL-2逐笔的明细数据其实也是分笔，即LEVEL-2行情软件里右侧小窗口显示的3秒分笔数据，虽然来自LEVEL-2行情，但仍然是分笔（分时）成交，而不是LEVEL-2行情软件里左侧显示的逐笔成交。因为左侧显示的逐笔成交在LEVEL-2行情软件里是不能保存的，也不能够导出供二次开发。能够导出的只有右侧小窗口里的分笔成交</p>
+<h1>逐单/委托单：</h1>
+<p>我们每次向系统发出委托时，都有个委托合同编号，这个就是单。例如你一次买2000股股票，则是20手，那么这一单就是20手。但目前每种软件的推测统计都不一致，会导致不同软件显示数据出现差异。</p>
+<p>委托单的明细，这是交易所行情系统中没有发布的数据，还以刚才的例子说明，交易所只发出了40手和60手两笔成交（逐笔），并没有指出是一笔100手的买单吃掉了40手、60手两笔卖单。LEVEL-2行情能够根据成交的时间和队列等数据计算出全部已成交的委托单明细，这在交易分析中具有重大意义。（股票盘子越大，推测逐单数据误差越大,因为委托队列只显示前50个委托单;相对来说小盘股的DDE指标更为可靠）</p>
+<h1>分时:</h1>
+<p>一般指一分钟成交集合;</p>
+<h1>问题：</h1>
+<p>盘中数据的统计分析长期以来是对分时数据的统计分析，比如最简单的内盘和外盘，大单买入/卖出等，这种统计有两个明显的缺陷：</p>
+<p>第一、仅统计了主动成交方单方面的成交数据，而机构交易完全可能在被动成交方</p>
+<p>第二、分时数据不是真实的成交数据，大单不一定是大单，可能是很多散户在几秒中之内同时交易的结果，虽然使用level-2的逐笔成交来统计可以避免这一情况的发生，但立即就又产生了新的问题，即一笔真实的大单委托往往被分割成数笔成交，又捕捉不到真实的大单了。</p>
+<p>其他：一个孤独的数字是缺乏意义的，但是一些连续的数字则是充满想像的。一般来说，成交手数比较大而集中的时候，表示有大资金活跃迹象，该股出现价格异动的概率就大，应该引起投资者的注意。而如果半天也没人买或者都是一些小单子在交易，则至少短期不大可能成为好股。</p>
+]]></content>
+      <categories>
+        <category>金融</category>
+      </categories>
+      <tags>
+        <tag>tick</tag>
       </tags>
   </entry>
   <entry>

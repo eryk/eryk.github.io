@@ -145,6 +145,97 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/12/12/2018-12-12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/12/2018-12-12/" class="post-title-link" itemprop="url">解决ssh登录ubuntu系统卡顿问题</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-12-12 10:59:00" itemprop="dateCreated datePublished" datetime="2018-12-12T10:59:00+08:00">2018-12-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
+                    <span itemprop="name">系统运维</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我的微信公众号：pyquant</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
+<p>最近某天突然登录服务器变的很慢，输入ssh命令后大概要多10多秒钟才连上服务器（设置了免密码登录），并且登录之后切换到root用户也要等很久，网上搜索发现也有其他人遇到类似问题，尝试了网上提到的设置ssh_config和sshd_config的某些参数没有明显变化，登录服务器依旧很慢，最终发现问题还是通过自己排查，这里记录下排查过程。</p>
+<p>先执行ssh命令登录服务器，增加 -v 参数打印debug信息：</p>
+<blockquote>
+<p>ssh -v <a href="mailto:xuqi@10.168.2.178">xuqi@10.168.2.178</a></p>
+</blockquote>
+<p>发现在执行到“debug1: pledge: network” 这步时卡住很久，再google一次，找到了解决办法，执行如下命令后，登录时间明显缩短到约2秒钟</p>
+<blockquote>
+<p>systemctl restart systemd-logind</p>
+</blockquote>
+<p>大致的原因是dbus服务由于某些原因重启后，也必须重启systemd服务，否则就会出现这个bug。</p>
+<h3 id="参考">参考</h3>
+<p><a href="https://serverfault.com/questions/792486/ssh-connection-takes-forever-to-initiate-stuck-at-pledge-network" target="_blank" rel="noopener">https://serverfault.com/questions/792486/ssh-connection-takes-forever-to-initiate-stuck-at-pledge-network</a></p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/08/13/2018-08-14/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -629,102 +720,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">逐笔，分笔，逐单，分时数据概念区别</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-03-29 09:57:00" itemprop="dateCreated datePublished" datetime="2018-03-29T09:57:00+08:00">2018-03-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
-                    <span itemprop="name">金融</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>我的微信公众号：pyquant</p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
-<h1>逐笔成交：</h1>
-<p>交易过程中的单次成交，是交易过程的真实成交情况。这是Level-2的专有数据，用一个实例来解释这个概念：假设目前的卖一是10元、100手，这时有人以10元委托买入100手，那么这100手是如何成交的呢？这要取决于卖盘由几个委托单构成，如果卖一是一个委托单，那就是一笔成交，即100手；而如果卖一是由40手和60手两笔委托构成，那么这100股就会分成两次成交，即40手一次，60手一次，逐笔成交就是2笔。</p>
-<p>一般显示的数据格式为在几分几秒以多少价格分几笔成交了多少手。<strong>在这里我们要注意的是成交手数有时候是带小数点的，这是因为股票买进的股数最少是100股，委托的股数也应是100的整数倍，卖出却没有限制，因此成交的手数会有小数点。</strong> 另外一点就是如果在成交价格和手数前面没有显示，则一半是默认的1笔。</p>
-<h1>分笔/分时成交：</h1>
-<p>3-5秒一次的行情采集期间累计的成交量和最后的成交价，可能是几笔成交的集合。这是大家长期以来唯一能看到的成交数据.</p>
-<p>一般显示的数据格式为在几分几秒以多少价格成交了多少手。**这里需要注意的是成交手数永远是整数，不会出现小数点数字。**其中现手累计数就是总手数。总手数也叫做成交量。有些软件在现量后面标注蓝色S和红色B，前者代表卖，后者代表买。（软件自己根据时间估计主动买还是主动卖）</p>
-<p>目前市面上出现了LEVEL-2行情数据，比较具有代表性的是大智慧，在那里把分笔成交是叫分时成交，实际上就是我们在普通分析软件上F1看到的“分笔成交明细”，但是他和LEVEL-2行情数据提供的逐笔成交明细是不一样的。**分笔数据由于是合成混合数据，它是以最后1笔的买卖方向来表示该时间内（3秒或者5秒）的买卖方向。**目前市面上的成交明细数据都是分笔成交，有些号称是LEVEL-2逐笔的明细数据其实也是分笔，即LEVEL-2行情软件里右侧小窗口显示的3秒分笔数据，虽然来自LEVEL-2行情，但仍然是分笔（分时）成交，而不是LEVEL-2行情软件里左侧显示的逐笔成交。因为左侧显示的逐笔成交在LEVEL-2行情软件里是不能保存的，也不能够导出供二次开发。能够导出的只有右侧小窗口里的分笔成交</p>
-<h1>逐单/委托单：</h1>
-<p>我们每次向系统发出委托时，都有个委托合同编号，这个就是单。例如你一次买2000股股票，则是20手，那么这一单就是20手。但目前每种软件的推测统计都不一致，会导致不同软件显示数据出现差异。</p>
-<p>委托单的明细，这是交易所行情系统中没有发布的数据，还以刚才的例子说明，交易所只发出了40手和60手两笔成交（逐笔），并没有指出是一笔100手的买单吃掉了40手、60手两笔卖单。LEVEL-2行情能够根据成交的时间和队列等数据计算出全部已成交的委托单明细，这在交易分析中具有重大意义。（股票盘子越大，推测逐单数据误差越大,因为委托队列只显示前50个委托单;相对来说小盘股的DDE指标更为可靠）</p>
-<h1>分时:</h1>
-<p>一般指一分钟成交集合;</p>
-<h1>问题：</h1>
-<p>盘中数据的统计分析长期以来是对分时数据的统计分析，比如最简单的内盘和外盘，大单买入/卖出等，这种统计有两个明显的缺陷：</p>
-<p>第一、仅统计了主动成交方单方面的成交数据，而机构交易完全可能在被动成交方</p>
-<p>第二、分时数据不是真实的成交数据，大单不一定是大单，可能是很多散户在几秒中之内同时交易的结果，虽然使用level-2的逐笔成交来统计可以避免这一情况的发生，但立即就又产生了新的问题，即一笔真实的大单委托往往被分割成数笔成交，又捕捉不到真实的大单了。</p>
-<p>其他：一个孤独的数字是缺乏意义的，但是一些连续的数字则是充满想像的。一般来说，成交手数比较大而集中的时候，表示有大资金活跃迹象，该股出现价格异动的概率就大，应该引起投资者的注意。而如果半天也没人买或者都是一些小单子在交易，则至少短期不大可能成为好股。</p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/03/29/systemd%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -924,6 +919,102 @@ Mar 29 13:30:45 ip-172-31-4-62 systemd[1]: Started huobi downloader.
 <p><a href="https://wiki.archlinux.org/index.php/systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)" target="_blank" rel="noopener">https://wiki.archlinux.org/index.php/systemd_(简体中文)</a></p>
 <p><a href="https://www.hi-linux.com/posts/3761.html" target="_blank" rel="noopener">https://www.hi-linux.com/posts/3761.html</a></p>
 <p><a href="https://blog.csdn.net/fu_wayne/article/details/38018825" target="_blank" rel="noopener">https://blog.csdn.net/fu_wayne/article/details/38018825</a></p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">逐笔，分笔，逐单，分时数据概念区别</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-03-29 09:57:00" itemprop="dateCreated datePublished" datetime="2018-03-29T09:57:00+08:00">2018-03-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我的微信公众号：pyquant</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
+<h1>逐笔成交：</h1>
+<p>交易过程中的单次成交，是交易过程的真实成交情况。这是Level-2的专有数据，用一个实例来解释这个概念：假设目前的卖一是10元、100手，这时有人以10元委托买入100手，那么这100手是如何成交的呢？这要取决于卖盘由几个委托单构成，如果卖一是一个委托单，那就是一笔成交，即100手；而如果卖一是由40手和60手两笔委托构成，那么这100股就会分成两次成交，即40手一次，60手一次，逐笔成交就是2笔。</p>
+<p>一般显示的数据格式为在几分几秒以多少价格分几笔成交了多少手。<strong>在这里我们要注意的是成交手数有时候是带小数点的，这是因为股票买进的股数最少是100股，委托的股数也应是100的整数倍，卖出却没有限制，因此成交的手数会有小数点。</strong> 另外一点就是如果在成交价格和手数前面没有显示，则一半是默认的1笔。</p>
+<h1>分笔/分时成交：</h1>
+<p>3-5秒一次的行情采集期间累计的成交量和最后的成交价，可能是几笔成交的集合。这是大家长期以来唯一能看到的成交数据.</p>
+<p>一般显示的数据格式为在几分几秒以多少价格成交了多少手。**这里需要注意的是成交手数永远是整数，不会出现小数点数字。**其中现手累计数就是总手数。总手数也叫做成交量。有些软件在现量后面标注蓝色S和红色B，前者代表卖，后者代表买。（软件自己根据时间估计主动买还是主动卖）</p>
+<p>目前市面上出现了LEVEL-2行情数据，比较具有代表性的是大智慧，在那里把分笔成交是叫分时成交，实际上就是我们在普通分析软件上F1看到的“分笔成交明细”，但是他和LEVEL-2行情数据提供的逐笔成交明细是不一样的。**分笔数据由于是合成混合数据，它是以最后1笔的买卖方向来表示该时间内（3秒或者5秒）的买卖方向。**目前市面上的成交明细数据都是分笔成交，有些号称是LEVEL-2逐笔的明细数据其实也是分笔，即LEVEL-2行情软件里右侧小窗口显示的3秒分笔数据，虽然来自LEVEL-2行情，但仍然是分笔（分时）成交，而不是LEVEL-2行情软件里左侧显示的逐笔成交。因为左侧显示的逐笔成交在LEVEL-2行情软件里是不能保存的，也不能够导出供二次开发。能够导出的只有右侧小窗口里的分笔成交</p>
+<h1>逐单/委托单：</h1>
+<p>我们每次向系统发出委托时，都有个委托合同编号，这个就是单。例如你一次买2000股股票，则是20手，那么这一单就是20手。但目前每种软件的推测统计都不一致，会导致不同软件显示数据出现差异。</p>
+<p>委托单的明细，这是交易所行情系统中没有发布的数据，还以刚才的例子说明，交易所只发出了40手和60手两笔成交（逐笔），并没有指出是一笔100手的买单吃掉了40手、60手两笔卖单。LEVEL-2行情能够根据成交的时间和队列等数据计算出全部已成交的委托单明细，这在交易分析中具有重大意义。（股票盘子越大，推测逐单数据误差越大,因为委托队列只显示前50个委托单;相对来说小盘股的DDE指标更为可靠）</p>
+<h1>分时:</h1>
+<p>一般指一分钟成交集合;</p>
+<h1>问题：</h1>
+<p>盘中数据的统计分析长期以来是对分时数据的统计分析，比如最简单的内盘和外盘，大单买入/卖出等，这种统计有两个明显的缺陷：</p>
+<p>第一、仅统计了主动成交方单方面的成交数据，而机构交易完全可能在被动成交方</p>
+<p>第二、分时数据不是真实的成交数据，大单不一定是大单，可能是很多散户在几秒中之内同时交易的结果，虽然使用level-2的逐笔成交来统计可以避免这一情况的发生，但立即就又产生了新的问题，即一笔真实的大单委托往往被分割成数笔成交，又捕捉不到真实的大单了。</p>
+<p>其他：一个孤独的数字是缺乏意义的，但是一些连续的数字则是充满想像的。一般来说，成交手数比较大而集中的时候，表示有大资金活跃迹象，该股出现价格异动的概率就大，应该引起投资者的注意。而如果半天也没人买或者都是一些小单子在交易，则至少短期不大可能成为好股。</p>
 
       
 
@@ -1716,185 +1807,6 @@ one-Cancels All (OCA) order type allows an investor to place multiple and possib
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/12/22/%E6%AF%94%E7%89%B9%E5%B8%81%E8%B5%84%E6%BA%90%E6%94%B6%E9%9B%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/12/22/%E6%AF%94%E7%89%B9%E5%B8%81%E8%B5%84%E6%BA%90%E6%94%B6%E9%9B%86/" class="post-title-link" itemprop="url">比特币资源收集</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-12-22 23:25:00" itemprop="dateCreated datePublished" datetime="2017-12-22T23:25:00+08:00">2017-12-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
-                    <span itemprop="name">金融</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1>资源</h1>
-<p><a href="https://github.com/kennethreitz/awesome-coins" target="_blank" rel="noopener">https://github.com/kennethreitz/awesome-coins</a></p>
-<h1>数据</h1>
-<ol>
-<li><a href="https://www.cryptocompare.com/api" target="_blank" rel="noopener">https://www.cryptocompare.com/api</a></li>
-</ol>
-<blockquote>
-<p>Cryptocurrency data API for over 40 exchanges and 600 coins(BTC,ETH,XMR + 600 other cryptos)</p>
-</blockquote>
-<blockquote>
-<p>Get open, high, low, close, volumefrom and volumeto from the each minute historical data. This data is only stored for 7 days, if you need more,use the hourly or daily path. It uses BTC conversion if data is not available because the coin is not trading in the specified currency</p>
-</blockquote>
-<ol start="2">
-<li><a href="https://bitcoincharts.com/about/markets-api/" target="_blank" rel="noopener">https://bitcoincharts.com/about/markets-api/</a></li>
-</ol>
-<blockquote>
-<p>Bitcoincharts’ API is accessable through HTTP<br>
-Parameters are passed using GET-requests<br>
-returned data is JSON encoded<br>
-Don’t query more often than once every 15 minutes!</p>
-</blockquote>
-<blockquote>
-<p>Trade data is available as CSV, delayed by approx. 15 minutes. It will return the 2000 most recent trades.</p>
-</blockquote>
-<ol start="3">
-<li>
-<p><a href="http://api.bitcoincharts.com/v1/csv/" target="_blank" rel="noopener">http://api.bitcoincharts.com/v1/csv/</a></p>
-</li>
-<li>
-<p><a href="https://www.coinigy.com/bitcoin-data/" target="_blank" rel="noopener">https://www.coinigy.com/bitcoin-data/</a></p>
-</li>
-<li>
-<p><a href="https://www.quora.com/Where-can-I-get-per-tick-historical-bitcoin-price-data" target="_blank" rel="noopener">https://www.quora.com/Where-can-I-get-per-tick-historical-bitcoin-price-data</a></p>
-</li>
-<li>
-<p><a href="https://coinmarketcap.com/historical/" target="_blank" rel="noopener">https://coinmarketcap.com/historical/</a></p>
-</li>
-<li>
-<p><a href="https://github.com/CoinCapDev/CoinCap.io" target="_blank" rel="noopener">https://github.com/CoinCapDev/CoinCap.io</a></p>
-</li>
-<li>
-<p><a href="http://www.yucezhe.com/product/data#!?series=digital_currency" target="_blank" rel="noopener">http://www.yucezhe.com/product/data#!?series=digital_currency</a></p>
-</li>
-</ol>
-<h1>回测&amp;交易</h1>
-<ol>
-<li><a href="https://github.com/CoinTK/CoinTK" target="_blank" rel="noopener">https://github.com/CoinTK/CoinTK</a></li>
-</ol>
-<blockquote>
-<p>Bitcoin Trading Algorithm Backtesting and Analysis Toolkit</p>
-</blockquote>
-<ol start="2">
-<li><a href="https://gekko.wizb.it/docs/introduction/about_gekko.html" target="_blank" rel="noopener">https://gekko.wizb.it/docs/introduction/about_gekko.html</a></li>
-</ol>
-<blockquote>
-<p>A bitcoin trading bot written in node - <a href="https://gekko.wizb.it/" target="_blank" rel="noopener">https://gekko.wizb.it/</a></p>
-</blockquote>
-<ol start="3">
-<li>
-<p><a href="https://cryptotrader.org/" target="_blank" rel="noopener">https://cryptotrader.org/</a></p>
-</li>
-<li>
-<p><a href="http://www.abuquant.com/lecture/lecture_10.html" target="_blank" rel="noopener">http://www.abuquant.com/lecture/lecture_10.html</a></p>
-</li>
-</ol>
-<blockquote>
-<p>比特币, 莱特币的走势数据分析 <a href="http://www.abuquant.com/" target="_blank" rel="noopener">http://www.abuquant.com/</a></p>
-</blockquote>
-<ol start="5">
-<li><a href="https://github.com/ctubio/Krypto-trading-bot" target="_blank" rel="noopener">https://github.com/ctubio/Krypto-trading-bot</a></li>
-</ol>
-<blockquote>
-<p>Self-hosted crypto trading bot (automated high frequency market making) in node.js, angular, typescript and c++ <a href="https://127.0.0.1:3000" target="_blank" rel="noopener">https://127.0.0.1:3000</a></p>
-</blockquote>
-<ol start="6">
-<li><a href="https://www.kaggle.com/smitad/bitcoin-trading-strategy-simulation" target="_blank" rel="noopener">https://www.kaggle.com/smitad/bitcoin-trading-strategy-simulation</a></li>
-</ol>
-<h1>API</h1>
-<h2 id="Python">Python</h2>
-<p><a href="https://python-binance.readthedocs.io/en/latest/overview.html" target="_blank" rel="noopener">https://python-binance.readthedocs.io/en/latest/overview.html</a></p>
-<blockquote>
-<p>binance</p>
-</blockquote>
-<h2 id="Java">Java</h2>
-<p><a href="https://github.com/timmolter/XChange" target="_blank" rel="noopener">https://github.com/timmolter/XChange</a></p>
-<blockquote>
-<p>XChange is a Java library providing a streamlined API for interacting with 60+ Bitcoin and Altcoin exchanges providing a consistent interface for trading and accessing market data.</p>
-</blockquote>
-<p><a href="https://www.botvs.com/api" target="_blank" rel="noopener">https://www.botvs.com/api</a></p>
-<h1>源码实现</h1>
-<p><a href="https://github.com/bisq-network/exchange" target="_blank" rel="noopener">https://github.com/bisq-network/exchange</a></p>
-<blockquote>
-<p>The decentralized bitcoin exchange <a href="https://bisq.network" target="_blank" rel="noopener">https://bisq.network</a></p>
-</blockquote>
-<p><a href="https://github.com/bitcoin/bitcoin" target="_blank" rel="noopener">https://github.com/bitcoin/bitcoin</a></p>
-<blockquote>
-<p>Bitcoin Core integration/staging tree</p>
-</blockquote>
-<p><a href="https://github.com/jamesob/tinychain" target="_blank" rel="noopener">https://github.com/jamesob/tinychain</a></p>
-<blockquote>
-<p>A pocket-sized implementation of Bitcoin</p>
-</blockquote>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1967,7 +1879,7 @@ Don’t query more often than once every 15 minutes!</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1978,7 +1890,7 @@ Don’t query more often than once every 15 minutes!</p>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">56</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

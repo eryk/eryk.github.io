@@ -145,6 +145,137 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2020/11/20/2020-11-20%20Quantopian%E5%9B%A0%E5%AD%90%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8_Alphalens/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/20/2020-11-20%20Quantopian%E5%9B%A0%E5%AD%90%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8_Alphalens/" class="post-title-link" itemprop="url">Quantopian单因子分析工具：Alphalens</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-20 09:22:00" itemprop="dateCreated datePublished" datetime="2020-11-20T09:22:00+08:00">2020-11-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-22 00:54:39" itemprop="dateModified" datetime="2020-11-22T00:54:39+08:00">2020-11-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">量化交易系统</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Quantopian是国外著名的量化交易平台，早期聚宽就是仿照这个网站开发的，算是这类平台的鼻祖了，可惜Quantopian最近刚宣布要停止运营了。Quantopian开发了许多优秀的开源项目，其中比较著名的有zipline、pyfolio和alphalens，zipline是事件驱动的回测引擎，Alphalens与Zipline开源回溯测试库以及Pyfolio配合使用，Pyfolio提供金融投资组合的绩效和风险分析。</p>
+<p>Alphalens主要功能是alpha因子的相关性统计数据和图表展示，包括：</p>
+<ul>
+<li>Returns Analysis</li>
+<li>Information Coefficient Analysis</li>
+<li>Turnover Analysis</li>
+<li>Grouped Analysis</li>
+</ul>
+<p>下面通过一个例子来了解下Alphalens的主要用法，最重要的函数有两个:</p>
+<ul>
+<li>
+<p>get_clean_factor_and_forward_returns：数据预处理，将因子数据，价格数据和组映射格式化为包含对齐的时间戳和资产代码的MultiIndex索引的DataFrame。返回的数据将被格式化为适合Alphalens函数的格式。因子数据格式是MultiIndex索引，level0是时间，level1是资产代码，数据值只有一列为因子值，数据格式如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201121235400.png" alt=""></p>
+</li>
+<li>
+<p>create_full_tear_sheet: 生成全面的单因子分析和评估数据。</p>
+</li>
+</ul>
+<p>通过tushare获取A股股票数据，并将结果处理成get_clean_factor_and_forward_returns参数要求的格式</p>
+<pre><code class="language-python">import pandas as pd
+import tushare as ts
+
+pro = ts.pro_api()
+# 此接口获取的数据为未复权数据，回测建议使用后复权数据，这里为批量获取股票数据做了简化
+df = pro.daily(ts_code='000001.SZ,600000.SH', start_date='20200101', end_date='20201231')
+df.index = pd.to_datetime(df['trade_date'])
+df.index.name = None
+df.sort_index(inplace=True)
+# MultiIndex，level0为日期，level1为股票代码，assets为get_clean_factor_and_forward_returns所需的因子数据格式
+assets = df.set_index([df.index, df['ts_code']], drop=True)
+# column为股票代码，index为日期，值为股票收盘价
+close = df.pivot_table(index='trade_date',columns='ts_code',values='close')
+close.index = pd.to_datetime(close.index)
+</code></pre>
+<p>生成的assets格式入下图所示，红框为index：</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122003628.png" alt=""></p>
+<p>生成的close格式如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122003811.png" alt=""></p>
+<p>接下来使用alphalens工具对数据进行分析，这里我们使用股票涨跌幅(字段名为pct_chg)作为因子数据</p>
+<pre><code class="language-python">from alphalens.utils import get_clean_factor_and_forward_returns
+from alphalens.tears import create_full_tear_sheet
+# 需要将pct_chg做shift处理，否则将使用未来数据
+ret = get_clean_factor_and_forward_returns(assets[['pct_chg']].shift(2),close)
+create_full_tear_sheet(ret, long_short=False)
+</code></pre>
+<p>使用默认参数的情况下，ret将包含未来1、5、10日收益率，factor因子值，这里对应pct_chg列，factor_quantile为因子分组结果，默认会将因子分成5组，ret结果如图所示:</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122004722.png" alt=""></p>
+<p>调用create_full_tear_sheet会生成因子分析结果，包含分位数统计信息、收益率信息、分组平均收益率柱状图、所有收益率分布图、单信号组合构建收益率图等，截取部分数据图如下：</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122005223.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122005156.png" alt=""></p>
+<p>以上就是样例全部内容，可以看到alphalens功能非常丰富，还需要继续深入学习了解。</p>
+<h3 id="参考">参考</h3>
+<p><a href="http://quantopian.github.io/alphalens/" target="_blank" rel="noopener">http://quantopian.github.io/alphalens/</a></p>
+<p><a href="https://www.quantopian.com/posts/alphalens-a-new-tool-for-analyzing-alpha-factors" target="_blank" rel="noopener">https://www.quantopian.com/posts/alphalens-a-new-tool-for-analyzing-alpha-factors</a></p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2020/11/13/2020-11-13%20pandas-profiling-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1645,169 +1776,6 @@ test.print()
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2019/06/05/2019-06-05%20%E5%B0%86DataFrame%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E5%87%8F%E5%B0%91%E7%BA%A665%EF%BC%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/05/2019-06-05%20%E5%B0%86DataFrame%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E5%87%8F%E5%B0%91%E7%BA%A665%EF%BC%85/" class="post-title-link" itemprop="url">将DataFrame内存大小减少约65％</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-05 10:48:00" itemprop="dateCreated datePublished" datetime="2019-06-05T10:48:00+08:00">2019-06-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这篇文章原文出自kaggle，我大致翻译翻一下，文中给出了reduce_mem_usage方法可以用来自动缩减dataframe占用空间</p>
-<p>这篇notebook展示了通过使用更合理的数据类型来减少dataframe的内存使用量</p>
-<p>方法如下：</p>
-<ol>
-<li>迭代每一个column</li>
-<li>检查column是否为数字型</li>
-<li>检查column是否可以用integer表示</li>
-<li>找出column下的最大值和最小值</li>
-<li>选择适用于数据范围的最合适的数据类型</li>
-</ol>
-<p>通过以上步骤处理后将一份测试数据从1.3GB减少到466MB</p>
-<p>源码如下:</p>
-<pre><code class="language-python">import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-
-def reduce_mem_usage(props):
-    start_mem_usg = props.memory_usage().sum() / 1024**2 
-    print(&quot;Memory usage of properties dataframe is :&quot;,start_mem_usg,&quot; MB&quot;)
-    NAlist = [] # Keeps track of columns that have missing values filled in. 
-    for col in props.columns:
-        if props[col].dtype != object:  # Exclude strings
-            
-            # Print current column type
-            print(&quot;******************************&quot;)
-            print(&quot;Column: &quot;,col)
-            print(&quot;dtype before: &quot;,props[col].dtype)
-            
-            # make variables for Int, max and min
-            IsInt = False
-            mx = props[col].max()
-            mn = props[col].min()
-            
-            # Integer does not support NA, therefore, NA needs to be filled
-            if not np.isfinite(props[col]).all(): 
-                NAlist.append(col)
-                props[col].fillna(mn-1,inplace=True)  
-                   
-            # test if column can be converted to an integer
-            asint = props[col].fillna(0).astype(np.int64)
-            result = (props[col] - asint)
-            result = result.sum()
-            if result &gt; -0.01 and result &lt; 0.01:
-                IsInt = True
-
-            
-            # Make Integer/unsigned Integer datatypes
-            if IsInt:
-                if mn &gt;= 0:
-                    if mx &lt; 255:
-                        props[col] = props[col].astype(np.uint8)
-                    elif mx &lt; 65535:
-                        props[col] = props[col].astype(np.uint16)
-                    elif mx &lt; 4294967295:
-                        props[col] = props[col].astype(np.uint32)
-                    else:
-                        props[col] = props[col].astype(np.uint64)
-                else:
-                    if mn &gt; np.iinfo(np.int8).min and mx &lt; np.iinfo(np.int8).max:
-                        props[col] = props[col].astype(np.int8)
-                    elif mn &gt; np.iinfo(np.int16).min and mx &lt; np.iinfo(np.int16).max:
-                        props[col] = props[col].astype(np.int16)
-                    elif mn &gt; np.iinfo(np.int32).min and mx &lt; np.iinfo(np.int32).max:
-                        props[col] = props[col].astype(np.int32)
-                    elif mn &gt; np.iinfo(np.int64).min and mx &lt; np.iinfo(np.int64).max:
-                        props[col] = props[col].astype(np.int64)    
-            
-            # Make float datatypes 32 bit
-            else:
-                props[col] = props[col].astype(np.float32)
-            
-            # Print new column type
-            print(&quot;dtype after: &quot;,props[col].dtype)
-            print(&quot;******************************&quot;)
-    
-    # Print final result
-    print(&quot;___MEMORY USAGE AFTER COMPLETION:___&quot;)
-    mem_usg = props.memory_usage().sum() / 1024**2 
-    print(&quot;Memory usage is: &quot;,mem_usg,&quot; MB&quot;)
-    print(&quot;This is &quot;,100*mem_usg/start_mem_usg,&quot;% of the initial size&quot;)
-    return props, NAlist
-</code></pre>
-<p>原文链接：</p>
-<p><a href="https://www.kaggle.com/arjanso/reducing-dataframe-memory-size-by-65" target="_blank" rel="noopener">https://www.kaggle.com/arjanso/reducing-dataframe-memory-size-by-65</a></p>
-<hr>
-<p>我的微信公众号：pyquant</p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1880,7 +1848,7 @@ def reduce_mem_usage(props):
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1891,7 +1859,7 @@ def reduce_mem_usage(props):
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">56</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
