@@ -145,6 +145,126 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2020/11/29/2020-11-29%20Quantopian%E6%8A%95%E8%B5%84%E7%BB%84%E5%90%88%E5%92%8C%E7%BB%A9%E6%95%88%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7_Pyfolio/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/29/2020-11-29%20Quantopian%E6%8A%95%E8%B5%84%E7%BB%84%E5%90%88%E5%92%8C%E7%BB%A9%E6%95%88%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7_Pyfolio/" class="post-title-link" itemprop="url">2020-11-29 Quantopian投资组合和绩效分析工具_Pyfolio</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-29 09:48:02 / 修改时间：16:47:14" itemprop="dateCreated datePublished" datetime="2020-11-29T09:48:02+08:00">2020-11-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>title: Quantopian投资组合和绩效分析工具：Pyfolio<br>
+date: 2020-11-29 09:53:00<br>
+categories: 量化交易系统<br>
+tags: [Pyfolio]</p>
+<h3 id="介绍">介绍</h3>
+<p>pyfolio是由Quantopian开发的Python库，用于对金融投资组合进行绩效和风险分析。它与Zipline开源回溯测试库配合使用良好。<br>
+pyfolio的核心是所谓的“tear sheet ”，它由各种单独的图组成，这些图提供了交易算法性能的全面图像展示。</p>
+<h3 id="入门示例">入门示例</h3>
+<p>这里以双均线策略来做演示，当20日均线上穿40日均线买入股票，当20日均线下穿40日均线则卖出股票，首先我们通过tushare获取股票历史数据</p>
+<pre><code class="language-python">import pandas as pd
+import numpy as np
+import tushare as ts
+import pyfolio as pf
+
+pro = ts.pro_api()
+df = ts.pro_bar(ts_code='000001.SZ', adj='hfq', start_date='20150101', end_date='20191231')
+df.index = pd.to_datetime(df['trade_date'])
+df.sort_index(inplace=True)
+</code></pre>
+<p>接下来生成策略信号</p>
+<pre><code class="language-python">df['ma20'] = df['close'].rolling(20).mean()
+df['ma40'] = df['close'].rolling(40).mean()
+# 计算20日均线和40日均线的距离
+df['diff'] = df['ma20'] - df['ma40']
+# 当diff值大于0买入股票，当diff值小于0卖出股票
+df['signal'] = np.where(df['diff'] &gt; 0, 1, 0)
+df['signal'] = np.where(df['diff'] &lt; 0, 0, df['signal'])
+# 计算策略每日收益，这里计算每日收益使用log函数，signal计算由于使用了当天的收盘价，所以需要shift 1天，否则会用到未来数据
+df['strategy'] = np.log(df['close'] / df['close'].shift(1)) * df['signal'].shift(1)
+# 计算资产收益率
+df['equity'] = df['strategy'].cumsum() + 1
+</code></pre>
+<p>展示资产收益率曲线，这里对股价做了归一化处理以便数据展示，可以看到双均线策略不仅跑赢股价，并且资金曲线回撤相对较小。</p>
+<pre><code class="language-python">df['close_norm'] = df['close'] / float(df['close'][0])
+df[['close_norm','equity']].plot(figsize=(12,6))
+</code></pre>
+<p>![image-20201129145038824](/Users/eryk/Library/Application Support/typora-user-images/image-20201129145038824.png)</p>
+<p>上图看到的信息有限，接下来是使用pyfolio工具对投资回报进一步分析，代码如下:</p>
+<pre><code class="language-python">pf.create_full_tear_sheet(df['strategy'], benchmark_rets=np.log(df['close'] / df['close'].shift(1)))
+</code></pre>
+<p>首先是返回汇总信息：</p>
+<p>![image-20201129153825862](/Users/eryk/Library/Application Support/typora-user-images/image-20201129153825862.png)</p>
+<p>介绍常用的几个指标：</p>
+<ul>
+<li>Annual return：年化回报率</li>
+<li>Cumulative returns: 累计收益率，是策略从开始执行到结束的总资产收益率。</li>
+<li>Annual volatility：年化波动率</li>
+<li>Sharpe ratio：夏普比率，一种非常流行的风险指标。它表示每单位风险（通过标准差衡量）的超额收益（超过无风险利率）。</li>
+<li>Sortino ratio: 索提诺比率，Sharpe比率的修改版本，其中标准偏差由下行偏差代替。下行偏差仅衡量该系列的负波动性，严格来说是在称为最低可接受收益的预定水平以下。</li>
+<li>Maximum drawdown ：最大跌幅—指示峰和谷之间的最大跌幅（以％表示）</li>
+<li>Tail ratio：对daily return的分布选取95分位和5分位，然后相除取绝对值。本质的含义就是赚取的return比亏钱的大多少倍。</li>
+<li>Daily value at risk（daily Value-at-Risk ）<br>
+每日风险价值-另一个非常流行的风险指标。在这种情况下，这表明在95％的情况下，将头寸（投资组合）再保留1天，损失不会超过2.3％。</li>
+</ul>
+<p>下图从各个角度对资产回报进行分析</p>
+<p>![image-20201129154756841](/Users/eryk/Library/Application Support/typora-user-images/image-20201129154756841.png)</p>
+<h3 id="参考">参考</h3>
+<p><a href="https://quantopian.github.io/pyfolio/" target="_blank" rel="noopener">https://quantopian.github.io/pyfolio/</a><br>
+<a href="https://zhuanlan.zhihu.com/p/118108419" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/118108419</a><br>
+<a href="https://towardsdatascience.com/the-easiest-way-to-evaluate-the-performance-of-trading-strategies-in-python-4959fd798bb3" target="_blank" rel="noopener">https://towardsdatascience.com/the-easiest-way-to-evaluate-the-performance-of-trading-strategies-in-python-4959fd798bb3</a></p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2020/11/20/2020-11-20%20Quantopian%E5%9B%A0%E5%AD%90%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8_Alphalens/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1687,95 +1807,6 @@ test.print()
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2019/06/13/2019-06-13%20%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9D%91%E7%88%B9%E7%9A%84OTC%E4%BA%A4%E6%98%93%E7%BB%8F%E5%8E%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/13/2019-06-13%20%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%9D%91%E7%88%B9%E7%9A%84OTC%E4%BA%A4%E6%98%93%E7%BB%8F%E5%8E%86/" class="post-title-link" itemprop="url">记一次坑爹的OTC交易经历</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-13 16:42:00" itemprop="dateCreated datePublished" datetime="2019-06-13T16:42:00+08:00">2019-06-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index">
-                    <span itemprop="name">其他</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>6月11号在火币OTC上卖了一点BTC给朋友还钱，结果今天朋友告诉我他的银行卡被冻结了，我看了下自己的银行卡，发现我的银行卡也被冻结了，只能转入不能转出。</p>
-<p><img src="/Users/eryk/Desktop/20190613164831.png" alt=""></p>
-<p>给银行打电话询问，答复是司法冻结的，银行看不到原因和无权解冻。银行告诉我冻结的是哪个公安局和案件号(这两个信息非常重要)。之后打当地114查询到公安局的电话号码。</p>
-<p>我又联系火币网，客服给了我一个链接，一看就懂了，链接和截图附在文后。。。看来有不少人被坑过，大概意思是司法冻结的原因是可能涉及到赃款，看严重程度不同账号被冻结的时间长度也不同，短的会被冻结48-72小时，长的可以冻结半年。之后给公安局打电话询问了我的账户的情况，大致意思是说给我转账的银行卡涉及电信诈骗，所以我的卡被冻结48小时，之后就没事了。</p>
-<p>小建议：</p>
-<blockquote>
-<p>OTC交易尽量选择交易量大的ID进行交易</p>
-</blockquote>
-<p><a href="https://huobiglobal.zendesk.com/hc/zh-cn/articles/360000159321-%E5%85%B3%E4%BA%8E%E9%93%B6%E8%A1%8C%E5%8D%A1%E5%86%BB%E7%BB%93%E5%8F%8A%E5%A4%84%E7%90%86%E5%8A%9E%E6%B3%95" target="_blank" rel="noopener">关于银行卡冻结及处理办法</a>  (火币官网链接需要翻墙)，重要内容截图如下</p>
-<p><img src="/Users/eryk/Desktop/20190613165715.png" alt=""></p>
-<p>我的微信公众号：pyquant</p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1848,7 +1879,7 @@ test.print()
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
