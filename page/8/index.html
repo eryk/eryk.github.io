@@ -288,106 +288,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/11/06/Tradex%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/06/Tradex%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Tradex笔记</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-11-06 09:29:00" itemprop="dateCreated datePublished" datetime="2017-11-06T09:29:00+08:00">2017-11-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">量化交易系统</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>TradeX 是为从事股票程序化交易的投资者提供一个接口，通过将自己的交易策略编写成计算机代码，实现自动 自动快速读取行情进行分析，以及股票下单、撤单、查询，做到股票的全自动买卖。</p>
-<p>优势</p>
-<ol>
-<li>多语言支持: 封装 C++,C#，Python，Delphi，Java，VB</li>
-<li>支持 Level 2 行情(专用账户版，用户需自行购买通达信 Level2 行情账户)包含十档行情、逐笔成交、买卖队列和深圳逐笔委托行情(上交所不对外提供逐笔委托)，需开通通达信的 Level 2 金融终端账户</li>
-<li>支持扩展行情: 包含期货、期权、三版、港股数据</li>
-<li>支持股票五档实时行情，实测速度比 TdxhqApi 快 10%~30%;包含各周期 K 线、分时、分笔成交，五档行情，F10 公司信息资料</li>
-<li>社区活跃</li>
-<li>支持市场上绝大部分券商</li>
-<li>接口是 tcp 直连获取行情</li>
-</ol>
-<p>劣势:</p>
-<ol>
-<li>所有行情接口均要求客户端主动查询请求行情数据，而非推送行情;每种行情接口各自对应于不同的通讯协议。每种行情接口的都可以建立单连接和批量多连接;如果要快速获取大量股票数据，则可能需要用到批量多连接。</li>
-<li>只支持windows系统，32 位的 Python 2.7 / Python 3.6.x</li>
-<li></li>
-</ol>
-<p>问题：</p>
-<ol>
-<li>需要自行维护停牌/退市股票列表，否则查询股票时服务器会自动返回600839的行情信息</li>
-<li>分笔数据间隔3s，建议更小的时间间隔获取数据，否则最多可能出现3s延迟</li>
-<li>不支持使用同一 Level 2 行情账户同时从多点连接，如果的确需要，您需要购买多个 Level 2 账户。 普通的五档实时行情、扩展行情没有任何 IP 限制，可以多点登录连接</li>
-</ol>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/11/06/%E6%9C%9F%E8%B4%A7%E5%88%86%E6%9E%90%E4%B8%8E%E4%BA%A4%E6%98%93%E5%85%A5%E9%97%A8%20live%20%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -467,6 +367,106 @@
 <h1>涨跌停板</h1>
 <p>不同品种幅度不同，不同保证金会放大涨跌停，比如10倍杠杆，涨幅5%，对应本金则涨幅50%</p>
 <h1>持仓限额</h1>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/11/06/Tradex%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/06/Tradex%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Tradex笔记</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-06 09:29:00" itemprop="dateCreated datePublished" datetime="2017-11-06T09:29:00+08:00">2017-11-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">量化交易系统</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>TradeX 是为从事股票程序化交易的投资者提供一个接口，通过将自己的交易策略编写成计算机代码，实现自动 自动快速读取行情进行分析，以及股票下单、撤单、查询，做到股票的全自动买卖。</p>
+<p>优势</p>
+<ol>
+<li>多语言支持: 封装 C++,C#，Python，Delphi，Java，VB</li>
+<li>支持 Level 2 行情(专用账户版，用户需自行购买通达信 Level2 行情账户)包含十档行情、逐笔成交、买卖队列和深圳逐笔委托行情(上交所不对外提供逐笔委托)，需开通通达信的 Level 2 金融终端账户</li>
+<li>支持扩展行情: 包含期货、期权、三版、港股数据</li>
+<li>支持股票五档实时行情，实测速度比 TdxhqApi 快 10%~30%;包含各周期 K 线、分时、分笔成交，五档行情，F10 公司信息资料</li>
+<li>社区活跃</li>
+<li>支持市场上绝大部分券商</li>
+<li>接口是 tcp 直连获取行情</li>
+</ol>
+<p>劣势:</p>
+<ol>
+<li>所有行情接口均要求客户端主动查询请求行情数据，而非推送行情;每种行情接口各自对应于不同的通讯协议。每种行情接口的都可以建立单连接和批量多连接;如果要快速获取大量股票数据，则可能需要用到批量多连接。</li>
+<li>只支持windows系统，32 位的 Python 2.7 / Python 3.6.x</li>
+<li></li>
+</ol>
+<p>问题：</p>
+<ol>
+<li>需要自行维护停牌/退市股票列表，否则查询股票时服务器会自动返回600839的行情信息</li>
+<li>分笔数据间隔3s，建议更小的时间间隔获取数据，否则最多可能出现3s延迟</li>
+<li>不支持使用同一 Level 2 行情账户同时从多点连接，如果的确需要，您需要购买多个 Level 2 账户。 普通的五档实时行情、扩展行情没有任何 IP 限制，可以多点登录连接</li>
+</ol>
 
       
 
