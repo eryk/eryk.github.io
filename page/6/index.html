@@ -145,6 +145,118 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/18/10%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/18/10%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">10分钟搭建github博客</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-18 10:16:44" itemprop="dateCreated datePublished" datetime="2017-08-18T10:16:44+08:00">2017-08-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="搭建github博客，参考如下步骤">搭建github博客，参考如下步骤</h3>
+<pre><code>https://pages.github.com/
+</code></pre>
+<h3 id="注册域名，修改域名DNS地址">注册域名，修改域名DNS地址</h3>
+<p>找个域名服务商注册个域名，我使用的是godaddy，如果以后需要指向国内空间，建议在国内域名服务商注册。</p>
+<p>注册好域名后，可以直接将域名cname到github博客地址，也可以使用dnspod.com的dns解析域名，在域名管理中把dns地址修改dnspod的dns：</p>
+<pre><code>    a.dnspod.com
+    b.dnspod.com
+    c.dnspod.com
+</code></pre>
+<p>然后需要在github上做个设置，把域名绑定到github账号上，否则直接访问域名会报404，具体设置步骤如下：</p>
+<p><a href="https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/" target="_blank" rel="noopener">https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/</a></p>
+<h3 id="使用hexo管理博客">使用hexo管理博客</h3>
+<p>Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdown格式，有众多优秀插件和主题。</p>
+<p>hexo安装步骤参考：</p>
+<p><a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></p>
+<p>推荐next博客主题，我的博客就是使用的这个主题，地址是：</p>
+<p><a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">https://github.com/iissnan/hexo-theme-next</a></p>
+<h3 id="设置-config-yml和github-sshkey">设置_config.yml和github sshkey</h3>
+<pre><code>deploy:
+  type: git
+  repo: https://github.com/YourgithubName/YourgithubName.github.io.git
+  branch: master
+</code></pre>
+<p>hexo发布时会把更新提交到仓库，所以需要设置github sshkey</p>
+<h3 id="发布文章">发布文章</h3>
+<p>基本命令如下：</p>
+<p>进入blog目录下，执行如下命令创建一篇博客</p>
+<pre><code>hexo new post 文章标题
+</code></pre>
+<p>创建好后可以在markdown工具中编写文章，macbook下推荐用MWeb来写博客，MWeb有两种模式：文档库和外部模式，使用外部模式到blog目录下就可以编写了</p>
+<p>编写好博客后发布：</p>
+<pre><code>hexo d -g
+</code></pre>
+<p>等待几秒中后刷新博客地址就可以看到更新了。</p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/18/%E9%87%91%E8%9E%8D%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -958,7 +1070,7 @@ c.NotebookApp.password = u'sha1:991ec9cd2f39:522598e19891bab1ecaa3a9072e71f45811
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
