@@ -145,6 +145,136 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2019/04/19/2019-04-19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/19/2019-04-19/" class="post-title-link" itemprop="url">virtualenv 使用教程</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-19 16:38:00" itemprop="dateCreated datePublished" datetime="2019-04-19T16:38:00+08:00">2019-04-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我的微信公众号：pyquant</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
+<p>virtualenv是python虚拟软件环境的管理工具，用于创建和删除虚拟环境</p>
+<h3 id="特性">特性</h3>
+<ol>
+<li>隔离性，将python软件环境打包安装到单独的目录下，可以以项目或者脚本为单位单独创建虚拟环境，防止项目间模块版本混乱和冲突的问题。</li>
+<li>易用性，通过一行命令即可创建虚拟环境，在虚拟环境之间切换也非常简单</li>
+</ol>
+<h3 id="安装virtualenv">安装virtualenv</h3>
+<pre><code>pip install virtualenv
+</code></pre>
+<h3 id="使用介绍">使用介绍</h3>
+<pre><code>virtualenv --help
+</code></pre>
+<p>比较有用的几个参数：</p>
+<ul>
+<li>-p PYTHON_EXE, --python=PYTHON_EXE，指定虚拟环境中的python版本</li>
+<li>–system-site-packages， 创建的虚拟环境将使用连接的方式，添加系统默认python环境中的site-packages</li>
+<li>–always-copy，使用copy的方式代替连接来添加系统默认python已安装模块</li>
+</ul>
+<h3 id="创建虚拟环境">创建虚拟环境</h3>
+<pre><code>mkdir myproject
+cd myproject
+virtualenv --p python3.6 venv
+</code></pre>
+<h3 id="激活和退出虚拟环境">激活和退出虚拟环境</h3>
+<p>激活虚拟环境，系统激活之后，提示符前端有个(venv)的前缀，表示系统已经切换到venv虚拟环境目录下</p>
+<pre><code>source venv/bin/activate
+</code></pre>
+<p>在venv环境下，安装模块可以使用pip来进行</p>
+<p>退出虚拟环境，退出后系统将自动选择系统默认的Python解释器，提示符前缀的(venv)也会消失</p>
+<pre><code>deactivate
+</code></pre>
+<h3 id="删除虚拟环境">删除虚拟环境</h3>
+<p>由于每个虚拟环境是独立部署的，所以直接将虚拟环境目录rm就可以完成清理</p>
+<h3 id="其他">其他</h3>
+<p>virtualenvwrapper是virtualenv的扩展管理包，用于更方便管理虚拟环境，它可以做：</p>
+<ul>
+<li>将所有虚拟环境整合在一个目录下</li>
+<li>管理（新增，删除，复制）虚拟环境</li>
+<li>切换虚拟环境</li>
+</ul>
+<p>另外，从python3.3之后，virtualenv已经作为python模块venv提供使用，具体信息可以参考一下网址：</p>
+<blockquote>
+<p><a href="https://docs.python.org/3/library/venv.html" target="_blank" rel="noopener">https://docs.python.org/3/library/venv.html</a></p>
+</blockquote>
+<h3 id="参考">参考</h3>
+<ul>
+<li><a href="https://virtualenv.pypa.io/en/latest/" target="_blank" rel="noopener">https://virtualenv.pypa.io/en/latest/</a></li>
+<li><a href="https://virtualenvwrapper.readthedocs.io/en/latest/" target="_blank" rel="noopener">https://virtualenvwrapper.readthedocs.io/en/latest/</a></li>
+<li><a href="https://segmentfault.com/a/1190000012030061" target="_blank" rel="noopener">https://segmentfault.com/a/1190000012030061</a></li>
+<li><a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432712108300322c61f256c74803b43bfd65c6f8d0d0000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432712108300322c61f256c74803b43bfd65c6f8d0d0000</a></li>
+</ul>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2019/03/22/2019-03-22/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1157,6 +1287,102 @@ print(eventually_return_false())
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">逐笔，分笔，逐单，分时数据概念区别</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-03-29 09:57:00" itemprop="dateCreated datePublished" datetime="2018-03-29T09:57:00+08:00">2018-03-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我的微信公众号：pyquant</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
+<h1>逐笔成交：</h1>
+<p>交易过程中的单次成交，是交易过程的真实成交情况。这是Level-2的专有数据，用一个实例来解释这个概念：假设目前的卖一是10元、100手，这时有人以10元委托买入100手，那么这100手是如何成交的呢？这要取决于卖盘由几个委托单构成，如果卖一是一个委托单，那就是一笔成交，即100手；而如果卖一是由40手和60手两笔委托构成，那么这100股就会分成两次成交，即40手一次，60手一次，逐笔成交就是2笔。</p>
+<p>一般显示的数据格式为在几分几秒以多少价格分几笔成交了多少手。<strong>在这里我们要注意的是成交手数有时候是带小数点的，这是因为股票买进的股数最少是100股，委托的股数也应是100的整数倍，卖出却没有限制，因此成交的手数会有小数点。</strong> 另外一点就是如果在成交价格和手数前面没有显示，则一半是默认的1笔。</p>
+<h1>分笔/分时成交：</h1>
+<p>3-5秒一次的行情采集期间累计的成交量和最后的成交价，可能是几笔成交的集合。这是大家长期以来唯一能看到的成交数据.</p>
+<p>一般显示的数据格式为在几分几秒以多少价格成交了多少手。**这里需要注意的是成交手数永远是整数，不会出现小数点数字。**其中现手累计数就是总手数。总手数也叫做成交量。有些软件在现量后面标注蓝色S和红色B，前者代表卖，后者代表买。（软件自己根据时间估计主动买还是主动卖）</p>
+<p>目前市面上出现了LEVEL-2行情数据，比较具有代表性的是大智慧，在那里把分笔成交是叫分时成交，实际上就是我们在普通分析软件上F1看到的“分笔成交明细”，但是他和LEVEL-2行情数据提供的逐笔成交明细是不一样的。**分笔数据由于是合成混合数据，它是以最后1笔的买卖方向来表示该时间内（3秒或者5秒）的买卖方向。**目前市面上的成交明细数据都是分笔成交，有些号称是LEVEL-2逐笔的明细数据其实也是分笔，即LEVEL-2行情软件里右侧小窗口显示的3秒分笔数据，虽然来自LEVEL-2行情，但仍然是分笔（分时）成交，而不是LEVEL-2行情软件里左侧显示的逐笔成交。因为左侧显示的逐笔成交在LEVEL-2行情软件里是不能保存的，也不能够导出供二次开发。能够导出的只有右侧小窗口里的分笔成交</p>
+<h1>逐单/委托单：</h1>
+<p>我们每次向系统发出委托时，都有个委托合同编号，这个就是单。例如你一次买2000股股票，则是20手，那么这一单就是20手。但目前每种软件的推测统计都不一致，会导致不同软件显示数据出现差异。</p>
+<p>委托单的明细，这是交易所行情系统中没有发布的数据，还以刚才的例子说明，交易所只发出了40手和60手两笔成交（逐笔），并没有指出是一笔100手的买单吃掉了40手、60手两笔卖单。LEVEL-2行情能够根据成交的时间和队列等数据计算出全部已成交的委托单明细，这在交易分析中具有重大意义。（股票盘子越大，推测逐单数据误差越大,因为委托队列只显示前50个委托单;相对来说小盘股的DDE指标更为可靠）</p>
+<h1>分时:</h1>
+<p>一般指一分钟成交集合;</p>
+<h1>问题：</h1>
+<p>盘中数据的统计分析长期以来是对分时数据的统计分析，比如最简单的内盘和外盘，大单买入/卖出等，这种统计有两个明显的缺陷：</p>
+<p>第一、仅统计了主动成交方单方面的成交数据，而机构交易完全可能在被动成交方</p>
+<p>第二、分时数据不是真实的成交数据，大单不一定是大单，可能是很多散户在几秒中之内同时交易的结果，虽然使用level-2的逐笔成交来统计可以避免这一情况的发生，但立即就又产生了新的问题，即一笔真实的大单委托往往被分割成数笔成交，又捕捉不到真实的大单了。</p>
+<p>其他：一个孤独的数字是缺乏意义的，但是一些连续的数字则是充满想像的。一般来说，成交手数比较大而集中的时候，表示有大资金活跃迹象，该股出现价格异动的概率就大，应该引起投资者的注意。而如果半天也没人买或者都是一些小单子在交易，则至少短期不大可能成为好股。</p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/03/29/systemd%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1373,256 +1599,6 @@ Mar 29 13:30:45 ip-172-31-4-62 systemd[1]: Started huobi downloader.
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/03/29/%E9%80%90%E7%AC%94%EF%BC%8C%E5%88%86%E7%AC%94%EF%BC%8C%E9%80%90%E5%8D%95%EF%BC%8C%E5%88%86%E6%97%B6%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">逐笔，分笔，逐单，分时数据概念区别</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-03-29 09:57:00" itemprop="dateCreated datePublished" datetime="2018-03-29T09:57:00+08:00">2018-03-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
-                    <span itemprop="name">金融</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>我的微信公众号：pyquant</p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
-<h1>逐笔成交：</h1>
-<p>交易过程中的单次成交，是交易过程的真实成交情况。这是Level-2的专有数据，用一个实例来解释这个概念：假设目前的卖一是10元、100手，这时有人以10元委托买入100手，那么这100手是如何成交的呢？这要取决于卖盘由几个委托单构成，如果卖一是一个委托单，那就是一笔成交，即100手；而如果卖一是由40手和60手两笔委托构成，那么这100股就会分成两次成交，即40手一次，60手一次，逐笔成交就是2笔。</p>
-<p>一般显示的数据格式为在几分几秒以多少价格分几笔成交了多少手。<strong>在这里我们要注意的是成交手数有时候是带小数点的，这是因为股票买进的股数最少是100股，委托的股数也应是100的整数倍，卖出却没有限制，因此成交的手数会有小数点。</strong> 另外一点就是如果在成交价格和手数前面没有显示，则一半是默认的1笔。</p>
-<h1>分笔/分时成交：</h1>
-<p>3-5秒一次的行情采集期间累计的成交量和最后的成交价，可能是几笔成交的集合。这是大家长期以来唯一能看到的成交数据.</p>
-<p>一般显示的数据格式为在几分几秒以多少价格成交了多少手。**这里需要注意的是成交手数永远是整数，不会出现小数点数字。**其中现手累计数就是总手数。总手数也叫做成交量。有些软件在现量后面标注蓝色S和红色B，前者代表卖，后者代表买。（软件自己根据时间估计主动买还是主动卖）</p>
-<p>目前市面上出现了LEVEL-2行情数据，比较具有代表性的是大智慧，在那里把分笔成交是叫分时成交，实际上就是我们在普通分析软件上F1看到的“分笔成交明细”，但是他和LEVEL-2行情数据提供的逐笔成交明细是不一样的。**分笔数据由于是合成混合数据，它是以最后1笔的买卖方向来表示该时间内（3秒或者5秒）的买卖方向。**目前市面上的成交明细数据都是分笔成交，有些号称是LEVEL-2逐笔的明细数据其实也是分笔，即LEVEL-2行情软件里右侧小窗口显示的3秒分笔数据，虽然来自LEVEL-2行情，但仍然是分笔（分时）成交，而不是LEVEL-2行情软件里左侧显示的逐笔成交。因为左侧显示的逐笔成交在LEVEL-2行情软件里是不能保存的，也不能够导出供二次开发。能够导出的只有右侧小窗口里的分笔成交</p>
-<h1>逐单/委托单：</h1>
-<p>我们每次向系统发出委托时，都有个委托合同编号，这个就是单。例如你一次买2000股股票，则是20手，那么这一单就是20手。但目前每种软件的推测统计都不一致，会导致不同软件显示数据出现差异。</p>
-<p>委托单的明细，这是交易所行情系统中没有发布的数据，还以刚才的例子说明，交易所只发出了40手和60手两笔成交（逐笔），并没有指出是一笔100手的买单吃掉了40手、60手两笔卖单。LEVEL-2行情能够根据成交的时间和队列等数据计算出全部已成交的委托单明细，这在交易分析中具有重大意义。（股票盘子越大，推测逐单数据误差越大,因为委托队列只显示前50个委托单;相对来说小盘股的DDE指标更为可靠）</p>
-<h1>分时:</h1>
-<p>一般指一分钟成交集合;</p>
-<h1>问题：</h1>
-<p>盘中数据的统计分析长期以来是对分时数据的统计分析，比如最简单的内盘和外盘，大单买入/卖出等，这种统计有两个明显的缺陷：</p>
-<p>第一、仅统计了主动成交方单方面的成交数据，而机构交易完全可能在被动成交方</p>
-<p>第二、分时数据不是真实的成交数据，大单不一定是大单，可能是很多散户在几秒中之内同时交易的结果，虽然使用level-2的逐笔成交来统计可以避免这一情况的发生，但立即就又产生了新的问题，即一笔真实的大单委托往往被分割成数笔成交，又捕捉不到真实的大单了。</p>
-<p>其他：一个孤独的数字是缺乏意义的，但是一些连续的数字则是充满想像的。一般来说，成交手数比较大而集中的时候，表示有大资金活跃迹象，该股出现价格异动的概率就大，应该引起投资者的注意。而如果半天也没人买或者都是一些小单子在交易，则至少短期不大可能成为好股。</p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2018/02/18/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8C%96%E7%9F%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/02/18/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8C%96%E7%9F%BF/" class="post-title-link" itemprop="url">比特币挖矿</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-02-18 00:03:00" itemprop="dateCreated datePublished" datetime="2018-02-18T00:03:00+08:00">2018-02-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/" itemprop="url" rel="index">
-                    <span itemprop="name">区块链</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1>比特币介绍</h1>
-<p>比特币（BitCoin）的概念最初由中本聪在2009年提出，根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络。比特币是一种P2P形式的数字货币。点对点的传输意味着一个去中心化的支付系统。</p>
-<h2 id="货币特征">货币特征</h2>
-<ul>
-<li>去中心化：比特币是第一种分布式的虚拟货币，整个网络由用户构成，没有中央银行。去中心化是比特币安全与自由的保证 。</li>
-<li>全世界流通：比特币可以在任意一台接入互联网的电脑上管理。不管身处何方，任何人都可以挖掘、购买、出售或收取比特币。</li>
-<li>专属所有权：操控比特币需要私钥，它可以被隔离保存在任何存储介质。除了用户自己之外无人可以获取。</li>
-<li>低交易费用：可以免费汇出比特币，但最终对每笔交易将收取约1比特分的交易费以确保交易更快执行。</li>
-<li>无隐藏成本：作为由A到B的支付手段，比特币没有繁琐的额度与手续限制。知道对方比特币地址就可以进行支付。</li>
-<li>跨平台挖掘：用户可以在众多平台上发掘不同硬件的计算能力。</li>
-</ul>
-<h2 id="比特币与分叉币比较">比特币与分叉币比较</h2>
-<p><img src="images/15188818662912.jpg" alt=""></p>
-<h1>什么是挖矿</h1>
-<p>比特币是怎么产出的？</p>
-<p>首先我们来了解一下“区块链”，比特币的核心原理是“区块链”，每一个区块对应一个帐单，将所有的区块链接起来就是区块链，任何交易信息和转账记录都记录在区块链中。要注意的是区块链存在于整个互联网中，所以任何比特币持有者都不担心比特币遭受损失。</p>
-<p>每隔一个时间点，比特币系统会在系统节点上生成一个随机代码，互联网中的所有计算机都可以去寻找此代码，谁找到此代码，就会产生一个区块，随即得到一个比特币，这个过程就是人们常说的挖矿。</p>
-<h1>挖矿设备介绍</h1>
-<p>现在市面上起码有几百种加密货币，主流的可以流通交易的也有不下20种。这么多的加密货币虽然都基于区块链技术，但不管是为了实现某些功能，还是为了形成差异，都会有所不同，从而导致挖不同的币使用的矿机也有所不同。通常来说，一台矿机只能挖一种或几种币，所以要挖什么比就要买什么型号的矿机。当然也存在全能选手，比如电脑就是，只是好多币种用电脑（CPU+显卡）挖的效率太低，无法盈利。</p>
-<p>矿机可以有多种分类方式，硬件上可以分为ASIC矿机、GPU矿机、FPGA矿机，以及玩客云那类CDN矿机等等。按照所有权划分，可以分为本地矿机和云矿机。</p>
-<p>首先，比特币（BTC）、以太坊（ETH）、比特币现金（BCH）、莱特币（LTC）、达世币（DASH）等主流币种，普遍采用PoW共识机制，挖矿就是通过贡献算力来维护网络安全、稳定的运行，并由此获得奖励币，所以都需要性能尽可能强大的矿机。但针对不同币种的算法，又细分出两种不同的矿机：ASIC矿机与GPU矿机。</p>
-<p>中本聪打造比特币的时候，希望比特币是一个去中心化的货币，不仅使用、交易如此，挖矿也应该如此。但是事与愿违，随着比特币等加密货币的价值越来越高，挖矿成为了一个产业，竞争越来越激烈，对挖矿算力的追求越来越高，所以从普通电脑挖矿，进化出了ASIC矿机与GPU矿机。</p>
-<p><img src="images/15188819449294.jpg" alt=""></p>
-<p>主流矿机比较</p>
-<p><img src="images/15188829992827.jpg" alt=""></p>
-<p>目前市场上最热门的矿机是蚂蚁矿机S9，具体配置如下</p>
-<p><img src="images/15188820707031.jpg" alt=""></p>
-<h1>矿池的选择</h1>
-<p>矿池的选择主要考虑以下两个因素：</p>
-<ul>
-<li>分配模式</li>
-<li>手续费</li>
-</ul>
-<h2 id="分配模式说明：">分配模式说明：</h2>
-<ol>
-<li>Slush方式</li>
-</ol>
-<p>Slush矿池基于积分制，较老的shares将比新的shares拥有更低的权重，以减少一轮中切换矿池的投机分子。<br>
-2. Pay-Per-Share方式</p>
-<p>该方式为立即为每一个share支付报酬。该支出来源于矿池现有的比特币资金，因此可以立即取现，而不用等待区块生成完毕或者确认。这样可以避免矿池运营者幕后操纵。这中方法减少了矿工的风险，但将风险转移给了矿池的运营者。运营者可以收取手续费来弥补这些风险可能造成的损失<br>
-3. Luke-Jr方式</p>
-<p>该方式借用了其他方式的长处，如Slush方式一样，矿工需要提供工作证明来获得shares，如puddinpop方式一样，当区块生成时马上进行支付。但是不象之前的方式，针对一个区块的shares，会被再次利用于生成下一个区块。为了区分一下参与矿工的交易传输费用，只有当矿工的余额超过1BTC时才进行支付。如果没有达到1BTC，那么将在下一个区块生成时进行累计。如果矿工在一周内没有提供一个share，那么矿池会将剩下的余额进行支付，不管余额是多少。<br>
-4. Triplemining方式</p>
-<p>该方式是将一些中等大小矿池的计算力合并起来，然后将获得奖励的1%按照各个矿池计算力的比例分发给矿池运营者。<br>
-5. P2Pool方式</p>
-<p>P2Pool的挖矿节点工作在类似比特币区块链的一种shares链上。由于没有中心，所以也不会受到DoS攻击。和其他现有的矿池技术都不一样—每个节点工作的区块，都包括支付给前期shares的所有者以及该节点自己的比特币。99%的奖励（注：50BTC+交易费用）会平均分给矿工，另外0.5%会奖励给生成区块的人。<br>
-6. Puddinpop方式</p>
-<p>一种使用“元哈希”技术的方式，使用特定的puddinpop挖矿软件，现在没有矿池用这种方式</p>
-<p>注意：</p>
-<blockquote>
-<p>一个share（注：贡献/股份）为一个矿池给客户端的一个合法的工作证明，这也同时是用来生成区块的工作证明，但是没有这么复杂，只需要很少的时间就能达到一个share。</p>
-</blockquote>
-<h1>收益预测</h1>
-<p>蚂蚁矿机单机价格18000元，功率为1350w - 1512w，电费按0.3元/度计算，收益情况如下</p>
-<h2 id="计算方式1">计算方式1</h2>
-<p>矿池算力排名<br>
-<a href="https://btc.com/stats/pool?pool_mode=day" target="_blank" rel="noopener">https://btc.com/stats/pool?pool_mode=day</a></p>
-<p>每十分钟产生一个区块，每个区块12.5个比特币，每天全球产生12.5*24*6=1800BTC</p>
-<p>s9算力13.5T，当前全网算力22.52EH/s，1E=1024P,1P=1024T,1T=1024G,一台s9一天产生的比特币是[13.5/(22.52<em>1024</em>1024)]*1800≈.001029054BTC</p>
-<p>总收入</p>
-<p>13.5/(22.52*1024*1024) * 1800 * 65000 * 365 = 24414.295 元</p>
-<p>每天耗电36度，每年13140度电，电费约为 1.5*24*0.3 * 365 = 3942 元</p>
-<p>总利润为 24414.295 - 3942 = 20472.295 元</p>
-<h2 id="计算方式2">计算方式2</h2>
-<p>挖矿算器</p>
-<p><a href="https://btc.com/tools/mining-calculator" target="_blank" rel="noopener">https://btc.com/tools/mining-calculator</a></p>
-<p><img src="images/15188826456334.jpg" alt=""></p>
-<h1>参考</h1>
-<p><a href="http://www.kuangjijia.com/category/492.html" target="_blank" rel="noopener">http://www.kuangjijia.com/category/492.html</a><br>
-<a href="https://shop.bitmain.com/productDetail.htm?pid=00020180205094056650FrOW7847062D" target="_blank" rel="noopener">https://shop.bitmain.com/productDetail.htm?pid=00020180205094056650FrOW7847062D</a><br>
-<a href="https://www.zhihu.com/question/20792042" target="_blank" rel="noopener">https://www.zhihu.com/question/20792042</a></p>
-<p>挖掘机哪家强？主流矿机比拼，蚂蚁矿机领先<br>
-<a href="http://www.sohu.com/a/155209866_114877" target="_blank" rel="noopener">http://www.sohu.com/a/155209866_114877</a><br>
-彩云评测：比特大陆蚂蚁S9比特币挖矿机<br>
-<a href="https://www.cybtc.com/article-2338-1.html" target="_blank" rel="noopener">https://www.cybtc.com/article-2338-1.html</a><br>
-一个挖矿者血本无归的教训总结<br>
-<a href="http://www.hnr.cn/finance/zt/b/df/201706/t20170626_2980454.html" target="_blank" rel="noopener">http://www.hnr.cn/finance/zt/b/df/201706/t20170626_2980454.html</a></p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1695,13 +1671,13 @@ Mar 29 13:30:45 ip-172-31-4-62 systemd[1]: Started huobi downloader.
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xuqi365.com/"/>
-  <updated>2020-12-13T09:53:59.185Z</updated>
+  <updated>2020-12-20T14:38:59.020Z</updated>
   <id>http://xuqi365.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>投资著作品读1：《以交易为生II:卖出的艺术》中的精华</title>
+    <link href="http://xuqi365.com/2020/12/20/2020-12-20%20%E6%8A%95%E8%B5%84%E8%91%97%E4%BD%9C%E5%93%81%E8%AF%BB1%EF%BC%9A%E3%80%8A%E4%BB%A5%E4%BA%A4%E6%98%93%E4%B8%BA%E7%94%9FII:%E5%8D%96%E5%87%BA%E7%9A%84%E8%89%BA%E6%9C%AF%E3%80%8B%E4%B8%AD%E7%9A%84%E7%B2%BE%E5%8D%8E/"/>
+    <id>http://xuqi365.com/2020/12/20/2020-12-20%20%E6%8A%95%E8%B5%84%E8%91%97%E4%BD%9C%E5%93%81%E8%AF%BB1%EF%BC%9A%E3%80%8A%E4%BB%A5%E4%BA%A4%E6%98%93%E4%B8%BA%E7%94%9FII:%E5%8D%96%E5%87%BA%E7%9A%84%E8%89%BA%E6%9C%AF%E3%80%8B%E4%B8%AD%E7%9A%84%E7%B2%BE%E5%8D%8E/</id>
+    <published>2020-12-20T14:34:00.000Z</published>
+    <updated>2020-12-20T14:38:59.020Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;最近重读了这本经典的金融投资类书籍，把其中精华部分摘录的下来，除了摘录的部分，第三章内容介绍的交易日志介绍了如何给一笔交易打分也不错，作者让我们更多的关注一笔交易的好坏，而不仅仅是盯住账户盈亏，这样日积月累交易技术才会精进。以下是本书精华部分，介绍了多种卖出的目的与技术。&lt;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="投资著作品读" scheme="http://xuqi365.com/categories/%E6%8A%95%E8%B5%84%E8%91%97%E4%BD%9C%E5%93%81%E8%AF%BB/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Pandas MultiIndex索引使用问题</title>
@@ -549,34 +574,6 @@ pyfolio的核心是所谓的“tear sheet
       <category term="Queue" scheme="http://xuqi365.com/tags/Queue/"/>
     
       <category term="Pipe" scheme="http://xuqi365.com/tags/Pipe/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>virtualenv 使用教程</title>
-    <link href="http://xuqi365.com/2019/04/19/2019-04-19/"/>
-    <id>http://xuqi365.com/2019/04/19/2019-04-19/</id>
-    <published>2019-04-19T08:38:00.000Z</published>
-    <updated>2020-02-08T17:11:25.952Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://xuqi365.com/categories/python/"/>
-    
-    
-      <category term="virtualenv" scheme="http://xuqi365.com/tags/virtualenv/"/>
     
   </entry>
   
