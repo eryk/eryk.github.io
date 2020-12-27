@@ -145,6 +145,78 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/23/jupyter%E4%BD%BF%E7%94%A8pyspark%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/23/jupyter%E4%BD%BF%E7%94%A8pyspark%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">jupyter使用pyspark教程</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-23 14:24:21" itemprop="dateCreated datePublished" datetime="2017-08-23T14:24:21+08:00">2017-08-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <pre><code>启动jupyter遇到的问题
+```
+Exception in thread &quot;main&quot; java.lang.NoSuchMethodError: scala.collection.immutable.HashSet$.empty()Lscala/collection/immutable/HashSet;
+```
+原因是因为spark依赖的scala版本与系统的不匹配，我的系统环境中scala版本是2.11.11，spark2.2.0目录下jars的scala版本是2.11.8
+</code></pre>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/19/anaconda%E6%B7%BB%E5%8A%A0%E7%AC%AC%E4%B8%89%E6%96%B9%E6%BA%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -595,131 +667,6 @@ Successfully installed pymssql-2.1.3
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/14/docker-grafana-influxdb-telegraf%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/08/14/docker-grafana-influxdb-telegraf%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" class="post-title-link" itemprop="url">Docker+Grafana+Influxdb+Telegraf安装部署</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-08-14 23:53:13" itemprop="dateCreated datePublished" datetime="2017-08-14T23:53:13+08:00">2017-08-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:17:54" itemprop="dateModified" datetime="2020-02-09T01:17:54+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
-                    <span itemprop="name">系统运维</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1>docker启动Grafana + Influexdb</h1>
-<pre><code>docker run -d \
-  --name docker-statsd-influxdb-grafana \
-  -p 3003:3003 \
-  -p 8083:8083 \
-  -p 8086:8086 \
-  -p 22022:22 \
-  -p 8125:8125/udp \
-  samuelebistoletti/docker-statsd-influxdb-grafana:latest
-</code></pre>
-<h1>设置InfluxDB</h1>
-<p>打开 http:localhost:8083，设置用户名密码</p>
-<pre><code>Username: root
-Password: root
-Port: 8086
-</code></pre>
-<h1>设置Grafana</h1>
-<p>打开http:localhost:3003，登录用户名密码为</p>
-<pre><code>Username: root
-Password: root
-</code></pre>
-<p>登录之后按步骤设置数据源</p>
-<pre><code>Url: http://localhost:8086
-Database:	telegraf
-User: telegraf
-Password:	telegraf
-</code></pre>
-<h1>安装并设置TeleGraf</h1>
-<p>下载地址：<a href="https://portal.influxdata.com/downloads" target="_blank" rel="noopener">https://portal.influxdata.com/downloads</a></p>
-<h2 id="设置">设置</h2>
-<p>/etc/telegraf/telegraf.conf<br>
-修改influxdb地址，用户名及密码，设置hostname</p>
-<p>重启服务</p>
-<blockquote>
-<p>service telegraf restart</p>
-</blockquote>
-<h1>导入Grafana Dashboard</h1>
-<p>下载最新版本的dashboard配置：<br>
-<a href="https://grafana.com/dashboards/1443/revisions" target="_blank" rel="noopener">https://grafana.com/dashboards/1443/revisions</a></p>
-<p>在grafana的新建dashboard并导入配置，完成。</p>
-<h1>注意</h1>
-<p>docker内部已经启动了telegraf，如果不需要的话可以停掉，在多台服务器上安装并配置Telegraf写入同一Influxdb就可以实现对集群进行系统监控。</p>
-<h1>参考</h1>
-<ol>
-<li><a href="https://linux.cn/article-5252-1.html" target="_blank" rel="noopener">使用 Grafana、collectd 和 InfluxDB 打造现代监控系统</a></li>
-<li><a href="https://github.com/samuelebistoletti/docker-statsd-influxdb-grafana" target="_blank" rel="noopener">docker-statsd-influxdb-grafana</a></li>
-<li><a href="https://anomaly.io/collectd-metrics-to-influxdb/" target="_blank" rel="noopener">Send CollectD metrics to InfluxDB</a></li>
-</ol>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -792,7 +739,7 @@ Password:	telegraf
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Pandas缺失值可视化分析模块：missingno</title>
+    <url>/2020/12/27/2020-12-27%20Python%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E6%A8%A1%E5%9D%97%EF%BC%9Amissingno/</url>
+    <content><![CDATA[<p>missingno提供了一个灵活且易于使用的丢失数据可视化工具和实用程序的小型工具集，使您可以快速直观地概述数据集的完整性（或缺乏完整性）。只需pip install missingno就可以开始使用了</p>
+<p>missingno包含了4种类型图示：</p>
+<ol>
+<li>
+<p>Metrix：msno.matrix无效矩阵是一种数据密集显示图，可以直观的看到各个column缺失数据分布情况，这种可视化图示最多可以容纳50个column，超过此范围的标签开始重叠或变得不可读。<br>
+<img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201227231432.png" alt=""></p>
+</li>
+<li>
+<p>Bar：msno.bar是按列对无效性数据的简单可视化：</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201227231524.png" alt=""></p>
+</li>
+<li>
+<p>Heatmap：数据列之前缺失相关性分析图，展示了一个变量的存在或不存在对另一个变量的存在有多强烈的影响</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201227231600.png" alt=""></p>
+</li>
+<li>
+<p>Dendrogram：通过树状图，您可以更全面地关联变量完成，揭示比Heatmap中可见的成对趋势更深的趋势。与metrix图一样，在这种配置下最多只能显示50个带标签的列。但是，树状图只需翻转到水平配置即可更优雅地处理超大型数据集。</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201227231612.png" alt=""></p>
+</li>
+</ol>
+<h3 id="参考">参考</h3>
+<p><a href="https://github.com/ResidentMario/missingno" target="_blank" rel="noopener">https://github.com/ResidentMario/missingno</a></p>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>投资著作品读1：《以交易为生II:卖出的艺术》中的精华</title>
     <url>/2020/12/20/2020-12-20%20%E6%8A%95%E8%B5%84%E8%91%97%E4%BD%9C%E5%93%81%E8%AF%BB1%EF%BC%9A%E3%80%8A%E4%BB%A5%E4%BA%A4%E6%98%93%E4%B8%BA%E7%94%9FII:%E5%8D%96%E5%87%BA%E7%9A%84%E8%89%BA%E6%9C%AF%E3%80%8B%E4%B8%AD%E7%9A%84%E7%B2%BE%E5%8D%8E/</url>
     <content><![CDATA[<p>最近重读了这本经典的金融投资类书籍，把其中精华部分摘录的下来，除了摘录的部分，第三章内容介绍的交易日志介绍了如何给一笔交易打分也不错，作者让我们更多的关注一笔交易的好坏，而不仅仅是盯住账户盈亏，这样日积月累交易技术才会精进。以下是本书精华部分，介绍了多种卖出的目的与技术。</p>
@@ -3900,48 +3933,6 @@ Sep 22 12:40:44 gpu01 systemd[1]: Removed slice User Slice of xxx.
       </tags>
   </entry>
   <entry>
-    <title>迅投交易终端</title>
-    <url>/2017/08/24/%E8%BF%85%E6%8A%95%E4%BA%A4%E6%98%93%E7%BB%88%E7%AB%AF/</url>
-    <content><![CDATA[<p>迅投交易终端——股票期货一体交易</p>
-<p>迅投交易终端是一款集股票交易、期货交易、组合交易为一体的智能化金融交易工具软件。其开放式的策略接口、智能算法交易、组合交易管理、多账户管理、高度自定义交易界面、完整数据导入导出功能，为大资金客户、机构客户和自动化交易客户提供了一支虚拟交易团队，高效、精准、优秀地完成每一个任务指令，为用户做多品种交易、大资金分批建仓、对冲套利交易提供极大的便利性，是投资者最强大的交易助手。</p>
-<h1>策略接口：</h1>
-<p>√ 开放的策略交易接口，无缝对接多种研发平台；<br>
-√ 迅投解决交易周边问题，复杂策略高效执行；<br>
-√ 策略与交易安全隔离，核心策略安全有保障。</p>
-<h1>智能算法交易：</h1>
-<p>√ 一键智能下单，软件自动下单、撤单、追单，减少人为操作失误；<br>
-√ 支持多种算法交易策略，有效控制冲击成本、减少交易滑点；<br>
-√ 各种策略参数在交易界面灵活设置，方便调用；<br>
-√ 自动化执行与人工监控相结合，交易任务高效有序完成。</p>
-<h1>组合交易管理：</h1>
-<p>√ 完美股票组合导入导出，支持多篮子股票并行操作；<br>
-√ 配合高效算法交易模块，一键轻松实现一篮子股票的批量交易，自动下单、撤单、追单；<br>
-√ 支持多种策略快速下达组合交易任务；<br>
-√ 支持预设多种手动补单策略；<br>
-√ 篮子交易任务过程动态可视、人为可控。</p>
-<h1>多账户管理：</h1>
-<p>√ 多账户统一管理，实现多个账户的登录、委托、撤单、查询等功能；<br>
-√ 分组管理、分组交易、批量下单；<br>
-√ 支持多种交易任务分配方式；<br>
-√ 支持跨公司账户交易管理。</p>
-<h1>高度自定义交易界面：</h1>
-<p>√ 所有模块随意拖拽、组合、定制，打造独一无二的自定义交易界面；<br>
-√ 支持下单面板快捷复制，多品种交易尽在掌握；<br>
-√ 单面板一键快捷下单，前所未有的轻松交易体验。</p>
-<h1>完整数据导入导出：</h1>
-<p>√ 支持多种格式的交易、分析数据导入导出，为投资者的交易分析、交易策略实现提供最大的便利性。</p>
-<p>原文地址: <a href="http://www.thinktrader.net/product/index.html" target="_blank" rel="noopener">http://www.thinktrader.net/product/index.html</a></p>
-]]></content>
-      <categories>
-        <category>量化交易系统</category>
-      </categories>
-      <tags>
-        <tag>level2</tag>
-        <tag>order book</tag>
-        <tag>level1</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leve1、level2 解释</title>
     <url>/2017/08/24/leve1%E5%92%8Clevel2%20%E8%A7%A3%E9%87%8A/</url>
     <content><![CDATA[<h1>Level 1 Market Data</h1>
@@ -4005,6 +3996,48 @@ Sep 22 12:40:44 gpu01 systemd[1]: Removed slice User Slice of xxx.
 ]]></content>
       <categories>
         <category>金融</category>
+      </categories>
+      <tags>
+        <tag>level2</tag>
+        <tag>order book</tag>
+        <tag>level1</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>迅投交易终端</title>
+    <url>/2017/08/24/%E8%BF%85%E6%8A%95%E4%BA%A4%E6%98%93%E7%BB%88%E7%AB%AF/</url>
+    <content><![CDATA[<p>迅投交易终端——股票期货一体交易</p>
+<p>迅投交易终端是一款集股票交易、期货交易、组合交易为一体的智能化金融交易工具软件。其开放式的策略接口、智能算法交易、组合交易管理、多账户管理、高度自定义交易界面、完整数据导入导出功能，为大资金客户、机构客户和自动化交易客户提供了一支虚拟交易团队，高效、精准、优秀地完成每一个任务指令，为用户做多品种交易、大资金分批建仓、对冲套利交易提供极大的便利性，是投资者最强大的交易助手。</p>
+<h1>策略接口：</h1>
+<p>√ 开放的策略交易接口，无缝对接多种研发平台；<br>
+√ 迅投解决交易周边问题，复杂策略高效执行；<br>
+√ 策略与交易安全隔离，核心策略安全有保障。</p>
+<h1>智能算法交易：</h1>
+<p>√ 一键智能下单，软件自动下单、撤单、追单，减少人为操作失误；<br>
+√ 支持多种算法交易策略，有效控制冲击成本、减少交易滑点；<br>
+√ 各种策略参数在交易界面灵活设置，方便调用；<br>
+√ 自动化执行与人工监控相结合，交易任务高效有序完成。</p>
+<h1>组合交易管理：</h1>
+<p>√ 完美股票组合导入导出，支持多篮子股票并行操作；<br>
+√ 配合高效算法交易模块，一键轻松实现一篮子股票的批量交易，自动下单、撤单、追单；<br>
+√ 支持多种策略快速下达组合交易任务；<br>
+√ 支持预设多种手动补单策略；<br>
+√ 篮子交易任务过程动态可视、人为可控。</p>
+<h1>多账户管理：</h1>
+<p>√ 多账户统一管理，实现多个账户的登录、委托、撤单、查询等功能；<br>
+√ 分组管理、分组交易、批量下单；<br>
+√ 支持多种交易任务分配方式；<br>
+√ 支持跨公司账户交易管理。</p>
+<h1>高度自定义交易界面：</h1>
+<p>√ 所有模块随意拖拽、组合、定制，打造独一无二的自定义交易界面；<br>
+√ 支持下单面板快捷复制，多品种交易尽在掌握；<br>
+√ 单面板一键快捷下单，前所未有的轻松交易体验。</p>
+<h1>完整数据导入导出：</h1>
+<p>√ 支持多种格式的交易、分析数据导入导出，为投资者的交易分析、交易策略实现提供最大的便利性。</p>
+<p>原文地址: <a href="http://www.thinktrader.net/product/index.html" target="_blank" rel="noopener">http://www.thinktrader.net/product/index.html</a></p>
+]]></content>
+      <categories>
+        <category>量化交易系统</category>
       </categories>
       <tags>
         <tag>level2</tag>

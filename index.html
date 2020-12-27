@@ -145,6 +145,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2020/12/27/2020-12-27%20Python%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E6%A8%A1%E5%9D%97%EF%BC%9Amissingno/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/27/2020-12-27%20Python%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E6%A8%A1%E5%9D%97%EF%BC%9Amissingno/" class="post-title-link" itemprop="url">Pandas缺失值可视化分析模块：missingno</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-27 22:51:33 / 修改时间：23:22:51" itemprop="dateCreated datePublished" datetime="2020-12-27T22:51:33+08:00">2020-12-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>missingno提供了一个灵活且易于使用的丢失数据可视化工具和实用程序的小型工具集，使您可以快速直观地概述数据集的完整性（或缺乏完整性）。只需pip install missingno就可以开始使用了</p>
+<p>missingno包含了4种类型图示：</p>
+<ol>
+<li>
+<p>Metrix：msno.matrix无效矩阵是一种数据密集显示图，可以直观的看到各个column缺失数据分布情况，这种可视化图示最多可以容纳50个column，超过此范围的标签开始重叠或变得不可读。<br>
+<img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201227231432.png" alt=""></p>
+</li>
+<li>
+<p>Bar：msno.bar是按列对无效性数据的简单可视化：</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201227231524.png" alt=""></p>
+</li>
+<li>
+<p>Heatmap：数据列之前缺失相关性分析图，展示了一个变量的存在或不存在对另一个变量的存在有多强烈的影响</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201227231600.png" alt=""></p>
+</li>
+<li>
+<p>Dendrogram：通过树状图，您可以更全面地关联变量完成，揭示比Heatmap中可见的成对趋势更深的趋势。与metrix图一样，在这种配置下最多只能显示50个带标签的列。但是，树状图只需翻转到水平配置即可更优雅地处理超大型数据集。</p>
+<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201227231612.png" alt=""></p>
+</li>
+</ol>
+<h3 id="参考">参考</h3>
+<p><a href="https://github.com/ResidentMario/missingno" target="_blank" rel="noopener">https://github.com/ResidentMario/missingno</a></p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2020/12/20/2020-12-20%20%E6%8A%95%E8%B5%84%E8%91%97%E4%BD%9C%E5%93%81%E8%AF%BB1%EF%BC%9A%E3%80%8A%E4%BB%A5%E4%BA%A4%E6%98%93%E4%B8%BA%E7%94%9FII:%E5%8D%96%E5%87%BA%E7%9A%84%E8%89%BA%E6%9C%AF%E3%80%8B%E4%B8%AD%E7%9A%84%E7%B2%BE%E5%8D%8E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -653,867 +746,11 @@ df[['close_norm','equity']].plot(figsize=(12,6))
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2020/11/20/2020-11-20%20Quantopian%E5%9B%A0%E5%AD%90%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8_Alphalens/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/20/2020-11-20%20Quantopian%E5%9B%A0%E5%AD%90%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8_Alphalens/" class="post-title-link" itemprop="url">Quantopian单因子分析工具：Alphalens</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-20 09:22:00" itemprop="dateCreated datePublished" datetime="2020-11-20T09:22:00+08:00">2020-11-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-22 00:54:39" itemprop="dateModified" datetime="2020-11-22T00:54:39+08:00">2020-11-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">量化交易系统</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Quantopian是国外著名的量化交易平台，早期聚宽就是仿照这个网站开发的，算是这类平台的鼻祖了，可惜Quantopian最近刚宣布要停止运营了。Quantopian开发了许多优秀的开源项目，其中比较著名的有zipline、pyfolio和alphalens，zipline是事件驱动的回测引擎，Alphalens与Zipline开源回溯测试库以及Pyfolio配合使用，Pyfolio提供金融投资组合的绩效和风险分析。</p>
-<p>Alphalens主要功能是alpha因子的相关性统计数据和图表展示，包括：</p>
-<ul>
-<li>Returns Analysis</li>
-<li>Information Coefficient Analysis</li>
-<li>Turnover Analysis</li>
-<li>Grouped Analysis</li>
-</ul>
-<p>下面通过一个例子来了解下Alphalens的主要用法，最重要的函数有两个:</p>
-<ul>
-<li>
-<p>get_clean_factor_and_forward_returns：数据预处理，将因子数据，价格数据和组映射格式化为包含对齐的时间戳和资产代码的MultiIndex索引的DataFrame。返回的数据将被格式化为适合Alphalens函数的格式。因子数据格式是MultiIndex索引，level0是时间，level1是资产代码，数据值只有一列为因子值，数据格式如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201121235400.png" alt=""></p>
-</li>
-<li>
-<p>create_full_tear_sheet: 生成全面的单因子分析和评估数据。</p>
-</li>
-</ul>
-<p>通过tushare获取A股股票数据，并将结果处理成get_clean_factor_and_forward_returns参数要求的格式</p>
-<pre><code class="language-python">import pandas as pd
-import tushare as ts
-
-pro = ts.pro_api()
-# 此接口获取的数据为未复权数据，回测建议使用后复权数据，这里为批量获取股票数据做了简化
-df = pro.daily(ts_code='000001.SZ,600000.SH', start_date='20200101', end_date='20201231')
-df.index = pd.to_datetime(df['trade_date'])
-df.index.name = None
-df.sort_index(inplace=True)
-# MultiIndex，level0为日期，level1为股票代码，assets为get_clean_factor_and_forward_returns所需的因子数据格式
-assets = df.set_index([df.index, df['ts_code']], drop=True)
-# column为股票代码，index为日期，值为股票收盘价
-close = df.pivot_table(index='trade_date',columns='ts_code',values='close')
-close.index = pd.to_datetime(close.index)
-</code></pre>
-<p>生成的assets格式入下图所示，红框为index：</p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122003628.png" alt=""></p>
-<p>生成的close格式如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122003811.png" alt=""></p>
-<p>接下来使用alphalens工具对数据进行分析，这里我们使用股票涨跌幅(字段名为pct_chg)作为因子数据</p>
-<pre><code class="language-python">from alphalens.utils import get_clean_factor_and_forward_returns
-from alphalens.tears import create_full_tear_sheet
-# 需要将pct_chg做shift处理，否则将使用未来数据
-ret = get_clean_factor_and_forward_returns(assets[['pct_chg']].shift(2),close)
-create_full_tear_sheet(ret, long_short=False)
-</code></pre>
-<p>使用默认参数的情况下，ret将包含未来1、5、10日收益率，factor因子值，这里对应pct_chg列，factor_quantile为因子分组结果，默认会将因子分成5组，ret结果如图所示:</p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122004722.png" alt=""></p>
-<p>调用create_full_tear_sheet会生成因子分析结果，包含分位数统计信息、收益率信息、分组平均收益率柱状图、所有收益率分布图、单信号组合构建收益率图等，截取部分数据图如下：</p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122005223.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201122005156.png" alt=""></p>
-<p>以上就是样例全部内容，可以看到alphalens功能非常丰富，还需要继续深入学习了解。</p>
-<h3 id="参考">参考</h3>
-<p><a href="http://quantopian.github.io/alphalens/" target="_blank" rel="noopener">http://quantopian.github.io/alphalens/</a></p>
-<p><a href="https://www.quantopian.com/posts/alphalens-a-new-tool-for-analyzing-alpha-factors" target="_blank" rel="noopener">https://www.quantopian.com/posts/alphalens-a-new-tool-for-analyzing-alpha-factors</a></p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2020/11/13/2020-11-13%20pandas-profiling-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/13/2020-11-13%20pandas-profiling-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%88%A9%E5%99%A8/" class="post-title-link" itemprop="url">pandas-profiling 数据分析利器</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-11-13 16:37:00 / 修改时间：16:37:30" itemprop="dateCreated datePublished" datetime="2020-11-13T16:37:00+08:00">2020-11-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="介绍">介绍</h3>
-<p>pandas-profiling可以为DataFrame生成一份报告，在pandas中 df.describe() 是比较基础的探索性数据分析函数，而pandas_profiling则是在DataFrame的基础上扩展，用于快速数据分析。</p>
-<p>对于每个column，以下统计信息（与列类型相关）将显示在交互式HTML报告中：</p>
-<ol>
-<li>类型推断：检测DataFrame中列的类型。</li>
-<li>概要：类型，唯一值，缺失值</li>
-<li>分位数统计信息，例如最小值，Q1，中位数，Q3，最大值，范围，四分位数范围</li>
-<li>描述性统计数据，例如均值，众数，标准偏差，和，中位数绝对偏差，变异系数，峰度，偏度</li>
-<li>出现频率高的值</li>
-<li>直方图</li>
-<li>高度相关变量（Spearman，Pearson和Kendall矩阵）的相关性分析</li>
-<li>缺失值：矩阵，计数（count），热图和缺失值树状图</li>
-<li>重复行列出出现次数最多的重复行</li>
-<li>文本分析：了解文本数据的类别（大写，空格），脚本（拉丁，西里尔字母）和块（ASCII）</li>
-</ol>
-<h3 id="安装">安装</h3>
-<p>使用pip安装</p>
-<blockquote>
-<p>pip install pandas-profiling</p>
-</blockquote>
-<p>使用conda安装</p>
-<blockquote>
-<p>conda install -c anaconda pandas-profiling</p>
-</blockquote>
-<h3 id="一行代码生成报告">一行代码生成报告</h3>
-<p>首先导入测试数据，这里我们使用tushare获取的股票数据来进行测试。</p>
-<pre><code class="language-python">import pandas as pd
-import tushare as ts
-from pandas_profiling import ProfileReport
-
-pro = ts.pro_api()
-symbol = '000001.SZ'
-df = ts.pro_bar(ts_code=symbol, adj='qfq', start_date='20200101', end_date='20201113')
-df.index = pd.to_datetime(df['trade_date'])
-df.index.name = None   # 这步不可缺少，否则生成报告时同名列会报错
-df.sort_index(inplace=True)
-</code></pre>
-<p>接下来生成测试报告</p>
-<pre><code class="language-python">report = ProfileReport(df.sample(frac=0.05), title='%s 股票分析' % symbol)
-report.to_file(output_file='%s.html' % symbol)
-</code></pre>
-<p>报告汇总信息如下截图</p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20201113162700.png" alt=""></p>
-<h3 id="大数据问题解决方案">大数据问题解决方案</h3>
-<p>当pandas-profiling应用在大数据量的DataFrame上运行速度会非常慢，这时候可以考虑使用以下办法解决。</p>
-<h4 id="1-Minimal模式">1. Minimal模式</h4>
-<p>在此模式下report会去掉一些耗时的计算操作，生成一份简略的数据分析报告。通过将参数minimal设置为True可以开启此模式。</p>
-<pre><code class="language-python">profile = ProfileReport(large_dataset, minimal=True)
-profile.to_file(&quot;output.html&quot;)
-</code></pre>
-<h4 id="2-采样">2. 采样</h4>
-<p>采样方式可以有效降低数据量，但缺点是可能漏掉某些数量较小的错误情况。</p>
-<pre><code class="language-python">tmp = df.sample(100) # 方法1，随机采样100条数据
-tmp = df.sample(frac=0.01)   # 方法2，返回数据的比例，不可以跟上面的数值同时使用
-</code></pre>
-<h3 id="参考">参考</h3>
-<p><a href="https://pandas-profiling.github.io/pandas-profiling/docs/master/rtd/" target="_blank" rel="noopener">https://pandas-profiling.github.io/pandas-profiling/docs/master/rtd/</a></p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2020/03/01/2020-02-20%20%E8%82%A1%E7%A5%A8%E9%87%8D%E5%A4%A7%E5%88%A9%E5%A5%BD%E5%BC%80%E7%9B%98%E5%B0%81%E6%B6%A8%E5%81%9C%EF%BC%9F%E8%AF%95%E8%AF%95%E8%BF%99%E4%B8%AA%E5%8A%9E%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/01/2020-02-20%20%E8%82%A1%E7%A5%A8%E9%87%8D%E5%A4%A7%E5%88%A9%E5%A5%BD%E5%BC%80%E7%9B%98%E5%B0%81%E6%B6%A8%E5%81%9C%EF%BC%9F%E8%AF%95%E8%AF%95%E8%BF%99%E4%B8%AA%E5%8A%9E%E6%B3%95/" class="post-title-link" itemprop="url">股票重大利好开盘封涨停买不到？试试这个办法</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-01 01:27:00 / 修改时间：12:18:37" itemprop="dateCreated datePublished" datetime="2020-03-01T01:27:00+08:00">2020-03-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">量化交易系统</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>大家也许有过这种经历，关注的某只股票突发利好消息预判会连续涨停，赶紧打开炒股软件准备下单，发现这只股票已经涨停了，而且是几十万手的大单封死，根本没机会下手，随后几天只能看着股票一个涨停接一个涨停的一路上涨，后悔下手太慢。这种情况还有办法上车吗，散户一般能想到的办法都没戏，但是可以试试下面这种办法，吃不到肉但也许能喝口汤。</p>
-<h3 id="ETF套利介绍">ETF套利介绍</h3>
-<p>在介绍之前我们先了解下什么是ETF套利？ETF指的是交易型开放式指数基金，是一种在交易所上市交易，并且份额可以变动的一种开放式基金，它的手续与股票是完全一样的。由于一级市场和二级市场同时存在，不可避免会出现价格无法同步的显现，这种情况下就给一些机构跨市场套利提供了条件，而套利交易会让套利机会消失，让两个市场的价格差异得到控制，从而保证一级和二级市场价格的一致性。因为一级市场只能是机构投资者参与，所以我们一般的投资者是没办法进行ETF套利的。</p>
-<h3 id="散户该如何操作呢">散户该如何操作呢</h3>
-<p>那我们怎么参与涨停股票的交易呢，办法很简单，可以找出持有我们要买入的涨停股的ETF基金，再看看基金持有的股票数量占基金的比重，找持有股票占比大的基金买入。一般基金持仓比较分散，每只股票持有数量从百分之零点几到百分之十几不等，而且优质股票往往被上百只基金同时持有，如何快速找到持有股票的基金和比重呢？</p>
-<h3 id="操作实战">操作实战</h3>
-<p>以天齐锂业为例，我们从东方财富网上可以找到机构持仓明细 <a href="http://data.eastmoney.com/zlsj/detail/2019-12-31-0-002466.html%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%9C%89%E5%A4%9A%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%9F%BA%E9%87%91%EF%BC%8C%E6%88%91%E4%BB%AC%E9%80%89%E6%8B%A9ETF%E5%9F%BA%E9%87%91%EF%BC%8C%E6%AF%94%E5%A6%82%E6%9C%80%E8%BF%91%E6%AF%94%E8%BE%83%E7%81%AB%E7%9A%84%E5%8D%8E%E5%A4%8F%E4%B8%AD%E8%AF%815G%E9%80%9A%E4%BF%A1%E4%B8%BB%E9%A2%98ETF" target="_blank" rel="noopener">http://data.eastmoney.com/zlsj/detail/2019-12-31-0-002466.html，可以看到有多种类型的基金，我们选择ETF基金，比如最近比较火的华夏中证5G通信主题ETF</a></p>
-<p><img src="/uploads/image-20200301015233403.png" alt="image-20200301015233403"></p>
-<p>进入到该基金的页面 <a href="http://fundact.eastmoney.com/fundinfo/515050.html?fund=515050%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%9F%A5%E7%9C%8B%E8%AF%A5%E5%9F%BA%E9%87%91%E6%8C%81%E6%9C%89%E7%9A%84%E5%89%8D%E5%8D%81%E5%A4%A7%E8%82%A1%E7%A5%A8%EF%BC%8C%E7%AC%AC%E4%B8%80%E5%90%8D%E5%B0%B1%E6%98%AF%E4%B8%AD%E5%85%B4%E9%80%9A%E4%BF%A1%EF%BC%8C%E5%8D%A0%E6%AF%949.90%25" target="_blank" rel="noopener">http://fundact.eastmoney.com/fundinfo/515050.html?fund=515050，可以查看该基金持有的前十大股票，第一名就是中兴通信，占比9.90%</a></p>
-<p><img src="/uploads/image-20200301015411242.png" alt="image-20200301015411242"></p>
-<p>了解以上的数据源之后，我们可以写个python程序快速的找到某只股票的基金持仓及占比情况，源码如下：</p>
-<pre><code class="language-python">import requests
-import execjs
-from bs4 import BeautifulSoup
-
-REQUEST_HEADER = {
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36'}
-
-
-def get_stock_fundlist(symbol, date='2019-12-31'):
-    &quot;&quot;&quot;
-        查询股票被持有的基金及持仓占比
-    :param symbol: 股票代码，例如: SZ000001
-    :param date: 报告日期，例如：2019-12-31，2019-03-31
-    :return:
-    &quot;&quot;&quot;
-    stock_url = 'http://data.eastmoney.com/zlsj/detail.aspx?type=ajax&amp;sr=-1&amp;p=1&amp;ps=1000&amp;stat=0&amp;code=%s&amp;date=%s&amp;rt=52763434'
-    fund_url = 'http://fund.eastmoney.com/f10/FundArchivesDatas.aspx?type=jjcc&amp;code=%s&amp;topline=15'
-
-    web_source = requests.get(stock_url % (symbol[2:], date), headers=REQUEST_HEADER, timeout=5)
-    js_obj = execjs.compile(web_source.content.decode('gbk'))
-    results = js_obj.eval('jsname')
-    if 'data' not in results:
-        return
-    etf_list = [record['SHCode'] for record in results['data'] if record['SHCode'].startswith('5')]
-    results = {}
-    for code in etf_list[:]:
-        web_source = requests.get(fund_url % code, headers=REQUEST_HEADER, timeout=5)
-        html_source = web_source.content.decode()
-        html_source = html_source.split(&quot;\&quot;&quot;)[1]
-        soup = BeautifulSoup(html_source, 'lxml')
-        items = soup.select(&quot;.tzxq&quot;)[0].select('tr')
-        for item in items[1:]:
-            if symbol[2:] not in item.text:
-                continue
-            fields = item.select('td')
-            record = [field.text.strip() for field in fields if
-                      field.text.strip() != '' and '变动' not in field.text]
-            results[code] = record[3][:-1]
-            break
-    return sorted(results.items(), key=lambda kv: kv[1], reverse=True)
-
-
-if __name__ == '__main__':
-    print(get_stock_fundlist('SZ000063', '2019-12-31'))
-
-</code></pre>
-<p>执行代码输出结果如下：</p>
-<pre><code class="language-shell">[('515050', '9.90'), ('570007', '6.87'), ('519668', '6.52'), ('501062', '5.37'), ('550002', '5.13'), ('515000', '5.10'), ('570006', '5.08'), ('501028', '4.81'), ('502013', '4.33'), ('501015', '4.26'), ('550015', '4.22'), ('515580', '4.19'), ('501026', '4.19'), ('512970', '3.94'), ('519929', '3.69'), ('515200', '3.32'), ('550001', '3.06'), ('550008', '3.05'), ('501081', '3.05'), ('550009', '2.99'), ('512220', '2.95'), ('501076', '2.26'), ('519013', '2.09'), ('515880', '10.75'), ('510080', '1.60'), ('590007', '0.99'), ('519676', '0.71')]
-
-</code></pre>
-<p>可以看到所有基金中持有中兴通讯最多份额的基金是515050，该基金持仓里中兴通讯占基金的比例为9.9%，意味着中兴通讯每涨停一天对基金会有0.99%的贡献。</p>
-<p>当然，这个办法有很多的局限性，比如基金持有的股票多数是优质股，这种机会比较难碰到，而且指数型基金往往持仓非常分散，也不适用这种办法。如果基金中其他股票下跌也会造成基金下跌。</p>
-<p>515050 5GETF这种主题基金比较适合这种个股利好涨停的，遇到针对整个行业的利好消息，这种主题型的ETF往往同时持有多只股票出现大幅上涨，2月24日当天，515050 这只基金除了中兴通讯涨停外，信维通信和沪电股份也出现了涨停，这三只股票基金持仓占比高达17.18%，如果之后出现了连续涨停的走势，对基金影响将非常明显。</p>
-<p>除了515050 5GETF还有其他几个比较适合的，比如159995 芯片ETF，515700 新能车，512760 半导体50等，可以都关注着，没准哪天掉下来个利好呢。</p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2020/02/16/2020-02-16%20%E4%BD%BF%E7%94%A8Python%E6%8A%93%E5%8F%96%E5%90%8C%E8%8A%B1%E9%A1%BA%E8%B5%84%E9%87%91%E6%B5%81%E6%95%B0%E6%8D%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/16/2020-02-16%20%E4%BD%BF%E7%94%A8Python%E6%8A%93%E5%8F%96%E5%90%8C%E8%8A%B1%E9%A1%BA%E8%B5%84%E9%87%91%E6%B5%81%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">使用Python抓取同花顺资金流数据</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-02-16 01:14:00 / 修改时间：10:21:03" itemprop="dateCreated datePublished" datetime="2020-02-16T01:14:00+08:00">2020-02-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">量化交易系统</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天我们通过一个例子来介绍python爬取数据的一般步骤，用到的工具包括python的经典模块requests和BeautifulSoup，另外结合刚学习的任务流工具TaskFlow来完成代码开发。</p>
-<p>我们先来看一下要爬取的数据，网址是http://data.10jqka.com.cn/funds/gnzjl/，通过chrome的开发者工具分析我们可以比较容易找到后台数据加载网址为</p>
-<blockquote>
-<p><a href="http://data.10jqka.com.cn/funds/gnzjl/field/tradezdf/order/desc/page/%7Bpage_num%7D/ajax/1/free/1/" target="_blank" rel="noopener">http://data.10jqka.com.cn/funds/gnzjl/field/tradezdf/order/desc/page/{page_num}/ajax/1/free/1/</a></p>
-</blockquote>
-<p>其中page_num的位置为要查询第几页的数据，在网页上看到概念一共有6页数据，所以page_num取值为1-6</p>
-<p><img src="/uploads/WechatIMG109.png" alt="WechatIMG109"></p>
-<p>这里有个小技巧，可以先点击图片左上角的清空按钮，把已经加载的网址先清理掉，然后在原始网页上点第二页，就能看到图片左下角新加载的网址，点开右边“Preview” 看到资金流数据相关的内容，就能确定这个网址是用来加载数据的。</p>
-<p>在chrome浏览器中输入 <a href="http://data.10jqka.com.cn/funds/gnzjl/field/tradezdf/order/desc/page/1/ajax/1/free/1/%EF%BC%8C%E5%B9%B6%E6%89%93%E5%BC%80chrome%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%EF%BC%8C%E5%9C%A8%E7%BD%91%E9%A1%B5%E6%BA%90%E7%A0%81%E4%B8%AD%E6%89%BE%E5%88%B0%E6%95%B0%E6%8D%AE%E6%89%80%E5%9C%A8table%E6%A0%87%E7%AD%BE%E4%B8%BA" target="_blank" rel="noopener">http://data.10jqka.com.cn/funds/gnzjl/field/tradezdf/order/desc/page/1/ajax/1/free/1/，并打开chrome开发者工具，在网页源码中找到数据所在table标签为</a></p>
-<pre><code class="language-html">&lt;table class=&quot;m-table J-ajax-table&quot;&gt;
-	...
-&lt;/table&gt;
-</code></pre>
-<p>抓取数据的完整源码如下</p>
-<pre><code class="language-python">import time
-
-import requests
-from bs4 import BeautifulSoup
-from taskflow import engines
-from taskflow.patterns import linear_flow
-from taskflow.task import Task
-
-REQUEST_HEADER = {
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36'}
-
-
-class MoneyFlowDownload(Task):
-    &quot;&quot;&quot;
-    下载资金流数据
-    数据源地址：http://data.10jqka.com.cn/funds/gnzjl/
-
-    &quot;&quot;&quot;
-    BASE_URl = {
-        &quot;concept&quot;: 'http://data.10jqka.com.cn/funds/gnzjl/field/tradezdf/order/desc/page/%s/ajax/1/free/1/',
-    }
-
-    def execute(self, bizdate, *args, **kwargs):
-
-        for name, base_url in self.BASE_URl.items():
-            # 爬取数据的存储路径
-            dt_path = '/data/%s_%s.csv' % (bizdate, name)
-
-            with open(dt_path, &quot;a+&quot;) as f:
-                # 记录数据文件的当前位置
-                pos = f.tell()
-                f.seek(0)
-                lines = f.readlines()
-                # 读取文件中的全部数据并将第一列存储下来作为去重依据，防止爬虫意外中断后重启程序时，重复写入相同
-                crawled_list = list(map(lambda line: line.split(&quot;,&quot;)[0], lines))
-                f.seek(pos)
-                # 循环500次，从第一页开始爬取数据，当页面没有数据时终端退出循环
-                for i in range(1, 500):
-                    print(&quot;start crawl %s, %s&quot; % (name, base_url % i))
-                    web_source = requests.get(base_url % i, headers=REQUEST_HEADER)
-                    soup = BeautifulSoup(web_source.content.decode(&quot;gbk&quot;), 'lxml')
-                    table = soup.select('.J-ajax-table')[0]
-                    tbody = table.select('tbody tr')
-                    # 当tbody为空时，则说明当前页已经没有数据了，此时终止循环
-                    if len(tbody) == 0:
-                        break
-                    for tr in tbody:
-                        fields = tr.select('td')
-                        # 将每行记录第一列去掉，第一列为序号，没有存储必要
-                        record = [field.text.strip() for field in fields[1:]]
-                        # 如果记录还没有写入文件中，则执行写入操作，否则跳过这行写入
-                        if record[0] not in crawled_list:
-                            f.writelines([','.join(record) + '\n'])
-                    # 同花顺网站有反爬虫的机制，爬取速度过快很可能被封
-                    time.sleep(1)
-
-
-if __name__ == '__main__':
-    bizdate = '20200214'
-    tasks = [
-        MoneyFlowDownload('moneyflow data download')
-    ]
-    flow = linear_flow.Flow('ths data download').add(*tasks)
-    e = engines.load(flow, store={'bizdate': bizdate})
-    e.run()
-
-</code></pre>
-<p>执行程序后，在dt_path位置已经存储了概念的资金流数据，文件名为20200214_concept.csv，内容大致如下：</p>
-<pre><code class="language-shell">钛白粉,1008.88,6.29%,7.68,6.21,1.47,7,金浦钛业,10.04%,2.96
-磷化工,916.833,2.42%,37.53,34.78,2.75,28,六国化工,9.97%,4.08
-光刻胶,1435.68,2.40%,43.51,44.31,-0.80,20,晶瑞股份,10.01%,42.99
-</code></pre>
-<p>此时就完成了同花顺概念分类的资金流数据的爬取，之后可以每天定时启动任务抓取数据进行分析。</p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2020/02/08/2020-02-08%20OpenStack%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6TaskFlow%E4%BB%8B%E7%BB%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/08/2020-02-08%20OpenStack%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6TaskFlow%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">OpenStack公共组件TaskFlow介绍</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-08 23:13:00" itemprop="dateCreated datePublished" datetime="2020-02-08T23:13:00+08:00">2020-02-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 16:19:57" itemprop="dateModified" datetime="2020-02-09T16:19:57+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>TaskFlow 是一个以高度可用，易于理解和声明试方式来执行[作业，任务，流程]的库，可与OpenStack和其他项目一起使用。</p>
-<h1>基本概念</h1>
-<p>taskflow库在oslo项目中是一个实现比较复杂的项目，要弄清楚其实现原理，首先需要对其中的相关概念有所了解。所以，本文首先总结了taskflow中常用的一些基本概念，这些概念主要包括如下几个：</p>
-<h2 id="Atom">Atom</h2>
-<p>Atom类是taskflow的最小单位，taskflow中其他类，包括Task等都需要继承这个类。一个Atom对象是一个命名对象，通过操作输入数据以执行一些促进整个流程发展的动作，或者产生一个处理结果等。它是一个抽象类，提供了两个抽象方法：execute()用于执行一个动作，revert()用于根据execute()执行结果和失败信息还原到任务执行之前的状态；除此之外，还分别为这两个方法提供了pre_execute()/post_execute()、pre_revert()/post_revert()方法用于定义在执行execute或revert操作前后执行的操作。</p>
-<h2 id="Task">Task</h2>
-<p>Task类是一个拥有执行和回滚操作的最小工作单元，表示一个任务流中的某一个任务。它是一个继承自Atom类的表示一个任务的父类，开发者可以执行定义一个继承自Task类的任务类，并重写execute()和revert()方法分别表示执行和回滚的操作。</p>
-<p><img src="https://docs.openstack.org/taskflow/latest/_images/tasks.png" alt="Task outline."></p>
-<h4 id="Task的两种类型">Task的两种类型:</h4>
-<ul>
-<li>Task: 对于继承和创建自己的子类很有用。</li>
-<li>FunctorTask: 对于将现有function包装到任务对象中很有用，但是不能应用在engine中</li>
-</ul>
-<h2 id="Retry">Retry</h2>
-<p>Retry类也是一个继承自Atom的抽象类，它主要定义了当有错误发生时，如何进行重试操作。其也包含也不同的类型，将会在接下来的部分进行详细介绍。继承重试的子类必须提供on_failure()函数来对故障进行处理。</p>
-<h4 id="为避免重复创建常见的重试模式，提供了以下常见的重试子类：">为避免重复创建常见的重试模式，提供了以下常见的重试子类：</h4>
-<ul>
-<li>
-<p>AlwaysRevert: 始终还原subflow.</p>
-</li>
-<li>
-<p>AlwaysRevertAll: 始终还原整个flow</p>
-</li>
-<li>
-<p>Times: 对subflow重试指定次数</p>
-</li>
-<li>
-<p>ForEach: 允许在每次发生故障时为subflow提供不同的值（使其有可能通过更改subflow输入来解决故障）</p>
-</li>
-<li>
-<p>ParameterizedForEach: 和ForEach类似，但是从存储中获取值.</p>
-<p><img src="https://docs.openstack.org/taskflow/latest/_images/inheritance-18bf8f4505f8b8f3ecd1914b3ff8965622138a35.png" alt="Inheritance diagram of taskflow.atom, taskflow.task, taskflow.retry.Retry, taskflow.retry.AlwaysRevert, taskflow.retry.AlwaysRevertAll, taskflow.retry.Times, taskflow.retry.ForEach, taskflow.retry.ParameterizedForEach"></p>
-</li>
-</ul>
-<p>关于重试的策略，taskflow通过一个枚举类型的Decision定义了三种策略：</p>
-<ul>
-<li>REVERT：仅回滚失败Flow对象周围或关联的子流Flow对象。该策略在回滚子流Flow对象之前，会首先咨询其父Atom对象以确定父Atom对象是否使用不同的重试策略。该策略允许安全的嵌套具有不同重试策略的Flow对象。如果父Atom对象中没有定义重试策略，则默认只回滚关联子流Flow对象中的Atom对象。当然，你可以通过defer_revert参数改变默认行为，当其设置为True，表示REVERT策略将继承父Atom的策略，如果父Atom对象没有重试策略，则它也将被回滚。</li>
-<li>REVERT_ALL：不管失败Flow对象的父Atom对象的策略如何，都将回滚整个流程。</li>
-<li>RETRY：重试该失败的Flow/Task对象。</li>
-</ul>
-<h2 id="Flow">Flow</h2>
-<p>Flow类是一个用来关联所有相关Task类，并规定这些Task类的执行和回滚顺序的抽象类。而oslo中为Flow提供了三种实现方式：graph_flow表示图流，linear_flow表示线性流，unordered_flow表示无序流。关于这三种类型的流实现会在之后进行详细分析。</p>
-<p><img src="https://docs.openstack.org/taskflow/latest/_images/inheritance-d843124115abb8d565dc2aea882f408d4b57072b.png" alt="Inheritance diagram of taskflow.flow, taskflow.patterns.linear_flow, taskflow.patterns.unordered_flow, taskflow.patterns.graph_flow"></p>
-<ul>
-<li>linear_flow：线性流，该类型的Flow对象将按照Task/Flow加入的顺序来依次执行，按照加入的倒序依次回滚。</li>
-<li>graph_flow：图流，该类型的Flow对象会按照给加入的Task/Flow显示指定的依赖关系或通过其间的provides/requires属性隐含的依赖关系执行和回滚。</li>
-<li>unordered_flow：无序流，该类型的Flow对象所加入的Task/Flow会按照任意顺序执行或回滚。</li>
-</ul>
-<p>要弄清楚这三种类型的Flow对象，首先需要了解oslo定义的Flow基类的构成。在oslo定义的Flow基类中，主要包含以下几个重要的属性和方法：</p>
-<ul>
-<li>name：表示初始化Flow对象时，为其指定的名称，并不能唯一表示一个Flow对象。</li>
-<li>retry：表示与该Flow对象关联的重试控制器。</li>
-<li>provides：表示该Flow对象提供的一组符号名称。</li>
-<li>requires：表示该Flow对象所需要的一组&quot;unsatisfied&quot;符号名称。</li>
-<li>add(*items)：该方法用于为该Flow对象添加一个或一组Task/Flow对象。</li>
-<li>iter_links()：迭代Flow对象的子节点之间的依赖关系链接。例如在迭代一个三元组(A, B, meta)时，就是迭代一个从子节点A（一个Atom对象或一个Subflow）指向子节点B（一个Atom对象或一个Subflow）的链接；换句话说，也就代表了子流B依赖于子流A，或者子流B需要子流A；而meta代表了这个依赖关系链接的元数据，是一个字典。</li>
-<li>iter_nodes()：迭代Flow对象中的所有节点。例如在迭代一个二元组（A, meta）时，A（一个Atom对象或一个Subflow）是当前Flow对象的子流或子任务；meta同样代表了这个链接的元数据，是一个字典。</li>
-</ul>
-<h2 id="Engine">Engine</h2>
-<p>Engine类是一个表示真正运行Atom对象的抽象类，它的实现类主要用于载入（load）一个Flow对象，然后驱动这个Flow对象的Task对象开始运行。Engine的实现也有多种不同的形式，这也会在接下来的部分进行详细介绍。</p>
-<p>taskflow在具体实现Task/Flow管理时，首先定义了一个Engine抽象类，所有实现都需要继承这个抽象类。这个抽象类定义了如下重要属性和方法：</p>
-<ul>
-<li>notifier：一个通知对象，它会分发与Engine对象中包含的Flow对象相关的事件通知。</li>
-<li>atom_notifier：一个通知对象，它会分发与Engine对象中包含的Atom对象相关的事件通知。</li>
-<li>options：相关数据结构传递给Engine对象的选项。</li>
-<li>storage：Engine对象的存储单元。</li>
-<li>statistics：Engine对象收集的运行时统计数据字典。当Engine没有运行时，这个值为空；在Engine正在运行时或已经运行之前，它可能会存储一些对正在运行或运行完成时有用的或包含信息的键值对。</li>
-<li>compile()：该方法可以将Engine对象中包含的Flow对象编译成Engine对象内部表示形式。这个内部表示形式就是Engine对象实际用于运行的流的形式。</li>
-<li>reset()：将Engine对象重置为PENDING状态。如果一个Flow以FAILURE、SUCCESS、REVERTED状态结束运行（即调用Engine对象的run()方法之后），或由于某种状态使得其处于某种中间状态，此时可以调用reset()方法进行重置，然后进行重试操作。</li>
-<li>prepare()：在Engine对象编译完所有包含的Flow对象之后，且在Flow运行之前执行该方法，为流程的执行进行一些准备操作。</li>
-<li>validate()：在Engine对象编译完所有包含的Flow对象之后，且在Flow运行之前执行该方法，为流程的执行进行一些验证操作。</li>
-<li>run()：运行Engine对象中的Flow流程。</li>
-<li>suspend()：该方法尝试暂停Engine对象。如果一个Engine对象正在执行某个Atom对象，则执行该方法会将这个Atom对象之后的所有正要运行的工作都暂停，并将这个Engine对象的状态变为暂停状态，以便之后进行恢复操作。</li>
-</ul>
-<p>taskflow在具体实现Engine时，都需要给上述属性和方法重新赋值或进行覆写操作，以实现一个完整的管理流程Flow/Task对象的Engine类。在taskflow中，目前实现了三种策略的Engine类，而在这三种策略中，有两种是面向行为的action_egine类：SerialActionEngine、ParallelActionEngine；另一种是面向多进程的worker_base类：WorkerBaseActionEngine。这三种类型的Engine类的异同点如下所示：</p>
-<ul>
-<li>SerialActionEngine：这是一个以串行方式运行任务的Engine类，也就是说所有的任务都会在调用engine.run()方法的线程中顺序执行。</li>
-<li>ParallelActionEngine：这是一个以并行方式运行任务的Engine类，即可以在多个线程中运行Engine对象中的任务。在这种策略中，taskflow定义了对应的多个ParallelThreadTaskExecutor创建运行任务的线程</li>
-<li>WorkerBaseActionEngine：这是一个可以将任务调度到不同worker（即进程）中执行的Engine类。</li>
-</ul>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2019/12/11/2019-12-11%20cython%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/11/2019-12-11%20cython%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">cython使用入门</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-11 10:20:00" itemprop="dateCreated datePublished" datetime="2019-12-11T10:20:00+08:00">2019-12-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">量化交易系统</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近工作上遇到一个问题，某券商提供的文件单接口需要用其提供的c语言工具调用，由于我们的交易框架是python开发的，所以需要用到cython来调用c开发的工具包，学习了cython的官方入门教程顺便记录如下。</p>
-<h3 id="cython介绍">cython介绍</h3>
-<p>Cython是针对Python编程语言和扩展的Cython编程语言（基于Pyrex）的优化静态编译器。<br>
-它使为Python编写C扩展与Python本身一样容易。</p>
-<h3 id="编写样例代码">编写样例代码</h3>
-<p>首先，创建一个后缀为pyx的文件cython_example.pyx，编写cython函数</p>
-<pre><code class="language-python">def say_hello_to(name):
-    print(&quot;Hello %s!&quot; % name)
-</code></pre>
-<p>然后编写相应的编译脚本文件:</p>
-<pre><code class="language-python">from distutils.core import setup
-from Cython.Build import cythonize
-
-setup(name='Hello world app',
-      ext_modules=cythonize(&quot;cython_example.pyx&quot;))
-</code></pre>
-<h3 id="编译代码">编译代码</h3>
-<pre><code class="language-shell">python setup.py build_ext --inplace
-</code></pre>
-<p>报如下错误：</p>
-<pre><code class="language-shell">running build_ext
-building cython_example extension
-error: Unable to find vcvarsall.bat
-</code></pre>
-<h4 id="Which-Microsoft-Visual-C-compiler-to-use-with-a-specific-Python-version">Which Microsoft Visual C++ compiler to use with a specific Python version ?</h4>
-<table>
-<thead>
-<tr>
-<th>visual c++</th>
-<th>python</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>14.x</td>
-<td>3.5,3.6,3.7,3.8</td>
-</tr>
-<tr>
-<td>10.0</td>
-<td>3.3,3.4</td>
-</tr>
-<tr>
-<td>9.0</td>
-<td>2.6, 2.7, 3.0, 3.1, 3.2</td>
-</tr>
-</tbody>
-</table>
-<p>我使用的是python3.6，所以下载 Visual C++ 2015 Build Tools（包含Visual C++ 14.0）</p>
-<p>下载地址：</p>
-<p><a href="http://go.microsoft.com/fwlink/?LinkId=691126&amp;fixForIE=.exe" target="_blank" rel="noopener">http://go.microsoft.com/fwlink/?LinkId=691126&amp;fixForIE=.exe</a>.</p>
-<p>安装之后重新执行编译命令输出如下最后两行说明编译通过:</p>
-<pre><code class="language-shell">Generating code
-Finished generating code
-</code></pre>
-<p>会在当前目录下生成build目录和cython_example.cp36-win32.pyd</p>
-<p>接下来做个测试，<a href="http://xn--test-k84fuit3ty95h.py" target="_blank" rel="noopener">编写一个test.py</a>，内容如下</p>
-<pre><code class="language-python">import cython_example
-
-cython_example.say_hello_to('eryk')
-</code></pre>
-<p>执行命令后输出如下结果说明调用cython函数成功了</p>
-<pre><code class="language-shell">Hello eryk!
-</code></pre>
-<h3 id="参考">参考</h3>
-<p><a href="http://docs.cython.org/en/latest/src/quickstart/build.html" target="_blank" rel="noopener">http://docs.cython.org/en/latest/src/quickstart/build.html</a></p>
-<p><a href="https://wiki.python.org/moin/WindowsCompilers" target="_blank" rel="noopener">https://wiki.python.org/moin/WindowsCompilers</a></p>
-<p><a href="https://stackoverflow.com/questions/29846087/microsoft-visual-c-14-0-is-required-unable-to-find-vcvarsall-bat" target="_blank" rel="noopener">https://stackoverflow.com/questions/29846087/microsoft-visual-c-14-0-is-required-unable-to-find-vcvarsall-bat</a></p>
-<p>我的微信公众号：pyquant</p>
-<p><img src="https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg" alt=""></p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1581,7 +818,7 @@ cython_example.say_hello_to('eryk')
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
