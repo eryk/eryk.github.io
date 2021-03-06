@@ -145,6 +145,106 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/09/22/linux%E7%94%A8%E6%88%B7%E8%BF%9B%E7%A8%8B%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E8%A2%AB%E7%B3%BB%E7%BB%9Fkill%E6%8E%89%E4%BA%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/09/22/linux%E7%94%A8%E6%88%B7%E8%BF%9B%E7%A8%8B%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E8%A2%AB%E7%B3%BB%E7%BB%9Fkill%E6%8E%89%E4%BA%86/" class="post-title-link" itemprop="url">linux用户进程执行过程被系统kill掉了</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-09-22 15:16:00" itemprop="dateCreated datePublished" datetime="2017-09-22T15:16:00+08:00">2017-09-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>系统日志显示</p>
+<pre><code>Sep 22 12:40:44 gpu01 systemd[1]: Stopping User Manager for UID 1001...
+Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Default.
+Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Basic System.
+Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Timers.
+Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Sockets.
+Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Paths.
+Sep 22 12:40:44 gpu01 systemd[1453]: Reached target Shutdown.
+Sep 22 12:40:44 gpu01 systemd[1453]: Starting Exit the Session...
+Sep 22 12:40:44 gpu01 systemd[1453]: Received SIGRTMIN+24 from PID 28725 (kill).
+Sep 22 12:40:44 gpu01 systemd[1]: Stopped User Manager for UID 1001.
+Sep 22 12:40:44 gpu01 systemd[1]: Removed slice User Slice of xxx.
+</code></pre>
+<p>google到如下解释：<br>
+<a href="https://serverfault.com/questions/774491/what-is-sigrtmin24-in-syslog" target="_blank" rel="noopener">https://serverfault.com/questions/774491/what-is-sigrtmin24-in-syslog</a></p>
+<p>当用户session都退出之后，之前后台执行的进程就会被kill掉</p>
+<p>所以程序运行最好用nohup xxx &amp;</p>
+<p>这还有一篇文章介绍nohup 和 &amp; 的区别，核心意思是说：</p>
+<blockquote>
+<p>用nohup运行命令可以使命令永久的执行下去，和用户终端没有关系，例如我们断开SSH连接都不会影响他的运行，注意了nohup没有后台运行的意思；&amp;才是后台运行</p>
+<p>&amp;是指在后台运行，但当用户推出(挂起)的时候，命令自动也跟着退出</p>
+</blockquote>
+<p><a href="http://blog.csdn.net/zhang_red/article/details/52789691" target="_blank" rel="noopener">http://blog.csdn.net/zhang_red/article/details/52789691</a></p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/09/21/2017-09-21/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -452,141 +552,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/24/leve1%E5%92%8Clevel2%20%E8%A7%A3%E9%87%8A/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/08/24/leve1%E5%92%8Clevel2%20%E8%A7%A3%E9%87%8A/" class="post-title-link" itemprop="url">leve1、level2 解释</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-08-24 16:36:21" itemprop="dateCreated datePublished" datetime="2017-08-24T16:36:21+08:00">2017-08-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
-                    <span itemprop="name">金融</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1>Level 1 Market Data</h1>
-<p>Basic market data is known as level 1 market data, and includes the following information:</p>
-<ul>
-<li><strong>Bid price</strong>: The highest price that a trader is willing to buy an asset at.</li>
-<li><strong>Bid size</strong>: The number of shares, forex lots or contracts that are available at the bid price.</li>
-<li><strong>Ask price</strong>: The lowest price that a trader is willing to sell an asset at.</li>
-<li><strong>Ask size</strong>: The number of shares, forex lots or contracts that are available at the ask price.</li>
-<li><strong>Last price</strong>: The price at which the most recent trade was completed.</li>
-<li><strong>Last size</strong>: The number of shares, forex lots or contracts that were traded in the most recent trade.</li>
-</ul>
-<p>Level 1 market data provides all of the information needed to trade using most trading systems. If you are trading a price action or indicator based strategy, then Level 1 market data should satisfy your informational needs.</p>
-<p>Scalpers, and traders who trade based on changes in how other traders are bidding and offering (offer and ask are used interchangeably), will need Level 2 market data, which provides multiple levels of bids and offers.</p>
-<h1>Level 2 Market Data</h1>
-<p>Additional market data is known as level 2 market data, the order book, or the depth of market, and includes the following additional information:</p>
-<ul>
-<li>
-<p><strong>Highest bid prices</strong>: The highest 5 to 15 prices (depending upon the market) where traders are willing to buy an asset. This means you not only see the current bid, but also all the bids currently below it. In actively traded stocks, there will typically be bids every $0.01 below the current bid, and in actively traded futures, there will typically be a bid each tick below the current bid. If there is a gap between the current bid and next bid, that typically means the stock or contract may experience a larger bid/ask spread and less volume.</p>
-</li>
-<li>
-<p><strong>Bid sizes</strong>: The number of shares, forex lots or contracts that are available at each of the bid prices.</p>
-</li>
-<li>
-<p><strong>Lowest ask prices</strong>: The lowest 5 to 15 prices (depending upon the market) where traders are willing to sell an asset. This means you not only see the current ask, but also all the asks above the current ask. In actively traded stocks, there will typically be asks every $0.01 above the current ask, and in actively traded futures, there will typically be an ask each tick above the current ask. If there is a gap between the current ask and next ask, that typically means the stock or contract may experience a larger bid/ask spread and less volume.</p>
-</li>
-<li>
-<p><strong>Ask sizes</strong>: The number of shares, forex lots or contracts that are available at each of the ask prices.</p>
-</li>
-</ul>
-<p>Level 2 market data provides the additional information that is needed to trade based on changes that occur in the bids and offers. Level 2 market data is also known as the order book, because it shows the orders that are currently pending for the market. It is also known as the depth of market, or market depth, because it shows the number of contracts (or shares or lots) that are available at each of the bid and ask prices.</p>
-<p><img src="images/15035650306126.jpg" alt=""></p>
-<h1>Order Book</h1>
-<blockquote>
-<p>An order book is the list of orders (manual or electronic) that a trading venue (in particular stock exchanges) uses to record the interest of buyers and sellers in a particular financial instrument. A matching engine uses the book to determine which orders can be fulfilled i.e. what trades can be made.   --wikipedia</p>
-</blockquote>
-<h1>Level2行情</h1>
-<h3 id="买卖行情">买卖行情</h3>
-<p>买入委托和卖出委托前10档的委托价和委托量,投资者可以看得更远,哪个价位有阻力？哪个价位有支撑？哪个价位有大笔挂单,一目了然。</p>
-<h3 id="总买总卖">总买总卖</h3>
-<p>当前全部买入(卖出)委托的总量和加权均价,据此投资者可以判断盘中的支撑位(委买均价)、阻力位(委卖均价)、支撑力度(委买总量)、阻力大小(委卖总量),还可以根据这些数据的动态变化分析多空双方力量的变化,寻找行情的转折点</p>
-<h3 id="成交明细">成交明细</h3>
-<p>在Level-2之前,沪深交易所提供的都是行情快照,大家看到的分笔成交其实是两次快照期间累计的成交量和最后一笔的价格,而逐笔成交则是真实的每笔成交价和成交量的明细数据。逐笔成交极大地提高了行情的透明度。</p>
-<h3 id="买卖队列">买卖队列</h3>
-<p>买一或卖一的前50笔委托单明细,根据委托单的大小或委托单是否有规律,可以判断委托是机构、大户、或散户所为。</p>
-<h1>逐笔数据与分笔数据的根本区别</h1>
-<p>国内的Tick数据指的是 按固定时间间隔取个快照记录下来</p>
-<ol>
-<li>逐笔成交一般显示的数据格式为在几分几秒以多少价格分几笔成交了多少手。在这里我们要注意的是成交手数有时候是带小数点的，这是因为股票买进的股数最少是100股，委托的股数也应是100的整数倍，卖出却没有限制，因此成交的手数会有小数点。另外一点就是如果在成交价格和手数前面没有显示，则一半是默认的1笔。</li>
-<li>分时成交一般显示的数据格式为在几分几秒以多少价格成交了多少手。这里需要注意的是成交手数永远是整数，不会出现小数点数字。其中现手累计数就是总手数。总手数也叫做成交量。有些软件在现量后面标注蓝色S和红色B，前者代表卖，后者代表买。目前市面上出现了LEVEL-2行情数据，比较具有代表性的是大智慧，在那里把分笔成交是叫分时成交，实际上就是我们在普通分析软件上F1看到的“分笔成交明细”，但是他和LEVEL-2行情数据提供的逐笔成交明细是不一样的。</li>
-<li>分笔数据由于是合成混合数据，它是以最后1笔的买卖方向来表示该时间内（3秒或者6秒）的买卖方向，所以误差很大。（见下图说明）</li>
-<li>一个孤独的数字是缺乏意义的，但是一些连续的数字则是充满想像的。一般来说，成交笔数越少，金额越大，表示成交比较强势，反之是弱势。尤其是成交手数比较大而集中的时候，表示有大资金活跃迹象，该股出现价格异动的概率就大，应该引起投资者的注意。而如果半天也没人买或者都是一些小单子在交易，则至少短期不大可能成为好股。</li>
-<li>交易数据三要素----成交量、成交价格和成交笔数。不陌生的是前面两个，笔数就是交易批次。在成交量一定的前提下，笔数少说明交易力度强，反之就弱。笔数的变动与数量方向一致，交易为常态，反之就是非常态。</li>
-</ol>
-<p><img src="images/15035663072399.gif" alt=""></p>
-<h1>引用</h1>
-<p><a href="https://www.thebalance.com/order-book-level-2-market-data-and-depth-of-market-1031118" target="_blank" rel="noopener">https://www.thebalance.com/order-book-level-2-market-data-and-depth-of-market-1031118</a></p>
-<p><a href="https://baike.baidu.com/item/Level-2" target="_blank" rel="noopener">https://baike.baidu.com/item/Level-2</a></p>
-<p><a href="https://www.zhihu.com/question/26950456" target="_blank" rel="noopener">https://www.zhihu.com/question/26950456</a></p>
-<p><a href="http://www.cnblogs.com/chuncn/archive/2009/03/13/1410144.html" target="_blank" rel="noopener">http://www.cnblogs.com/chuncn/archive/2009/03/13/1410144.html</a></p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/24/%E8%BF%85%E6%8A%95%E4%BA%A4%E6%98%93%E7%BB%88%E7%AB%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -761,7 +726,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -772,7 +737,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -805,7 +770,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

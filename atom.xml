@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xuqi365.com/"/>
-  <updated>2020-12-27T15:22:51.887Z</updated>
+  <updated>2021-03-06T12:27:53.403Z</updated>
   <id>http://xuqi365.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用pycharm远程部署运行python程序</title>
+    <link href="http://xuqi365.com/2021/03/06/2021-03-06%20%E4%BD%BF%E7%94%A8pycharm%E8%BF%9C%E7%A8%8B%E9%83%A8%E7%BD%B2%E8%BF%90%E8%A1%8Cpython%E7%A8%8B%E5%BA%8F/"/>
+    <id>http://xuqi365.com/2021/03/06/2021-03-06%20%E4%BD%BF%E7%94%A8pycharm%E8%BF%9C%E7%A8%8B%E9%83%A8%E7%BD%B2%E8%BF%90%E8%A1%8Cpython%E7%A8%8B%E5%BA%8F/</id>
+    <published>2021-03-06T08:55:00.000Z</published>
+    <updated>2021-03-06T12:27:53.403Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;通常我使用笔记本电脑编写程序代码，而数据采集是由一台服务器进行，为了方便开发调试，需要把程序部署到服务器上运行。这时候就用到了pycharm的远程部署调试功能。&lt;/p&gt;
+&lt;h3 id=&quot;1-配置远程服务器&quot;&gt;1.
+        
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://xuqi365.com/categories/python/"/>
+    
+    
+      <category term="PyCharm" scheme="http://xuqi365.com/tags/PyCharm/"/>
+    
+  </entry>
   
   <entry>
     <title>Pandas缺失值可视化分析模块：missingno</title>
@@ -543,34 +571,6 @@ pyfolio的核心是所谓的“tear sheet
       <category term="Queue" scheme="http://xuqi365.com/tags/Queue/"/>
     
       <category term="Pipe" scheme="http://xuqi365.com/tags/Pipe/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用Pandas开发一个均线策略</title>
-    <link href="http://xuqi365.com/2019/04/24/%E4%BD%BF%E7%94%A8Pandas%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E5%9D%87%E7%BA%BF%E7%AD%96%E7%95%A5/"/>
-    <id>http://xuqi365.com/2019/04/24/%E4%BD%BF%E7%94%A8Pandas%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E5%9D%87%E7%BA%BF%E7%AD%96%E7%95%A5/</id>
-    <published>2019-04-24T12:47:00.000Z</published>
-    <updated>2020-02-08T17:11:26.044Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;我的微信公众号：pyquant&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/eryk/blog_img/master/20190424095328.jpg&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="策略研究" scheme="http://xuqi365.com/categories/%E7%AD%96%E7%95%A5%E7%A0%94%E7%A9%B6/"/>
-    
-    
-      <category term="Pandas" scheme="http://xuqi365.com/tags/Pandas/"/>
     
   </entry>
   

@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/11/06/Tradex%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/11/24/%E6%B7%B1%E5%9C%B3%E5%B8%82%E4%BB%B7%E5%A7%94%E6%89%98%E7%9A%84%E7%B1%BB%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.jpg">
@@ -159,7 +159,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2017/11/06/Tradex%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Tradex笔记</a>
+            <a href="/2017/11/24/%E6%B7%B1%E5%9C%B3%E5%B8%82%E4%BB%B7%E5%A7%94%E6%89%98%E7%9A%84%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">深圳市价委托的类型</a>
         </h1>
 
         <div class="post-meta">
@@ -169,14 +169,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2017-11-06 09:29:00" itemprop="dateCreated datePublished" datetime="2017-11-06T09:29:00+08:00">2017-11-06</time>
+              <time title="创建时间：2017-11-24 09:29:00" itemprop="dateCreated datePublished" datetime="2017-11-24T09:29:00+08:00">2017-11-24</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -184,8 +184,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">量化交易系统</span>
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
                   </a>
                 </span>
             </span>
@@ -201,29 +201,72 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>TradeX 是为从事股票程序化交易的投资者提供一个接口，通过将自己的交易策略编写成计算机代码，实现自动 自动快速读取行情进行分析，以及股票下单、撤单、查询，做到股票的全自动买卖。</p>
-<p>优势</p>
+          <p>深圳市价委托的类型有五种，分别为：对手方最优价格、本方最优价格、最优五档即时成交剩余撤销、即时成交剩余撤销（FAK）、全额成交或撤销委托（FOK）。</p>
+<h1>对手方最优价格委托</h1>
+<p>对手方最优价格委托指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内对手方队列的最优价格为其指定价格的委托类型。</p>
 <ol>
-<li>多语言支持: 封装 C++,C#，Python，Delphi，Java，VB</li>
-<li>支持 Level 2 行情(专用账户版，用户需自行购买通达信 Level2 行情账户)包含十档行情、逐笔成交、买卖队列和深圳逐笔委托行情(上交所不对外提供逐笔委托)，需开通通达信的 Level 2 金融终端账户</li>
-<li>支持扩展行情: 包含期货、期权、三版、港股数据</li>
-<li>支持股票五档实时行情，实测速度比 TdxhqApi 快 10%~30%;包含各周期 K 线、分时、分笔成交，五档行情，F10 公司信息资料</li>
-<li>社区活跃</li>
-<li>支持市场上绝大部分券商</li>
-<li>接口是 tcp 直连获取行情</li>
+<li>“对手方最优价格委托”无需输入指定价格，如果当时交易主机中集中申报簿的对手方队列中存在有效申报，则与当时对手方队列中价格最优的申报成交；“价格最优的申报”是指集中申报簿中买方“买一”队列或卖方“卖一”队列。</li>
+<li>没有完全成交的“对手方最优价格委托”将以限价形式保存在交易主机集中申报簿的本方队列中，其指定价格为委托已成交部分的成交价，也就是委托申报进入交易主机当时对手方队列的最优价格.</li>
+<li>如果当时集中申报簿中对手方队列没有有效对手盘，交易主机直接对“对手方最优价格委托”作撤单处理。</li>
 </ol>
-<p>劣势:</p>
+<h1>本方最优价格委托</h1>
+<p>本方最优价格委托是指投资者无须指定委托价格，当委托申报指令进入交易主机时，交易主机以当时集中申报簿有效竞价范围内本方队列最优价格为其指定价格的委托类型。</p>
 <ol>
-<li>所有行情接口均要求客户端主动查询请求行情数据，而非推送行情;每种行情接口各自对应于不同的通讯协议。每种行情接口的都可以建立单连接和批量多连接;如果要快速获取大量股票数据，则可能需要用到批量多连接。</li>
-<li>只支持windows系统，32 位的 Python 2.7 / Python 3.6.x</li>
-<li></li>
+<li>“本方最优价格委托”无需输入指定价格，如果当时交易主机中集中申报簿的本方队列存在有效申报，则以当时本方队列的最优价格为指定价格以限价形式保存在交易主机的集中申报簿中；</li>
+<li>如果当时集中申报簿本方队列中没有有效申报，交易主机对“本方最优价格委托”作撤销处理。</li>
 </ol>
-<p>问题：</p>
+<h1>即时成交剩余撤销委托</h1>
+<p>即时成交剩余撤销委托是指无需指定委托价格，委托进入交易主机时能立即成交部分即予以撮合，未成交部分立即自动撤销的委托方式，一笔委托可以同对手方数笔不同价格的委托撮合成交。</p>
 <ol>
-<li>需要自行维护停牌/退市股票列表，否则查询股票时服务器会自动返回600839的行情信息</li>
-<li>分笔数据间隔3s，建议更小的时间间隔获取数据，否则最多可能出现3s延迟</li>
-<li>不支持使用同一 Level 2 行情账户同时从多点连接，如果的确需要，您需要购买多个 Level 2 账户。 普通的五档实时行情、扩展行情没有任何 IP 限制，可以多点登录连接</li>
+<li>“即时成交剩余撤销委托”无需指定价格，如果当时交易主机集中申报簿的对手方队列中存在有效申报，则按对手方申报队列顺序以对手方价格为成交价进行逐笔配对；</li>
+<li>“即时成交剩余撤销委托”可以与不同价格的对手方委托撮合成交，直至无有效对手盘（即在涨跌幅限制范围内或在最后一笔成交价为基础的有效竞价范围内交易主机中现有的对手方队列中无委托）；</li>
+<li>若“即时成交剩余撤销委托”成交后有剩余的委托（包括部分成交、未有成交的情形），交易主机立即对剩余部分作撤单处理。</li>
 </ol>
+<h1>最优五档即时成交剩余撤销委托</h1>
+<p>“最优五档即时成交剩余撤销委托”是为了避免市场价格波动过大而对“即时成交剩余撤销委托”的改良。其与“即时成交剩余撤销委托”方式的区别就在于“即时成交剩余撤销委托”可以与对手方数笔不同价格的委托撮合，直至无有效对手盘，而“最优五档即时成交剩余撤销委托”只能与一定范围内的对手方队列成交。</p>
+<h1>全额成交或撤销委托</h1>
+<p>全额成交或撤销委托是指无需指定委托价格，委托进入交易主机时能立即全部成交即予以撮合，否则委托全部撤销的委托方式，该委托可以与对手方数笔不同价格的委托撮合成交。</p>
+<h1>问题</h1>
+<ol>
+<li>
+<p>市价委托可以撤单吗</p>
+<p>根据《深圳证券交易所交易规则》，市价申报主要包括：对手方最优价格申报、本方最优价格申报、最优五档即时成交剩余撤销申报、即时成交剩余撤销申报、全额成交或撤销申报等五种，其中对手方最优价格申报和本方最优价格申报部分成交时，未成交部分可以主动撤单，其余情况主机会自动撤单，而不能主动撤单。</p>
+</li>
+</ol>
+<h1>测试结果</h1>
+<ol>
+<li>市价委托(深圳对方最优价格)
+<ul>
+<li>买入: 按照涨停价下单</li>
+<li>卖出: 按照价格0下单</li>
+</ul>
+</li>
+<li>市价委托(深圳本方最优价格)
+<ul>
+<li>买入: 按照买一价下单，按照时间优先原则排列订单</li>
+<li>卖出: 按照卖一价下单，按照时间优先原则排列订单</li>
+</ul>
+</li>
+<li>市价委托(深圳即时成交剩余撤销)
+<ul>
+<li>买入: 按照涨停价下单</li>
+</ul>
+</li>
+<li>市价委托(上海五档即成剩撤 / 深圳五档即成剩撤)
+<ul>
+<li>卖出： 按照价格0下单</li>
+</ul>
+</li>
+<li>市价委托(深圳全额成交或撤销)
+<ul>
+<li>买入: 按照涨停价下单，买入量大于5档时还会继续买入</li>
+</ul>
+</li>
+<li>市价委托(上海五档即成转限价)</li>
+</ol>
+<h1>参考</h1>
+<p>深圳证券交易所关于五种市价委托方式的业务说明<br>
+<a href="http://www.szse.cn/UpFiles/Attach/1045/2005/11/14/1442302347.doc" target="_blank" rel="noopener">http://www.szse.cn/UpFiles/Attach/1045/2005/11/14/1442302347.doc</a></p>
 
       
 
@@ -324,6 +367,106 @@
 <h1>涨跌停板</h1>
 <p>不同品种幅度不同，不同保证金会放大涨跌停，比如10倍杠杆，涨幅5%，对应本金则涨幅50%</p>
 <h1>持仓限额</h1>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/11/06/Tradex%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/06/Tradex%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Tradex笔记</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-06 09:29:00" itemprop="dateCreated datePublished" datetime="2017-11-06T09:29:00+08:00">2017-11-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:25" itemprop="dateModified" datetime="2020-02-09T01:11:25+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">量化交易系统</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>TradeX 是为从事股票程序化交易的投资者提供一个接口，通过将自己的交易策略编写成计算机代码，实现自动 自动快速读取行情进行分析，以及股票下单、撤单、查询，做到股票的全自动买卖。</p>
+<p>优势</p>
+<ol>
+<li>多语言支持: 封装 C++,C#，Python，Delphi，Java，VB</li>
+<li>支持 Level 2 行情(专用账户版，用户需自行购买通达信 Level2 行情账户)包含十档行情、逐笔成交、买卖队列和深圳逐笔委托行情(上交所不对外提供逐笔委托)，需开通通达信的 Level 2 金融终端账户</li>
+<li>支持扩展行情: 包含期货、期权、三版、港股数据</li>
+<li>支持股票五档实时行情，实测速度比 TdxhqApi 快 10%~30%;包含各周期 K 线、分时、分笔成交，五档行情，F10 公司信息资料</li>
+<li>社区活跃</li>
+<li>支持市场上绝大部分券商</li>
+<li>接口是 tcp 直连获取行情</li>
+</ol>
+<p>劣势:</p>
+<ol>
+<li>所有行情接口均要求客户端主动查询请求行情数据，而非推送行情;每种行情接口各自对应于不同的通讯协议。每种行情接口的都可以建立单连接和批量多连接;如果要快速获取大量股票数据，则可能需要用到批量多连接。</li>
+<li>只支持windows系统，32 位的 Python 2.7 / Python 3.6.x</li>
+<li></li>
+</ol>
+<p>问题：</p>
+<ol>
+<li>需要自行维护停牌/退市股票列表，否则查询股票时服务器会自动返回600839的行情信息</li>
+<li>分笔数据间隔3s，建议更小的时间间隔获取数据，否则最多可能出现3s延迟</li>
+<li>不支持使用同一 Level 2 行情账户同时从多点连接，如果的确需要，您需要购买多个 Level 2 账户。 普通的五档实时行情、扩展行情没有任何 IP 限制，可以多点登录连接</li>
+</ol>
 
       
 
@@ -515,106 +658,6 @@ zip -r ../$1.zip ./*
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/09/22/linux%E7%94%A8%E6%88%B7%E8%BF%9B%E7%A8%8B%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E8%A2%AB%E7%B3%BB%E7%BB%9Fkill%E6%8E%89%E4%BA%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/09/22/linux%E7%94%A8%E6%88%B7%E8%BF%9B%E7%A8%8B%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E8%A2%AB%E7%B3%BB%E7%BB%9Fkill%E6%8E%89%E4%BA%86/" class="post-title-link" itemprop="url">linux用户进程执行过程被系统kill掉了</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-09-22 15:16:00" itemprop="dateCreated datePublished" datetime="2017-09-22T15:16:00+08:00">2017-09-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index">
-                    <span itemprop="name">其他</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>系统日志显示</p>
-<pre><code>Sep 22 12:40:44 gpu01 systemd[1]: Stopping User Manager for UID 1001...
-Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Default.
-Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Basic System.
-Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Timers.
-Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Sockets.
-Sep 22 12:40:44 gpu01 systemd[1453]: Stopped target Paths.
-Sep 22 12:40:44 gpu01 systemd[1453]: Reached target Shutdown.
-Sep 22 12:40:44 gpu01 systemd[1453]: Starting Exit the Session...
-Sep 22 12:40:44 gpu01 systemd[1453]: Received SIGRTMIN+24 from PID 28725 (kill).
-Sep 22 12:40:44 gpu01 systemd[1]: Stopped User Manager for UID 1001.
-Sep 22 12:40:44 gpu01 systemd[1]: Removed slice User Slice of xxx.
-</code></pre>
-<p>google到如下解释：<br>
-<a href="https://serverfault.com/questions/774491/what-is-sigrtmin24-in-syslog" target="_blank" rel="noopener">https://serverfault.com/questions/774491/what-is-sigrtmin24-in-syslog</a></p>
-<p>当用户session都退出之后，之前后台执行的进程就会被kill掉</p>
-<p>所以程序运行最好用nohup xxx &amp;</p>
-<p>这还有一篇文章介绍nohup 和 &amp; 的区别，核心意思是说：</p>
-<blockquote>
-<p>用nohup运行命令可以使命令永久的执行下去，和用户终端没有关系，例如我们断开SSH连接都不会影响他的运行，注意了nohup没有后台运行的意思；&amp;才是后台运行</p>
-<p>&amp;是指在后台运行，但当用户推出(挂起)的时候，命令自动也跟着退出</p>
-</blockquote>
-<p><a href="http://blog.csdn.net/zhang_red/article/details/52789691" target="_blank" rel="noopener">http://blog.csdn.net/zhang_red/article/details/52789691</a></p>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -687,7 +730,7 @@ Sep 22 12:40:44 gpu01 systemd[1]: Removed slice User Slice of xxx.
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -698,7 +741,7 @@ Sep 22 12:40:44 gpu01 systemd[1]: Removed slice User Slice of xxx.
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -731,7 +774,7 @@ Sep 22 12:40:44 gpu01 systemd[1]: Removed slice User Slice of xxx.
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -145,6 +145,141 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/24/leve1%E5%92%8Clevel2%20%E8%A7%A3%E9%87%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Python量化交易实战">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/24/leve1%E5%92%8Clevel2%20%E8%A7%A3%E9%87%8A/" class="post-title-link" itemprop="url">leve1、level2 解释</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-24 16:36:21" itemprop="dateCreated datePublished" datetime="2017-08-24T16:36:21+08:00">2017-08-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%91%E8%9E%8D/" itemprop="url" rel="index">
+                    <span itemprop="name">金融</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>Level 1 Market Data</h1>
+<p>Basic market data is known as level 1 market data, and includes the following information:</p>
+<ul>
+<li><strong>Bid price</strong>: The highest price that a trader is willing to buy an asset at.</li>
+<li><strong>Bid size</strong>: The number of shares, forex lots or contracts that are available at the bid price.</li>
+<li><strong>Ask price</strong>: The lowest price that a trader is willing to sell an asset at.</li>
+<li><strong>Ask size</strong>: The number of shares, forex lots or contracts that are available at the ask price.</li>
+<li><strong>Last price</strong>: The price at which the most recent trade was completed.</li>
+<li><strong>Last size</strong>: The number of shares, forex lots or contracts that were traded in the most recent trade.</li>
+</ul>
+<p>Level 1 market data provides all of the information needed to trade using most trading systems. If you are trading a price action or indicator based strategy, then Level 1 market data should satisfy your informational needs.</p>
+<p>Scalpers, and traders who trade based on changes in how other traders are bidding and offering (offer and ask are used interchangeably), will need Level 2 market data, which provides multiple levels of bids and offers.</p>
+<h1>Level 2 Market Data</h1>
+<p>Additional market data is known as level 2 market data, the order book, or the depth of market, and includes the following additional information:</p>
+<ul>
+<li>
+<p><strong>Highest bid prices</strong>: The highest 5 to 15 prices (depending upon the market) where traders are willing to buy an asset. This means you not only see the current bid, but also all the bids currently below it. In actively traded stocks, there will typically be bids every $0.01 below the current bid, and in actively traded futures, there will typically be a bid each tick below the current bid. If there is a gap between the current bid and next bid, that typically means the stock or contract may experience a larger bid/ask spread and less volume.</p>
+</li>
+<li>
+<p><strong>Bid sizes</strong>: The number of shares, forex lots or contracts that are available at each of the bid prices.</p>
+</li>
+<li>
+<p><strong>Lowest ask prices</strong>: The lowest 5 to 15 prices (depending upon the market) where traders are willing to sell an asset. This means you not only see the current ask, but also all the asks above the current ask. In actively traded stocks, there will typically be asks every $0.01 above the current ask, and in actively traded futures, there will typically be an ask each tick above the current ask. If there is a gap between the current ask and next ask, that typically means the stock or contract may experience a larger bid/ask spread and less volume.</p>
+</li>
+<li>
+<p><strong>Ask sizes</strong>: The number of shares, forex lots or contracts that are available at each of the ask prices.</p>
+</li>
+</ul>
+<p>Level 2 market data provides the additional information that is needed to trade based on changes that occur in the bids and offers. Level 2 market data is also known as the order book, because it shows the orders that are currently pending for the market. It is also known as the depth of market, or market depth, because it shows the number of contracts (or shares or lots) that are available at each of the bid and ask prices.</p>
+<p><img src="images/15035650306126.jpg" alt=""></p>
+<h1>Order Book</h1>
+<blockquote>
+<p>An order book is the list of orders (manual or electronic) that a trading venue (in particular stock exchanges) uses to record the interest of buyers and sellers in a particular financial instrument. A matching engine uses the book to determine which orders can be fulfilled i.e. what trades can be made.   --wikipedia</p>
+</blockquote>
+<h1>Level2行情</h1>
+<h3 id="买卖行情">买卖行情</h3>
+<p>买入委托和卖出委托前10档的委托价和委托量,投资者可以看得更远,哪个价位有阻力？哪个价位有支撑？哪个价位有大笔挂单,一目了然。</p>
+<h3 id="总买总卖">总买总卖</h3>
+<p>当前全部买入(卖出)委托的总量和加权均价,据此投资者可以判断盘中的支撑位(委买均价)、阻力位(委卖均价)、支撑力度(委买总量)、阻力大小(委卖总量),还可以根据这些数据的动态变化分析多空双方力量的变化,寻找行情的转折点</p>
+<h3 id="成交明细">成交明细</h3>
+<p>在Level-2之前,沪深交易所提供的都是行情快照,大家看到的分笔成交其实是两次快照期间累计的成交量和最后一笔的价格,而逐笔成交则是真实的每笔成交价和成交量的明细数据。逐笔成交极大地提高了行情的透明度。</p>
+<h3 id="买卖队列">买卖队列</h3>
+<p>买一或卖一的前50笔委托单明细,根据委托单的大小或委托单是否有规律,可以判断委托是机构、大户、或散户所为。</p>
+<h1>逐笔数据与分笔数据的根本区别</h1>
+<p>国内的Tick数据指的是 按固定时间间隔取个快照记录下来</p>
+<ol>
+<li>逐笔成交一般显示的数据格式为在几分几秒以多少价格分几笔成交了多少手。在这里我们要注意的是成交手数有时候是带小数点的，这是因为股票买进的股数最少是100股，委托的股数也应是100的整数倍，卖出却没有限制，因此成交的手数会有小数点。另外一点就是如果在成交价格和手数前面没有显示，则一半是默认的1笔。</li>
+<li>分时成交一般显示的数据格式为在几分几秒以多少价格成交了多少手。这里需要注意的是成交手数永远是整数，不会出现小数点数字。其中现手累计数就是总手数。总手数也叫做成交量。有些软件在现量后面标注蓝色S和红色B，前者代表卖，后者代表买。目前市面上出现了LEVEL-2行情数据，比较具有代表性的是大智慧，在那里把分笔成交是叫分时成交，实际上就是我们在普通分析软件上F1看到的“分笔成交明细”，但是他和LEVEL-2行情数据提供的逐笔成交明细是不一样的。</li>
+<li>分笔数据由于是合成混合数据，它是以最后1笔的买卖方向来表示该时间内（3秒或者6秒）的买卖方向，所以误差很大。（见下图说明）</li>
+<li>一个孤独的数字是缺乏意义的，但是一些连续的数字则是充满想像的。一般来说，成交笔数越少，金额越大，表示成交比较强势，反之是弱势。尤其是成交手数比较大而集中的时候，表示有大资金活跃迹象，该股出现价格异动的概率就大，应该引起投资者的注意。而如果半天也没人买或者都是一些小单子在交易，则至少短期不大可能成为好股。</li>
+<li>交易数据三要素----成交量、成交价格和成交笔数。不陌生的是前面两个，笔数就是交易批次。在成交量一定的前提下，笔数少说明交易力度强，反之就弱。笔数的变动与数量方向一致，交易为常态，反之就是非常态。</li>
+</ol>
+<p><img src="images/15035663072399.gif" alt=""></p>
+<h1>引用</h1>
+<p><a href="https://www.thebalance.com/order-book-level-2-market-data-and-depth-of-market-1031118" target="_blank" rel="noopener">https://www.thebalance.com/order-book-level-2-market-data-and-depth-of-market-1031118</a></p>
+<p><a href="https://baike.baidu.com/item/Level-2" target="_blank" rel="noopener">https://baike.baidu.com/item/Level-2</a></p>
+<p><a href="https://www.zhihu.com/question/26950456" target="_blank" rel="noopener">https://www.zhihu.com/question/26950456</a></p>
+<p><a href="http://www.cnblogs.com/chuncn/archive/2009/03/13/1410144.html" target="_blank" rel="noopener">http://www.cnblogs.com/chuncn/archive/2009/03/13/1410144.html</a></p>
+
+      
+
+<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/23/jupyter%E4%BD%BF%E7%94%A8pyspark%E6%95%99%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -543,130 +678,6 @@ IC：I表示股指期货，C是China的第一个字母，标的物是中证500�
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://xuqi365.com/2017/08/17/python%E8%A3%85pymssql%E6%97%B6%E9%81%87%E5%88%B0error-command-gcc-failed-with-exit-status-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Python量化交易实战">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/08/17/python%E8%A3%85pymssql%E6%97%B6%E9%81%87%E5%88%B0error-command-gcc-failed-with-exit-status-1/" class="post-title-link" itemprop="url">python装pymssql时遇到error: command 'gcc' failed with exit status 1</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-08-17 16:15:54" itemprop="dateCreated datePublished" datetime="2017-08-17T16:15:54+08:00">2017-08-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 01:11:26" itemprop="dateModified" datetime="2020-02-09T01:11:26+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>执行命令:</p>
-<pre><code class="language-shell">pip install pymssql
-</code></pre>
-<p>报错信息如下：</p>
-<pre><code>  Running setup.py install for pymssql ... error
-    Complete output from command /home/lthpc/anaconda3/bin/python -u -c &quot;import setuptools, tokenize;__file__='/tmp/pip-build-cpwncwyq/pymssql/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))&quot; install --record /tmp/pip-4l_hdx9q-record/install-record.txt --single-version-externally-managed --compile:
-    setup.py: platform.system() =&gt; 'Linux'
-    setup.py: platform.architecture() =&gt; ('64bit', 'ELF')
-    setup.py: platform.linux_distribution() =&gt; ('debian', 'stretch/sid', '')
-    setup.py: platform.libc_ver() =&gt; ('glibc', '2.2.5')
-    setup.py: Not using bundled FreeTDS
-    setup.py: include_dirs = ['/usr/local/include']
-    setup.py: library_dirs = ['/usr/local/lib']
-    running install
-    running build
-    running build_ext
-    cythoning _mssql.pyx to _mssql.c
-    warning: _mssql.pyx:143:4: Exception already a builtin Cython type
-    building '_mssql' extension
-    creating build
-    creating build/temp.linux-x86_64-3.6
-    gcc -pthread -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/local/include -I/home/lthpc/anaconda3/include/python3.6m -c _mssql.c -o build/temp.linux-x86_64-3.6/_mssql.o -DMSDBLIB
-    _mssql.c:435:22: fatal error: sqlfront.h: No such file or directory
-    compilation terminated.
-    error: command 'gcc' failed with exit status 1
-</code></pre>
-<p>google得到以下解决办法：</p>
-<p><a href="https://stackoverflow.com/questions/17368964/trying-to-install-pymssql-on-ubuntu-12-04-using-pip" target="_blank" rel="noopener">https://stackoverflow.com/questions/17368964/trying-to-install-pymssql-on-ubuntu-12-04-using-pip</a></p>
-<p>尝试执行命令安装FreeTDS依赖包：</p>
-<blockquote>
-<p>sudo apt-get install freetds-dev</p>
-</blockquote>
-<p>如果安装过程出现依赖包版本的问题请先更新ubuntu软件源</p>
-<blockquote>
-<p>sudo apt-get update</p>
-</blockquote>
-<p>再次执行pymssql，安装成功:</p>
-<pre><code class="language-shell">$ pip install pymssql
-Collecting pymssql
-  Using cached pymssql-2.1.3.tar.gz
-Building wheels for collected packages: pymssql
-  Running setup.py bdist_wheel for pymssql ... done
-  Stored in directory: /home/lthpc/.cache/pip/wheels/c1/1e/75/bc600eb8a5c9ed77fb1edf15ae5a48b5b427b0390c9a7c9dff
-Successfully built pymssql
-Installing collected packages: pymssql
-Successfully installed pymssql-2.1.3
-</code></pre>
-
-      
-
-<img src="https://eryk.github.io/uploads/gzh.jpg"  alt="Python量化交易实战" /><center>欢迎您扫码订阅我的微信公众号: pyquant</center>
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -739,7 +750,7 @@ Successfully installed pymssql-2.1.3
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -750,7 +761,7 @@ Successfully installed pymssql-2.1.3
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -783,7 +794,7 @@ Successfully installed pymssql-2.1.3
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
