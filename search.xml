@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CentOS 7安装各种版本的devtoolset-3</title>
+    <url>/2021/10/29/2021-10-29%20Centos7%E5%AE%89%E8%A3%85%E5%90%84%E7%A7%8D%E7%89%88%E6%9C%AC%E7%9A%84devtoolset/</url>
+    <content><![CDATA[<h3 id="devtoolset介绍">devtoolset介绍</h3>
+<p>devtoolset是为 Scientific Linux CERN 5 和 6 平台上的开发人员提供的产品。使用 Software Collections 框架，根据 UNIX 文件系统层次结构标准的建议，将一组额外的工具安装到 /opt 目录中。这些工具由用户使用提供的 scl 实用程序按需启用。</p>
+<h3 id="devtoolset与gcc的版本对应关系">devtoolset与gcc的版本对应关系</h3>
+<p>devtoolset-3对应gcc4.9.x版本<br>
+devtoolset-4对应gcc5.x.x版本<br>
+devtoolset-6对应gcc6.x.x版本<br>
+devtoolset-7对应gcc7.x.x版本<br>
+devtoolset-8对应gcc8.x.x版本<br>
+devtoolset-9对应gcc9.x.x版本</p>
+<h3 id="安装步骤">安装步骤</h3>
+<p>由于devtoolset-3版本太老官方仓库已经不再提供安装，所以从需要先从其他网站更新仓库地址，具体更新和安装步骤如下</p>
+<pre><code class="language-shell">cd /etc/yum.repos.d
+
+wget https://copr.fedorainfracloud.org/coprs/rhscl/devtoolset-3-el7/repo/epel-7/rhscl-devtoolset-3-el7-epel-7.repo
+
+yum install devtoolset-3-toolchain
+
+scl enable devtoolset-3 bash
+
+gcc -v
+
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/opt/rh/devtoolset-3/root/usr/libexec/gcc/x86_64-redhat-linux/4.9.2/lto-wrapper
+Target: x86_64-redhat-linux
+Configured with: ../configure --prefix=/opt/rh/devtoolset-3/root/usr --mandir=/opt/rh/devtoolset-3/root/usr/share/man --infodir=/opt/rh/devtoolset-3/root/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --enable-multilib --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --enable-languages=c,c++,fortran,lto --enable-plugin --with-linker-hash-style=gnu --enable-initfini-array --disable-libgcj --with-isl=/builddir/build/BUILD/gcc-4.9.2-20150212/obj-x86_64-redhat-linux/isl-install --with-cloog=/builddir/build/BUILD/gcc-4.9.2-20150212/obj-x86_64-redhat-linux/cloog-install --enable-gnu-indirect-function --with-tune=generic --with-arch_32=i686 --build=x86_64-redhat-linux
+Thread model: posix
+gcc version 4.9.2 20150212 (Red Hat 4.9.2-6) (GCC)
+</code></pre>
+<h3 id="参考">参考</h3>
+<p><a href="https://linux.web.cern.ch/devtoolset/" target="_blank" rel="noopener">https://linux.web.cern.ch/devtoolset/</a></p>
+<p><a href="https://copr.fedorainfracloud.org/coprs/rhscl/devtoolset-3-el7/" target="_blank" rel="noopener">https://copr.fedorainfracloud.org/coprs/rhscl/devtoolset-3-el7/</a></p>
+<p><a href="https://blog.csdn.net/zzhongcy/article/details/89950976" target="_blank" rel="noopener">https://blog.csdn.net/zzhongcy/article/details/89950976</a></p>
+]]></content>
+      <categories>
+        <category>cpp</category>
+      </categories>
+      <tags>
+        <tag>devtoolset</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在MacBook中导入Redis源码并调试</title>
     <url>/2021/10/15/2021-10-15%20%E5%9C%A8Mac%E5%AF%BC%E5%85%A5%E8%B0%83%E8%AF%95Redis%E6%BA%90%E7%A0%81/</url>
     <content><![CDATA[<h1>下载Redis源码</h1>

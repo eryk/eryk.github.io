@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xuqi365.com/"/>
-  <updated>2021-10-15T17:06:14.185Z</updated>
+  <updated>2021-10-29T09:19:30.332Z</updated>
   <id>http://xuqi365.com/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CentOS 7安装各种版本的devtoolset-3</title>
+    <link href="http://xuqi365.com/2021/10/29/2021-10-29%20Centos7%E5%AE%89%E8%A3%85%E5%90%84%E7%A7%8D%E7%89%88%E6%9C%AC%E7%9A%84devtoolset/"/>
+    <id>http://xuqi365.com/2021/10/29/2021-10-29%20Centos7%E5%AE%89%E8%A3%85%E5%90%84%E7%A7%8D%E7%89%88%E6%9C%AC%E7%9A%84devtoolset/</id>
+    <published>2021-10-29T03:34:00.000Z</published>
+    <updated>2021-10-29T09:19:30.332Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;devtoolset介绍&quot;&gt;devtoolset介绍&lt;/h3&gt;
+&lt;p&gt;devtoolset是为 Scientific Linux CERN 5 和 6 平台上的开发人员提供的产品。使用 Software Collections 框架，根据 UNIX
+        
+      
+    
+    </summary>
+    
+    
+      <category term="cpp" scheme="http://xuqi365.com/categories/cpp/"/>
+    
+    
+      <category term="devtoolset" scheme="http://xuqi365.com/tags/devtoolset/"/>
+    
+  </entry>
+  
+  <entry>
     <title>在MacBook中导入Redis源码并调试</title>
     <link href="http://xuqi365.com/2021/10/15/2021-10-15%20%E5%9C%A8Mac%E5%AF%BC%E5%85%A5%E8%B0%83%E8%AF%95Redis%E6%BA%90%E7%A0%81/"/>
     <id>http://xuqi365.com/2021/10/15/2021-10-15%20%E5%9C%A8Mac%E5%AF%BC%E5%85%A5%E8%B0%83%E8%AF%95Redis%E6%BA%90%E7%A0%81/</id>
     <published>2021-10-15T03:34:00.000Z</published>
-    <updated>2021-10-15T17:06:14.185Z</updated>
+    <updated>2021-10-15T17:06:14.000Z</updated>
     
     <summary type="html">
     
@@ -542,36 +570,6 @@ pyfolio的核心是所谓的“tear sheet
     
     
       <category term="pandas" scheme="http://xuqi365.com/tags/pandas/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Pandas hdf5使用指南翻译</title>
-    <link href="http://xuqi365.com/2019/05/08/2019-05-08%20Pandas%20hdf5%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E7%BF%BB%E8%AF%91/"/>
-    <id>http://xuqi365.com/2019/05/08/2019-05-08%20Pandas%20hdf5%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E7%BF%BB%E8%AF%91/</id>
-    <published>2019-05-08T13:51:00.000Z</published>
-    <updated>2020-02-08T17:11:25.955Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1&gt;读写API&lt;/h1&gt;
-&lt;p&gt;HDFStore支持使用read_hdf进行读取和使用to_hdf进行写入的top-level
-        
-      
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://xuqi365.com/categories/python/"/>
-    
-    
-      <category term="pandas" scheme="http://xuqi365.com/tags/pandas/"/>
-    
-      <category term="hdf5" scheme="http://xuqi365.com/tags/hdf5/"/>
     
   </entry>
   
