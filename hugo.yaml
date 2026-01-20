@@ -22,7 +22,7 @@ pagination:
 
 # URL 配置 - 保持与 Hexo 兼容
 permalinks:
-  posts: /:year/:month/:day/:contentbasename/
+  posts: /:year/:month/:day/:title/
 
 # Markup 配置
 markup:
