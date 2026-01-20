@@ -3,7 +3,8 @@
     "command": "hugo --gc --minify",
     "output": "public",
     "environment": {
-      "HUGO_VERSION": "0.140.2"
+      "HUGO_VERSION": "0.140.2",
+      "HUGO_ENV": "production"
     }
   },
   "deployment": {
