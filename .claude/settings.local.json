@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.youtube.com)",
+      "Bash(yt-dlp:*)",
+      "Bash(pip3 install:*)",
+      "Bash(brew upgrade:*)",
+      "Bash(chmod:*)",
+      "Bash(python3:*)",
+      "Bash(claude mcp list:*)",
+      "Bash(claude mcp add --transport stdio notion npx -y @modelcontextprotocol/server-notion --env NOTION_API_TOKEN=ntn_O85255317593Y8BL9VBH2FvadMX3Tvybzn5u05mAzkU2dP)",
+      "Bash(claude mcp add --transport stdio --env NOTION_API_TOKEN=ntn_O85255317593Y8BL9VBH2FvadMX3Tvybzn5u05mAzkU2dP notion npx @modelcontextprotocol/server-notion)",
+      "Bash(claude mcp add --transport stdio notion npx @modelcontextprotocol/server-notion --env NOTION_API_TOKEN=ntn_O85255317593Y8BL9VBH2FvadMX3Tvybzn5u05mAzkU2dP)",
+      "Bash(claude mcp:*)",
+      "WebSearch",
+      "mcp__notion__API-post-search",
+      "Skill(youtube-subtitle-summarizer)"
+    ],
+    "deny": [],
+    "ask": []
+  },
+  "enabledMcpjsonServers": [
+    "youtube-transcript"
+  ],
+  "enableAllProjectMcpServers": true
+}
