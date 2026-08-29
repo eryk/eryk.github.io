@@ -39,7 +39,7 @@ git push
 │   └── search.md     # 搜索页
 ├── static/           # 静态资源
 ├── assets/           # 站点自定义样式
-├── layouts/          # 归档、搜索与搜索索引模板
+├── layouts/          # 归档、搜索、分类与搜索索引模板
 ├── themes/           # 主题目录
 │   └── paper/       # Paper Git 子模块
 └── hugo.yaml         # 配置文件
@@ -67,7 +67,7 @@ git push
 主要配置在 `hugo.yaml` 中：
 
 - **站点信息**: baseURL, title, description
-- **菜单**: menu.main（搜索、归档、关于、邮箱）
+- **菜单**: menu.main（搜索、归档、分类、关于、邮箱）
 - **主页简介**: params.name 和 params.bio
 - **社交链接**: params.github、params.twitter 和 params.rss
 

@@ -1,0 +1,23 @@
+{{- define "main" -}}
+
+<header class="mb-14">
+  <h1 class="my-0! pb-2.5">{{- .Title -}}</h1>
+  {{- with .Content -}}
+  <div class="taxonomy-intro">{{- . -}}</div>
+  {{- end -}}
+</header>
+
+{{- if .Data.Terms -}}
+<div class="taxonomy-grid not-prose">
+  {{- range .Data.Terms.ByCount -}}
+  <a class="taxonomy-card" href="{{- .Page.RelPermalink -}}">
+    <span class="taxonomy-name">{{- .Page.LinkTitle -}}</span>
+    <span class="taxonomy-count">{{- .Count }} 篇</span>
+  </a>
+  {{- end -}}
+</div>
+{{- else -}}
+<p>这里暂时还没有内容。</p>
+{{- end -}}
+
+{{- end -}}

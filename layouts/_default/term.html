@@ -1,0 +1,29 @@
+{{- define "main" -}}
+
+<header class="mb-14">
+  {{- with site.GetPage (printf "/%s" $.Data.Plural) -}}
+  <a class="taxonomy-back not-prose" href="{{- .RelPermalink -}}">←&nbsp;{{- .Title -}}</a>
+  {{- end -}}
+  <h1 class="my-0! pb-2.5">
+    {{- if eq .Data.Singular "tag" -}}#{{- end -}}{{- .Title -}}
+  </h1>
+  <div class="text-sm opacity-60">{{- len .RegularPages }} 篇文章</div>
+</header>
+
+{{- $paginator := .Paginate .RegularPages -}}
+{{- range $paginator.Pages -}}
+  {{- partial "post-card.html" . -}}
+{{- end -}}
+
+{{- if gt $paginator.TotalPages 1 -}}
+<nav class="mt-14 flex">
+  {{- if $paginator.HasPrev -}}
+  <a class="btn not-prose" href="{{- $paginator.Prev.URL -}}">← {{- i18n "prev_page" -}}</a>
+  {{- end -}}
+  {{- if $paginator.HasNext -}}
+  <a class="btn not-prose ml-auto" href="{{- $paginator.Next.URL -}}">{{- i18n "next_page" -}} →</a>
+  {{- end -}}
+</nav>
+{{- end -}}
+
+{{- end -}}

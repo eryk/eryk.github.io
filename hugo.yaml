@@ -49,14 +49,18 @@ menu:
       name: 归档
       url: /archives/
       weight: 20
+    - identifier: categories
+      name: 分类
+      url: /categories/
+      weight: 30
     - identifier: about
       name: 关于
       url: /about/
-      weight: 30
+      weight: 40
     - identifier: email
       name: 邮箱
       url: mailto:xuqi86@gmail.com
-      weight: 40
+      weight: 50
 
 params:
   color: linen

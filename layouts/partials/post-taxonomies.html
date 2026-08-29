@@ -1,0 +1,27 @@
+{{- $categories := .GetTerms "categories" -}}
+{{- $tags := .GetTerms "tags" -}}
+{{- if or $categories $tags -}}
+<footer class="post-taxonomies not-prose">
+  {{- with $categories -}}
+  <div class="post-taxonomy-row">
+    <span class="post-taxonomy-label">分类</span>
+    <div class="post-taxonomy-links">
+      {{- range . -}}
+      <a class="post-taxonomy-link" href="{{- .RelPermalink -}}">{{- .LinkTitle -}}</a>
+      {{- end -}}
+    </div>
+  </div>
+  {{- end -}}
+
+  {{- with $tags -}}
+  <div class="post-taxonomy-row">
+    <span class="post-taxonomy-label">标签</span>
+    <div class="post-taxonomy-links">
+      {{- range . -}}
+      <a class="post-taxonomy-link" href="{{- .RelPermalink -}}">{{- .LinkTitle -}}</a>
+      {{- end -}}
+    </div>
+  </div>
+  {{- end -}}
+</footer>
+{{- end -}}
