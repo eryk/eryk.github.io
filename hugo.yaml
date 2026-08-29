@@ -1,176 +1,85 @@
 baseURL: "https://eryk-github-io.pages.dev/"
-languageCode: "zh-cn"
+languageCode: "zh-CN"
+defaultContentLanguage: "zh"
 title: "Eryk's Blog"
-theme: "hugo-theme-stack"
-copyright: "Eryk"
+theme: "paper"
+copyright: "© 2017–2026 Eryk"
 
-# 启用 CJK 语言支持（中文、日文、韩文）
 hasCJKLanguage: true
-DefaultContentLanguage: zh-cn
-
-# 启用 emoji
 enableEmoji: true
+enableInlineShortcodes: true
 
-# 构建配置
 buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-# 分页
 pagination:
   pagerSize: 10
 
-# URL 配置 - 保持与 Hexo 兼容
+# 保持迁移前的文章 URL 不变。
 permalinks:
   posts: /:year/:month/:day/:title/
 
-# Markup 配置
 markup:
   goldmark:
     renderer:
-      unsafe: true  # 允许 HTML 内容
+      unsafe: true
   tableOfContents:
+    startLevel: 2
     endLevel: 4
     ordered: true
-    startLevel: 2
   highlight:
-    noClasses: false
     codeFences: true
     guessSyntax: true
     lineNos: true
     lineNumbersInTable: true
     tabWidth: 4
 
-# 最小化处理
 minify:
   disableXML: true
   minifyOutput: true
 
-# 菜单配置
 menu:
   main:
-    - identifier: home
-      name: 首页
-      url: /
-      weight: 1
-      params:
-        icon: home
-
-  social:
-    - identifier: github
-      name: GitHub
-      url: https://github.com/xuqi86
-      params:
-        icon: brand-github
-
-    - identifier: twitter
-      name: Twitter
-      url: https://x.com/eryk_xu
-      params:
-        icon: brand-twitter
-
+    - identifier: search
+      name: 搜索
+      url: /search/
+      weight: 10
+    - identifier: archives
+      name: 归档
+      url: /archives/
+      weight: 20
+    - identifier: about
+      name: 关于
+      url: /about/
+      weight: 30
     - identifier: email
-      name: Email
+      name: 邮箱
       url: mailto:xuqi86@gmail.com
-      params:
-        icon: mail
+      weight: 40
 
-# Stack 主题参数
 params:
+  color: linen
+  name: Eryk
+  bio: "记录学习与思考，主要关注数据科学、机器学习和 Python 开发。"
+  description: "Eryk 的技术博客：记录数据科学、机器学习、Python 开发与投资思考。"
   mainSections:
     - posts
 
-  featuredImageField: image
-  rssFullContent: true
+  github: xuqi86
+  twitter: eryk_xu
+  rss: true
 
-  # 网站图标
-  favicon: /favicon.ico
+  monoDarkIcon: true
+  favicon: favicon.ico
+  appleTouchIcon: apple-touch-icon.png
 
-  # 页脚
-  footer:
-    since: 2020
-    customText: "技术博客 - 记录学习与思考"
-
-  # 日期格式
-  dateFormat:
-    published: "2006-01-02"
-    lastUpdated: "2006-01-02 15:04 MST"
-
-  # 侧边栏
-  sidebar:
-    emoji: 👨‍💻
-    subtitle: "技术博客 - 记录学习与思考的点点滴滴。主要关注领域：数据科学、机器学习、Python 开发"
-    avatar:
-      enabled: true
-      local: true
-      src: img/avatar.png
-
-  # 文章设置
-  article:
-    math: false
-    toc: true
-    readingTime: true
-    license:
-      enabled: false
-
-  # 评论 - 暂时禁用
-  comments:
-    enabled: false
-
-  # 首页小部件
-  widgets:
-    homepage:
-      - type: search
-      - type: archives
-        params:
-          limit: 5
-      - type: categories
-        params:
-          limit: 10
-      - type: tag-cloud
-        params:
-          limit: 15
-
-    page:
-      - type: toc
-
-  # OpenGraph 设置
-  opengraph:
-    twitter:
-      site: eryk_xu
-      card: summary_large_image
-
-  # 颜色主题
-  colorScheme:
-    toggle: true
-    default: auto
-
-  # 图片处理
-  imageProcessing:
-    cover:
-      enabled: true
-    content:
-      enabled: true
-
-# 分类法配置
 taxonomies:
   category: categories
   tag: tags
 
-# 输出格式
 outputs:
   home:
     - HTML
     - RSS
     - JSON
-
-# 相关文章
-related:
-  includeNewer: true
-  threshold: 60
-  toLower: false
-  indices:
-    - name: tags
-      weight: 100
-    - name: categories
-      weight: 200

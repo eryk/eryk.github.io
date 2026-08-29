@@ -1,0 +1,22 @@
+{{- define "main" -}}
+<article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">{{- .Title -}}</h1>
+  </header>
+
+  {{- $pages := partial "post-pages.html" . -}}
+  {{- range $pages.GroupByDate "2006" -}}
+  <section>
+    <h2>{{- .Key -}}</h2>
+    <ul>
+      {{- range .Pages -}}
+      <li>
+        <a href="{{- .RelPermalink -}}">{{- .Title -}}</a>
+        <time class="text-xs antialiased opacity-60">{{- .Date | time.Format "2006-01-02" -}}</time>
+      </li>
+      {{- end -}}
+    </ul>
+  </section>
+  {{- end -}}
+</article>
+{{- end -}}

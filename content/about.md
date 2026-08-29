@@ -10,7 +10,14 @@ url: "/about/"
 
 记录学习过程、项目实践和技术思考。
 
+主要关注领域：
+
+- 数据科学
+- 机器学习
+- Python 开发
+
 ## 联系方式
 
 - Email: xuqi86@gmail.com
 - GitHub: [@xuqi86](https://github.com/xuqi86)
+- Twitter: [@eryk_xu](https://x.com/eryk_xu)

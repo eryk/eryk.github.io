@@ -1,6 +1,6 @@
 # Eryk's Blog
 
-基于 Hugo + Stack 主题的技术博客。
+基于 Hugo + Paper 主题的技术博客。
 
 ## 快速开始
 
@@ -34,28 +34,30 @@ git push
 .
 ├── content/           # 内容目录
 │   ├── posts/        # 博客文章
-│   └── page/         # 页面（关于、归档、搜索）
+│   ├── about.md      # 关于页
+│   ├── archives.md   # 归档页
+│   └── search.md     # 搜索页
 ├── static/           # 静态资源
-├── assets/           # 主题资源
-│   └── icons/       # 自定义图标
+├── assets/           # 站点自定义样式
+├── layouts/          # 归档、搜索与搜索索引模板
 ├── themes/           # 主题目录
-│   └── hugo-theme-stack/
+│   └── paper/       # Paper Git 子模块
 └── hugo.yaml         # 配置文件
 ```
 
 ## 技术栈
 
 - **静态站点生成器**: [Hugo](https://gohugo.io/)
-- **主题**: [Stack](https://github.com/CaiJimmy/hugo-theme-stack)
-- **部署**: GitHub Pages
-- **CI/CD**: GitHub Actions
+- **主题**: [Paper](https://github.com/nanxiaobei/hugo-paper)
+- **部署**: Cloudflare Pages、GitHub Pages
+- **CI/CD**: Cloudflare Pages Git 集成、GitHub Actions
 
 ## 主要功能
 
 - 📝 Markdown 写作
 - 🔍 全站搜索
 - 🏷️ 标签和分类
-- 📚 归档时间线
+- 📚 按年份归档
 - 🌓 明暗主题切换
 - 📱 响应式设计
 - ⚡ 快速加载
@@ -65,12 +67,11 @@ git push
 主要配置在 `hugo.yaml` 中：
 
 - **站点信息**: baseURL, title, description
-- **菜单**: menu.main 和 menu.social
-- **侧边栏**: params.sidebar
-- **小部件**: params.widgets
-- **社交链接**: GitHub, Twitter, Email
+- **菜单**: menu.main（搜索、归档、关于、邮箱）
+- **主页简介**: params.name 和 params.bio
+- **社交链接**: params.github、params.twitter 和 params.rss
 
-详细配置请参考 [Stack 主题文档](https://stack.jimmycai.com/)
+详细配置请参考 [Paper 主题文档](https://github.com/nanxiaobei/hugo-paper)
 
 ## 关于
 

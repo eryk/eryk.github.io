@@ -1,0 +1,13 @@
+[
+  {{- $pages := partial "post-pages.html" . -}}
+  {{- range $index, $page := $pages -}}
+  {{- if $index }},{{ end }}
+  {
+    "title": {{ .Title | jsonify }},
+    "permalink": {{ .RelPermalink | jsonify }},
+    "date": {{ .Date.Format "2006-01-02" | jsonify }},
+    "summary": {{ .Summary | plainify | htmlUnescape | jsonify }},
+    "content": {{ .Plain | htmlUnescape | jsonify }}
+  }
+  {{- end -}}
+]

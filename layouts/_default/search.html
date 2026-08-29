@@ -1,0 +1,77 @@
+{{- define "main" -}}
+<article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">{{- .Title -}}</h1>
+  </header>
+
+  <label for="search-input">搜索文章标题或内容</label>
+  <input
+    class="search-input"
+    id="search-input"
+    type="search"
+    autocomplete="off"
+    placeholder="输入关键词…"
+  />
+  <div class="search-results" id="search-results" aria-live="polite"></div>
+</article>
+
+<script>
+  (() => {
+    const input = document.querySelector('#search-input');
+    const results = document.querySelector('#search-results');
+    let pages = [];
+
+    const render = () => {
+      const query = input.value.trim().toLocaleLowerCase();
+      results.replaceChildren();
+
+      if (!query) return;
+
+      const matches = pages
+        .filter((page) => page.searchText.includes(query))
+        .slice(0, 20);
+
+      if (!matches.length) {
+        const empty = document.createElement('p');
+        empty.textContent = '没有找到相关文章。';
+        results.append(empty);
+        return;
+      }
+
+      matches.forEach((page) => {
+        const item = document.createElement('section');
+        const title = document.createElement('h2');
+        const link = document.createElement('a');
+        const date = document.createElement('time');
+        const summary = document.createElement('p');
+
+        link.href = page.permalink;
+        link.textContent = page.title;
+        title.append(link);
+        date.textContent = page.date;
+        summary.textContent = page.summary;
+        item.append(title, date, summary);
+        results.append(item);
+      });
+    };
+
+    fetch({{ "index.json" | relURL | jsonify | safeJS }})
+      .then((response) => {
+        if (!response.ok) throw new Error('search index request failed');
+        return response.json();
+      })
+      .then((data) => {
+        pages = data.map((page) => ({
+          ...page,
+          searchText: `${page.title} ${page.content}`.toLocaleLowerCase(),
+        }));
+        input.addEventListener('input', render);
+      })
+      .catch(() => {
+        const error = document.createElement('p');
+        error.textContent = '搜索索引加载失败，请稍后重试。';
+        results.replaceChildren(error);
+      });
+  })();
+</script>
+{{- end -}}
