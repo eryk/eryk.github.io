@@ -61,12 +61,12 @@ menu:
 params:
   color: linen
   name: Eryk
-  bio: "记录学习与思考，主要关注数据科学、机器学习和 Python 开发。"
-  description: "Eryk 的技术博客：记录数据科学、机器学习、Python 开发与投资思考。"
+  bio: "写技术，也写投资、阅读和日常琐想。想到哪里，就记到哪里。"
+  description: "Eryk 的个人博客，记录技术实践、投资与阅读，以及日常生活里的想法。"
   mainSections:
     - posts
 
-  github: xuqi86
+  github: eryk
   twitter: eryk_xu
   rss: true
 

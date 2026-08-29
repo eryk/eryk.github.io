@@ -1,6 +1,6 @@
 # Eryk's Blog
 
-基于 Hugo + Paper 主题的技术博客。
+基于 Hugo + Paper 主题的个人博客。
 
 ## 快速开始
 
@@ -81,7 +81,7 @@ git push
 
 ## 联系方式
 
-- GitHub: [@xuqi86](https://github.com/xuqi86)
+- GitHub: [@eryk](https://github.com/eryk)
 - Twitter: [@eryk_xu](https://x.com/eryk_xu)
 - Email: xuqi86@gmail.com
 
