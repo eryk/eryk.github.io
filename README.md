@@ -18,6 +18,22 @@ hugo server
 hugo new content/posts/my-new-post.md
 ```
 
+### Obsidian 周记
+
+使用固定模板创建草稿：
+
+```bash
+hugo new content --kind weekly-notes posts/YYYY-MM-DD-weekly-notes.md
+```
+
+模板在 `archetypes/weekly-notes.md`，每次整理遵循以下格式：
+
+- 按北京时间周一至周日的收录记录整理，合并重复主题，不把旧文写成当周新闻。
+- 正文用“日期范围＋分类列表”，选 5–8 条，内容少时可以更少；删除空分类，不写开场铺垫和重复总结。
+- 每条采用“**主题**：一句话总结”，通常 30–60 字，只留一个核心信息，正文以 300–500 字为宜。
+- 外部资料把来源链接嵌入句子，区分作者观点、个人归纳和实际验证；不补写未经记录的经历或结论。
+- “本周提醒”最多留一个具体动作；替换所有占位文字、示例链接和文章描述，保留 `draft: true`，确认后再发布。
+
 ### 部署
 
 推送到 GitHub 后自动部署：
